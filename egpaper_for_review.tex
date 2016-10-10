@@ -82,22 +82,21 @@ In this section, we formulate the framework of external Patch Group prior guided
 \subsection{External Patch Group Prior Learning on Clean Natural Images}
 Images often demonstrate highly nonlocal self-similarity (NSS) property, which refers to the fact that a patch always have similar patches to it around the image. This property is a key successful factor in image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is recently learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on clean natural images.
 
-For each local patch (size: $p\times p \times 3$ for RGB channels) of a given clean image, we can find the first $M$ most similar nonlocal patches to it across the whole image. In practice, this can be done by Euclidean distance based block matching in a large enough local window of size $W\times W$. A PG is formed by grouping the $M$ similar patches, denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{p^{2}\times1}$ is a patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. We call
+In external PG prior learning on clean natural images, a PG is obtained via finding the $M$ most similar nonlocal patches to the local patch (size: $p\times p \times 3$ for RGB channels) in a given clean image. The similarity is measured by Euclidean distance or other distance measurements. In this work, we find similar PGs through the Euclidean distance based block matching in a large enough local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. We call
 \begin{equation}\label{equ1}
 \setlength{\abovedisplayskip}{2pt}
 \setlength{\belowdisplayskip}{2pt}
 \mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
 \end{equation}
-the group mean subtracted PG, and it will be used to learn the NSS prior in our work. 
- 
-\subsection{PG-GMM Learning}
-From a given set of natural images, we can extract $N$ PGs, and we denote one PG as
+the group mean subtracted PG, and it will be used to learn the NSS prior in our work. All these are similar with the definitions in \cite{pgpd}. 
+
+From a given set of natural images, we can extract $N$ PGs, and  PG as
 \begin{equation}\label{equ2}
 \setlength{\abovedisplayskip}{2pt}
 \setlength{\belowdisplayskip}{2pt}
 \mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
 \end{equation}
-The PGs $\{\mathbf{\overline{X}}_{n}\}$ contain a rich amount of NSS information of natural images, and the problem turns to how to learn explicit prior models from $\{\mathbf{\overline{X}}_{n}\}$. Considering that Gaussian Mixture Model (GMM) has been successfully used to model the image patch priors in EPLL \cite{epll} and PLE \cite{ple}, we propose to extend patch based GMM to patch group based GMM (PG-GMM) for NSS prior learning.
+We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. The learning process is the same with that in \cite{pgpd}.
 
 With PG-GMM, we aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \begin{equation}\label{equ3}
@@ -105,253 +104,21 @@ With PG-GMM, we aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\
 \setlength{\belowdisplayskip}{3pt}
 P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
 \end{equation}
-By assuming that all the PGs are independently sampled, the overall objective likelihood function is $\mathcal{L} = \prod_{n=1}^{N}P(\mathbf{\overline{X}}_{n})$. Taking the log of it, we maximize the following objective function for PG-GMM learning
+By assuming that all the PGs are independently sampled, the overall objective log-likelihood function is
 \begin{equation}\label{equ4}
 \setlength{\abovedisplayskip}{3pt}
 \setlength{\belowdisplayskip}{3pt}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
-\end{equation}
+\end{equation} 
+We maximize the above objective function for PG-GMM learning. Finally, we obtain the GMM model with three sets of parameters including mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}=\mathbf{0}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Noted that in PGPD \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
 
-In Fig., we show two different eigenvectors and eigenvalues.\ One can see that before mean subtraction, the two PGs have very different local structures.\ After mean subtraction, the two PGs will have very similar variations.\ This greatly facilitates the prior learning because the possible number of patterns is reduced, while the training samples of each pattern are increased. We will discuss further the benefits of mean subtraction and the associated prior model learning in Section 2.4.  
-
-\subsection{Model Optimization}
-While the objective function in (3) is not convex, it is convex with each varible when other variables are fixed. We employ alternating direction method of multipliers (ADMM) algorithm here. Specifically, we divide the objective function into four sub-problems: 1) updating the sparse coefficients $\mathbf{A}_{x}, \mathbf{A}_{y}$; 2) updating the normalized dictionaries $\mathbf{D}_{x}, \mathbf{D}_{y}$; 3) updating the noise matrix $\mathbf{V}_{y}$; 4) updating the mapping matirces $\mathbf{U}_{x}, \mathbf{U}_{y}$. We discuss the four steps as follows.
-
-\subsubsection{Updating $\mathbf{A}_{x}$ and $\mathbf{A}_{y}$}
-
-\begin{equation}
-\begin{split}
-\min_{\mathbf{A}_{x}}
-\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}
-+
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
-&
-\\
-+
-\beta_{x1}\|\mathbf{A}_{x}\|_{1}
-+
-\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
-\end{split}
-\end{equation}
-\begin{equation}
-\begin{split}
-\min_{\mathbf{A}_{y}}
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-&
-\\
-+
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
-+
-\beta_{y1}\|\mathbf{A}_{y}\|_{1}
-+
-\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}.
-\end{split}
-\end{equation}
-
-Take $\mathbf{A}_{x}$ as an example, the first and second terms above can be combined to form a new optimization problems as follows:
-\begin{equation}
-\min_{\mathbf{A}_{x}}
-\|\widetilde{\mathbf{X}}-\widetilde{\mathbf{D}}_{x}\mathbf{A}_{x}\|_{F}^{2}
-+
-\beta_{x1}\|\mathbf{A}_{x}\|_{1}
-+
-\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
-\end{equation}
-where 
-$
-\widetilde{\mathbf{X}}
-=
-\left(\begin{array}{c}
-\mathbf{X}
-\\
-\sqrt{\alpha}\mathbf{U}_{y}^{-1}\mathbf{A}_{y}
-\end{array}\right)
-$
-and
-$
-\widetilde{\mathbf{D}}
-=
-\left(\begin{array}{c}
-\mathbf{D}_{x}
-\\
-\sqrt{\alpha}\mathbf{U}_{x}^{-1}
-\end{array}\right)
-$.
-For $\mathbf{A}_{y}$, it is similar with $\mathbf{A}_{x}$.
-\begin{equation}
-\min_{\mathbf{A}_{y}}
-\|\widetilde{\mathbf{Y}}-\widetilde{\mathbf{D}}_{y}\mathbf{A}_{y}\|_{F}^{2}
-+
-\beta_{y1}\|\mathbf{A}_{y}\|_{1}
-+
-\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2},
-\end{equation}
-where 
-$
-\widetilde{\mathbf{Y}}
-=
-\left(\begin{array}{c}
-\mathbf{Y}-\mathbf{V}_{y}
-\\
-\sqrt{\alpha}\mathbf{U}_{x}^{-1}\mathbf{A}_{x}
-\end{array}\right)
-$
-and
-$
-\widetilde{\mathbf{D}}
-=
-\left(\begin{array}{c}
-\mathbf{D}_{y}
-\\
-\sqrt{\alpha}\mathbf{U}_{y}^{-1}
-\end{array}\right)
-$.
-These simplified versions have the exactly same formulation as standard sparse coding and can be simply solved by tools such as SPAMS.
-
-The $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are inversible. This will be discussed in subsection "Updating U".
-
-\subsubsection{Updating $\mathbf{D}_{x}$ and $\mathbf{D}_{y}$}
-\begin{equation}
-\min_{\mathbf{D}_{x}}
-\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}
-\quad
-\text{s.t.}
-\quad
-\|\mathbf{d}_{x,i}\|_{2}=1,
-\forall{i}.
-\end{equation}
-
-\begin{equation}
-\begin{split}
-\min_{\mathbf{D}_{y}}
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-\quad 
-\text{s.t.}
-\quad 
-\|\mathbf{d}_{y,i}\|_{2}=1,
-\forall{i}.
-\end{split}
-\end{equation}
-These two are quadraically constrained quadratic program (QCQP) problem and can be solved by Lagrange dual techniques.
-
-\subsubsection{Updating $\mathbf{V}_{y}$}
-The noise matrix is initialized as a zero matirx and updated by solving the following probelm:
-\begin{equation}
-\begin{split}
-\min_{\mathbf{V}_{y}}
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-+
-\gamma_{y}\|\mathbf{V}_{y}\|_{F}^{2}
-\end{split}
-\end{equation}
-This is a ridge regression problem. We can obtain the analytical solution of $\mathbf{V}_{y}$ by 
-\begin{equation}
-\mathbf{V}_{y} = (\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y})/(1+\gamma_{y}).
-\end{equation}
-
-\subsubsection{Alternate Updating $\mathbf{V}_{y}$}
-The noise matrix is initialized as a zero matirx and updated by solving the following probelm:
-\begin{equation}
-\begin{split}
-\min_{\mathbf{V}_{y}}
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-\end{split}
-\end{equation}
-This is a standard least square problem. We can obtain the analytical solution of $\mathbf{V}_{y}$ by 
-\begin{equation}
-\mathbf{V}_{y} = \mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}.
-\end{equation}
+\subsection{External PG Prior Guided Internal Subspace Learning}
 
 
+\subsection{Comparing External PG Prior and Guided Internal Subspace Learning}
 
-\subsubsection{Updating $\mathbf{U}_{x}$ and $\mathbf{U}_{y}$}
-
-\begin{equation}
-\begin{split}
-\min_{\mathbf{U}_{x}^{-1}}
-\alpha
-\|\mathbf{U}_{y}^{-1}\mathbf{A}_{y}-\mathbf{U}_{x}^{-1}\mathbf{A}_{x}\|_{F}^{2}
-+
-\lambda_{x}\|\mathbf{U}_{x}^{-1}\|_{F}^{2}
-\\
-\min_{\mathbf{U}_{y}^{-1}}
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
-+
-\lambda_{y}\|\mathbf{U}_{y}^{-1}\|_{F}^{2}
-\end{split}
-\end{equation}
-The above problems are also ridge regression problems and have analytical solutions of $\mathbf{U}_{x}$ and $\mathbf{U}_{y}$ as follows:
-\begin{equation}
-\begin{split}
-\mathbf{U}_{x}^{-1} = \mathbf{U}_{y}^{-1}\mathbf{A}_{y}\mathbf{A}_{x}^{T}(\mathbf{A}_{x}\mathbf{A}_{x}^{T}+(\gamma_{x}/\alpha)\mathbf{I})^{-1}
-\\
-\mathbf{U}_{y}^{-1} = \mathbf{U}_{x}^{-1}\mathbf{A}_{x}\mathbf{A}_{y}^{T}(\mathbf{A}_{y}\mathbf{A}_{y}^{T}+(\gamma_{y}/\alpha)\mathbf{I})^{-1}
-\end{split}
-\end{equation}
-Here, we verify that $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are inversible. The $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are both initialized as an identity matrix, of suitable dimension, which is inversible. That is, we have $\mathbf{U}_{y}^{(0)} = \mathbf{I}$ when we compute $\mathbf{U}_{x}^{-1}$. If $\mathbf{A}_{y}\mathbf{A}_{x}^{T}$ is inversible, then $\mathbf{U}_{x}^{-1}$ is inversible. In fact, we have $\mathbf{A}_{y},\mathbf{A}_{x}\in \mathbb{R}^{d\times N}$. $d$ is the dimension of the sample. For a patch of size $8\times8$, $d=64$. The $N$ is the number of samples in the training data. Remember that we have much more samples when compared to the dimension of patches, that is $N\gg d$. It is less likely that  $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ has a rank structure lower than $d$. In other words,  $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ is less likely to be singular if we have enough training data. The experiments also confirm our conjecture. Besides, we can also add small disburtation to guarantee that $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ is inversible. 
-
-Once $\mathbf{U}_{x}^{-1}$ is inversible, we can also verify that $\mathbf{U}_{y}^{-1}$ is inversible in a similar way. 
-
-\subsection{Real Image Denoising}
-Two methods:
-
-The first one is that
-\begin{equation}
-\begin{split}
-\min_{\mathbf{a}_{x,i},\mathbf{a}_{y,i}}
-\|\mathbf{x}_{i}-\mathbf{D}_{x}\mathbf{a}_{x,i}\|_{2}^{2}
-+
-\|\mathbf{y}_{i}-\mathbf{D}_{y}\mathbf{a}_{y,i}-\mathbf{v}_{y,i}\|_{2}^{2}
-\\
-+
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{a}_{x,i}-\mathbf{U}_{y}^{-1}\mathbf{a}_{y,i}\|_{2}^{2}&
-\\
-+
-\beta_{x}\|\mathbf{a}_{x,i}\|_{1}
-+
-\beta_{x2}\|\mathbf{a}_{x,i}\|_{2}^{2}
-+
-\beta_{y}\|\mathbf{a}_{y,i}\|_{1}
-+
-\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
-&
-\\
-(+
-\gamma_{y}\|\mathbf{v}_{y,i}\|_{1})
-\end{split}
-\end{equation}
-and finally we get $\widehat{\mathbf{x}}_{i}=\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
-
-The second one is to solve
-\begin{equation}
-\begin{split}
-\min_{\mathbf{a}_{y,i},\mathbf{v}_{y,i}}
-\|\mathbf{y}_{i}-\mathbf{D}_{y}\mathbf{a}_{y,i}-\mathbf{v}_{y,i}\|_{2}^{2}
-+
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{a}_{x,i}-\mathbf{U}_{y}^{-1}\mathbf{a}_{y,i}\|_{2}^{2}&
-\\
-+
-\beta_{y1}\|\mathbf{a}_{y,i}\|_{1}
-+
-\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
-&
-\\
-(+
-\gamma_{y}\|\mathbf{v}_{y,i}\|_{1}).
-\end{split}
-\end{equation}
-Once we get $\widehat{\mathbf{a}}_{y,i}$ from $\mathbf{y}_{i}$, $\widehat{\mathbf{a}}_{x,i}\approx\mathbf{U}_{x}\mathbf{U}_{y}^{-1}\widehat{\mathbf{a}}_{y,i}$ and $\widehat{\mathbf{x}_{i}}\approx\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
-
-Experiments demonstrate that the first method can get better performance than the second one while the second one can get faster speed than the first one.
-
-We can also initialized the solution from the second one. 
 
 \section{The Overall Algorithm}
 
