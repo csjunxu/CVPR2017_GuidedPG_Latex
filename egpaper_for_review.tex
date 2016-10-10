@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{subfigure}
+\usepackage{upgreek}
 
 % Include other packages here, before hyperref.
 
@@ -25,7 +26,7 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{External Patch Group Prior Guided Internal Clustering and Subspace Learning for Real Image Denoising}
+\title{External Patch Group Prior Guided Internal Subspace Learning for Real Image Denoising}
 
 \author{First Author\\
 Institution1\\
@@ -44,11 +45,10 @@ First line of institution2 address\\
 }
 
 \maketitle
-%\thispagestyle{empty}
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-Existing image denoising methods largely depends on noise modeling and estimation. The commonly used noise models, additive white Gaussian or Mixture of Gaussians, are inflexible in describing the complex noise on real noisy images or time consuming in parametric estimation, respectively. Hence, this would limit the denoising performance of existing methods. In this paper, we firstly demonstrate that almost all state-of-the-art methods on removing Gaussian noise and real noise are limited in denoising real noisy images. We demonstrate that a simple Patch Group based Prior Learning model on RGB images can achieve better performance than existing denoising methods, especially the ones designed for real noise in natural images. Besides, we employ the external patch group prior learning for internal clustering and subspace learning. This external inormation guided internal denoising methods acheives even better than the external PG prior based methods and the fully internal PG prior based method. Through extensive on standard datasets on real noisy images with groundtruth, we demonstrate that the proposed method achieves much better denoising performance than the other state-of-the-art methods on Gaussian noise removal and real noise removal. 
+Existing image denoising methods largely depends on noise modeling and estimation. The commonly used noise models, additive white Gaussian, are inflexible in describing the complex noise on real noisy images. This would limit the performance of existing methods on denoising real noisy images. In this paper, we firstly demonstrate that almost all state-of-the-art methods on removing Gaussian noise and real noise are limited in denoising real noisy images. We demonstrate that a simple Patch Group based Prior Learning model on RGB images can achieve better performance than existing denoising methods, especially the ones designed for real noise in natural images. Besides, we employ the external patch group prior learning for internal clustering and subspace learning. This external inormation guided internal denoising methods acheives even better than the external PG prior based methods and the fully internal PG prior based method. Through extensive on standard datasets on real noisy images with groundtruth, we demonstrate that the proposed method achieves much better denoising performance than the other state-of-the-art methods on Gaussian noise removal and real noise removal. 
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
@@ -67,7 +67,6 @@ The contributions of this paper are summarized as follows:
 \item We propose a noval method which combine the external and internal PG prior for real noisy image denoising problem;
 \item Our method doesn't need noise modeling and estimation, and the noise levels of real noisy images are automatically expresssed by the singular values of learned subspace;
 \item We achieve much better performance, visual quality, PSNR, SSIM, and speed for real image denoising problem.
-
 \end{itemize}
 
 \section{Related Work}
@@ -77,99 +76,45 @@ Patch prior is an approximation of the prior of natural images. There are severa
 \subsection{Real Image Denoising}
 To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
 
-\section{Patch Group Prior Guided Internal Structural Clustering and Subspace Learning}
-In this section, we first formulate the real image denoising problem from the perspective of learning based model and then provide the optimization for the problem.
-\subsection{Problem Formulation}
-For real image denoising, we first collect clean natural images and real noisy images for training. Assume the $\mathbf{X}$ and $\mathbf{Y}$ are unpaired clean image patches and real noisy patches. Let the $\mathbf{X} = \mathbf{D}_{x}\mathbf{A}_{x}$ and $\mathbf{Y} = \mathbf{D}_{y}\mathbf{A}_{y}+\mathbf{V}_{y}$, where $\mathbf{V}_{y}$ is the real noise of which we don't know the distribution. 
-\begin{equation}
+\section{Patch Group Prior Guided Internal Subspace Learning}
+In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
+
+\subsection{External Patch Group Prior Learning on Clean Natural Images}
+Images often demonstrate highly nonlocal self-similarity (NSS) property, which refers to the fact that a patch always have similar patches to it around the image. This property is a key successful factor in image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is recently learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on clean natural images.
+
+For each local patch (size: $p\times p \times 3$ for RGB channels) of a given clean image, we can find the first $M$ most similar nonlocal patches to it across the whole image. In practice, this can be done by Euclidean distance based block matching in a large enough local window of size $W\times W$. A PG is formed by grouping the $M$ similar patches, denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{p^{2}\times1}$ is a patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. We call
+\begin{equation}\label{equ1}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
+\end{equation}
+the group mean subtracted PG, and it will be used to learn the NSS prior in our work. 
+ 
+\subsection{PG-GMM Learning}
+From a given set of natural images, we can extract $N$ PGs, and we denote one PG as
+\begin{equation}\label{equ2}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{2pt}
+\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
+\end{equation}
+The PGs $\{\mathbf{\overline{X}}_{n}\}$ contain a rich amount of NSS information of natural images, and the problem turns to how to learn explicit prior models from $\{\mathbf{\overline{X}}_{n}\}$. Considering that Gaussian Mixture Model (GMM) has been successfully used to model the image patch priors in EPLL \cite{epll} and PLE \cite{ple}, we propose to extend patch based GMM to patch group based GMM (PG-GMM) for NSS prior learning.
+
+With PG-GMM, we aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
+\begin{equation}\label{equ3}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
+\end{equation}
+By assuming that all the PGs are independently sampled, the overall objective likelihood function is $\mathcal{L} = \prod_{n=1}^{N}P(\mathbf{\overline{X}}_{n})$. Taking the log of it, we maximize the following objective function for PG-GMM learning
+\begin{equation}\label{equ4}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
 \begin{split}
-&\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y}}
-\emph{E}_{data}(\mathbf{X},\mathbf{D}_{x},\mathbf{A}_{x})+
-\emph{E}_{data}(\mathbf{Y},\mathbf{D}_{y},\mathbf{A}_{y},\mathbf{V}_{y})
-\\
-&
-+\emph{E}_{map}(f_{1}(\mathbf{A}_{x}),f_{2}(\mathbf{A}_{y}))+
-\emph{E}_{reg}(\mathbf{A}_{x},\mathbf{A}_{y},f_{1},f_{2},\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{V}_{y})
+\ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
 \end{equation}
 
-This framework doesn't need noise modeling and estimation. However, we still model the noise by $\mathbf{V}_{y}$ for visualization what we have removed during training. The regularization of the noise by $\|\mathbf{V}_{y}\|_{p}^{p}$ can be flexible, that we can penalize it by Frobenius norm, $\ell_{1}$ norm, or any other norms. We employ Frobenius norm here for modeling simplicity. To model the relationship between the representational coefficients, we propose to use two inversible mapping function $f_{1}$ and $f_{2}$. To measure the error, we employ a penalty function $\emph{F}$.
-\begin{equation}
-\begin{split}
-\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y},\mathbf{U}_{x},\mathbf{U}_{y},\mathbf{V}_{y}}
-\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}&
-\\
-+
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-+
-\alpha
-\emph{F}(f_{1}(\mathbf{A}_{x}),f_{2}(\mathbf{A}_{y}))&
-\\
-+
-\beta_{x1}\|\mathbf{A}_{x}\|_{1}
-+
-\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
-+
-\beta_{y1}\|\mathbf{A}_{y}\|_{1}
-+
-\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
-&
-\\
-(+
-\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
-\\
-\text{s.t.}
-\quad
-\|\mathbf{d}_{x,i}\|_{2}=1
-, 
-\|\mathbf{d}_{y,i}\|_{2}=1
-,
-\forall{i}
-.
-\end{split}
-\end{equation}
-Here, we want to discuss more on the mapping functions $f_{1}, f_{2}$ and the measure function $\emph{F}$. The mapping function can be linear or nonlinear transformations. The linear function can be defined as a mapping matrix $f_{1}(\mathbf{A}_{x})=\mathbf{U}_{x}\mathbf{A}_{x}$ and $f_{2}(\mathbf{A}_{y})=\mathbf{U}_{y}\mathbf{A}_{y}$. The corresponding penalty terms on the mapping matrices are $\|\mathbf{U}_{x}\|_{F}^{2}$ and $\|\mathbf{U}_{y}\|_{F}^{2}$. The nonlinear function can be defined as sigmoid function $f_{1}(\mathbf{A}_{x})=1/(1+\exp\{-\mathbf{A}_{y}\})$. We can also employ "first-linear-then-nonlinear" or "first-nonlinear-then-linear" strategies. Here, we don't have explict penalty terms for the nonlinear mapping functions. The derivatives of the nonlinear case also need further discussions since it is not easy to obtain closed-form solutions with sigmoid functions. In this paper, we utilize linear transformation matrices as the mapping functions $f_{1}$ and $f_{2}$. The measure penalty function is simply defined by Frobenius norm. Hence, the term is defined as $\|\mathbf{U}_{x}\mathbf{A}_{x}-\mathbf{U}_{y}\mathbf{A}_{y}\|_{F}^{2}$. However, this would generate a trivial solution of $\mathbf{U}_{x}=\mathbf{U}_{y}=\mathbf{0}$. In order to avoid this case, we propose to use the inverse of the mapping matrices, i.e., $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$.
-
-In summary, we propose a Doubly Inversible and Semi-Coupled Dictionary Learing (DISCDL) model to learn the dictionaries and mapping functions between real noisy images and latent clean natural images. 
-\begin{equation}
-\begin{split}
-\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y},\mathbf{U}_{x},\mathbf{U}_{y},\mathbf{V}_{y}}
-\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}&
-\\
-+
-\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
-+
-\alpha
-\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}&
-\\
-+
-\beta_{x1}\|\mathbf{A}_{x}\|_{1}
-+
-\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
-+
-\beta_{y1}\|\mathbf{A}_{y}\|_{1}
-+
-\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
-&
-\\
-(+
-\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
-&
-\\
-+
-\lambda_{x}\|\mathbf{U}_{x}^{-1}\|_{F}^{2}
-+
-\lambda_{y}\|\mathbf{U}_{y}^{-1}\|_{F}^{2}
-\\
-\text{s.t.}\quad \|\mathbf{d}_{x,i}\|_{2}=1, \|\mathbf{d}_{y,i}\|_{2}=1, \forall{i}.
-\end{split}
-\end{equation}
-This model has three major differences when compared with SCDL model.
-\begin{itemize}
-\item We use a matrix $\mathbf{V}_{y}$ to model the noise, and we don't set any prior distribution on it. This term can help us visualize the noise we learned from the data, i.e., the real noisy images. This make our model fully data-driven. Since our assumption (we have no assumption at all) on noise is more flexible than others', the noise we obtain in our model can be more accurate than other statistical models such as Gaussian or Mixture of Gaussians. Besides, it is time-consuming to fit the noise model from the online data. 
-\item We use two inversible matrices as the mapping transformations between the coefficients of the real noisy patches and the latent clean patches. This makes our model more flexible than SCDL in which the mapping matrix not explictly inversible. Besides, the SCDL can only transform LR images into HG images while our model can transform two different image styles in both direction.
-\item The constraints on dictionary atoms in our model is strictly $\|\mathbf{d}_{x,i}\|_{2}=1, \|\mathbf{d}_{y,i}\|_{2}=1$ while the CDL model and SCDL model are $\|\mathbf{d}_{x,i}\|_{2}\le1, \|\mathbf{d}_{y,i}\|_{2}\le1$. This makes our model more robust on the dictionary learning since both the dictionary atoms and sparse coefficients are interacted with each other. The $\le1$ constraints would like to make the coefficients larger and dictionary atoms smaller or even vanish. However, in the training stage, we care more about the dictionary atoms and would rather ignore the sparse coefficients.  
-\end{itemize}
+In Fig., we show two different eigenvectors and eigenvalues.\ One can see that before mean subtraction, the two PGs have very different local structures.\ After mean subtraction, the two PGs will have very similar variations.\ This greatly facilitates the prior learning because the possible number of patterns is reduced, while the training samples of each pattern are increased. We will discuss further the benefits of mean subtraction and the associated prior model learning in Section 2.4.  
 
 \subsection{Model Optimization}
 While the objective function in (3) is not convex, it is convex with each varible when other variables are fixed. We employ alternating direction method of multipliers (ADMM) algorithm here. Specifically, we divide the objective function into four sub-problems: 1) updating the sparse coefficients $\mathbf{A}_{x}, \mathbf{A}_{y}$; 2) updating the normalized dictionaries $\mathbf{D}_{x}, \mathbf{D}_{y}$; 3) updating the noise matrix $\mathbf{V}_{y}$; 4) updating the mapping matirces $\mathbf{U}_{x}, \mathbf{U}_{y}$. We discuss the four steps as follows.
