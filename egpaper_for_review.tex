@@ -76,7 +76,7 @@ Patch prior is an approximation of the prior of natural images. There are severa
 \subsection{Real Image Denoising}
 To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
 
-\section{Patch Group Prior Guided Internal Subspace Learning}
+\section{External Patch Group Prior Guided Internal Subspace Learning}
 In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
 
 \subsection{External Patch Group Prior Learning on Clean Natural Images}
@@ -84,30 +84,22 @@ Images often demonstrate highly nonlocal self-similarity (NSS) property, which r
 
 In external PG prior learning on clean natural images, a PG is obtained via finding the $M$ most similar nonlocal patches to the local patch (size: $p\times p \times 3$ for RGB channels) in a given clean image. The similarity is measured by Euclidean distance or other distance measurements. In this work, we find similar PGs through the Euclidean distance based block matching in a large enough local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. We call
 \begin{equation}\label{equ1}
-\setlength{\abovedisplayskip}{2pt}
-\setlength{\belowdisplayskip}{2pt}
 \mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
 \end{equation}
 the group mean subtracted PG, and it will be used to learn the NSS prior in our work. All these are similar with the definitions in \cite{pgpd}. 
 
 From a given set of natural images, we can extract $N$ PGs, and  PG as
 \begin{equation}\label{equ2}
-\setlength{\abovedisplayskip}{2pt}
-\setlength{\belowdisplayskip}{2pt}
 \mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
 \end{equation}
 We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. The learning process is the same with that in \cite{pgpd}.
 
 With PG-GMM, we aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \begin{equation}\label{equ3}
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{3pt}
 P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
 \end{equation}
 By assuming that all the PGs are independently sampled, the overall objective log-likelihood function is
 \begin{equation}\label{equ4}
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{3pt}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
@@ -115,20 +107,40 @@ By assuming that all the PGs are independently sampled, the overall objective lo
 We maximize the above objective function for PG-GMM learning. Finally, we obtain the GMM model with three sets of parameters including mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}=\mathbf{0}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Noted that in PGPD \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
 
 \subsection{External PG Prior Guided Internal Subspace Learning}
+For each $\mathbf{\overline{Y}}$, we select the most suitable Gaussian component to it from the trained PG-GMM. Since the noise on real images are small when compared to the signals and the noise on real images are dependent on the signals, the covariance matrix of the $k$th component is still $\mathbf{\Sigma}_{k}$. The selection can be done by checking the posterior probability that $\mathbf{\overline{Y}}$ belongs to the $k$th Gaussian component:
+\begin{equation}\label{equ8}
+P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})}.
+\end{equation}
+Finally, the component with the highest probability $\ln P(k|\mathbf{\overline{Y}})$ is selected to process $\mathbf{\overline{Y}}$.
 
+Suppose that the $k$th Gaussian component is selected for PG $\mathbf{\overline{Y}}$. For notation simplicity, we remove the subscript $k$ and denote by $\mathbf{\Sigma}$ the covariance matrix of this component. In PG-GMM, the PGs actually represent the variations of the similar patches in a group, and these variations are assigned to the same Gaussian distribution. By singular value decomposition (SVD), $\mathbf{\Sigma}$ can be factorized as
+\begin{equation}\label{equ10}
+\mathbf{\Sigma} = \mathbf{D}\mathbf{\Lambda}\mathbf{D}^{T},
+\end{equation}
+where $\mathbf{D}$ is an orthonormal matrix composed by the eigenvectors of $\mathbf{\Sigma}$ and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues. With PG-GMM, the eigenvectors  in $\mathbf{D}$ capture the statistical structures of NSS variations in natural images, while the eigenvalues in $\mathbf{\Lambda}$ represent the significance of these eigenvectors. Fig.\ 4 shows the eigenvectors for 3 Gaussian components. It can be seen that these eigenvectors encode the possible variations of the PGs. For one Gaussian component, the first eigenvector represents its largest variation, while the last eigenvector represents its smallest variation. For different Gaussian components, we can see that their eigenvectors (with the same index) are very different. Hence, $\mathbf{D}$ can be used to represent the structural variations of the PGs in that component.
+
+\begin{equation}\label{equ15}
+\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{p^{2}}\frac{c*2\sqrt{2}\sigma^{2}}{\mathbf{\lambda}_{i}}|\boldsymbol{\upalpha}_{i}|.
+\end{equation}
+By comparing (\ref{equ15}) with (\ref{equ11}), we can see that the $i$th entry of the weighting vector $\mathbf{w}$ should be
+\begin{equation}\label{equ16}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\mathbf{w}_{i} = c*2\sqrt{2}\sigma^{2}/(\mathbf{\lambda}_{i}+\varepsilon),
+\end{equation}
+where $\varepsilon$ is a small positive number to avoid dividing by zero. With $\mathbf{w}$ determined by (\ref{equ16}), let's see what the solution of (\ref{equ11}) should be. Since the dictionary $\mathbf{D}$ is orthonormal, it is not difficult to find out that (\ref{equ11}) has a closed-form solution (detailed derivation can be found in the supplementary material):
+\begin{equation}\label{equ17}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{4pt}
+\hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{D^{T}\overline{y}}_{m})\odot \text{max}(|\mathbf{D^{T}\overline{y}}_{m}|-\mathbf{w}/2,0),
+\end{equation}
+where $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{D^{T}\overline{y}}_{m}|$ is the absolute value of each entry of vector $|\mathbf{D^{T}\overline{y}}_{m}|$. The closed-form solution makes our weighted sparse coding process very efficient. 
+\vspace{-0.05in}
 
 \subsection{Comparing External PG Prior and Guided Internal Subspace Learning}
 
 
-\section{The Overall Algorithm}
-
-\subsection{Pair Sample Construction from Unpaired Samples}
-In cross style transfer methods such as CDL and SCDL, the authors assume that the two different styles have paired data, i.e., for each data sample in one style, we can find paired data sample in the other style. However, in real world, the data from two different sources may be unpaired. For example, the real noisy images should not have groundtruth clean images of the same scene. The real low-resolution images should not have corresponding high-resolution images in the real world. The real blurry images should not have corresponding clear and high quality images in real world.
-
-To deal with unpaired data, we could collect real noisy images and clean natural images from two different sources. The real noisy images are from the example images (18 images) of the Neat Image website while the clean natural images are from the training set (200 images) of the Berkeley Segmentation Dataset (BSDS500). To make use of the unpaired data samples, we employ searching strategy to construct the training dataset. That is, for each noisy image patch, we utilize the k-Nearest Neighbor (k-NN) algorithm to find the most similar patch in the clean images as the paired groundtruth patch. The similarity is measured by the Euclidean distance (also called squared error or $\ell_{2}$ norm).
-
-\subsection{Structual Clustering and Model Selection}
-In fact, different image structures should have different influences on dictioanry as well as the mapping function. Patches with flat region should have low rank structure within dictionary elements and identity mapping between noisy and latent clean patches. Patches with complex details should have more comprehensive dictionary elements within dictionary elements and more complex mapping function between noisy and clean patches. A single mapping function cannot deal with all these complex relationships. Hence, a structual clustering procedure is needed for complex solution. In this paper, we propose to employ Gaussian Mixture Model to cluster different image patches into different groups and learn dictionary and mapping function for each group.
+\section{The Enhanced Algorithm}
 
 \subsection{Adaptive Iterations of Different Noise Levels}
 For real image denoising, we can perform well on images which have similar noise levels with the training dataset. How can we deal with the real noisy images whose noise levels are higher than the training dataset? The answer is to remove the noise by more iterations. The input image of each iteration is the recovered image of previous iteration. This makes sense since we can still view the recovered image as a real noisy image. 
@@ -138,17 +150,18 @@ This will also bring a second problem, that how we could automatically terminate
 \subsection{Efficient Model Selection by Gating Network}
 In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
 
+\subsection{The Overall Algorithm}
 %------------------------------------------------------------------------
 \section{Experiments}
+In this section, we perform real image image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths. The second dataset is provided by the website of Noise Clinic. The third dataset is provided by the Commercial software Neat Image. The second and third dataset do not have ground truth images.
 
-We compare with popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
+\subsection{Parameters Setting}
+The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is W = 31. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
 
-\subsection{Parameters}
-We don't fine tune the parameters both in the training and testing datasets.
+\subsection{Comparison Methods}
+We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
 
 \subsection{Real Image Denoising}
-We compare the proposed method with the famous BM3D \cite{bm3d} and WNNM \cite{wnnm}, Cascade of Shrinkage Fields (CSF) \cite{csf}, trainable reaction diffusion (TRD) \cite{chen2015learning}, plain neural network based method MLP \cite{burger2012image}, the blind image denoising method Noise Clinic \cite{noiseclinic}, and the commercial software Neat Image. The RGB images are firstly transformed into YCbCr channels and restored by these methods. Then the denoised RGB image is obtained by transforming the restored YCbCr image back.
-
 We evaluate the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first contains 3 cropped images of size $512\times512$. The other dataset contains 42 images cropped to size of $500\times500$ from the 17 images provided in \cite{crosschannel2016}. The 60 images contain most of the scenes in the 17 images \cite{crosschannel2016}.
 \begin{table*}
 \caption{Average PSNR(dB) results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
