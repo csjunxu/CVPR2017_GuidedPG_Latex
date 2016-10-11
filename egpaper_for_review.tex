@@ -153,91 +153,103 @@ In the Gaussian component selection procedure, if we employ the full posterior e
 \subsection{The Overall Algorithm}
 %------------------------------------------------------------------------
 \section{Experiments}
-In this section, we perform real image image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths. The second dataset is provided by the website of Noise Clinic. The third dataset is provided by the Commercial software Neat Image. The second and third dataset do not have ground truth images.
+In this section, we perform real image image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
 
 \subsection{Parameters Setting}
-The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is W = 31. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
+The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
 
 \subsection{Comparison Methods}
 We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
 
 \subsection{Real Image Denoising}
-We evaluate the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first contains 3 cropped images of size $512\times512$. The other dataset contains 42 images cropped to size of $500\times500$ from the 17 images provided in \cite{crosschannel2016}. The 60 images contain most of the scenes in the 17 images \cite{crosschannel2016}.
-\begin{table*}
-\caption{Average PSNR(dB) results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
+We  the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains recurrent contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
+
+The PSNR and SSIM resluts are listed in table \ref{tab1}.
+\begin{table*}\label{tab1}
+\caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-1& 37.00 & 37.08 & 37.09 &  37.46  &  37.51  &  32.91  & \textbf{ 38.76}  & 37.68   & 38.63  
+PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  & 37.66 & 37.92 &  \textbf{ 38.46}
 \\
 \hline
-2& 33.88 & 33.95  &  33.95  &  34.90  &  35.04  & 31.94   &  35.69  &  34.87  & \textbf{ 35.96 }
-\\
-\hline
-3& 33.83  & 33.85  & 33.85   & 34.15   &   34.07 & 30.89   & \textbf{35.54 }  &  34.77  &  35.51 
-\\
-\hline
-Average & 34.90  &  34.96 &  34.96  & 35.50   & 35.54   &  31.91  &  36.67  &  35.77  &  \textbf{ 36.70}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  & 0.9495  & 0.9625 &   \textbf{0.9677}
 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
-\begin{table*}
-\caption{Average SSIM results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
+\begin{table*}\label{tab2}
+\caption{Average PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}& \textbf{CC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-1& 0.9345 & 0.9368  & 0.9372  & 0.9599   &  0.9607  & 0.9043   &  0.9689  & 0.9600   &\textbf{ 0.9712  }
+PSNR & 33.41  &  33.48 &  33.48  & 36.49   & 35.33 &  35.49   &  36.43  &  36.88  & 36.69 & 36.75 &  \textbf{ 37.04}
 \\
 \hline
-2& 0.8919 &  0.8848 &  0.8951 & 0.9159   &  0.9187  &  0.8498  &  0.9427  &  0.9308  & \textbf{ 0.9434 }
-\\
-\hline
-3& 0.9128  & 0.9136 & 0.9136  & 0.9254   &  0.9279  &  0.8635  &  0.9476  & 0.9463   & \textbf{ 0.9529 }
-\\
-\hline
-Average &  0.9131  & 0.9117 &  0.9153 & 0.9337   & 0.9358   &  0.8725  & 0.9531   & 0.9457   &  \textbf{0.9558} 
+SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9444 & 0.9250  & 0.9126  &  0.9364  & 0.9481  & 0.9486 & 0.9485 &  \textbf{ 0.9509}
 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
-
-
-
-\begin{table*}
-\caption{Average PSNR(dB) and SSIM results of different methods on 42 cropped images from 17 real noisy images in \cite{crosschannel2016}.}
-\label{tab1}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
-\hline
-Measure & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
-\\
-\hline
-PSNR& 34.36 & 34.36 & 34.40 & 36.11 & 36.05 & 34.41 & 37.68 & 36.58 & 36.15
-\\
-\hline
-SSIM& 0.8552 & 0.8553 & 0.8577 & 0.9215 & 0.9211 & 0.9012 & 0.9470 & 0.9145 & 0.9236
-\\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
+%\\
+%\hline
+%1 &    &    &     &     &    &      &     &     &   & 38.30  &  \textbf{ 40.13 }
+%\\
+%\hline
+%2 &    &    &     &     &    &      &     &     &   & 37.09  &  \textbf{ 36.99 }
+%\\
+%\hline
+%3 &    &    &     &     &    &      &     &     &   & 36.58  &  \textbf{ 36.92 }
+%\\
+%\hline
+%4 &    &    &     &     &    &      &     &     &   & 34.85  &  \textbf{ 35.11 }
+%\\
+%\hline
+%5 &    &    &     &     &    &      &     &     &   &  36.12 &  \textbf{ 36.50 }
+%\\
+%\hline
+%6 &    &    &     &     &    &      &     &     &   & 38.92  &  \textbf{ 38.74 }
+%\\
+%\hline
+%7 &    &    &     &     &    &      &     &     &   & 38.30  &  \textbf{ 38.30 }
+%\\
+%\hline
+%8 &    &    &     &     &    &      &     &     &   &  39.48 &  \textbf{ 40.26 }
+%\\
+%\hline
+%9 &    &    &     &     &    &      &     &     &   & 38.72  &  \textbf{ 38.68 }
+%\\
+%\hline
+%10 &    &    &     &     &    &      &     &     &   & 38.38  &  \textbf{ 38.35 }
+%\\
+%\hline
+%11 &    &    &     &     &    &      &     &     &   & 36.42  &  \textbf{ 36.77 }
+%\\
+%\hline
+%12 &    &    &     &     &    &      &     &     &   & 38.35  &  \textbf{ 38.41 }
+%\\
+%\hline
+%13 &    &    &     &     &    &      &     &     &   & 33.26  &  \textbf{ 33.61 }
+%\\
+%\hline
+%14 &    &    &     &     &    &      &     &     &   &   &  \textbf{ 33.40 }
+%\\
+%\hline
+%15 &    &    &     &     &    &      &     &     &   &   &  \textbf{ 33.47 }
 
 \section{Conclusion and Future Work}
 
