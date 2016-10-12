@@ -66,12 +66,16 @@ The contributions of this paper are summarized as follows:
 \begin{itemize}
 \item We propose a noval method which combine the external and internal PG prior for real noisy image denoising problem;
 \item Our method doesn't need noise modeling and estimation, and the noise levels of real noisy images are automatically expresssed by the singular values of learned subspace;
-\item We achieve much better performance, visual quality, PSNR, SSIM, and speed for real image denoising problem.
+\item We achieve much better performance on visual quality, PSNR, SSIM, and speed, than other competing methods for real image denoising problem.
 \end{itemize}
 
 \section{Related Work}
 \subsection{Patch Group Prior of Natural Images}
 Patch prior is an approximation of the prior of natural images. There are several famous work on this area such as the K-SVD algorithm \cite{ksvd}. The seminar work on patch prior modeling is the expected patch log likelihood (EPLL), which models the space of natural image patches via Gaussian Mixture Model. Recently, the Patch Group prior \cite{pgpd} is proposed to directly model the non-local self similarity within natural images. The patch group prior demonstrate better properties via better image denoising performance on natural images. However, PGPD only utilizes the information of clean natural images, but not fully make full of the NSS information of noisy input images. In this paper, we combine the information of external natural clean images and internal real noisy images to achieve adaptive patch group prior modeling. In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
+
+
+\subsection{Internal v.s. External Image Denoising}
+The internal patch recurrence across multiple scales of a natural image has been successfully applied in many image restoration problems such as single image super-resolution \cite{Irani2009sr}, image denoising \cite{Irani2013separating}, blind image deblurring \cite{Irani2014deblur}, and image dehazing \cite{Irani2016dehazing}, etc. These work demonstrate that internal information is enough for denoising additive white Gaussian noise. The reason is that the AWGN noise is independent of the original clean images, and therefore it will be 缩小 when the image is scaled to smaller size. However, the real noise is dependent on the signal \cite{crosschannel2016} and it has fixed patterns from several main sources \cite{healey1994radiometric}. The internal information may be not enough for real image denoising problem. Noted that even in denoising AWGN, the introduce of external information will also improve the performance denoising methods \cite{luo2015adaptive}. In this paper, we demonstrate that for real noise which is signal dependent, it is essential to make use of external clean data.
 
 \subsection{Real Image Denoising}
 To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
@@ -137,12 +141,18 @@ where $\varepsilon$ is a small positive number to avoid dividing by zero. With $
 where $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{D^{T}\overline{y}}_{m}|$ is the absolute value of each entry of vector $|\mathbf{D^{T}\overline{y}}_{m}|$. The closed-form solution makes our weighted sparse coding process very efficient. 
 \vspace{-0.05in}
 
-\subsection{Comparing External PG Prior and Guided Internal Subspace Learning}
+\subsection{What does External Data help the Internal Subspace Learning?}
+The external data can help the internal learning in two ways. On one hand, it can guide the noisy image patches to be divided into correct subspaces through clustering. If we cluster the noisy patches in an automatical way, just like the PLE \cite{ple} did, the signal dependent noise would be hardly removed. With the help of clean external data, the noisy patches can be divided into correct subspaces. Besides, external data guided internal clustering is much more efficient than directly clustering the noisy data due to the time consuming fitting procedure. On the other hand, due to the correct division of internal noisy data, the dictionary and paranters for subspace learning could be more adaptive to the testing real noisy image. Hence, it would achieve better denoising performance than the methods only using the external information.
 
+\subsection{The Internal Subspace is truly the subspace of external space}
+Plot a Figure to demonstrate the data distributed in external space and the assigned internal subspace. The internal subspace is only a subspace of the external space. Hence, if we use the external data to perform denoising, the performance would be limited due to the dependence of noise on signal. If we combine the external and internal data for subspace learning, the learned subspace would be too generative and would therefore not specifically suitable for the testing data.
 
 \section{The Enhanced Algorithm}
 
-\subsection{Adaptive Iterations of Different Noise Levels}
+\subsection{Iterative Regularization}
+Perfoming image denoising in one iteration is not enough for real noise since the noise is signal dependent. The removed noise in one iteration is largely dependent on the signal. Therefore, it is essential to add back some residuals removed in this iteration for the denoising of the next iteration. 
+
+\subsection{Effectively dealing with different noisy images}
 For real image denoising, we can perform well on images which have similar noise levels with the training dataset. How can we deal with the real noisy images whose noise levels are higher than the training dataset? The answer is to remove the noise by more iterations. The input image of each iteration is the recovered image of previous iteration. This makes sense since we can still view the recovered image as a real noisy image. 
 
 This will also bring a second problem, that how we could automatically terminate the iteration. This can be solved by two methods. One way is to compare the images between two iterations and calculate their difference, the iteration can be terminated if the difference is smaller than a threshold. The other way is to estimate the noise level of the current image and terminate the iterations when the noise level is lower than a preset threshold. We employ the second way and set the threshold as 0.0001 in our experiments. In fact, most of our testing images will be denoised well in one iteration.
@@ -151,6 +161,9 @@ This will also bring a second problem, that how we could automatically terminate
 In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
 
 \subsection{The Overall Algorithm}
+
+
+
 %------------------------------------------------------------------------
 \section{Experiments}
 In this section, we perform real image image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
@@ -175,10 +188,10 @@ The PSNR and SSIM resluts are listed in table \ref{tab1}.
 Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  & 37.66 & 37.92 &  \textbf{ 38.46}
+PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  &     & 38.07 &  \textbf{ 38.46}
 \\
 \hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  & 0.9495  & 0.9625 &   \textbf{0.9677}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  &     & 0.9625 &   \textbf{0.9677}
 \\
 \hline
 \end{tabular}
@@ -195,10 +208,10 @@ SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  & 0.
 Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}& \textbf{CC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 33.41  &  33.48 &  33.48  & 36.49   & 35.33 &  35.49   &  36.43  &  36.88  & 36.69 & 36.75 &  \textbf{ 37.04}
+PSNR & 33.41  &  33.48 &  33.48  & 34.32   & 35.33 &  35.49   &  36.43  &  36.88  & 36.69 & 36.73 &  \textbf{ 37.04}
 \\
 \hline
-SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9444 & 0.9250  & 0.9126  &  0.9364  & 0.9481  & 0.9486 & 0.9485 &  \textbf{ 0.9509}
+SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250  & 0.9126  &  0.9364  & 0.9481  & 0.9479 & 0.9419 &  \textbf{ 0.9509}
 \\
 \hline
 \end{tabular}
