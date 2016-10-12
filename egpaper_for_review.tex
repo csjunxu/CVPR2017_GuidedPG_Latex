@@ -171,10 +171,16 @@ In this section, we perform real image image denoising experiments on three stan
 \subsection{Parameters Setting}
 The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
 
-\subsection{Comparison Methods}
+
+\subsection{Comparison on External and Internal methods}
+In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure.
+
+\subsection{Comparison With other Competing Methods}
 We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
 
+
 \subsection{Real Image Denoising}
+
 We  the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains recurrent contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
 
 The PSNR and SSIM resluts are listed in table \ref{tab1}.
