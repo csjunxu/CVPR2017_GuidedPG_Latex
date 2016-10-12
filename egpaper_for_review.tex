@@ -144,8 +144,8 @@ where $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise mul
 \subsection{What does External Data help the Internal Subspace Learning?}
 The external data can help the internal learning in two ways. On one hand, it can guide the noisy image patches to be divided into correct subspaces through clustering. If we cluster the noisy patches in an automatical way, just like the PLE \cite{ple} did, the signal dependent noise would be hardly removed. With the help of clean external data, the noisy patches can be divided into correct subspaces. Besides, external data guided internal clustering is much more efficient than directly clustering the noisy data due to the time consuming fitting procedure. On the other hand, due to the correct division of internal noisy data, the dictionary and paranters for subspace learning could be more adaptive to the testing real noisy image. Hence, it would achieve better denoising performance than the methods only using the external information.
 
-\subsection{The Internal Subspace is truly the subspace of external space}
-Plot a Figure to demonstrate the data distributed in external space and the assigned internal subspace. The internal subspace is only a subspace of the external space. Hence, if we use the external data to perform denoising, the performance would be limited due to the dependence of noise on signal. If we combine the external and internal data for subspace learning, the learned subspace would be too generative and would therefore not specifically suitable for the testing data.
+\subsection{The Internal PGs Spaces Are Subspaces of Corresponding External PG Spaces}
+In this subsection, we compare the distribution of external PGs extracted from clean natural images and real noisy images. For better illumination, we randomly selected a cluster and project the original clean PGs onto a 2-D plane. Plot a Figure to demonstrate the data distributed in external space and the assigned internal subspace. The internal subspace is only a subspace of the external space. Hence, if we use the external data to perform denoising, the performance would be limited due to the dependence of noise on signal. If we combine the external and internal data for subspace learning, the learned subspace would be too generative and would therefore not specifically suitable for the testing data. 
 
 \section{The Enhanced Algorithm}
 
@@ -188,10 +188,10 @@ The PSNR and SSIM resluts are listed in table \ref{tab1}.
 Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  &     & 38.07 &  \textbf{ 38.46}
+PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.46}
 \\
 \hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  &     & 0.9625 &   \textbf{0.9677}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9677}
 \\
 \hline
 \end{tabular}
@@ -217,6 +217,127 @@ SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250  & 0.9126  &  0.9364  & 0.
 \end{tabular}
 \end{center}
 \end{table*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (b) Mean Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (c) CBM3D \\ (33.33dB/0.8935)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (d) CSF \\ (35.39dB/0.9677) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (e) MLP \\ (34.22dB/0.9603) }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (f) Noise Clinic \\ (35.33dB/0.9520)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (g) Neat Image \\ (34.39dB/0.9314)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Offline_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (h) Offline \\ (36.29dB/0.9705)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Online_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (i) Online \\ (35.80dB/0.9641) }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.28}dB/\textbf{0.9729})}
+\end{minipage}
+}
+\caption{Denoised images of the old image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig1}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_3_real.png}}
+{\footnotesize (a) Noisy Image \\ (33.83dB/0.9128)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3_real.png}}
+{\footnotesize (b) Mean Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CBM3D_5dmark3_iso3200_3_real.png}}
+{\footnotesize (c) CBM3D \\ (33.84dB/0.9134)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_3_real.png}}
+{\footnotesize (d) CSF \\ (32.62dB/0.9031)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3_real.png}}
+{\footnotesize (e) MLP \\ (32.36dB/0.8993)  }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_3_real.png}}
+{\footnotesize (f) Noise Clinic \\ (35.54dB/0.9476)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_3_real.png}}
+{\footnotesize (g) Neat Image \\ (34.77dB/0.9463)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3_real.png}}
+{\footnotesize (h) WNNM \\ (33.86dB/0.9143)}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CCNoise_5dmark3_iso3200_3.png}}
+{\footnotesize (i) CCNoise \\ (34.91dB/0.9478)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Guided_5dmark3_iso3200_3_real.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.01}dB/\textbf{0.9676})}
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig1}
+\end{figure*}
 
 %\\
 %\hline
