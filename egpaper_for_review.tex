@@ -73,8 +73,8 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \end{minipage}
 \begin{minipage}[t]{0.25\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (c) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (c) MLP \cite{mlp}\\ (34.22dB/0.9603) }
 \end{minipage}
 \begin{minipage}[t]{0.25\textwidth}
 \centering
@@ -85,8 +85,8 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \subfigure{
 \begin{minipage}[t]{0.25\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (e) MLP \cite{mlp}\\ (34.22dB/0.9603) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (e) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
 \end{minipage}
 \begin{minipage}[t]{0.25\textwidth}
 \centering
@@ -316,23 +316,23 @@ SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250  & 0.9126  &  0.9364  & 0.
 \end{minipage}
 \begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3_real.png}}
-{\footnotesize (b) Mean Image}
-\end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
-\centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CBM3D_5dmark3_iso3200_3_real.png}}
-{\footnotesize (c) CBM3D \\ (33.84dB/0.9134)   }
+{\footnotesize (b) CBM3D \\ (33.84dB/0.9134)   }
 \end{minipage}
 \begin{minipage}[t]{0.2\textwidth}
 \centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3_real.png}}
+{\footnotesize (c) MLP \\ (32.36dB/0.8993)  }
+\end{minipage}
+\centering
+\begin{minipage}[t]{0.2\textwidth}
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_3_real.png}}
 {\footnotesize (d) CSF \\ (32.62dB/0.9031)  }
 \end{minipage}
 \begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3_real.png}}
-{\footnotesize (e) MLP \\ (32.36dB/0.8993)  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3_real.png}}
+{\footnotesize (e) WNNM \\ (33.86dB/0.9143)}
 \end{minipage}
 }
 \subfigure{
@@ -348,22 +348,73 @@ SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250  & 0.9126  &  0.9364  & 0.
 \end{minipage}
 \begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3_real.png}}
-{\footnotesize (h) WNNM \\ (33.86dB/0.9143)}
-\end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
-\centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CCNoise_5dmark3_iso3200_3.png}}
-{\footnotesize (i) CCNoise \\ (34.91dB/0.9478)  }
+{\footnotesize (h) CCNoise \\ (34.91dB/0.9478)  }
 \end{minipage}
 \begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Guided_5dmark3_iso3200_3_real.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.01}dB/\textbf{0.9676})}
+{\footnotesize (i) Guided \\ (\textbf{37.01}dB/\textbf{0.9676})}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3_real.png}}
+{\footnotesize (j) Mean Image}
 \end{minipage}
 }
 \caption{Denoised images of the old image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
 \label{fig3}
+\end{figure*}
+
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
+{\footnotesize (a) Noisy Image   }
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
+{\footnotesize (b) CBM3D}
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
+{\footnotesize (c) MLP }
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_dog.png}}
+{\footnotesize (d) CSF    }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
+{\footnotesize (e) WNNM    }
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
+{\footnotesize (f) Noise Clinic   }
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
+{\footnotesize (g) Neat Image    }
+\end{minipage}
+\begin{minipage}[t]{0.25\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
+{\footnotesize (h) Guided  }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig4}
 \end{figure*}
 
 %\\
