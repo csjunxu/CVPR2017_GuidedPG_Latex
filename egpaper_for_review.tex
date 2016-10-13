@@ -61,47 +61,57 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \begin{figure*}\label{fig1}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (b) CBM3D \cite{cbm3d} \\ (33.33dB/0.8935)  }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (c) MLP \cite{mlp}\\ (34.22dB/0.9603) }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (d) CSF \cite{csf}\\ (35.39dB/0.9677) }
 \end{minipage}
-}
-\subfigure{
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (e) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (f) TRD \cite{chen2015learning} \\ (35.97dB/0.9705)   }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (f) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
+{\footnotesize (g) PGPD \cite{pgpd} \\ (35.33dB/0.9520)  }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (h) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (g) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
+{\footnotesize (i) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (h) Mean Image }
+{\footnotesize (j) Mean Image }
 \end{minipage}
 }
 \caption{Denoised images of the real noisy image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
@@ -173,13 +183,13 @@ Suppose that the $k$th Gaussian component is selected for PG $\mathbf{\overline{
 where $\mathbf{D}$ is an orthonormal matrix composed by the eigenvectors of $\mathbf{\Sigma}$ and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues. With PG-GMM, the eigenvectors  in $\mathbf{D}$ capture the statistical structures of NSS variations in natural images, while the eigenvalues in $\mathbf{\Lambda}$ represent the significance of these eigenvectors. Fig.\ 4 shows the eigenvectors for 3 Gaussian components. It can be seen that these eigenvectors encode the possible variations of the PGs. For one Gaussian component, the first eigenvector represents its largest variation, while the last eigenvector represents its smallest variation. For different Gaussian components, we can see that their eigenvectors (with the same index) are very different. Hence, $\mathbf{D}$ can be used to represent the structural variations of the PGs in that component.
 
 \begin{equation}\label{equ15}
-\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{p^{2}}\frac{c*2\sqrt{2}\sigma^{2}}{\mathbf{\lambda}_{i}}|\boldsymbol{\upalpha}_{i}|.
+\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{p^{2}}\frac{c}{\mathbf{\lambda}_{i}}|\boldsymbol{\upalpha}_{i}|.
 \end{equation}
 By comparing (\ref{equ15}) with (\ref{equ11}), we can see that the $i$th entry of the weighting vector $\mathbf{w}$ should be
 \begin{equation}\label{equ16}
 \setlength{\abovedisplayskip}{3pt}
 \setlength{\belowdisplayskip}{3pt}
-\mathbf{w}_{i} = c*2\sqrt{2}\sigma^{2}/(\mathbf{\lambda}_{i}+\varepsilon),
+\mathbf{w}_{i} = c/(\mathbf{\lambda}_{i}+\varepsilon),
 \end{equation}
 where $\varepsilon$ is a small positive number to avoid dividing by zero. With $\mathbf{w}$ determined by (\ref{equ16}), let's see what the solution of (\ref{equ11}) should be. Since the dictionary $\mathbf{D}$ is orthonormal, it is not difficult to find out that (\ref{equ11}) has a closed-form solution (detailed derivation can be found in the supplementary material):
 \begin{equation}\label{equ17}
@@ -258,7 +268,7 @@ In this subsection, we compared the proposed external prior guided internal subs
 
 
 \subsection{Comparison With other Competing Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
+We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
 
 
 \subsection{Real Image Denoising}
@@ -271,15 +281,15 @@ The PSNR and SSIM resluts are listed in table \ref{tab1}.
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
+Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.46}
+PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 & 37.75 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.46}
 \\
 \hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9677}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9677}
 \\
 \hline
 \end{tabular}
@@ -293,13 +303,13 @@ SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598  & 0.9241  &  0.9514  &  0
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}& \textbf{NI}& \textbf{NC}& \textbf{CC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
+Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 33.41  &  33.48 &  33.48  & 34.32   & 35.33 &  35.49   &  36.43  &  36.88  & 36.69 & 36.73 &  \textbf{ 37.04}
+PSNR & 33.41  &  33.48 &  33.48  & 34.32   & 35.33 &  35.65 &  35.49   &  36.43  &  36.88  & 36.69 & 36.73 &  \textbf{ 37.04}
 \\
 \hline
-SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250  & 0.9126  &  0.9364  & 0.9481  & 0.9479 & 0.9419 &  \textbf{ 0.9509}
+SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250 &  0.9280  & 0.9126  &  0.9364  & 0.9481  & 0.9479 & 0.9419 &  \textbf{ 0.9509}
 \\
 \hline
 \end{tabular}
