@@ -154,14 +154,11 @@ In \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to
 \mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
 \end{equation}, and it represent the external NSS prior on color images. In Figure \ref{fig2}
 
-
 Assume we have extracted $N$ PGs from a given set of natural images, and the $n$-th PG is defined as
 \begin{equation}\label{equ2}
 \mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
 \end{equation}
-We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. The learning process is the same with that in \cite{pgpd}.
-
-With PG-GMM, we aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
+We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. We aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \begin{equation}\label{equ3}
 P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
 \end{equation}
@@ -224,19 +221,148 @@ This will also bring a second problem, that how we could automatically terminate
 In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
 
 \subsection{The Overall Algorithm}
+With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ17}), the clean patch in a PG can be estimated as $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$. Then the clean image $\hat{\mathbf{x}}$ can be reconstructed by aggregating all the estimated PGs. In practice, we could perform the above denoising procedures for several iterations for better denoising outputs. In iteration $t$, we use the iterative regularization strategy \cite{osher2005iterative} to add back to the recovered image $\hat{\mathbf{x}}^{(t-1)}$ some estimation residual in iteration $t-1$. The standard deviation of noise in iteration $t$ is adjusted as $\sigma^{(t)} = \eta*\sqrt{\sigma^{2}-\|\mathbf{y}-\mathbf{y}^{(t-1)}\|_{2}^{2}}$, where $\eta$ is a constant. The proposed denoising algorithm is summarized in Algorithm 1 (Alg. 1).
 
+In the proposed algorithm, there are $N$ PGs in an image and $M$ patches in each PG. Then the computational cost for Gaussian component selection is $O(p^{6}NMK)$.\ The cost for iterative regularization and noise estimation is negligible. The cost for closed-form weighted sparse coding is $O(p^{4}NM)$. Suppose that there are $T$ iterations, the overall complexity of our denoising algorithm is $O(p^{6}NMKT)$.
+
+\begin{table}
+\label{alg1}
+\begin{tabular}{l}
+\hline
+\textbf{Alg. 1}: Patch Group Prior based Denoising (PGPD)
+\\
+\hline
+\textbf{Input:} Noisy image $\mathbf{y}$, PG-GMM model
+\\
+1. Initialization: $\hat{\mathbf{x}}^{(0)}=\mathbf{y},\mathbf{y}^{(0)}=\mathbf{y}$;
+\\
+\textbf{for} $t = 1:IteNum$ \textbf{do}
+\\
+2. Iterative Regularization:
+\\
+\quad\quad\quad $\mathbf{y}^{(t)}=\hat{\mathbf{x}}^{(t-1)}+\delta(\mathbf{y}-\mathbf{y}^{(t-1)})$;
+\\
+3. Estimate the standard deviation of noise;
+\\
+\quad\textbf{for} each PG $\mathbf{Y}$ \textbf{do}
+\\
+4.\quad Calculate group mean $\boldsymbol{\upmu}_{y}$ and form PG $\mathbf{\overline{Y}}$;
+\\
+5.\quad Gaussian component selection via (\ref{equ9});
+\\
+6.\quad Denoising by Weighted Sparse Coding (\ref{equ15});
+\\
+7.\quad Recover each patch in this PG via $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$;
+\\
+\quad\textbf{end for}
+\\
+8. Aggregate the recovered PGs to form the recovered
+\\
+\quad image $\hat{\mathbf{x}}^{(t)}$;
+\\
+\textbf{end for}
+\\
+\textbf{Output:} The recovered image $\hat{\mathbf{x}}^{(IteNum)}$.\\
+\hline
+\end{tabular}
+\end{table}
 
 
 %------------------------------------------------------------------------
 \section{Experiments}
-In this section, we perform real image image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
+In this section, we perform real image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}, some samples are shown in Figure \ref{fig5}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
+\begin{figure}[t]
+\centering
+\subfigure{
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Canon_EOS_5D_Mark3_ISO_3200_C3.png}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D600_ISO_3200_C1.png}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_1600_B2.png}
+\end{minipage}
+}\vspace{-0.14in}
+\subfigure{
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A1.png}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A5.png}
+\end{minipage}
+\begin{minipage}{0.15\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_6400_B1.png}
+\end{minipage}
+}
+\caption{Some testing images in the dataset \cite{crosschannel2016}.}
+\label{fig5}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\subfigure{
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png}
+\end{minipage}
+}\vspace{-0.14in}
+\subfigure{
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png}
+\end{minipage}
+\begin{minipage}{0.055\textwidth}
+\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png}
+\end{minipage}
+}
+\caption{Some cropped images of the dataset \cite{crosschannel2016}.}
+\label{fig5}
+\end{figure}
 
 \subsection{Parameters Setting}
 The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
 
 
 \subsection{Comparison on External and Internal methods}
-In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}.
+In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
 
 \begin{figure*}\label{fig2}
 \centering
@@ -304,10 +430,7 @@ In this subsection, we compared the proposed external prior guided internal subs
 
 
 \subsection{Comparison With other Competing Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chencvpr2015}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
-
-
-\subsection{Real Image Denoising}
+We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
 
 We  the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains recurrent contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
 
@@ -361,7 +484,7 @@ Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\tex
 & 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \textbf{36.70} & 35.95 & 36.57
 \\ 
 \cline{2-11}    
-& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & 40.51 & 38.68 & \textbf{39.28} & 41.15 & 38.73
+& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & 40.51 & 38.68 & 39.28 & \textbf{41.15} & 38.73
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
