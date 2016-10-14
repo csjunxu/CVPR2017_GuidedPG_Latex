@@ -149,21 +149,12 @@ In this section, we formulate the framework of external Patch Group prior guided
 \subsection{External Patch Group Prior Learning}
 Natural images often demonstrate repepitive patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is directly learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on natural color images.
 
-In \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. Therefore the space to be modeled is largely reduced. In this work, we extract PGs from RGB images. Each patch is of size $p\times p \times 3$. For each local patch, we search its similar patches around it through the Euclidean distance in a local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a color image patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. The PG is defined as 
+In \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. Therefore the space to be modeled is largely reduced. In this work, we extract PGs from RGB images. Each patch is of size $p\times p \times 3$. For each local patch, we search its similar patches around it through the Euclidean distance in a local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a color image patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. The PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M$, and it represent the external NSS prior on color images. Assume we have extracted $N$ PGs from a given set of natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. We aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \begin{equation}\label{equ1}
-\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
-\end{equation}, and it represent the external NSS prior on color images. In Figure \ref{fig2}
-
-Assume we have extracted $N$ PGs from a given set of natural images, and the $n$-th PG is defined as
-\begin{equation}\label{equ2}
-\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
-\end{equation}
-We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. We aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
-\begin{equation}\label{equ3}
 P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
 \end{equation}
 By assuming that all the PGs are independently sampled, the overall objective log-likelihood function is
-\begin{equation}\label{equ4}
+\begin{equation}\label{equ2}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
@@ -172,28 +163,24 @@ We maximize the above objective function for PG-GMM learning. Finally, we obtain
 
 \subsection{External PG Prior Guided Internal Subspace Learning}
 For each $\mathbf{\overline{Y}}$, we select the most suitable Gaussian component to it from the trained PG-GMM. Since the noise on real images are small when compared to the signals and the noise on real images are dependent on the signals, the covariance matrix of the $k$th component is still $\mathbf{\Sigma}_{k}$. The selection can be done by checking the posterior probability that $\mathbf{\overline{Y}}$ belongs to the $k$th Gaussian component:
-\begin{equation}\label{equ8}
+\begin{equation}\label{equ3}
 P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})}.
 \end{equation}
 Finally, the component with the highest probability $\ln P(k|\mathbf{\overline{Y}})$ is selected to process $\mathbf{\overline{Y}}$.
 
-Suppose that the $k$th Gaussian component is selected for PG $\mathbf{\overline{Y}}$. For notation simplicity, we remove the subscript $k$ and denote by $\mathbf{\Sigma}$ the covariance matrix of this component. In PG-GMM, the PGs actually represent the variations of the similar patches in a group, and these variations are assigned to the same Gaussian distribution. By singular value decomposition (SVD), $\mathbf{\Sigma}$ can be factorized as
-\begin{equation}\label{equ10}
-\mathbf{\Sigma} = \mathbf{D}\mathbf{\Lambda}\mathbf{D}^{T},
-\end{equation}
-where $\mathbf{D}$ is an orthonormal matrix composed by the eigenvectors of $\mathbf{\Sigma}$ and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues. With PG-GMM, the eigenvectors  in $\mathbf{D}$ capture the statistical structures of NSS variations in natural images, while the eigenvalues in $\mathbf{\Lambda}$ represent the significance of these eigenvectors. Fig.\ 4 shows the eigenvectors for 3 Gaussian components. It can be seen that these eigenvectors encode the possible variations of the PGs. For one Gaussian component, the first eigenvector represents its largest variation, while the last eigenvector represents its smallest variation. For different Gaussian components, we can see that their eigenvectors (with the same index) are very different. Hence, $\mathbf{D}$ can be used to represent the structural variations of the PGs in that component.
+Suppose that the $k$th Gaussian component is selected for PG $\mathbf{\overline{Y}}$. For notation simplicity, we remove the subscript $k$ and denote by $\mathbf{\Sigma}$ the covariance matrix of this component. In PG-GMM, the PGs actually represent the variations of the similar patches in a group, and these variations are assigned to the same Gaussian distribution. By singular value decomposition (SVD), $\mathbf{\Sigma}$ can be factorized as $\mathbf{\Sigma} = \mathbf{D}\mathbf{\Lambda}\mathbf{D}^{T}$, where $\mathbf{D}$ is an orthonormal matrix composed by the eigenvectors of $\mathbf{\Sigma}$ and $\mathbf{\Lambda}$ is the diagonal matrix of eigenvalues. With PG-GMM, the eigenvectors  in $\mathbf{D}$ capture the statistical structures of NSS variations in natural images, while the eigenvalues in $\mathbf{\Lambda}$ represent the significance of these eigenvectors. Fig.\ 4 shows the eigenvectors for 3 Gaussian components. It can be seen that these eigenvectors encode the possible variations of the PGs. For one Gaussian component, the first eigenvector represents its largest variation, while the last eigenvector represents its smallest variation. For different Gaussian components, we can see that their eigenvectors (with the same index) are very different. Hence, $\mathbf{D}$ can be used to represent the structural variations of the PGs in that component.
 
-\begin{equation}\label{equ15}
+\begin{equation}\label{equ5}
 \min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{p^{2}}\frac{c}{\mathbf{\lambda}_{i}}|\boldsymbol{\upalpha}_{i}|.
 \end{equation}
 By comparing (\ref{equ15}) with (\ref{equ11}), we can see that the $i$th entry of the weighting vector $\mathbf{w}$ should be
-\begin{equation}\label{equ16}
+\begin{equation}\label{equ6}
 \setlength{\abovedisplayskip}{3pt}
 \setlength{\belowdisplayskip}{3pt}
 \mathbf{w}_{i} = c/(\mathbf{\lambda}_{i}+\varepsilon),
 \end{equation}
 where $\varepsilon$ is a small positive number to avoid dividing by zero. With $\mathbf{w}$ determined by (\ref{equ16}), let's see what the solution of (\ref{equ11}) should be. Since the dictionary $\mathbf{D}$ is orthonormal, it is not difficult to find out that (\ref{equ11}) has a closed-form solution (detailed derivation can be found in the supplementary material):
-\begin{equation}\label{equ17}
+\begin{equation}\label{equ7}
 \setlength{\abovedisplayskip}{3pt}
 \setlength{\belowdisplayskip}{4pt}
 \hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{D^{T}\overline{y}}_{m})\odot \text{max}(|\mathbf{D^{T}\overline{y}}_{m}|-\mathbf{w}/2,0),
