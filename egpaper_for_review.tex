@@ -8,6 +8,7 @@
 \usepackage{amssymb}
 \usepackage{subfigure}
 \usepackage{upgreek}
+\usepackage{multirow}
 
 % Include other packages here, before hyperref.
 
@@ -61,63 +62,63 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \begin{figure*}\label{fig1}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (b) CBM3D \cite{cbm3d} \\ (33.33dB/0.8935)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (c) MLP \cite{mlp}\\ (34.22dB/0.9603) }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (d) CSF \cite{csf}\\ (35.39dB/0.9677) }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (e) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
 \end{minipage}
 }
 \subfigure{
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (f) TRD \cite{chen2015learning} \\ (35.97dB/0.9705)   }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (g) PGPD \cite{pgpd} \\ (35.33dB/0.9520)  }
+{\footnotesize (g) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (h) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
-\end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (i) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
+{\footnotesize (h) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (i) Ours \\ (\textbf{37.28}dB/\textbf{0.9729})  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (j) Mean Image }
 \end{minipage}
 }
 \caption{Denoised images of the real noisy image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*}
+\end{figure*} 
 
-In this paper, we attempt to deal with complex noise in real images by intergrating the external and internal information. Since the real noise is signal dependent \cite{crosschannel2016,healey1994radiometric}, the prior information in external natural images can be employed to avoid the high correlation between noise and siganl in internal images. On the other hand, the internal prior is adaptive to the image and can recover better the latent clean image. Based on these observations, we make detailed study on internal and external information for real image denoising task. We made several observations. Firstly, we found that the Patch Group Prior learning based denoising method \cite{pgpd} learned on clean RGB images are enough to outperform the above mentioned denoising methods. Secondly, we also found that a fully internal PG prior based denoising method which achieve better performance than the fully external method. Most importantly, we found that the external PG prior guided internal method can achieve even better and faster performance on real image denoising. In fact, the external PG prior learning based model is employed to guide the clustering of internal PGs extracted from the input noisy images. Then for each cluster of PGs, we perform subspace learning by PCA and denoising by weighted sparse coding. We perform comprehensive experiments on real noisy images captured by different CMOS or CCS sensors. The results demonstrate that our method achieves comparable or even better performance on denoising real noisy images. This reveals the potential advantages of combining external and internal information o natural images on robust and complex real noisy image denoising problem.
+In this paper, we attempt to deal with complex noise in real images by intergrating the external and internal information. Since the real noise is signal dependent \cite{crosschannel2016,healey1994radiometric}, the prior information in external natural images can be employed to avoid the high correlation between noise and siganl in internal images. On the other hand, the internal prior is adaptive to the image and can recover better the latent clean image. Based on these observations, we make detailed study on internal and external information for real image denoising task. We made several observations. Firstly, we found that the Patch Group Prior learning based denoising method \cite{pgpd} learned on clean RGB images are enough to outperform the above mentioned denoising methods. Secondly, we also found that a fully internal PG prior based denoising method which achieve better performance than the fully external method. Most importantly, we found that the external PG prior guided internal method can achieve even better and faster performance on real image denoising. In fact, the external PG prior learning based model is employed to guide the clustering of internal PGs extracted from the input noisy images. Then for each cluster of PGs, we perform subspace learning by PCA and denoising by weighted sparse coding. We perform comprehensive experiments on real noisy images captured by different CMOS or CCS sensors. The results demonstrate that our method achieves comparable or even better performance on denoising real noisy images. An initial glimpse of our method is also listed in Figure \ref{fig1}. This reveals the potential advantages of combining external and internal information o natural images on robust and complex real noisy image denoising problem.
 
 \subsection{Our Contributions}
 The contributions of this paper are summarized as follows:
@@ -128,13 +129,16 @@ The contributions of this paper are summarized as follows:
 \end{itemize}
 
 The rest of this paper will be summerized as follows: in Section 2, we will introduce the related work close to our work; in Section 3, we will introduce our proposed external prior guided internal subspace learning framework for real image denoising; in Section 4, we will demonstrate the denoising experiments on several standard dataset; in Section 5, we will conclude our paper and give our future work.
+
 \section{Related Work}
 \subsection{Patch Group Prior of Natural Images}
-Patch prior is an approximation of the prior of natural images. There are several famous work on this area such as the K-SVD algorithm \cite{ksvd}. The seminar work on patch prior modeling is the expected patch log likelihood (EPLL), which models the space of natural image patches via Gaussian Mixture Model. Recently, the Patch Group prior \cite{pgpd} is proposed to directly model the non-local self similarity within natural images. The patch group prior demonstrate better properties via better image denoising performance on natural images. However, PGPD only utilizes the information of clean natural images, but not fully make full of the NSS information of noisy input images. In this paper, we combine the information of external natural clean images and internal real noisy images to achieve adaptive patch group prior modeling. In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
+The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self similar (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. The better modeling on NSS is demonstrated via better image denoising performance on natural images. However, in \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we aim at making use of both PGs from natural clean images and real noisy images for better denoising performance. 
+
+%In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
 
 
 \subsection{Internal v.s. External Image Denoising}
-The internal patch recurrence across multiple scales of a natural image has been successfully applied in many image restoration problems such as single image super-resolution \cite{Irani2009sr}, image denoising \cite{Irani2013separating}, blind image deblurring \cite{Irani2014deblur}, and image dehazing \cite{Irani2016dehazing}, etc. These work demonstrate that internal information is enough for denoising additive white Gaussian noise. The reason is that the AWGN noise is independent of the original clean images, and therefore it will be 缩小 when the image is scaled to smaller size. However, the real noise is dependent on the signal \cite{crosschannel2016} and it has fixed patterns from several main sources \cite{healey1994radiometric}. The internal information may be not enough for real image denoising problem. Noted that even in denoising AWGN, the introduce of external information will also improve the performance denoising methods \cite{luo2015adaptive}. In this paper, we demonstrate that for real noise which is signal dependent, it is essential to make use of external clean data.
+For natural images, the internal patch recurrence across multiple scales has been successfully applied in many image restoration problems \cite{Irani2009sr,Irani2013separating,Irani2014deblur,Irani2016dehazing}. These work demonstrate that internal information is enough for many ill-posed problems including denoising additive white Gaussian noise. The rationale is, since the AWGN noise is independent of the original clean images, it will be reduced if the image is scaled to a smaller size. However, the noise in real images is generated mostly from the camera sensors, which is highly complex and signal dependent \cite{crosschannel2016}. Besides, according to the seminar workd of \cite{healey1994radiometric}, the noise in real images has fixed patterns from several main sources. Therefore, we can hardly seperate the complex noise from the signals without the help of external (correct) information of natural clean images. Only using the internal information may be not enough for real image denoising problem. On the other hand, the methods only using the external information may be not adaptive for real noisy images. Recently, the methods of \cite{mlp,csf,chen2015learning} had been proposed to learn, on both internal and external images, a process directly mapping the noisy patches to denoised ones. These discriminatice learning based methods are only effective on additive white Gaussian noise and ineffective on complex and signal dependent noise in real images. This has been shown in Figure \ref{fig1}. In this paper, wour goal is to make use of external information to guide the subspace learning of internal PGs for image denoising task.
 
 \subsection{Real Image Denoising}
 To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
@@ -142,16 +146,16 @@ To the best of our knowledge, the study of real image denoising can be dated bac
 \section{External Patch Group Prior Guided Internal Subspace Learning}
 In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
 
-\subsection{External Patch Group Prior Learning on Clean Natural Images}
-Images often demonstrate highly nonlocal self-similarity (NSS) property, which refers to the fact that a patch always have similar patches to it around the image. This property is a key successful factor in image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is recently learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on clean natural images.
+\subsection{External Patch Group Prior Learning}
+Natural images often demonstrate repepitive patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is directly learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on natural color images.
 
-In external PG prior learning on clean natural images, a PG is obtained via finding the $M$ most similar nonlocal patches to the local patch (size: $p\times p \times 3$ for RGB channels) in a given clean image. The similarity is measured by Euclidean distance or other distance measurements. In this work, we find similar PGs through the Euclidean distance based block matching in a large enough local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. We call
+In \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. Therefore the space to be modeled is largely reduced. In this work, we extract PGs from RGB images. Each patch is of size $p\times p \times 3$. For each local patch, we search its similar patches around it through the Euclidean distance in a local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a color image patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. The PG is defined as 
 \begin{equation}\label{equ1}
 \mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M
-\end{equation}
-the group mean subtracted PG, and it will be used to learn the NSS prior in our work. All these are similar with the definitions in \cite{pgpd}. 
+\end{equation}, and it represent the external NSS prior on color images. In Figure \ref{fig2}
 
-From a given set of natural images, we can extract $N$ PGs, and  PG as
+
+Assume we have extracted $N$ PGs from a given set of natural images, and the $n$-th PG is defined as
 \begin{equation}\label{equ2}
 \mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N.
 \end{equation}
@@ -237,33 +241,65 @@ In this subsection, we compared the proposed external prior guided internal subs
 \begin{figure*}\label{fig2}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (a) Noisy Image \\ (34.66dB/0.9178)   }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (h) Offline \\ (36.29dB/0.9705)}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (h) Offline \\ (34.97dB/0.9441) }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (i) Online \\ (35.80dB/0.9641) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (i) Online \\ (36.86dB/0.9622) }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.28}dB/\textbf{0.9729})}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.09}dB/\textbf{0.9638})}
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
 {\footnotesize (h) Mean Image }
 \end{minipage}
 }
-\caption{Denoised images of the old image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\end{figure*}
+
+\begin{figure*}\label{fig2}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (a) Noisy Image \\ (36.15dB/0.9523)    }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (h) Offline \\ (37.12dB/0.9776) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (i) Online \\ (35.70dB/0.9755)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.94}dB/\textbf{0.9804})}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (h) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
 \end{figure*}
 
 
@@ -283,13 +319,13 @@ The PSNR and SSIM resluts are listed in table \ref{tab1}.
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
+ & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
 \\
 \hline
-PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 & 37.75 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.46}
+PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 & 37.75 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.51}
 \\
 \hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9677}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9674}
 \\
 \hline
 \end{tabular}
@@ -301,15 +337,70 @@ SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Image & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
+Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided} 
 \\
 \hline
-PSNR & 33.41  &  33.48 &  33.48  & 34.32   & 35.33 &  35.65 &  35.49   &  36.43  &  36.88  & 36.69 & 36.73 &  \textbf{ 37.04}
+\multirow{3}{*}{\small{Canon 5D Mark III}} 
+& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & 38.76 & 38.37 & \textbf{40.32}
+\\ 
+\cline{2-11} 
+\multirow{3}{*}{ISO = 3200}   
+& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & 35.69 & 35.37 & \textbf{37.12}
+\\ 
+\cline{2-11}    
+& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & 35.54 & 34.91 & \textbf{37.09}  
 \\
 \hline
-SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250 &  0.9280  & 0.9126  &  0.9364  & 0.9481  & 0.9479 & 0.9419 &  \textbf{ 0.9509}
+\multirow{3}{*}{Nikon D600} 
+& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & \textbf{35.57} & 34.98 & 35.23
+\\ 
+\cline{2-11} 
+\multirow{3}{*}{ISO = 3200}   
+& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \textbf{36.70} & 35.95 & 36.57
+\\ 
+\cline{2-11}    
+& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & 40.51 & 38.68 & \textbf{39.28} & 41.15 & 38.73
+\\
+\hline
+\multirow{3}{*}{Nikon D800} 
+& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & 38.01 & 37.99 & \textbf{38.52}
+\\ 
+\cline{2-11} 
+\multirow{3}{*}{ISO = 1600}   
+& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & \textbf{40.36} & \textbf{40.36}
+\\ 
+\cline{2-11}    
+& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & 38.30 & \textbf{38.81}
+\\
+\hline
+\multirow{3}{*}{Nikon D800} 
+& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & \textbf{39.01} & 38.32
+\\ 
+\cline{2-11} 
+\multirow{3}{*}{ISO = 3200}   
+& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & \textbf{36.75} & \textbf{36.73}
+\\ 
+\cline{2-11}    
+& 32.91 & 32.98 & 32.96 & 38.54 & 40.05 & \textbf{40.59} & 36.91 & 36.76 & 39.06 & 38.29
+\\
+\hline
+\multirow{3}{*}{Nikon D800} 
+& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & 34.25 & 31.28 & 33.49 & \textbf{34.61} & 33.37
+\\ 
+\cline{2-11} 
+\multirow{3}{*}{ISO = 6400}   
+& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & \textbf{33.21} & \textbf{33.23}
+\\ 
+\cline{2-11}    
+& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & 33.22 & \textbf{33.29}
+\\
+\hline
+Average PSNR & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & 36.88 & \textbf{ 37.07}
+\\
+\hline
+Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & 0.9481 & \textbf{ 0.9501}
 \\
 \hline
 \end{tabular}
@@ -319,60 +410,60 @@ SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250 &  0.9280  & 0.9126  &  0.
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_3_real.png}}
 {\footnotesize (a) Noisy Image \\ (33.83dB/0.9128)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CBM3D_5dmark3_iso3200_3_real.png}}
 {\footnotesize (b) CBM3D \\ (33.84dB/0.9134)   }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3_real.png}}
 {\footnotesize (c) MLP \\ (32.36dB/0.8993)  }
 \end{minipage}
 \centering
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_3_real.png}}
 {\footnotesize (d) CSF \\ (32.62dB/0.9031)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3_real.png}}
 {\footnotesize (e) WNNM \\ (33.86dB/0.9143)}
 \end{minipage}
 }
 \subfigure{
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_3_real.png}}
 {\footnotesize (f) Noise Clinic \\ (35.54dB/0.9476)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_3_real.png}}
 {\footnotesize (g) Neat Image \\ (34.77dB/0.9463)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CCNoise_5dmark3_iso3200_3.png}}
 {\footnotesize (h) CCNoise \\ (34.91dB/0.9478)  }
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Guided_5dmark3_iso3200_3_real.png}}
 {\footnotesize (i) Guided \\ (\textbf{37.01}dB/\textbf{0.9676})}
 \end{minipage}
-\begin{minipage}[t]{0.2\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3_real.png}}
 {\footnotesize (j) Mean Image}
 \end{minipage}
 }
-\caption{Denoised images of the old image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
 \label{fig3}
 \end{figure*}
 
@@ -380,98 +471,52 @@ SSIM & 0.8483  & 0.8511  & 0.8512   & 0.9113 & 0.9250 &  0.9280  & 0.9126  &  0.
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
 {\footnotesize (a) Noisy Image   }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
 {\footnotesize (b) CBM3D}
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
 {\footnotesize (c) MLP }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_dog.png}}
 {\footnotesize (d) CSF    }
 \end{minipage}
 }
 \subfigure{
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
 {\footnotesize (e) WNNM    }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
 {\footnotesize (f) Noise Clinic   }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
 {\footnotesize (g) Neat Image    }
 \end{minipage}
-\begin{minipage}[t]{0.25\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
 {\footnotesize (h) Guided  }
 \end{minipage}
 }
-\caption{Denoised images of the old image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
 \label{fig4}
 \end{figure*}
-
-%\\
-%\hline
-%1 &    &    &     &     &    &      &     &     &   & 38.30  &  \textbf{ 40.13 }
-%\\
-%\hline
-%2 &    &    &     &     &    &      &     &     &   & 37.09  &  \textbf{ 36.99 }
-%\\
-%\hline
-%3 &    &    &     &     &    &      &     &     &   & 36.58  &  \textbf{ 36.92 }
-%\\
-%\hline
-%4 &    &    &     &     &    &      &     &     &   & 34.85  &  \textbf{ 35.11 }
-%\\
-%\hline
-%5 &    &    &     &     &    &      &     &     &   &  36.12 &  \textbf{ 36.50 }
-%\\
-%\hline
-%6 &    &    &     &     &    &      &     &     &   & 38.92  &  \textbf{ 38.74 }
-%\\
-%\hline
-%7 &    &    &     &     &    &      &     &     &   & 38.30  &  \textbf{ 38.30 }
-%\\
-%\hline
-%8 &    &    &     &     &    &      &     &     &   &  39.48 &  \textbf{ 40.26 }
-%\\
-%\hline
-%9 &    &    &     &     &    &      &     &     &   & 38.72  &  \textbf{ 38.68 }
-%\\
-%\hline
-%10 &    &    &     &     &    &      &     &     &   & 38.38  &  \textbf{ 38.35 }
-%\\
-%\hline
-%11 &    &    &     &     &    &      &     &     &   & 36.42  &  \textbf{ 36.77 }
-%\\
-%\hline
-%12 &    &    &     &     &    &      &     &     &   & 38.35  &  \textbf{ 38.41 }
-%\\
-%\hline
-%13 &    &    &     &     &    &      &     &     &   & 33.26  &  \textbf{ 33.61 }
-%\\
-%\hline
-%14 &    &    &     &     &    &      &     &     &   &   &  \textbf{ 33.40 }
-%\\
-%\hline
-%15 &    &    &     &     &    &      &     &     &   &   &  \textbf{ 33.47 }
 
 \section{Conclusion and Future Work}
 
