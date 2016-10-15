@@ -628,6 +628,14 @@ Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.
 \label{fig4}
 \end{figure*}
 
+\subsection{Discussion on Parameter $\lambda$}
+The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.2dB (0.9620) when $\lambda$ varies from $1e-3$ to $4e-4$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/param.png}
+\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
+\label{fig10}
+\end{figure}
+
 \section{Conclusion and Future Work}
 
 In the future, we will evaluate the proposed method on other conputer vision tasks such as single image super-resolution, photo-sketch synthesis, and cross-domain image recognition. Our proposed method can be improved if we use better training images, fine tune the parameters via cross-validation. We believe that our framework can be useful not just for real image denoising, but for image super-resolution, image cross-style synthesis, and recognition tasks. This will be our line of future work.
