@@ -184,13 +184,14 @@ Through SVD, the PGs in each internal subspace can be divided into singular vect
 
 
 \section{The Denoising Algorithm}
+\subsection{Adaptive Sparse Coding}
 We employ the $\mathbf{U}$ as the adaptive dictioanry to represent the structural variations of the PGs in that component.
 \begin{equation}\label{equ5}
 \min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{U}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|.
 \end{equation}
 The $i$th entry of the regularization parameter $\lambda_{i}$ 
 \begin{equation}\label{equ6}
-\lambda_{i} = \frac{\lambda}{\mathbf{S}_{i}+\varepsilon},
+\lambda_{i} = \lambda/(\mathbf{S}_{i}+\varepsilon),
 \end{equation}
 where $\varepsilon$ is a small positive number to avoid dividing by zero. Since the dictionary $\mathbf{U}$ is orthonormal, it is not difficult to find out that (\ref{equ4}) has a closed-form solution (detailed derivation can be found in the supplementary material):
 \begin{equation}\label{equ7}
@@ -351,7 +352,7 @@ In this section, we perform real image denoising experiments on three standard d
 \end{figure}
 
 \subsection{Parameters Setting}
-The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, there are one paramters, i.e., the $\lambda$ which is used to regularize the sparse term.
+The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term.
 
 
 \subsection{Comparison on External and Internal methods}
@@ -635,7 +636,7 @@ Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.
 \end{figure*}
 
 \subsection{Discussion on Parameter $\lambda$}
-The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.2dB (0.9620) when $\lambda$ varies from $1e-3$ to $4e-4$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
+The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
 \begin{figure}
 \includegraphics[width=1\linewidth]{images/param.png}
 \caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
