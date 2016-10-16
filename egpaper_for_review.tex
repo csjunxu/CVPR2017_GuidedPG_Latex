@@ -9,6 +9,7 @@
 \usepackage{subfigure}
 \usepackage{upgreek}
 \usepackage{multirow}
+\usepackage{color}
 
 % Include other packages here, before hyperref.
 
@@ -24,6 +25,8 @@
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
 \ifcvprfinal\pagestyle{empty}\fi
+
+
 \begin{document}
 
 %%%%%%%%% TITLE
@@ -47,6 +50,7 @@ First line of institution2 address\\
 
 \maketitle
 
+
 %%%%%%%%% ABSTRACT
 \begin{abstract}
 Existing image denoising methods largely depends on noise modeling and estimation. The commonly used noise models, additive white Gaussian, are inflexible in describing the complex noise on real noisy images. This would limit the performance of existing methods on denoising real noisy images. In this paper, we firstly demonstrate that almost all state-of-the-art methods on removing Gaussian noise and real noise are limited in denoising real noisy images. We demonstrate that a simple Patch Group based Prior Learning model on RGB images can achieve better performance than existing denoising methods, especially the ones designed for real noise in natural images. Besides, we employ the external patch group prior learning for internal clustering and subspace learning. This external inormation guided internal denoising methods acheives even better than the external PG prior based methods and the fully internal PG prior based method. Through extensive on standard datasets on real noisy images with groundtruth, we demonstrate that the proposed method achieves much better denoising performance than the other state-of-the-art methods on Gaussian noise removal and real noise removal. 
@@ -54,7 +58,7 @@ Existing image denoising methods largely depends on noise modeling and estimatio
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
-Image denoising is a fundermental problem in computer vision and image processing. It is an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). However, the images captured by CMOS or CCD cameras will undertake an in-camera imaging pipeline. The in-camera imaging pipeline includes mainly image demosaicing, white balance and color space transform, gamut mapping, tone mapping, and JPEG comression \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian, and depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed to deal with AWGN would become much less effective on real noisy images.
+Image denoising is a fundermental problem in computer vision and image processing. It is an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). However, in real world, the noise in real images are much more complex than than Gaussian. The cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. These conditions would produce noise as a by-product. Besides, the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016} would also change the noise distribution. Therefore, the noise in real images are much more complex than Gaussian, and depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed to deal with AWGN would become much less effective on real noisy images.
 
 %Recently, several discriminative learning methods \cite{burger2012image,csf,chen2015learning} achieving expressive performance on Gaussian noise removal. These methods require a set of paired images, namely clean ground-truth images and the simulated noisy counterparts degraded by identical noise (mainly additive white Gaussian noise, AWGN), to learn an effective model for image denoising. 
 
@@ -138,10 +142,10 @@ The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-loc
 
 
 \subsection{Internal v.s. External Image Denoising}
-For natural images, the internal patch recurrence across multiple scales has been successfully applied in many image restoration problems \cite{Irani2009sr,Irani2013separating,Irani2014deblur,Irani2016dehazing}. These work demonstrate that internal information is enough for many ill-posed problems including denoising additive white Gaussian noise. The rationale is, since the AWGN noise is independent of the original clean images, it will be reduced if the image is scaled to a smaller size. However, the noise in real images is generated mostly from the camera sensors, which is highly complex and signal dependent \cite{crosschannel2016}. Besides, according to the seminar workd of \cite{healey1994radiometric}, the noise in real images has fixed patterns from several main sources. Therefore, we can hardly seperate the complex noise from the signals without the help of external (correct) information of natural clean images. Only using the internal information may be not enough for real image denoising problem. On the other hand, the methods only using the external information may be not adaptive for real noisy images. Recently, the methods of \cite{mlp,csf,chen2015learning} had been proposed to learn, on both internal and external images, a process directly mapping the noisy patches to denoised ones. These discriminatice learning based methods are only effective on additive white Gaussian noise and ineffective on complex and signal dependent noise in real images. This has been shown in Figure \ref{fig1}. In this paper, wour goal is to make use of external information to guide the subspace learning of internal PGs for image denoising task.
+For natural images, the internal patch recurrence across multiple scales has been successfully applied in many image restoration problems \cite{Irani2009sr,Irani2013separating,Irani2014deblur,Irani2016dehazing}. These work demonstrate that internal information is enough for many ill-posed problems including denoising additive white Gaussian noise. The rationale is, since the AWGN noise is independent of the original clean images, it will be reduced if the image is scaled to a smaller size. However, the noise in real images is generated mostly from the camera sensors, which is highly complex and signal dependent \cite{crosschannel2016}. Besides, according to the seminar workd of \cite{healey1994radiometric}, the noise in real images has fixed patterns from several main sources. Therefore, we can hardly seperate the complex noise from the signals without the help of external (correct) information of natural clean images. Only using the internal information may be not enough for real image denoising problem. On the other hand, the methods only using the external information may be not adaptive for real noisy images. Recently, the methods of \cite{mlp,csf,chen2015learning} had been proposed to learn, on both internal and external images, a process directly mapping the noisy patches to denoised ones. These discriminatice learning based methods are only effective on additive white Gaussian noise and ineffective on complex and signal dependent noise in real images. This has been shown in Figure \ref{fig1}. In this paper, our goal is to make use of external information to guide the subspace learning of internal PGs for image denoising task.
 
 \subsection{Real Image Denoising}
-To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
+To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). In this paper, we proposed a noval denoising method achieving much better performance than previous real denoising methods.
 
 \section{External Patch Group Prior Guided Internal Subspace Learning}
 In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
@@ -351,12 +355,31 @@ In this section, we perform real image denoising experiments on three standard d
 \label{fig5}
 \end{figure}
 
-\subsection{Parameters Setting}
-The proposed method contains the PG prior learning stage, the external prior guided internal subspace learning stage, and the denoising stage. In the learning stage, similar to the PGPD, there are four parameters, $p$, $M$, $W$, and $K$.  We set $p=6$ and hence the patch size is $6\times 6 \times 3$. The winodw size for searching PGs is $W = 31$. The number of similar patches is $N=10$, the number of cluters is set as $K = 33$. In the external prior guided learning stage, there is no parameters. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term.
-
+\subsection{Implementation Details}
+Our proposed method contains two stages, the external prior guided internal subspace learning stage and the adaptive denoising stage. In the learning stage, there are 4 parameters: the patch size $p$, the number of patches in a PG $M$, the window size $W$ for PG searching and the number of clusters $K$. We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We extracted about 3.6 million PGs from the Kodak PhotoCD Dataset, which includes 24 high quality color images, to train the external prior via PG-GMM. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term. The $\delta$ in iterative regularization is set as $\delta = 0.09$.
 
 \subsection{Comparison on External and Internal methods}
 In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
+
+\begin{table}\label{tab1}
+\caption{Average PSNR(dB)/SSIM results of external, internal, and guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ & \textbf{Noisy} &\textbf{Offline} &\textbf{Online} &\textbf{Guided}  
+\\
+\hline
+PSNR & 34.51 & 38.19 & 38.07 & \textbf{38.55} 
+\\
+\hline
+SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
 
 \begin{figure*}\label{fig2}
 \centering
@@ -426,23 +449,23 @@ In this subsection, we compared the proposed external prior guided internal subs
 \subsection{Comparison With other Competing Methods}
 We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
 
-We  the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains recurrent contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
+We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
 
-The PSNR and SSIM resluts are listed in table \ref{tab1}.
+The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
 \begin{table*}\label{tab1}
 \caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|c|}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
 \hline
- & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}&\textbf{Offline} &\textbf{Online} &\textbf{Guided} 
+ & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Guided}  &\textbf{Guided2} 
 \\
 \hline
-PSNR & 34.51  &  34.58 &  34.52  & 36.19   & 37.40 & 37.75 &  36.53  &  37.57  &  38.19   & 38.07 &  \textbf{ 38.55}
+PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & 37.75 & 36.53 & 37.57 &  \color{blue}{38.55} & \color{red}{ 38.80}
 \\
 \hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  &  0.9663   & 0.9625 &   \textbf{0.9675}
+SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & \color{blue}{0.9675} & \color{red}{0.9694}
 \\
 \hline
 \end{tabular}
@@ -456,68 +479,68 @@ SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided} 
+Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided2} 
 \\
 \hline
 \multirow{3}{*}{\small{Canon 5D Mark III}} 
-& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & 38.76 & 38.37 & \textbf{40.41}
+& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & \color{blue}{38.76} & 38.37 & \color{red}{40.44}
 \\ 
 \cline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & 35.69 & 35.37 & \textbf{37.14}
+& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & \color{blue}{35.69} & 35.37 & \color{red}{37.16}
 \\ 
 \cline{2-11}    
-& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & 35.54 & 34.91 & \textbf{37.11}  
+& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & \color{blue}{35.54} & 34.91 & \color{red}{37.06}  
 \\
 \hline
 \multirow{3}{*}{Nikon D600} 
-& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & \textbf{35.57} & 34.98 & 35.25
+& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & \color{red}{35.57} & 34.98 & \color{blue}{35.28}
 \\ 
 \cline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \textbf{36.70} & 35.95 & 36.60
+& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \color{red}{36.70} & 35.95 & \color{blue}{36.62}
 \\ 
 \cline{2-11}    
-& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & 40.51 & 38.68 & 39.28 & \textbf{41.15} & 38.78
+& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & \color{blue}{40.51} & 38.68 & 39.28 & \color{red}{41.15} & 39.05
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & 38.01 & 37.99 & \textbf{38.59}
+& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & \color{blue}{38.01} & 37.99 & \color{red}{38.67}
 \\ 
 \cline{2-11} 
 \multirow{3}{*}{ISO = 1600}   
-& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & 40.36 & \textbf{40.44}
+& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & \color{blue}{40.36} & \color{red}{40.81}
 \\ 
 \cline{2-11}    
-& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & 38.30 & \textbf{38.85}
+& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & \color{blue}{38.30} & \color{red}{38.77}
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & \textbf{39.01} & 38.34
+& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & \color{red}{39.01} & \color{blue}{38.57}
 \\ 
 \cline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & \textbf{36.75} & \textbf{36.74}
+& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & \color{blue}{36.75} & \color{red}{36.82}
 \\ 
 \cline{2-11}    
-& 32.91 & 32.98 & 32.96 & 38.54 & 40.05 & \textbf{40.59} & 36.91 & 36.76 & 39.06 & 38.29
+& 32.91 & 32.98 & 32.96 & 38.54 & \color{blue}{40.05} & \color{red}{40.59} & 36.91 & 36.76 & 39.06 & 38.68
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & 34.25 & 31.28 & 33.49 & \textbf{34.61} & 33.37
+& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & \color{blue}{34.25} & 31.28 & 33.49 & \color{red}{34.61} & 33.48
 \\ 
 \cline{2-11} 
 \multirow{3}{*}{ISO = 6400}   
-& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & \textbf{33.21} & \textbf{33.21}
+& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & \color{blue}{33.21} & \color{red}{33.29}
 \\ 
 \cline{2-11}    
-& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & 33.22 & \textbf{33.27}
+& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & \color{blue}{33.22} & \color{red}{33.48}
 \\
 \hline
-Average PSNR & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & 36.88 & \textbf{ 37.09}
+Average PSNR & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & \color{blue}{36.88} & \color{red}{ 37.21}
 \\
 \hline
-Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & 0.9481 & \textbf{ 0.9502}
+Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & \color{blue}{0.9481} & \color{red}{ 0.9506}
 \\
 \hline
 \end{tabular}
