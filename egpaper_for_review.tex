@@ -205,8 +205,8 @@ where $\varepsilon$ is a small positive number to avoid dividing by zero. Since 
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{U^{T}\overline{y}}_{m}|$ is the absolute value of each entry of vector $|\mathbf{U^{T}\overline{y}}_{m}|$. The closed-form solution makes our weighted sparse coding process very efficient. 
 
-\subsection{Iterative Regularization}
-Perfoming image denoising in one iteration is not enough for real noise since the noise is signal dependent. The removed noise in one iteration is largely dependent on the signal. Therefore, it is essential to add back some residuals removed in this iteration for the denoising of the next iteration. 
+\subsection{Fast Patch Group Searching by Integral Image}
+The searching of patch groups in images is inefficient if we search non-local similar patches to each local patch. To speed up the searching process and make our proposed method faster, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. That is to say, we do not need do distance measure for each patch. It was first proposed under the name of summed area table\cite{viola2004robust}
 
 \subsection{Effectively dealing with different noisy images}
 For real image denoising, we can perform well on images which have similar noise levels with the training dataset. How can we deal with the real noisy images whose noise levels are higher than the training dataset? The answer is to remove the noise by more iterations. The input image of each iteration is the recovered image of previous iteration. This makes sense since we can still view the recovered image as a real noisy image. 
