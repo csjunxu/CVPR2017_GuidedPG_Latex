@@ -189,7 +189,12 @@ Through SVD, the PGs in each internal subspace can be divided into singular vect
 
 \section{The Denoising Algorithm}
 \subsection{Adaptive Sparse Coding}
-We employ the $\mathbf{U}$ as the adaptive dictioanry to represent the structural variations of the PGs in that component.
+To remove the real noise, we employ the sparse coding framework. And in order to be adaptive to the input image, we employ the internal learned $\mathbf{U}$ of each cluster as an adaptive dictioanry to represent the structural variations of the PGs in that cluster. The \emph{mutual incoherence} $\mu(\mathbf{U})$ \cite{donoho2003optimally}, which is difined as
+\begin{equation}
+\mu(\mathbf{U})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
+\end{equation},
+is a measure of quality of dictionary. Since the $\mathbf{U}$ is orthonormal, its \emph{mutual incoherence} is naturally $0$ and therefore better than other redundant dictionaries. 
+
 \begin{equation}\label{equ5}
 \min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{U}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|.
 \end{equation}
@@ -232,29 +237,23 @@ With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ7}), the clean patch
 \\
 \textbf{for} $t = 1:IteNum$ \textbf{do}
 \\
-2. Iterative Regularization:
-\\
-\quad\quad\quad $\mathbf{y}^{(t)}=\hat{\mathbf{x}}^{(t-1)}+\delta(\mathbf{y}-\mathbf{y}^{(t-1)})$;
-\\
-3. Estimate the standard deviation of noise;
-\\
 \quad\textbf{for} each PG $\mathbf{Y}$ \textbf{do}
 \\
-4.\quad Calculate group mean $\boldsymbol{\upmu}_{y}$ and form PG $\mathbf{\overline{Y}}$;
+2.\quad Calculate group mean $\boldsymbol{\upmu}_{y}$ and form PG $\mathbf{\overline{Y}}$;
 \\
-5.\quad Gaussian component selection via (\ref{equ3});
+3.\quad Gaussian component selection via (\ref{equ3});
 \\
 \quad\textbf{end for}
 \\
 \quad\textbf{for} each Internal Subspace \textbf{do}
 \\
-6.\quad Internal Subspace Learning by (\ref{equ4});
+4.\quad Internal Subspace Learning by (\ref{equ4});
 \\
-7.\quad Recover each patch in all PGs via $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$;
+5.\quad Recover each patch in all PGs via $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$;
 \\
 \quad\textbf{end for}
 \\
-8. Aggregate the recovered PGs of all subspaces to form
+6. Aggregate the recovered PGs of all subspaces to form
 \\
 \quad the recovered image $\hat{\mathbf{x}}^{(t)}$;
 \\
