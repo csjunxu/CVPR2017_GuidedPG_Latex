@@ -182,6 +182,13 @@ W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
 \newblock Nonlocally centralized sparse representation for image restoration.
 \newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
 
+\bibitem{bao2013fast}
+Chenglong Bao, Jian-Feng Cai, and Hui Ji.
+\newblock Fast sparsity-based orthogonal dictionary learning for image
+  restoration.
+\newblock {\em Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 3384--3391, 2013.
+
 \bibitem{em}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
 \newblock Maximum likelihood from incomplete data via the {EM} algorithm.
