@@ -7,9 +7,6 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{subfigure}
-\usepackage{upgreek}
-\usepackage{multirow}
-\usepackage{color}
 
 % Include other packages here, before hyperref.
 
@@ -25,12 +22,10 @@
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
 \ifcvprfinal\pagestyle{empty}\fi
-
-
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{External Patch Group Prior Guided Internal Subspace Learning for Real Image Denoising}
+\title{A Noise Estimation Free Framework for Robust Real Image Denoising}
 
 \author{First Author\\
 Institution1\\
@@ -49,621 +44,660 @@ First line of institution2 address\\
 }
 
 \maketitle
-
+%\thispagestyle{empty}
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-Existing image denoising methods largely depends on noise modeling and estimation. The commonly used noise models, additive white Gaussian, are inflexible in describing the complex noise on real noisy images. This would limit the performance of existing methods on denoising real noisy images. In this paper, we firstly demonstrate that almost all state-of-the-art methods on removing Gaussian noise and real noise are limited in denoising real noisy images. We demonstrate that a simple Patch Group based Prior Learning model on RGB images can achieve better performance than existing denoising methods, especially the ones designed for real noise in natural images. Besides, we employ the external patch group prior learning for internal clustering and subspace learning. This external inormation guided internal denoising methods acheives even better than the external PG prior based methods and the fully internal PG prior based method. Through extensive on standard datasets on real noisy images with groundtruth, we demonstrate that the proposed method achieves much better denoising performance than the other state-of-the-art methods on Gaussian noise removal and real noise removal. 
+Existing image denoising methods largely depends on noise modeling and estimation. The commonly used noise models, additive white Gaussian or Mixture of Gaussians, are inflexible in describing the complex noise on real noisy images or time consuming in parametric estimation, respectively. Therefore, how to perform image denoising \textbf{without} noise modeling and estimation is an essential while challenging problem. In this paper, we attempt to solve this problem by directly learning the transformation process between the noisy images and clean ones. The transformation is learned on patches instead of images for dimensional tractability. The learning data is collected by constructing paired noisy and clean patches from unpaired real noisy and clean images. Since real noise is signal dependent and from several main sources \cite{healey1994radiometric}, we cluster the learning data into multiple components. For each component, we learn in an integrated way two paired dictionaries for the noisy and clean data and two transformation functions between them. The overall learned transformation process could remove the noise from different sources. Experiments show that the proposed Paired Dictionary and Transformation Learing (PDTL) model achieves better performance on denoising real noisy images than other noise estimation based methods.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
 \section{Introduction}
-Image denoising is a fundermental problem in computer vision and image processing. It is an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). However, in real world, the noise in real images are much more complex than than Gaussian. The cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. These conditions would produce noise as a by-product. Besides, the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016} would also change the noise distribution. Therefore, the noise in real images are much more complex than Gaussian, and depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed to deal with AWGN would become much less effective on real noisy images.
+Image denoising is a fundermental problem in computer vision and image processing. It is an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,burger2012image,wnnm,csf,pgpd,chen2015learning,fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}, and most of them focus on dealing with additive white Gaussian noise (AWGN). Among these methods, \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} are designed to deal with real noisy images. Almost all these methods coincidently employ a two-stage framework: in the first stage, assuming a distribution model (usually Gaussian) on the noise and estimate its parameters; in the second stage, performing denoising with the help of the noise modeling and estimation in the first stage. However, the Gaussian assumption is inflexible in describing the complex noise on real noisy images \cite{Liu2008,crosschannel2016}. Although the mixture of Gaussians (MoG) model is possible to approximate any unknown noise \cite{Zhu_2016_CVPR}, estimating its parameters is often time consuming via nonparametric Bayesian techniques \cite{Zhu_2016_CVPR} \cite{Bishop}. To avoid the above mentioned problems, it is naturally to ask, whether it is possible to perform denoising on real noisy images without noise modeling and estimation? 
 
-%Recently, several discriminative learning methods \cite{burger2012image,csf,chen2015learning} achieving expressive performance on Gaussian noise removal. These methods require a set of paired images, namely clean ground-truth images and the simulated noisy counterparts degraded by identical noise (mainly additive white Gaussian noise, AWGN), to learn an effective model for image denoising. 
+To answer this question, we look close into several discriminative learning methods \cite{burger2012image,csf,chen2015learning} achieving expressive performance on Gaussian noise removal. These methods require a set of paired images, namely clean ground-truth images and the simulated noisy counterparts degraded by identical noise (mainly additive white Gaussian noise, AWGN), to learn an effective model for image denoising. However, the noise in real images are much more complex than Gaussian, since it depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). Thus, the model learned with AWGN would become much less effective for denoising real noisy images. What's more, usually real noisy images do not have clean counterparts. Therefore, almost all current discriminative learning methods cannot be directly applied to real noisy images.
 
-In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} are designed to deal with real noisy images. Almost all these methods coincidently employ a two-stage framework: in the first stage, assuming a distribution model (usually Gaussian) on the noise and estimate its parameters; in the second stage, performing denoising with the help of the noise modeling and estimation in the first stage. However, the Gaussian assumption is inflexible in describing the complex noise on real noisy images \cite{Liu2008}. Although the mixture of Gaussians (MoG) model is possible to approximate any unknown noise \cite{Zhu_2016_CVPR}, estimating its parameters is often time consuming via nonparametric Bayesian techniques \cite{Zhu_2016_CVPR,Bishop}. To evaluate the performanec of these methods on dealing with complex real noise, we apply these methods, with corresponding default parameters, on a real noisy image provided in \cite{crosschannel2016}. This image is captured by a Nikon D800 camera while the ISO is set as 3200. The "ground truth" image is also provided with which we can calculate objective measurements. More details about this dataset can be found at the experimental section. The denoised images are listed in Figure \ref{fig1}, from which we can see that these methods either remove the noise or oversmooth the complex details in real noisy image. This proves that the above mentioned methods are not effective on denoising complex noise on real images. 
-\begin{figure*}\label{fig1}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (b) CBM3D \cite{cbm3d} \\ (33.33dB/0.8935)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (c) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (d) MLP \cite{mlp}\\ (34.22dB/0.9603) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (e) CSF \cite{csf}\\ (35.39dB/0.9677) }
-\end{minipage}
-}
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (f) TRD \cite{chen2015learning} \\ (35.97dB/0.9705)   }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (g) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (h) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (i) Ours \\ (\textbf{37.28}dB/\textbf{0.9729})  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (j) Mean Image }
-\end{minipage}
-}
-\caption{Denoised images of the real noisy image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*} 
+The above mentioned limitations indicate that, novel denoising methods are been waiting for which can: 1) avoid noise modeling and estimation; 2) learn without paired training images; 3) deal with complex noise on real noisy images. In this paper, we attempt to solve the three problems in an integrated way for robust real image denoising. Specifically, we collect a comprehensive set of real noisy images and an independent set of clean images, and propose a learning based model to directly transform the noisy input into clean counterparts. The rationale is that, the noise on real noisy images obtained through in-camera imaging pipeline \cite{NewInCamera} are structure dependent \cite{crosschannel2016} and identified by several main types \cite{healey1994radiometric,tsin2001statistical}. To better deal with different stuctures and noise sources, we propose to learn our model on multile clusters of image patches instead of on a set of large images. Besides, it is difficult to learn models on whole images since that natural images are of high dimensionality. What's more, for our learning model, though images are different, it is possible to find a cluster of patches in clean images which are similar to given noisy patches. For each cluster of patches, we learn two dictionaries and transformation functions to characterize the structures of and relationship between niosy and clean image patches. We perform comprehensive experiments on real noisy images captured by different CMOS or CCS sensors. The results demonstrate that our method achieves comparable or even better performance on denoising real noisy images. This reveals the potential advantages of 
+dscriminative learning methods on robust and complex real noisy image denoising problem.
 
-In this paper, we attempt to deal with complex noise in real images by intergrating the external and internal information. Since the real noise is signal dependent \cite{crosschannel2016,healey1994radiometric}, the prior information in external natural images can be employed to avoid the high correlation between noise and siganl in internal images. On the other hand, the internal prior is adaptive to the image and can recover better the latent clean image. Based on these observations, we make detailed study on internal and external information for real image denoising task. We made several observations. Firstly, we found that the Patch Group Prior learning based denoising method \cite{pgpd} learned on clean RGB images are enough to outperform the above mentioned denoising methods. Secondly, we also found that a fully internal PG prior based denoising method which achieve better performance than the fully external method. Most importantly, we found that the external PG prior guided internal method can achieve even better and faster performance on real image denoising. In fact, the external PG prior learning based model is employed to guide the clustering of internal PGs extracted from the input noisy images. Then for each cluster of PGs, we perform subspace learning by PCA and denoising by weighted sparse coding. We perform comprehensive experiments on real noisy images captured by different CMOS or CCS sensors. The results demonstrate that our method achieves comparable or even better performance on denoising real noisy images. An initial glimpse of our method is also listed in Figure \ref{fig1}. This reveals the potential advantages of combining external and internal information o natural images on robust and complex real noisy image denoising problem.
+%The in-camera imaging pipeline usually includes image demosaicing, white balance and color space transform, gamut mapping, tone mapping, and JPEG comression \cite{NewInCamera,crosschannel2016}.
 
 \subsection{Our Contributions}
-The contributions of this paper are summarized as follows:
+The contributions of this paper are closely related to the three problems we mentioned above, and summarized as follows:
 \begin{itemize}
-\item We propose a noval method which combine the external and internal PG prior for real noisy image denoising problem;
-\item Our method doesn't need noise modeling and estimation, and the noise levels of real noisy images are automatically expresssed by the singular values of learned subspace;
-\item We achieve much better performance on visual quality, PSNR, SSIM, and speed, than other competing methods for real image denoising problem.
+\item To avoid noise modeling and estimation, we propose a noval learning based model which directly transform noisy images into clean conuterparts;
+\item To learn without paired training images, we perform the learning on paired image patches extracted from unpaired noisy and clean images;
+\item To deal with different structures and nise sources, we employ a "divide-and-coquer" strategy on the training data, and for each paired cluster of similar patches, we learn two dictionaries and transformation function for noisy and clean data;
+\item The proposed method achieves better performance than other competing methdos on real noisy image denoising problem.
 \end{itemize}
 
-The rest of this paper will be summerized as follows: in Section 2, we will introduce the related work close to our work; in Section 3, we will introduce our proposed external prior guided internal subspace learning framework for real image denoising; in Section 4, we will demonstrate the denoising experiments on several standard dataset; in Section 5, we will conclude our paper and give our future work.
-
 \section{Related Work}
-\subsection{Patch Group Prior of Natural Images}
-The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self similar (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. The better modeling on NSS is demonstrated via better image denoising performance on natural images. However, in \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we aim at making use of both PGs from natural clean images and real noisy images for better denoising performance. 
-
-%In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
-
-
-\subsection{Internal v.s. External Image Denoising}
-For natural images, the internal patch recurrence across multiple scales has been successfully applied in many image restoration problems \cite{Irani2009sr,Irani2013separating,Irani2014deblur,Irani2016dehazing}. These work demonstrate that internal information is enough for many ill-posed problems including denoising additive white Gaussian noise. The rationale is, since the AWGN noise is independent of the original clean images, it will be reduced if the image is scaled to a smaller size. However, the noise in real images is generated mostly from the camera sensors, which is highly complex and signal dependent \cite{crosschannel2016}. Besides, according to the seminar workd of \cite{healey1994radiometric}, the noise in real images has fixed patterns from several main sources. Therefore, we can hardly seperate the complex noise from the signals without the help of external (correct) information of natural clean images. Only using the internal information may be not enough for real image denoising problem. On the other hand, the methods only using the external information may be not adaptive for real noisy images. Recently, the methods of \cite{mlp,csf,chen2015learning} had been proposed to learn, on both internal and external images, a process directly mapping the noisy patches to denoised ones. These discriminatice learning based methods are only effective on additive white Gaussian noise and ineffective on complex and signal dependent noise in real images. This has been shown in Figure \ref{fig1}. In this paper, our goal is to make use of external information to guide the subspace learning of internal PGs for image denoising task.
+\subsection{Couple dictionary learning}
+Coupled dictionary learning (CDL) is a frequently used learning framework for cross-style image synthesis problems, such as image super-resolution, photo-sketch synthesis. CDL aims at learning a pair of dictionaries as well as the relationships between the two cross-domain image styles. Hence, the information from the source image style can be applied to synthesize the image at the target style. The relationships are often assumed to be identical mapping (coupled) \cite{yang2010image}, linear mapping (semi-coupled) \cite{wang2012semi}. Yang et al. \cite{yang2010image} assumed that LR image patches have the same sparse representations as their HR versions do, and proposed a joint dictionary learning model for SR using concatenated HR/LR image features. They later imposed relaxed constraints on the observed dictionary/coefficient pairs across image domains for improved performance. Wang et al. \cite{wang2012semi} further proposed a semi-coupled dictionary
+learning (SCDL) scheme by advancing a linear mapping for cross-domain image sparse representation. Their method
+has been successfully applied to applications of image SR and cross-style synthesis.
 
 \subsection{Real Image Denoising}
-To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). In this paper, we proposed a noval denoising method achieving much better performance than previous real denoising methods.
+To the best of our knowledge, the study of real image denoising can be dated back to the BLS-GSM model \cite{blsgsm}, in which Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. Based on the robust statistics theory \cite{huber2011robust}, the work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers, which could be removed via Lorentzian robust estimator. In \cite{Liu2008}, Liu et al. proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Recently, Gong et al. proposed an optimization based method \cite{almapg}, which models the data fitting term by weighted sum of $\ell_{1}$ and $\ell_{2}$ norms and the regularization term by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic} for real image denoising task. This method generalizes the NL-Bayes \cite{nlbayes} to deal with signal, scale, and frequency dependent noise. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates the noise via Mixture of Gaussian (MoG) model \cite{Bishop}. The clean image is recovered from the noisy image by the proposed Low Rank MoG filter (LR-MoG). However, noise level estimation is already a challenging problem and denoising methods are quite sensitive to this parameter. Moreover, these methods are based on shrinkage models that are too simple to reflect reality, which results in over-smoothing of important structures such as small-scale text and textures. 
 
-\section{External Patch Group Prior Guided Internal Subspace Learning}
-In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
-
-\subsection{External Patch Group Prior Learning}
-Natural images often demonstrate repepitive patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is directly learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on natural color images.
-
-In \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. Therefore the space to be modeled is largely reduced. In this work, we extract PGs from RGB images. Each patch is of size $p\times p \times 3$. For each local patch, we search its similar patches around it through the Euclidean distance in a local window of size $W\times W$. The PG is denoted by $\{\mathbf{x}_{m}\}_{m=1}^{M}$, where $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a color image patch vector. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and $\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}$ is the group mean subtracted patch vector. The PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}\}, m=1,...,M$, and it represent the external NSS prior on color images. Assume we have extracted $N$ PGs from a given set of natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the patch group based Gaussian Mixture Model (PG-GMM) for NSS prior learning. We aim to learn a set of $K$ Gaussians $\{\mathcal{N}(\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})\}$ from $N$ training PGs $\{\mathbf{\overline{X}}_{n}\}$, while requiring that all the $M$ patches $\{\mathbf{\overline{x}}_{n,m}\}$  in PG $\mathbf{\overline{X}}_{n}$ belong to the same Gaussian component and assume that the patches in the PG are independently sampled. Note that such an assumption is commonly used in patch based image modeling \cite{ksvd,lssc}. Then, the likelihood of $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
-\begin{equation}\label{equ1}
-P(\mathbf{\overline{X}}_{n})  = \sum\nolimits_{k=1}^{K}\pi_{k}\prod\nolimits_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k}).
-\end{equation}
-By assuming that all the PGs are independently sampled, the overall objective log-likelihood function is
-\begin{equation}\label{equ2}
-\begin{split}
-\ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
-\end{split}
-\end{equation} 
-We maximize the above objective function for PG-GMM learning and  finally obtain the GMM model with learned parameters including mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}=\mathbf{0}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Noted that the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
-
-\subsection{External Prior Guided Internal Subspace Learning}
-Given a rael noisy image, we extract noisy PGs from it and save the mean vectors of each PG for recovering. The mean substracted PG is defined as $\mathbf{\overline{Y}}$. To project this PG into a most adaptive subspace, we select the most suitable Gaussian component to it from the PG-GMM trained in previous section. The selection can be done by checking the posterior probability that $\mathbf{\overline{Y}}$ belongs to the $k$th Gaussian component:
-\begin{equation}\label{equ3}
-P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})}.
-\end{equation}
-Since the noise on real images are mostly small when compared to the signals, the covariance matrix of the $k$th component is still $\mathbf{\Sigma}_{k}$. Finally, the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$ is selected as the most suitable subspace for $\mathbf{\overline{Y}}$.
-
-Though each PG has been projected into its most suitable subspace, the pre-learned subspace is still too general to represent the noisy PG extracted from the real noisy image. That is, the noisy PGs projected into one cluster can still constisted a subspace which is of lower dimensions than the subspace pre-learned from the external PGs. This can be demonstrated by compare the distribution of external PGs and internal PGs in the same clusters. We randomly select one cluster, and collect the celan PGs extracted from external dataset (Kodak 24 images) and the niosy PGs from the testing image. Since the original PGs are of $3p^{2}$ dimensions, we apply PCA to project the PGs into 2 dimensions for better visualization. The results is shown in Figure \ref{fig}, from which we can see clearly that the projected PGs are mainly in a smaller region of the external PGs, which proves that the internal PGs are only consisted a subspace in a lower dimension than the PGs collected from external subspace. To better and adaptively charactering the internal PGs from the testing image, we need learn a more specific dictionary for noisy PGs assigned into each cluster. For notation simplicity, we ignore the index of subspace $k$. The internal PGs $\mathbf{Y}$ form a subspace which can be obtained by singular value decomposition (SVD),
-\begin{equation}\label{equ4}
-\mathbf{Y}=\mathbf{U}\mathbf{S}\mathbf{V}^{T}
-\end{equation}
-The singular vectors capture the statistical structures of NSS variations in natural images, while the singular values in $\mathbf{S}$ represent the significance of these singular vectors. Fig.\ 4 shows the singular vectors for one Gaussian component.
-
-\subsection{What does External Prior help the Internal Subspace Learning?}
-Until now, we have divided the noisy PGs into multiple internal subspaces. Here we take a deep analysis on how the external NSS prior guide the subspace learning of internal PGs. The help are at least threefold. Firstly, through MAP in (\ref{equ3}), the external prior guides the noisy PGs to be clustered into the correct subspaces. If we cluster the noisy PGs in an automatical way, the subspaces we learned will be highly degraded by the signal dependent noise. Secondly, the guidance of external prior for internal clustering is more efficient than directly clustering the internal noisy PGs. It only needs to calculate the MAP probability via the equation (\ref{equ3}) while the internal clustering via GMM is time-consuming on EM algorithm \cite{em}. Thirdly, due to the correct guidance of external prior, the structual decomposition via SVD of each subspace is more adaptive. This will bring better denoising performance than the methods only using the external information.
-
-\subsection{Discussion on Internal Subspace Structure}
-The Internal PGs are in fact lying in the subspaces of external PG Spaces. To defend this argument, we compare the distribution of external PGs extracted from clean natural images and real noisy images. For better illumination, we randomly selected a cluster and project the original clean PGs $\mathbf{X}$ onto a 2-D plane. This could be done via $\mathbf{Xp}=\mathbf{U(:.1:2)}^{T}\mathbf{X}$, where $\mathbf{U}$ is the singular vector matrix of that cluster. The noisy PGs $\mathbf{Y}$ assigned in this cluster is also projected into 2-D via $\mathbf{Yp}=\mathbf{U(:.1:2)}^{T}\mathbf{Y}$. The Figure \ref{} reflects the distribution on the 2-D plane of the projected clean PGs from external natural images and the projected noisy PGs from internal image. We can see that the internal noisy PGs are indeed lying in a subspace of the external PGs. Hence, if we directly use the external prior learned from clean PGs, the learned subspaces would be too generative to be suitable for the testing data. 
-
-Through SVD, the PGs in each internal subspace can be divided into singular vectors and singular values. The singular vectors are the basis of the corresponding subspace while the singular values reflect the importance of these basis. The basis can be used as dictionary to code the noisy PGs. And the sigular values are adaptive parameters for internal noisy PGs. We can compare the singular values of one internal subspace and the corresponding space of external PGs. The result is shown in Figure \ref{}. From which we can see that the noisy subspace often have higher values than external space consisted of clean PGs. This gap is clearly made of the noise and can be used for image denoising in a natural way.
-
-
-\section{The Denoising Algorithm}
-\subsection{Adaptive Sparse Coding}
-To remove the real noise, we employ the sparse coding framework. And in order to be adaptive to the input image, we employ the internal learned $\mathbf{U}$ of each cluster as an adaptive dictioanry to represent the structural variations of the PGs in that cluster. The \emph{mutual incoherence} $\mu(\mathbf{U})$ \cite{donoho2003optimally}, which is difined as
+\section{Double Semi-Couple Dictionary Learning}
+In this section, we first formulate the real image denoising problem from the perspective of learning based model and then provide the optimization for the problem.
+\subsection{Problem Formulation}
+For real image denoising, we first collect clean natural images and real noisy images for training. Assume the $\mathbf{X}$ and $\mathbf{Y}$ are unpaired clean image patches and real noisy patches. Let the $\mathbf{X} = \mathbf{D}_{x}\mathbf{A}_{x}$ and $\mathbf{Y} = \mathbf{D}_{y}\mathbf{A}_{y}+\mathbf{V}_{y}$, where $\mathbf{V}_{y}$ is the real noise of which we don't know the distribution. 
 \begin{equation}
-\mu(\mathbf{U})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
-\end{equation},
-is a measure of quality of dictionary. Since the $\mathbf{U}$ is orthonormal, its \emph{mutual incoherence} is naturally $0$ and therefore better than other redundant dictionaries. 
-
-\begin{equation}\label{equ5}
-\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{U}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|.
+\begin{split}
+&\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y}}
+\emph{E}_{data}(\mathbf{X},\mathbf{D}_{x},\mathbf{A}_{x})+
+\emph{E}_{data}(\mathbf{Y},\mathbf{D}_{y},\mathbf{A}_{y},\mathbf{V}_{y})
+\\
+&
++\emph{E}_{map}(f_{1}(\mathbf{A}_{x}),f_{2}(\mathbf{A}_{y}))+
+\emph{E}_{reg}(\mathbf{A}_{x},\mathbf{A}_{y},f_{1},f_{2},\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{V}_{y})
+\end{split}
 \end{equation}
-The $i$th entry of the regularization parameter $\lambda_{i}$ 
-\begin{equation}\label{equ6}
-\lambda_{i} = \lambda/(\mathbf{S}_{i}+\varepsilon),
-\end{equation}
-where $\varepsilon$ is a small positive number to avoid dividing by zero. Since the dictionary $\mathbf{U}$ is orthonormal, it is not difficult to find out that (\ref{equ4}) has a closed-form solution (detailed derivation can be found in the supplementary material):
-\begin{equation}\label{equ7}
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{4pt}
-\hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{U^{T}\overline{y}}_{m})\odot \text{max}(|\mathbf{U^{T}\overline{y}}_{m}|-\mathbf{\Lambda},\mathbf{0}),
-\end{equation}
-where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{U^{T}\overline{y}}_{m}|$ is the absolute value of each entry of vector $|\mathbf{U^{T}\overline{y}}_{m}|$. The closed-form solution makes our weighted sparse coding process very efficient. 
 
-\subsection{Fast Patch Group Searching by Integral Image}
-The searching of patch groups in images is inefficient if we search non-local similar patches to each local patch. To speed up the searching process and make our proposed method faster, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. That is to say, we do not need do distance measure for each patch. It was first proposed under the name of summed area table\cite{viola2004robust}
+This framework doesn't need noise modeling and estimation. However, we still model the noise by $\mathbf{V}_{y}$ for visualization what we have removed during training. The regularization of the noise by $\|\mathbf{V}_{y}\|_{p}^{p}$ can be flexible, that we can penalize it by Frobenius norm, $\ell_{1}$ norm, or any other norms. We employ Frobenius norm here for modeling simplicity. To model the relationship between the representational coefficients, we propose to use two inversible mapping function $f_{1}$ and $f_{2}$. To measure the error, we employ a penalty function $\emph{F}$.
+\begin{equation}
+\begin{split}
+\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y},\mathbf{U}_{x},\mathbf{U}_{y},\mathbf{V}_{y}}
+\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}&
+\\
++
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
++
+\alpha
+\emph{F}(f_{1}(\mathbf{A}_{x}),f_{2}(\mathbf{A}_{y}))&
+\\
++
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
++
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
+\\
+\text{s.t.}
+\quad
+\|\mathbf{d}_{x,i}\|_{2}=1
+, 
+\|\mathbf{d}_{y,i}\|_{2}=1
+,
+\forall{i}
+.
+\end{split}
+\end{equation}
+Here, we want to discuss more on the mapping functions $f_{1}, f_{2}$ and the measure function $\emph{F}$. The mapping function can be linear or nonlinear transformations. The linear function can be defined as a mapping matrix $f_{1}(\mathbf{A}_{x})=\mathbf{U}_{x}\mathbf{A}_{x}$ and $f_{2}(\mathbf{A}_{y})=\mathbf{U}_{y}\mathbf{A}_{y}$. The corresponding penalty terms on the mapping matrices are $\|\mathbf{U}_{x}\|_{F}^{2}$ and $\|\mathbf{U}_{y}\|_{F}^{2}$. The nonlinear function can be defined as sigmoid function $f_{1}(\mathbf{A}_{x})=1/(1+\exp\{-\mathbf{A}_{y}\})$. We can also employ "first-linear-then-nonlinear" or "first-nonlinear-then-linear" strategies. Here, we don't have explict penalty terms for the nonlinear mapping functions. The derivatives of the nonlinear case also need further discussions since it is not easy to obtain closed-form solutions with sigmoid functions. In this paper, we utilize linear transformation matrices as the mapping functions $f_{1}$ and $f_{2}$. The measure penalty function is simply defined by Frobenius norm. Hence, the term is defined as $\|\mathbf{U}_{x}\mathbf{A}_{x}-\mathbf{U}_{y}\mathbf{A}_{y}\|_{F}^{2}$. However, this would generate a trivial solution of $\mathbf{U}_{x}=\mathbf{U}_{y}=\mathbf{0}$. In order to avoid this case, we propose to use the inverse of the mapping matrices, i.e., $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$.
 
-\subsection{Effectively dealing with different noisy images}
+In summary, we propose a Doubly Inversible and Semi-Coupled Dictionary Learing (DISCDL) model to learn the dictionaries and mapping functions between real noisy images and latent clean natural images. 
+\begin{equation}
+\begin{split}
+\min_{\mathbf{D}_{x},\mathbf{D}_{y},\mathbf{A}_{x},\mathbf{A}_{y},\mathbf{U}_{x},\mathbf{U}_{y},\mathbf{V}_{y}}
+\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}&
+\\
++
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
++
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}&
+\\
++
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2}
++
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{V}_{y}\|_{p}^{p})
+&
+\\
++
+\lambda_{x}\|\mathbf{U}_{x}^{-1}\|_{F}^{2}
++
+\lambda_{y}\|\mathbf{U}_{y}^{-1}\|_{F}^{2}
+\\
+\text{s.t.}\quad \|\mathbf{d}_{x,i}\|_{2}=1, \|\mathbf{d}_{y,i}\|_{2}=1, \forall{i}.
+\end{split}
+\end{equation}
+This model has three major differences when compared with SCDL model.
+\begin{itemize}
+\item We use a matrix $\mathbf{V}_{y}$ to model the noise, and we don't set any prior distribution on it. This term can help us visualize the noise we learned from the data, i.e., the real noisy images. This make our model fully data-driven. Since our assumption (we have no assumption at all) on noise is more flexible than others', the noise we obtain in our model can be more accurate than other statistical models such as Gaussian or Mixture of Gaussians. Besides, it is time-consuming to fit the noise model from the online data. 
+\item We use two inversible matrices as the mapping transformations between the coefficients of the real noisy patches and the latent clean patches. This makes our model more flexible than SCDL in which the mapping matrix not explictly inversible. Besides, the SCDL can only transform LR images into HG images while our model can transform two different image styles in both direction.
+\item The constraints on dictionary atoms in our model is strictly $\|\mathbf{d}_{x,i}\|_{2}=1, \|\mathbf{d}_{y,i}\|_{2}=1$ while the CDL model and SCDL model are $\|\mathbf{d}_{x,i}\|_{2}\le1, \|\mathbf{d}_{y,i}\|_{2}\le1$. This makes our model more robust on the dictionary learning since both the dictionary atoms and sparse coefficients are interacted with each other. The $\le1$ constraints would like to make the coefficients larger and dictionary atoms smaller or even vanish. However, in the training stage, we care more about the dictionary atoms and would rather ignore the sparse coefficients.  
+\end{itemize}
+
+\subsection{Model Optimization}
+While the objective function in (3) is not convex, it is convex with each varible when other variables are fixed. We employ alternating direction method of multipliers (ADMM) algorithm here. Specifically, we divide the objective function into four sub-problems: 1) updating the sparse coefficients $\mathbf{A}_{x}, \mathbf{A}_{y}$; 2) updating the normalized dictionaries $\mathbf{D}_{x}, \mathbf{D}_{y}$; 3) updating the noise matrix $\mathbf{V}_{y}$; 4) updating the mapping matirces $\mathbf{U}_{x}, \mathbf{U}_{y}$. We discuss the four steps as follows.
+
+\subsubsection{Updating $\mathbf{A}_{x}$ and $\mathbf{A}_{y}$}
+
+\begin{equation}
+\begin{split}
+\min_{\mathbf{A}_{x}}
+\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}
++
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
+&
+\\
++
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
+\end{split}
+\end{equation}
+\begin{equation}
+\begin{split}
+\min_{\mathbf{A}_{y}}
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
+&
+\\
++
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
++
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2}.
+\end{split}
+\end{equation}
+
+Take $\mathbf{A}_{x}$ as an example, the first and second terms above can be combined to form a new optimization problems as follows:
+\begin{equation}
+\min_{\mathbf{A}_{x}}
+\|\widetilde{\mathbf{X}}-\widetilde{\mathbf{D}}_{x}\mathbf{A}_{x}\|_{F}^{2}
++
+\beta_{x1}\|\mathbf{A}_{x}\|_{1}
++
+\beta_{x2}\|\mathbf{A}_{x}\|_{F}^{2},
+\end{equation}
+where 
+$
+\widetilde{\mathbf{X}}
+=
+\left(\begin{array}{c}
+\mathbf{X}
+\\
+\sqrt{\alpha}\mathbf{U}_{y}^{-1}\mathbf{A}_{y}
+\end{array}\right)
+$
+and
+$
+\widetilde{\mathbf{D}}
+=
+\left(\begin{array}{c}
+\mathbf{D}_{x}
+\\
+\sqrt{\alpha}\mathbf{U}_{x}^{-1}
+\end{array}\right)
+$.
+For $\mathbf{A}_{y}$, it is similar with $\mathbf{A}_{x}$.
+\begin{equation}
+\min_{\mathbf{A}_{y}}
+\|\widetilde{\mathbf{Y}}-\widetilde{\mathbf{D}}_{y}\mathbf{A}_{y}\|_{F}^{2}
++
+\beta_{y1}\|\mathbf{A}_{y}\|_{1}
++
+\beta_{y2}\|\mathbf{A}_{y}\|_{F}^{2},
+\end{equation}
+where 
+$
+\widetilde{\mathbf{Y}}
+=
+\left(\begin{array}{c}
+\mathbf{Y}-\mathbf{V}_{y}
+\\
+\sqrt{\alpha}\mathbf{U}_{x}^{-1}\mathbf{A}_{x}
+\end{array}\right)
+$
+and
+$
+\widetilde{\mathbf{D}}
+=
+\left(\begin{array}{c}
+\mathbf{D}_{y}
+\\
+\sqrt{\alpha}\mathbf{U}_{y}^{-1}
+\end{array}\right)
+$.
+These simplified versions have the exactly same formulation as standard sparse coding and can be simply solved by tools such as SPAMS.
+
+The $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are inversible. This will be discussed in subsection "Updating U".
+
+\subsubsection{Updating $\mathbf{D}_{x}$ and $\mathbf{D}_{y}$}
+\begin{equation}
+\min_{\mathbf{D}_{x}}
+\|\mathbf{X}-\mathbf{D}_{x}\mathbf{A}_{x}\|_{F}^{2}
+\quad
+\text{s.t.}
+\quad
+\|\mathbf{d}_{x,i}\|_{2}=1,
+\forall{i}.
+\end{equation}
+
+\begin{equation}
+\begin{split}
+\min_{\mathbf{D}_{y}}
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
+\quad 
+\text{s.t.}
+\quad 
+\|\mathbf{d}_{y,i}\|_{2}=1,
+\forall{i}.
+\end{split}
+\end{equation}
+These two are quadraically constrained quadratic program (QCQP) problem and can be solved by Lagrange dual techniques.
+
+\subsubsection{Updating $\mathbf{V}_{y}$}
+The noise matrix is initialized as a zero matirx and updated by solving the following probelm:
+\begin{equation}
+\begin{split}
+\min_{\mathbf{V}_{y}}
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
++
+\gamma_{y}\|\mathbf{V}_{y}\|_{F}^{2}
+\end{split}
+\end{equation}
+This is a ridge regression problem. We can obtain the analytical solution of $\mathbf{V}_{y}$ by 
+\begin{equation}
+\mathbf{V}_{y} = (\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y})/(1+\gamma_{y}).
+\end{equation}
+
+\subsubsection{Alternate Updating $\mathbf{V}_{y}$}
+The noise matrix is initialized as a zero matirx and updated by solving the following probelm:
+\begin{equation}
+\begin{split}
+\min_{\mathbf{V}_{y}}
+\|\mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}-\mathbf{V}_{y}\|_{F}^{2}
+\end{split}
+\end{equation}
+This is a standard least square problem. We can obtain the analytical solution of $\mathbf{V}_{y}$ by 
+\begin{equation}
+\mathbf{V}_{y} = \mathbf{Y}-\mathbf{D}_{y}\mathbf{A}_{y}.
+\end{equation}
+
+
+
+\subsubsection{Updating $\mathbf{U}_{x}$ and $\mathbf{U}_{y}$}
+
+\begin{equation}
+\begin{split}
+\min_{\mathbf{U}_{x}^{-1}}
+\alpha
+\|\mathbf{U}_{y}^{-1}\mathbf{A}_{y}-\mathbf{U}_{x}^{-1}\mathbf{A}_{x}\|_{F}^{2}
++
+\lambda_{x}\|\mathbf{U}_{x}^{-1}\|_{F}^{2}
+\\
+\min_{\mathbf{U}_{y}^{-1}}
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{A}_{x}-\mathbf{U}_{y}^{-1}\mathbf{A}_{y}\|_{F}^{2}
++
+\lambda_{y}\|\mathbf{U}_{y}^{-1}\|_{F}^{2}
+\end{split}
+\end{equation}
+The above problems are also ridge regression problems and have analytical solutions of $\mathbf{U}_{x}$ and $\mathbf{U}_{y}$ as follows:
+\begin{equation}
+\begin{split}
+\mathbf{U}_{x}^{-1} = \mathbf{U}_{y}^{-1}\mathbf{A}_{y}\mathbf{A}_{x}^{T}(\mathbf{A}_{x}\mathbf{A}_{x}^{T}+(\gamma_{x}/\alpha)\mathbf{I})^{-1}
+\\
+\mathbf{U}_{y}^{-1} = \mathbf{U}_{x}^{-1}\mathbf{A}_{x}\mathbf{A}_{y}^{T}(\mathbf{A}_{y}\mathbf{A}_{y}^{T}+(\gamma_{y}/\alpha)\mathbf{I})^{-1}
+\end{split}
+\end{equation}
+Here, we verify that $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are inversible. The $\mathbf{U}_{x}^{-1}$ and $\mathbf{U}_{y}^{-1}$ are both initialized as an identity matrix, of suitable dimension, which is inversible. That is, we have $\mathbf{U}_{y}^{(0)} = \mathbf{I}$ when we compute $\mathbf{U}_{x}^{-1}$. If $\mathbf{A}_{y}\mathbf{A}_{x}^{T}$ is inversible, then $\mathbf{U}_{x}^{-1}$ is inversible. In fact, we have $\mathbf{A}_{y},\mathbf{A}_{x}\in \mathbb{R}^{d\times N}$. $d$ is the dimension of the sample. For a patch of size $8\times8$, $d=64$. The $N$ is the number of samples in the training data. Remember that we have much more samples when compared to the dimension of patches, that is $N\gg d$. It is less likely that  $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ has a rank structure lower than $d$. In other words,  $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ is less likely to be singular if we have enough training data. The experiments also confirm our conjecture. Besides, we can also add small disburtation to guarantee that $\mathbf{A}_{y}\mathbf{A}_{x}^{T}\in \mathbb{R}^{d\times d}$ is inversible. 
+
+Once $\mathbf{U}_{x}^{-1}$ is inversible, we can also verify that $\mathbf{U}_{y}^{-1}$ is inversible in a similar way. 
+
+\subsection{Real Image Denoising}
+Two methods:
+
+The first one is that
+\begin{equation}
+\begin{split}
+\min_{\mathbf{a}_{x,i},\mathbf{a}_{y,i}}
+\|\mathbf{x}_{i}-\mathbf{D}_{x}\mathbf{a}_{x,i}\|_{2}^{2}
++
+\|\mathbf{y}_{i}-\mathbf{D}_{y}\mathbf{a}_{y,i}-\mathbf{v}_{y,i}\|_{2}^{2}
+\\
++
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{a}_{x,i}-\mathbf{U}_{y}^{-1}\mathbf{a}_{y,i}\|_{2}^{2}&
+\\
++
+\beta_{x}\|\mathbf{a}_{x,i}\|_{1}
++
+\beta_{x2}\|\mathbf{a}_{x,i}\|_{2}^{2}
++
+\beta_{y}\|\mathbf{a}_{y,i}\|_{1}
++
+\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{v}_{y,i}\|_{1})
+\end{split}
+\end{equation}
+and finally we get $\widehat{\mathbf{x}}_{i}=\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
+
+The second one is to solve
+\begin{equation}
+\begin{split}
+\min_{\mathbf{a}_{y,i},\mathbf{v}_{y,i}}
+\|\mathbf{y}_{i}-\mathbf{D}_{y}\mathbf{a}_{y,i}-\mathbf{v}_{y,i}\|_{2}^{2}
++
+\alpha
+\|\mathbf{U}_{x}^{-1}\mathbf{a}_{x,i}-\mathbf{U}_{y}^{-1}\mathbf{a}_{y,i}\|_{2}^{2}&
+\\
++
+\beta_{y1}\|\mathbf{a}_{y,i}\|_{1}
++
+\beta_{y2}\|\mathbf{a}_{y,i}\|_{2}^{2}
+&
+\\
+(+
+\gamma_{y}\|\mathbf{v}_{y,i}\|_{1}).
+\end{split}
+\end{equation}
+Once we get $\widehat{\mathbf{a}}_{y,i}$ from $\mathbf{y}_{i}$, $\widehat{\mathbf{a}}_{x,i}\approx\mathbf{U}_{x}\mathbf{U}_{y}^{-1}\widehat{\mathbf{a}}_{y,i}$ and $\widehat{\mathbf{x}_{i}}\approx\mathbf{D}_{x}\widehat{\mathbf{a}}_{x,i}$.
+
+Experiments demonstrate that the first method can get better performance than the second one while the second one can get faster speed than the first one.
+
+We can also initialized the solution from the second one. 
+
+\section{The Overall Algorithm}
+
+\subsection{Pair Sample Construction from Unpaired Samples}
+In cross style transfer methods such as CDL and SCDL, the authors assume that the two different styles have paired data, i.e., for each data sample in one style, we can find paired data sample in the other style. However, in real world, the data from two different sources may be unpaired. For example, the real noisy images should not have groundtruth clean images of the same scene. The real low-resolution images should not have corresponding high-resolution images in the real world. The real blurry images should not have corresponding clear and high quality images in real world.
+
+To deal with unpaired data, we could collect real noisy images and clean natural images from two different sources. The real noisy images are from the example images (18 images) of the Neat Image website while the clean natural images are from the training set (200 images) of the Berkeley Segmentation Dataset (BSDS500). To make use of the unpaired data samples, we employ searching strategy to construct the training dataset. That is, for each noisy image patch, we utilize the k-Nearest Neighbor (k-NN) algorithm to find the most similar patch in the clean images as the paired groundtruth patch. The similarity is measured by the Euclidean distance (also called squared error or $\ell_{2}$ norm).
+
+\subsection{Structual Clustering and Model Selection}
+In fact, different image structures should have different influences on dictioanry as well as the mapping function. Patches with flat region should have low rank structure within dictionary elements and identity mapping between noisy and latent clean patches. Patches with complex details should have more comprehensive dictionary elements within dictionary elements and more complex mapping function between noisy and clean patches. A single mapping function cannot deal with all these complex relationships. Hence, a structual clustering procedure is needed for complex solution. In this paper, we propose to employ Gaussian Mixture Model to cluster different image patches into different groups and learn dictionary and mapping function for each group.
+
+\subsection{Adaptive Iterations of Different Noise Levels}
 For real image denoising, we can perform well on images which have similar noise levels with the training dataset. How can we deal with the real noisy images whose noise levels are higher than the training dataset? The answer is to remove the noise by more iterations. The input image of each iteration is the recovered image of previous iteration. This makes sense since we can still view the recovered image as a real noisy image. 
 
-This will also bring a second problem, that how we could automatically terminate the iteration. This can be solved by two methods. One way is to compare the images between two iterations and calculate their difference, the iteration can be terminated if the difference is smaller than a threshold. The other way is to estimate the noise level of the current image and terminate the iterations when the noise level is lower than a preset threshold. We employ the second way and set the threshold as 0.002 in our experiments. In fact, most of our testing images will be denoised well in one iteration.
+This will also bring a second problem, that how we could automatically terminate the iteration. This can be solved by two methods. One way is to compare the images between two iterations and calculate their difference, the iteration can be terminated if the difference is smaller than a threshold. The other way is to estimate the noise level of the current image and terminate the iterations when the noise level is lower than a preset threshold. We employ the second way and set the threshold as 0.0001 in our experiments. In fact, most of our testing images will be denoised well in one iteration.
 
-%\subsection{Efficient Model Selection by Gating Network}
-%In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
-
-\subsection{The Overall Algorithm}
-With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ7}), the clean patch in a PG can be estimated as $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$. Then the clean image $\hat{\mathbf{x}}$ can be reconstructed by aggregating all the estimated PGs. In practice, we could perform the above denoising procedures for several iterations for better denoising outputs. In iteration $t$, we use the iterative regularization strategy \cite{osher2005iterative} to add back to the recovered image $\hat{\mathbf{x}}^{(t-1)}$ some estimation residual in iteration $t-1$. The proposed denoising algorithm is summarized in Algorithm 1 (Alg. 1).
-
-\begin{table}
-\label{alg1}
-\begin{tabular}{l}
-\hline
-\textbf{Alg. 1}: External Guided Internal Subspace Denoising
-\\
-\hline
-\textbf{Input:} Noisy image $\mathbf{y}$, PG-GMM model
-\\
-1. Initialization: $\hat{\mathbf{x}}^{(0)}=\mathbf{y},\mathbf{y}^{(0)}=\mathbf{y}$;
-\\
-\textbf{for} $t = 1:IteNum$ \textbf{do}
-\\
-\quad\textbf{for} each PG $\mathbf{Y}$ \textbf{do}
-\\
-2.\quad Calculate group mean $\boldsymbol{\upmu}_{y}$ and form PG $\mathbf{\overline{Y}}$;
-\\
-3.\quad Gaussian component selection via (\ref{equ3});
-\\
-\quad\textbf{end for}
-\\
-\quad\textbf{for} each Internal Subspace \textbf{do}
-\\
-4.\quad Internal Subspace Learning by (\ref{equ4});
-\\
-5.\quad Recover each patch in all PGs via $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$;
-\\
-\quad\textbf{end for}
-\\
-6. Aggregate the recovered PGs of all subspaces to form
-\\
-\quad the recovered image $\hat{\mathbf{x}}^{(t)}$;
-\\
-\textbf{end for}
-\\
-\textbf{Output:} The recovered image $\hat{\mathbf{x}}^{(IteNum)}$.\\
-\hline
-\end{tabular}
-\end{table}
-
+\subsection{Efficient Model Selection by Gating Network}
+In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
 
 %------------------------------------------------------------------------
 \section{Experiments}
-In this section, we perform real image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}, some samples are shown in Figure \ref{fig5}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
-\begin{figure}[t]
-\centering
-\subfigure{
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Canon_EOS_5D_Mark3_ISO_3200_C3.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D600_ISO_3200_C1.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_1600_B2.png}
-\end{minipage}
-}\vspace{-0.14in}
-\subfigure{
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A1.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A5.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_6400_B1.png}
-\end{minipage}
-}
-\caption{Some testing images in the dataset \cite{crosschannel2016}.}
-\label{fig5}
-\end{figure}
 
-\begin{figure}[t]
-\centering
-\subfigure{
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png}
-\end{minipage}
-}\vspace{-0.14in}
-\subfigure{
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png}
-\end{minipage}
-\begin{minipage}{0.055\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png}
-\end{minipage}
-}
-\caption{Some cropped images of the dataset \cite{crosschannel2016}.}
-\label{fig5}
-\end{figure}
+We compare with popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions.
 
-\subsection{Implementation Details}
-Our proposed method contains two stages, the external prior guided internal subspace learning stage and the adaptive denoising stage. In the learning stage, there are 4 parameters: the patch size $p$, the number of patches in a PG $M$, the window size $W$ for PG searching and the number of clusters $K$. We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We extracted about 3.6 million PGs from the Kodak PhotoCD Dataset, which includes 24 high quality color images, to train the external prior via PG-GMM. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term. The $\delta$ in iterative regularization is set as $\delta = 0.09$.
+\subsection{Parameters}
+We don't fine tune the parameters both in the training and testing datasets.
 
-\subsection{Comparison on External and Internal methods}
-In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
+\subsection{Real Image Denoising}
+We compare the proposed method with the famous BM3D \cite{bm3d} and WNNM \cite{wnnm}, Cascade of Shrinkage Fields (CSF) \cite{csf}, trainable reaction diffusion (TRD) \cite{chen2015learning}, plain neural network based method MLP \cite{burger2012image}, the blind image denoising method Noise Clinic \cite{noiseclinic}, and the commercial software Neat Image. The RGB images are firstly transformed into YCbCr channels and restored by these methods. Then the denoised RGB image is obtained by transforming the restored YCbCr image back.
 
-\begin{table}\label{tab1}
-\caption{Average PSNR(dB)/SSIM results of external, internal, and guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
-\label{tab1}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|}
-\hline
- & \textbf{Noisy} &\textbf{Offline} &\textbf{Online} &\textbf{Guided}  
-\\
-\hline
-PSNR & 34.51 & 38.19 & 38.07 & \textbf{38.55} 
-\\
-\hline
-SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
-\\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\begin{figure*}\label{fig2}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (a) Noisy Image \\ (34.66dB/0.9178)   }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (h) Offline \\ (34.97dB/0.9441) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (i) Online \\ (36.86dB/0.9622) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.09}dB/\textbf{0.9638})}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (h) Mean Image }
-\end{minipage}
-}
-\caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*}
-
-\begin{figure*}\label{fig2}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (a) Noisy Image \\ (36.15dB/0.9523)    }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) Offline \\ (37.12dB/0.9776) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (i) Online \\ (35.70dB/0.9755)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.94}dB/\textbf{0.9804})}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) Mean Image }
-\end{minipage}
-}
-\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*}
-
-
-\subsection{Comparison With other Competing Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
-
-We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
-
-The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
-\begin{table*}\label{tab1}
-\caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
-\label{tab1}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
-\hline
- & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Guided}  &\textbf{Guided2} 
-\\
-\hline
-PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & 37.75 & 36.53 & 37.57 &  \color{blue}{38.72} & \color{red}{ 38.90}
-\\
-\hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & \color{blue}{0.9694} & \color{red}{0.9702}
-\\
-\hline
-\end{tabular}
-\end{center}
-\end{table*}
-
-\begin{table*}\label{tab2}
-\caption{Average PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
+We evaluate the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first contains 3 cropped images of size $512\times512$. The other dataset contains 42 images cropped to size of $500\times500$ from the 17 images provided in \cite{crosschannel2016}. The 60 images contain most of the scenes in the 17 images \cite{crosschannel2016}.
+\begin{table*}
+\caption{Average PSNR(dB) results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided2} 
+Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
 \\
 \hline
-\multirow{3}{*}{\small{Canon 5D Mark III}} 
-& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & \color{blue}{38.76} & 38.37 & \color{red}{40.50}
-\\ 
-\cline{2-11} 
-\multirow{3}{*}{ISO = 3200}   
-& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & \color{blue}{35.69} & 35.37 & \color{red}{37.22}
-\\ 
-\cline{2-11}    
-& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & \color{blue}{35.54} & 34.91 & \color{red}{37.13}  
+1& 37.00 & 37.08 & 37.09 &  37.46  &  37.51  &  32.91  & \textbf{ 38.76}  & 37.68   & 38.63  
 \\
 \hline
-\multirow{3}{*}{Nikon D600} 
-& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & \color{red}{35.57} & 34.98 & \color{blue}{35.34}
-\\ 
-\cline{2-11} 
-\multirow{3}{*}{ISO = 3200}   
-& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \color{red}{36.70} & 35.95 & \color{blue}{36.69}
-\\ 
-\cline{2-11}    
-& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & \color{blue}{40.51} & 38.68 & 39.28 & \color{red}{41.15} & 39.17
+2& 33.88 & 33.95  &  33.95  &  34.90  &  35.04  & 31.94   &  35.69  &  34.87  & \textbf{ 35.96 }
 \\
 \hline
-\multirow{3}{*}{Nikon D800} 
-& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & \color{blue}{38.01} & 37.99 & \color{red}{38.82}
-\\ 
-\cline{2-11} 
-\multirow{3}{*}{ISO = 1600}   
-& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & \color{blue}{40.36} & \color{red}{40.98}
-\\ 
-\cline{2-11}    
-& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & \color{blue}{38.30} & \color{red}{38.90}
+3& 33.83  & 33.85  & 33.85   & 34.15   &   34.07 & 30.89   & \textbf{35.54 }  &  34.77  &  35.51 
 \\
 \hline
-\multirow{3}{*}{Nikon D800} 
-& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & \color{red}{39.01} & \color{blue}{38.69}
-\\ 
-\cline{2-11} 
-\multirow{3}{*}{ISO = 3200}   
-& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & \color{blue}{36.75} & \color{red}{36.82}
-\\ 
-\cline{2-11}    
-& 32.91 & 32.98 & 32.96 & 38.54 & \color{blue}{40.05} & \color{red}{40.59} & 36.91 & 36.76 & 39.06 & 38.80
-\\
-\hline
-\multirow{3}{*}{Nikon D800} 
-& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & \color{blue}{34.25} & 31.28 & 33.49 & \color{red}{34.61} & 33.31
-\\ 
-\cline{2-11} 
-\multirow{3}{*}{ISO = 6400}   
-& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & \color{red}{33.21} & \color{blue}{33.18}
-\\ 
-\cline{2-11}    
-& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & \color{blue}{33.22} & \color{red}{33.35}
-\\
-\hline
-Average PSNR & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & \color{blue}{36.88} & \color{red}{ 37.26}
-\\
-\hline
-Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & \color{blue}{0.9481} & \color{red}{ 0.9505}
+Average & 34.90  &  34.96 &  34.96  & 35.50   & 35.54   &  31.91  &  36.67  &  35.77  &  \textbf{ 36.70}
 \\
 \hline
 \end{tabular}
 \end{center}
 \end{table*}
 
+\begin{table*}
+\caption{Average SSIM results of different methods on 3 real noisy images captured by Canon EOS 5D mark3 at ISO3200 in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Image & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+\\
+\hline
+1& 0.9345 & 0.9368  & 0.9372  & 0.9599   &  0.9607  & 0.9043   &  0.9689  & 0.9600   &\textbf{ 0.9712  }
+\\
+\hline
+2& 0.8919 &  0.8848 &  0.8951 & 0.9159   &  0.9187  &  0.8498  &  0.9427  &  0.9308  & \textbf{ 0.9434 }
+\\
+\hline
+3& 0.9128  & 0.9136 & 0.9136  & 0.9254   &  0.9279  &  0.8635  &  0.9476  & 0.9463   & \textbf{ 0.9529 }
+\\
+\hline
+Average &  0.9131  & 0.9117 &  0.9153 & 0.9337   & 0.9358   &  0.8725  & 0.9531   & 0.9457   &  \textbf{0.9558} 
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
+
+
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
-{\footnotesize (a) Noisy Image \\ (37.00dB/0.9345) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_1.png}}
+{\footnotesize (a) Real Noisy Image}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) CBM3D \\ (37.02dB/0.9351)}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_1.png}}
+{\footnotesize (b) BM3D}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
-{\footnotesize (c) WNNM \\ (37.01dB/0.9347)}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_1.png}}
+{\footnotesize (c) WNNM}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
-{\footnotesize (d) MLP \\ (33.90dB/0.9171) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_1.png}}
+{\footnotesize (d) CSF}
 \end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\begin{minipage}[t]{0.195\textwidth}
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TRD \\ (36.18dB/0.9454)   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_1.png}}
+{\footnotesize (e) TRD}
 \end{minipage}
 }
 \subfigure{
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) Noise Clinic \\ (38.76dB/0.9689) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_1.png}}
+{\footnotesize (f) MLP}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) Neat Image \\ (37.68dB/0.9600) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_1.png}}
+{\footnotesize (g) Noise Clinic}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CCNoise \\ (38.37dB/0.9678) }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_1.png}}
+{\footnotesize (h) Neat Image}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Guided \\ (\textbf{40.26}dB/\textbf{0.9800})}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_1.png}}
+{\footnotesize (i) Ours }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
-{\footnotesize (j) Mean Image}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_1.png}}
+{\footnotesize (j) Mean Image }
 \end{minipage}
 }
-\caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
-\label{fig3}
+\caption{Denoised images of the old image "$5dmark3_iso3200_1$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
+\end{figure*}
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_2.png}}
+{\footnotesize (a) Real Noisy Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_2.png}}
+{\footnotesize (b) BM3D}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_2.png}}
+{\footnotesize (c) WNNM}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_2.png}}
+{\footnotesize (d) CSF}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_2.png}}
+{\footnotesize (e) TRD}
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_2.png}}
+{\footnotesize (f) MLP}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_2.png}}
+{\footnotesize (g) Noise Clinic}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_2.png}}
+{\footnotesize (h) Neat Image}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_2.png}}
+{\footnotesize (i) Ours }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_2.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the old image "$5dmark3_iso3200_2$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
 \end{figure*}
 
 
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
-{\footnotesize (a) Noisy Image   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Noisy_5dmark3_iso3200_3.png}}
+{\footnotesize (a) Real Noisy Image}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
-{\footnotesize (b) CBM3D}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_BM3D_5dmark3_iso3200_3.png}}
+{\footnotesize (b) BM3D}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
-{\footnotesize (c) WNNM    }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_WNNM_5dmark3_iso3200_3.png}}
+{\footnotesize (c) WNNM}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
-{\footnotesize (d) MLP }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_CSF_5dmark3_iso3200_3.png}}
+{\footnotesize (d) CSF}
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_TRD_5dmark3_iso3200_3.png}}
+{\footnotesize (e) TRD}
 \end{minipage}
 }
 \subfigure{
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
-{\footnotesize (e) TRD }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_MLP_5dmark3_iso3200_3.png}}
+{\footnotesize (f) MLP}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
-{\footnotesize (f) Noise Clinic   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NC_5dmark3_iso3200_3.png}}
+{\footnotesize (g) Noise Clinic}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
-{\footnotesize (g) Neat Image    }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_NI_5dmark3_iso3200_3.png}}
+{\footnotesize (h) Neat Image}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.2\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
-{\footnotesize (h) Guided  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_DSCDL_5dmark3_iso3200_3.png}}
+{\footnotesize (i) Ours }
+\end{minipage}
+\begin{minipage}[t]{0.2\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/br_Mean_5dmark3_iso3200_3.png}}
+{\footnotesize (j) Mean Image }
 \end{minipage}
 }
-\caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
-\label{fig4}
+\caption{Denoised images of the old image "$5dmark3_iso3200_3$" by different methods. The images are better to be zoomed in on screen.}
+\label{fig2}
 \end{figure*}
 
-\subsection{Discussion on Parameter $\lambda$}
-The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/param.png}
-\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
-\label{fig10}
-\end{figure}
+
+
+\begin{table*}
+\caption{Average PSNR(dB) and SSIM results of different methods on 42 cropped images from 17 real noisy images in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+\hline
+Measure & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{CSF}&\textbf{TRD}&\textbf{MLP}& \textbf{Noise Clinic}& \textbf{Neat Image}&\textbf{Ours}
+\\
+\hline
+PSNR& 34.36 & 34.36 & 34.40 & 36.11 & 36.05 & 34.41 & 37.68 & 36.58 & 36.15
+\\
+\hline
+SSIM& 0.8552 & 0.8553 & 0.8577 & 0.9215 & 0.9211 & 0.9012 & 0.9470 & 0.9145 & 0.9236
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table*}
+
 
 \section{Conclusion and Future Work}
 
