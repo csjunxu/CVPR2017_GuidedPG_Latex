@@ -4,47 +4,46 @@ The top-level auxiliary file: CVPR2017_Review_Unified.aux
 The style file: unsrt.bst
 Database file #1: egbib.bib
 Warning--I'm ignoring sat's extra "year" field
---line 1253 of file egbib.bib
-Warning--I didn't find a database entry for "ssim"
-You've used 37 entries,
+--line 1263 of file egbib.bib
+You've used 38 entries,
             1791 wiz_defined-function locations,
-            660 strings with 9186 characters,
-and the built_in function-call counts, 10319 in all, are:
-= -- 1004
-> -- 389
+            665 strings with 9370 characters,
+and the built_in function-call counts, 10585 in all, are:
+= -- 1028
+> -- 403
 < -- 14
-+ -- 144
-- -- 107
-* -- 695
-:= -- 1523
-add.period$ -- 111
-call.type$ -- 37
-change.case$ -- 35
++ -- 149
+- -- 111
+* -- 719
+:= -- 1566
+add.period$ -- 114
+call.type$ -- 38
+change.case$ -- 36
 chr.to.int$ -- 0
-cite$ -- 37
-duplicate$ -- 460
-empty$ -- 942
-format.name$ -- 107
-if$ -- 2353
+cite$ -- 38
+duplicate$ -- 469
+empty$ -- 966
+format.name$ -- 111
+if$ -- 2409
 int.to.chr$ -- 0
-int.to.str$ -- 37
-missing$ -- 38
-newline$ -- 188
-num.names$ -- 37
-pop$ -- 85
+int.to.str$ -- 38
+missing$ -- 39
+newline$ -- 193
+num.names$ -- 38
+pop$ -- 86
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 297
+skip$ -- 300
 stack$ -- 0
-substring$ -- 944
-swap$ -- 169
+substring$ -- 969
+swap$ -- 170
 text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 109
-width$ -- 39
-write$ -- 403
-(There were 2 warnings)
+while$ -- 112
+width$ -- 40
+write$ -- 414
+(There was 1 warning)
