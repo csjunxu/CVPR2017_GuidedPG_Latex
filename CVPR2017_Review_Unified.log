@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  23 OCT 2016 17:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  23 OCT 2016 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,7 +558,10 @@ size_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize
 _br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_N
 I_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Guided
 _CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Mean_CC
-_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>] [3]
+_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
 
 LaTeX Warning: Reference `fig' on page 4 undefined on input line 177.
 
@@ -1150,7 +1153,7 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 752.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 752.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: 6944814D807334809CA2773E8D6AD76D;3299.
+(rerunfilecheck)             Checksum: 96248D28FF18D363055B66EDB3AA6B06;3299.
 
 
 LaTeX Warning: There were undefined references.
@@ -1194,7 +1197,7 @@ e/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015
 /texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-di
 st/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (10 pages, 5420483 bytes).
+Output written on CVPR2017_Review_Unified.pdf (10 pages, 5420394 bytes).
 PDF statistics:
  530 PDF objects out of 1000 (max. 8388607)
  426 compressed objects within 5 object streams
