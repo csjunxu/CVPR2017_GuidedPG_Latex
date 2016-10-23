@@ -80,6 +80,12 @@ Seonghyeon Nam, Youngbae Hwang, Yasuyuki Matsushita, and Seon~Joo Kim.
 \newblock {\em Proc. Computer Vision and Pattern Recognition (CVPR)}, pages
   1683--1691, 2016.
 
+\bibitem{healey1994radiometric}
+Glenn~E Healey and Raghava Kondepudy.
+\newblock Radiometric ccd camera calibration and noise estimation.
+\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
+  16(3):267--276, 1994.
+
 \bibitem{fullyblind}
 J.~Portilla.
 \newblock Full blind denoising through noise covariance estimation using
@@ -138,11 +144,11 @@ Neatlab ABSoft.
 \newblock Neat image.
 \newblock \url{https://ni.neatvideo.com/home}.
 
-\bibitem{healey1994radiometric}
-Glenn~E Healey and Raghava Kondepudy.
-\newblock Radiometric ccd camera calibration and noise estimation.
-\newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
-  16(3):267--276, 1994.
+\bibitem{ple}
+G.~Yu, G.~Sapiro, and S.~Mallat.
+\newblock Solving inverse problems with piecewise linear estimators: {From}
+  {Gaussian} mixture models to structured sparsity.
+\newblock {\em IEEE Transactions on Image Processing}, 21(5):2481--2499, 2012.
 
 \bibitem{Irani2009sr}
 Daniel Glasner, Shai Bagon, and Michal Irani.
