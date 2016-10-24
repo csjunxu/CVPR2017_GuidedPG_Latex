@@ -7,6 +7,7 @@
 \backcite {Zhu_2016_CVPR}{{1}{1}{section.1}}
 \backcite {crosschannel2016}{{1}{1}{section.1}}
 \backcite {ssim}{{1}{1}{section.1}}
+\backcite {pgpd}{{1}{1}{figure.1}}
 \backcite {cbm3d}{{2}{1(a)}{subfigure.1.1}}
 \backcite {wnnm}{{2}{1(a)}{subfigure.1.1}}
 \backcite {mlp}{{2}{1(a)}{subfigure.1.1}}
@@ -14,13 +15,13 @@
 \backcite {chen2015learning}{{2}{1(b)}{subfigure.1.2}}
 \backcite {noiseclinic}{{2}{1(b)}{subfigure.1.2}}
 \backcite {neatimage}{{2}{1(b)}{subfigure.1.2}}
-\backcite {pgpd}{{2}{1}{figure.1}}
+\backcite {crosschannel2016}{{2}{1}{figure.1}}
 \backcite {pgpd}{{2}{2.1}{subsection.2.1}}
 \backcite {nlm,bm3d,lssc,wnnm,pgpd}{{2}{2.1}{subsection.2.1}}
 \backcite {epll}{{2}{2.1}{subsection.2.1}}
 \backcite {pgpd}{{2}{2.1}{subsection.2.1}}
 \backcite {epll,pgpd}{{2}{2.2}{subsection.2.2}}
-\backcite {ple,ncsr}{{3}{2.2}{subsection.2.2}}
+\backcite {ple,ncsr}{{2}{2.2}{subsection.2.2}}
 \backcite {crosschannel2016}{{3}{2.2}{subsection.2.2}}
 \backcite {healey1994radiometric}{{3}{2.2}{subsection.2.2}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}{{3}{2.3}{subsection.2.3}}
@@ -48,9 +49,9 @@
 \backcite {osher2005iterative}{{5}{4.3}{subsection.4.3}}
 \backcite {crosschannel2016}{{5}{5}{section.5}}
 \backcite {noiseclinic}{{5}{5}{section.5}}
+\backcite {neatimage}{{5}{5}{section.5}}
 \backcite {crosschannel2016}{{6}{2}{figure.2}}
 \backcite {crosschannel2016}{{6}{3}{figure.3}}
-\backcite {neatimage}{{6}{5}{section.5}}
 \backcite {crosschannel2016}{{6}{5.2}{subsection.5.2}}
 \backcite {ssim}{{6}{5.2}{subsection.5.2}}
 \backcite {crosschannel2016}{{6}{5.2}{subsection.5.2}}
