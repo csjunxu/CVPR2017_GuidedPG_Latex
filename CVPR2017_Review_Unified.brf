@@ -20,10 +20,9 @@
 \backcite {nlm,bm3d,lssc,wnnm,pgpd}{{2}{2.1}{subsection.2.1}}
 \backcite {epll}{{2}{2.1}{subsection.2.1}}
 \backcite {pgpd}{{2}{2.1}{subsection.2.1}}
-\backcite {epll,pgpd}{{2}{2.2}{subsection.2.2}}
-\backcite {ple,ncsr}{{2}{2.2}{subsection.2.2}}
-\backcite {crosschannel2016}{{3}{2.2}{subsection.2.2}}
-\backcite {healey1994radiometric}{{3}{2.2}{subsection.2.2}}
+\backcite {ksvd,ksvdtsp,epll,ple,ncsr,pgpd}{{2}{2.2}{subsection.2.2}}
+\backcite {ksvdtsp,epll,pgpd}{{2}{2.2}{subsection.2.2}}
+\backcite {ksvd,ple,ncsr}{{3}{2.2}{subsection.2.2}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}{{3}{2.3}{subsection.2.3}}
 \backcite {blsgsm}{{3}{2.3}{subsection.2.3}}
 \backcite {fullyblind}{{3}{2.3}{subsection.2.3}}
