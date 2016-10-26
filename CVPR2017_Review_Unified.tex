@@ -32,7 +32,7 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{External Patch Group Prior Guided Internal Orthogonal Dictionary Learning for Real Image Denoising}
+\title{External Patch Group Prior Guided Internal Prior Learning for Real Image Denoising}
 
 \author{First Author\\
 Institution1\\
@@ -61,6 +61,7 @@ For image denoising problem, the external and internal priors are playing key ro
 
 %%%%%%%%% BODY TEXT
 \section{Introduction} 
+
 Most vision systems, such as medical imaging and surveillance, need accurate feature extraction from high-quality images. The camera sensors and outdoor low light conditions will unavoidly bring noise to the captured images. The impact is that the image details will be lost or hardly visible. As a result, image denoising is an essential procedure for the reliability of these vision systems. In the research ara, image denoising is also an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. 
 
 For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). In real world, the cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. Under these situations, the noise is generated in a complex form and also been changed during the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian \cite{crosschannel2016,healey1994radiometric}. It depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed for AWGN would become much less effective on real noisy images. 
@@ -128,31 +129,37 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 The above mentioned methods can be categorized into external methods which learn priors from external images to recover noisy images, and internal ones which exploit priors of given images for denoising. The external priors in natural images are free of the high correlation between noise and siganls in real noisy images, while the internal prior is adaptive to the image and can recover better the latent clean image. Combining the priors of external clean images and adaptivety of internal testing images can naturally improve the performance of denoising methods, especially on real noisy images. Based on these observations, in this paper, we propose to employ the external patch group prior \cite{pgpd} of natural clean images to guide the clustering of internal patch groups in given noisy image, and develop an external prior guided internal orthogonal dictionary learning (DL) algorithm for real image denoising. The internal orthogonal DL process includes two alternating stages: updating sparse coefficients and updating orthogonal dictionary. Both of the two stages have closed-form solutions. Hence, our internal DL process is very efficient for online internal denoising. Through comprehensive experiments on real noisy images captured by different cameras and settings, we demonstrate that the proposed method achieves better performance on real image denoising
 
 \subsection{Our Contributions}
+
 The contributions of this paper are summarized as follows:
 \begin{itemize}
-\item We propose a noval dictionary learning method which employ the external prior guided the internal orthogonal dictionary learning for real image denoising. Both the external prior and internal prior are performed on patch groups instead of patches.
-\item The internal orthogonal dictionary learning are alternating iterative solved with closed-form solutions. The learned orthogonal dictionary are very efficient in both learning and denoising stages. 
-\item We achieve much better performance on the real image denoising problem than other competing methods in terms of visual quality, PSNR, and SSIM.
+\item We propose a novel model to learn internal priors adaptive to given images. This model employs the external patch group (PG) prior learned from clean images to guide the internal PG prior learning of given images. The external prior benefits the internal learning on subspace selection and orthogonal dictionary learning.
+\item The proposed guided internal prior learning method is very efficient. The reason is that both the subspace selection and orthogonal dictionary learning have explicit solutions.
+\item For real image denoising problem, the proposed method achieves much better performance than other competing methods.
 \end{itemize}
 
-The rest of this paper will be summerized as follows: in Section 2, we will introduce the related work; in Section 3, we will introduce the proposed external prior guided internal orthogonal dictionary learning algorithm for real image denoising; in Section 4, we will demonstrate the extensive experiments on two standard dataset; we will conclude our paper and give our future work in Section 5.
+The rest of this paper will be summerized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model; in Section 4, we formulate the overall image denoising algorithm; in Section 4, we demonstrate extensive experiments on real image denoising probelm; in Section 5, we conclude our paper and give future work.
 
 \section{Related Work}
 \subsection{Patch Group Prior of Natural Images}
+
 The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self similar (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. In \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we make use of PGs both from external clean images and internal given real noisy image for better denoising performance.
 
 %In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
 
-\subsection{Internal v.s. External Dictionary Learning}
-Learning dictionaries to represent images has been successfully used in image modeling \cite{ksvd,ksvdtsp,epll,ple,ncsr,pgpd}.There are mainly two categories of DL methods: 1) External DL methods pre-learned dictionary from a set of clean image patches, and the learned dictionaries are used to encode the noisy image patches for denoising \cite{ksvdtsp,epll,pgpd}. 2) Internal DL methods directly learned dictionary from the patches of given noisy image, and the image denoising is simultaneously done with the DL process \cite{ksvd,ple,ncsr}. The external DL methods is not adaptive to the noisy image, while the internal DL methods is adaptive to the degraded images but it ignores the information hidden in clean images. In this paper, our goal is to employ the external dictionary to guide the learning of internal orthogonal dictionary.
+\subsection{Internal v.s. External Prior Learning}
+
+Learning priors to represent images has been successfully used in image modeling \cite{ksvd,epll,pgpd,ple,ncsr}. There are mainly two categories of prior learning methods: 1) External methods pre-learned priors (e.g., dictionaries) from a set of clean images, and the learned priors are used to recover the noisy images \cite{epll,pgpd}. 2) Internal methods directly learned priors from the given noisy image, and the image denoising is simultaneously done with the learning process \cite{ksvd,ple,ncsr}. Both the two categories of methods have limitations. The external methods is not adaptive to the noisy image, while the internal methods ignores the information hidden in clean images. In this paper, our goal is to employ the external prior to guide the internal prior learning.
 
 \subsection{Real Image Denoising}
-In the last decade, there are many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} proposed for real image denoising problem. In the seminar work of BLS-GSM \cite{blsgsm} for real image denoising, Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu et al. \cite{Liu2008} proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} models the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and remove the noise via Low-Rank Mixture of Gaussians (LR-MoG). The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly.
 
-\section{External Patch Group Prior Guided Internal Orthogonal Dictionary Learning}
+In the last decade, there are many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} proposed for real image denoising problem. In the seminar work of BLS-GSM \cite{blsgsm} for real image denoising, Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu et al. \cite{Liu2008} proposed to use 'noise level function' to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} models the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via Low-Rank Mixture of Gaussians.
+
+\section{External Patch Group Prior Guided Internal Prior Learning}
+
 In this section, we formulate the framework of external patch group (PG) prior guided internal orthogonal dictionary learning. We first introduce the patch PG leaning on clean natural RGB images. Then we propose to exploy the external PG prior to guide the internal clustering and orthogonal dictionary learning (DL). The orthogonal DL has alternative closed-form solutions in term of updating sparse coefficients and dictionary. Finally, we discuss the advantages of our proposed external PG prior guided internal orthogonal dictionary learning algorithm.
 
 \subsection{External Patch Group Prior Learning}
+
 Natural images often demonstrate repepitive local patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd}. In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. In this work, each local patch extracted from RGB images is of size $p\times p \times 3$. Then we search the $M$ most similar patches $\{\mathbf{x}_{m}\}_{m=1}^{M}$ around each local patch through Euclidean distance, in a local window of size $W\times W$. The $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector formed by combining the 3 patch vectors (of size $p^{2}\times 1$) in R, G, B channels. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}, m=1,...,M$. Assume we have extracted $N$ PGs from a set of external natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the Gaussian Mixture Model (GMM) to learn the external patch group based NSS prior. In this model, the likelihood of the $n$-th PG $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \vspace{-2mm}
 \begin{equation}\label{equ1}\vspace{-2mm}
@@ -167,14 +174,24 @@ where $K$ is the number of Gaussians and the parameters $\pi_{k}$, $\boldsymbol{
 \end{equation} 
 We maximize the above objective function via EM algorithm \cite{em} and finally obtain the GMM model with learned parameters as the learned external PG prior.
 
-\subsection{External Prior Guided Internal Orthogonal Dictionary Learning}
-Given a rael noisy image, we extract noisy PGs from it and save the mean vectors of each PG for recovering. The mean substracted PG is defined as $\mathbf{\overline{Y}}$. To project this PG into a most adaptive subspace, we select the most suitable Gaussian component to it from the PG-GMM trained in previous section. The selection can be done by checking the posterior probability that $\mathbf{\overline{Y}}$ belongs to the $k$th Gaussian component:
-\begin{equation}\label{equ3}
-P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})}.
-\end{equation}
-Since the noise on real images are mostly small when compared to the signals, the covariance matrix of the $k$th component is still $\mathbf{\Sigma}_{k}$. Finally, the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$ is selected as the most suitable subspace for $\mathbf{\overline{Y}}$.
+\subsection{External Prior Guided Internal Prior Learning}
 
-Though each PG has been projected into its most suitable subspace, the pre-learned subspace is still too general to represent the noisy PG extracted from the real noisy image. That is, the noisy PGs projected into one cluster can still constisted a subspace which is of lower dimensions than the subspace pre-learned from the external PGs. This can be demonstrated by compare the distribution of external PGs and internal PGs in the same clusters. We randomly select one cluster, and collect the celan PGs extracted from external dataset (Kodak 24 images) and the niosy PGs from the testing image. Since the original PGs are of $3p^{2}$ dimensions, we apply PCA to project the PGs into 2 dimensions for better visualization. The results is shown in Figure \ref{fig}, from which we can see clearly that the projected PGs are mainly in a smaller region of the external PGs, which proves that the internal PGs are only consisted a subspace in a lower dimension than the PGs collected from external subspace. To better and adaptively charactering the internal PGs from the testing image, we need learn a more specific dictionary for noisy PGs assigned into each cluster. For notation simplicity, we ignore the index of subspace $k$. The internal PGs $\mathbf{Y}$ form a subspace which can be obtained by singular value decomposition (SVD),
+After the external patch group (PG) prior is learned, we can employ it to guide the internal PG prior learning for the given testing (real noisy) image. The guidance mainly comes from two aspects. One aspect is that the external prior can guide the internal noisy PGs to be assigned to most suitable Gaussians or subspaces. And for each subspace, the other aspect is to guide the orthogonal dictionary learning of internal noisy PGs.
+
+\vspace{-2mm}
+\subsubsection{Guided Internal Subspace Selection}
+
+Similar to the previous section, we extract noisy PGs from the given real noisy image and extract the mean substracted PG, which is defined as $\mathbf{\overline{Y}}$. Noted that, the mean vectors of external PGs are discarded in the external prior learning stage while the mean vectors of internal PGs are saved for recovering. For better adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM trained by external PGs. The selection can be done by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
+\vspace{-2mm}
+\begin{equation}\label{equ3}\vspace{-2mm}
+P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
+\end{equation}
+and then selecting the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$ as the most suitable subspace for $\mathbf{\overline{Y}}$.
+
+\vspace{-2mm}
+\subsubsection{Guided Internal Orthogonal Dictionary Learning}
+
+To better and adaptively charactering the internal PGs from the testing image, we need learn a more specific dictionary for noisy PGs assigned into each cluster. For notation simplicity, we ignore the index of subspace $k$. The internal PGs $\mathbf{Y}$ form a subspace which can be obtained by singular value decomposition (SVD),
 \begin{equation}\label{equ4}
 \begin{split}
 &\min_{\mathbf{D}_{i}\in \mathbb{R}^{3p^2\times r},\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
@@ -188,8 +205,7 @@ Though each PG has been projected into its most suitable subspace, the pre-learn
 \end{equation}
 The singular vectors capture the statistical structures of NSS variations in natural images, while the singular values in $\mathbf{S}$ represent the significance of these singular vectors. Fig.\ 4 shows the singular vectors for one Gaussian component.
 
-\subsection{Optimization with Closed-form Solution}
-Similar to the K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem \ref{equ4}. In fact, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}$ and for $t=0, 1, ..., T-1$, alternatively do
+Similar to the K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem \ref{equ4}. In fact, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}$ and for $t=0, 1, ..., T-1$, alternatively do:
 
 \textbf{Updating Sparse Coefficients}: given the initialization orthogonal dictioanry $\textbf{D}_{i}^{(t)}$, the sparce coefficients 
 $\textbf{A}^{(t)}$ are obtained via solving
@@ -253,14 +269,12 @@ With these solutions, the final obtained dictionary $\mathbf{D} = [\mathbf{D}_{e
 \mathbf{I}
 \end{equation}
 
-\subsection{Discussion on External Prior and Internal Orthogonal Dictionary Learning}
+\subsection{Discussions on Learning External Priors and Internal Priors}
 Until now, we have divided the noisy PGs into multiple internal subspaces. Here we take a deep analysis on how the external NSS prior guide the subspace learning of internal PGs. The help are at least threefold. Firstly, through MAP in (\ref{equ3}), the external prior guides the noisy PGs to be clustered into the correct subspaces. If we cluster the noisy PGs in an automatical way, the subspaces we learned will be highly degraded by the signal dependent noise. Secondly, the guidance of external prior for internal clustering is more efficient than directly clustering the internal noisy PGs. It only needs to calculate the MAP probability via the equation (\ref{equ3}) while the internal clustering via GMM is time-consuming on EM algorithm \cite{em}. Thirdly, due to the correct guidance of external prior, the structual decomposition via SVD of each subspace is more adaptive. This will bring better denoising performance than the methods only using the external information. The \emph{mutual incoherence} $\mu(\mathbf{U})$ \cite{donoho2003optimally}, which is difined as
 \begin{equation}\label{equ9}
 \mu(\mathbf{U})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
 \end{equation},
-is a measure of quality of dictionary.
-
-The Internal PGs are in fact lying in the subspaces of external PG Spaces. To defend this argument, we compare the distribution of external PGs extracted from clean natural images and real noisy images. For better illumination, we randomly selected a cluster and project the original clean PGs $\mathbf{X}$ onto a 2-D plane. This could be done via $\mathbf{Xp}=\mathbf{U(:.1:2)}^{T}\mathbf{X}$, where $\mathbf{U}$ is the singular vector matrix of that cluster. The noisy PGs $\mathbf{Y}$ assigned in this cluster is also projected into 2-D via $\mathbf{Yp}=\mathbf{U(:.1:2)}^{T}\mathbf{Y}$. The Figure \ref{} reflects the distribution on the 2-D plane of the projected clean PGs from external natural images and the projected noisy PGs from internal image. We can see that the internal noisy PGs are indeed lying in a subspace of the external PGs. Hence, if we directly use the external prior learned from clean PGs, the learned subspaces would be too generative to be suitable for the testing data. 
+is a measure of quality of dictionary. 
 
 Through SVD, the PGs in each internal subspace can be divided into singular vectors and singular values. The singular vectors are the basis of the corresponding subspace while the singular values reflect the importance of these basis. The basis can be used as dictionary to code the noisy PGs. And the sigular values are adaptive parameters for internal noisy PGs. We can compare the singular values of one internal subspace and the corresponding space of external PGs. The result is shown in Figure \ref{}. From which we can see that the noisy subspace often have higher values than external space consisted of clean PGs. This gap is clearly made of the noise and can be used for image denoising in a natural way.
 
@@ -521,11 +535,9 @@ SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
 
 
 \subsection{Comparison With other Competing Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. The popular software NeatImage which is one of the best denoising software available. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
+We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently.  The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
 
-We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}.
-
-The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
+We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}. The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
 \begin{table*}\label{tab1}
 \caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
 \label{tab1}
