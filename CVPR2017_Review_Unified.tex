@@ -200,7 +200,7 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 
 Given a real noisy image, we extract the noisy PGs and corresponding mean vectors. Each mean substracted PG is defined as $\mathbf{\overline{Y}}\triangleq \{\mathbf{\overline{x}}_{m}\}_{m=1}^{M}$. Noted that, different from the external PGs, the mean vectors of the internal noisy PGs are saved for recovering. For adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
 \vspace{-2mm}
-\begin{equation}\label{equ5}\vspace{-2mm}
+\begin{equation}\label{equ5}\vspace{-1mm}
 P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
 \end{equation}
 and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$.
@@ -209,7 +209,7 @@ and then choosing the component with the maximum A-posteriori (MAP) probability 
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Now all internal noisy PGs have been assigned to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For each subspace, we employ its external orthogonal dictionary $\mathbf{D}_{e}$ to guide the internal orthogonal dictionary learning. The learning is performed under the sparse coding framework (along with which the denoising of real noisy image is simultaneously done) as follows:
+Now we have assigned all internal noisy PGs to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For each subspace, we consider to use the external orthogonal dictionary to guide the learning of an orthogonal dictionary $\mathbf{D}:=[\mathbf{D}_{e}\ \mathbf{D}_{i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{e}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is consisted of the first ($3p^2-r$) columns of the singular vector matrix $\mathbf{U}_{e}$ obtained from the external prior by Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{i}$ is consisted of adaptive dictionary atoms learned from the internal noisy PGs. The learning is performed under the sparse coding framework (along with which the denoising of real noisy image is simultaneously done) as follows:
 \vspace{-2mm}
 \begin{equation}\label{equ6}\vspace{-2mm}
 \begin{split}
@@ -222,22 +222,20 @@ Now all internal noisy PGs have been assigned to their corresponding most suitab
 \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-The singular vectors capture the statistical structures of NSS variations in natural images, while the singular values in $\mathbf{S}$ represent the significance of these singular vectors. Fig.\ 4 shows the singular vectors for one Gaussian component.
-
 Similar to the K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem \ref{equ4}. In fact, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}$ and for $t=0, 1, ..., T-1$, alternatively do:
 
-\textbf{Updating Sparse Coefficients}: given the initialization orthogonal dictioanry $\textbf{D}_{i}^{(t)}$, the sparce coefficients 
-$\textbf{A}^{(t)}$ are obtained via solving
-\begin{equation}\label{equ6}
+\textbf{Updating Sparse Coefficients}: given the orthogonal dictioanry $\textbf{D}_{i}^{(t)}$, we update the sparce coefficients via solving
+\vspace{-2mm}
+\begin{equation}\label{equ7}\vspace{-2mm}
 \textbf{A}^{(t)}:=\argmin_{\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
 \|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}.
 \end{equation}
 This problem has closed-form solution by $\mathbf{A}^{*}=T_{\lambda}(\mathbf{\hat{D}}^{T}\mathbf{Y})$, 
 where $T_{\lambda}(\mathbf{A}) = \text{sgn}(\mathbf{A})\odot\max(\mathbf{A},\lambda)$ is a soft-thresholding function.
 
-\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(0)}$, the sparce coefficients 
-$\textbf{A}^{(t)}$ are obtained via solving
-\begin{equation}\label{equ7} 
+\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}$, we update the orthogonal dictionary via solving
+\vspace{-2mm}
+\begin{equation}\label{equ8} \vspace{-2mm}
 \begin{split}
 \textbf{D}_{i}^{(t+1)}:=
 &
@@ -250,7 +248,7 @@ $\textbf{A}^{(t)}$ are obtained via solving
 \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Dividing the sparse coefficients $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}^{T}]^{T}$, where $\mathbf{A}_{e}$ and $\mathbf{A}_{i}$ denote the coefficients over external and internal dictionary $\mathbf{D}_{e}$ and $\mathbf{D}_{i}$. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ6}) 
+The sparse coefficients $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}^{T}]^{T}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ6}) 
 %\begin{equation}
 %\begin{split}
 %\min_{\textbf{D}_{i}\in\mathbb{R}^{3p^2\times r}}
@@ -264,31 +262,33 @@ Dividing the sparse coefficients $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}
 %\end{equation}
 has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}\mathbf{V}^{T}$, where $\mathbf{U}$ and $\mathbf{V}$ are
 the orthogonal matrices obtained by the following SVD
-\begin{equation}\label{equ7}
+\vspace{-2mm}
+\begin{equation}\label{equ9}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{T})\mathbf{Y}\mathbf{A}_{i}^{T}
 =
 \mathbf{U}\Sigma\mathbf{V}^{T}
 \end{equation}
 With these solutions, the final obtained dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ are orthogonal ictionary. This can be proved by the following equation
-\begin{equation}\label{equ8}
+\vspace{-3mm}
+\begin{equation}\label{equ10}\vspace{-3mm}
 \mathbf{D}^{T}\mathbf{D} = 
-\left(\begin{array}{c}
+\left[\begin{array}{c}
 \mathbf{D}_{e}^{T}
 \\
 \mathbf{D}_{i}^{T}
-\end{array}\right)
-(\mathbf{D}_{e}\ \mathbf{D}_{i})
+\end{array}\right]
+[\mathbf{D}_{e}\ \mathbf{D}_{i}]
 =
-\left(\begin{array}{cc}
+\left[\begin{array}{cc}
 \mathbf{D}_{e}^{T}\mathbf{D}_{e}\ \mathbf{D}_{e}^{T}\mathbf{D}_{i}
 \\
 \mathbf{D}_{i}^{T}\mathbf{D}_{e}\ \mathbf{D}_{i}^{T}\mathbf{D}_{i}
-\end{array}\right)
+\end{array}\right]
 =
 \mathbf{I}
 \end{equation}
 
-\subsection{Discussions on Learning External Priors and Internal Priors}
+\subsection{Discussions}
 Until now, we have divided the noisy PGs into multiple internal subspaces. Here we take a deep analysis on how the external NSS prior guide the subspace learning of internal PGs. The help are at least threefold. Firstly, through MAP in (\ref{equ3}), the external prior guides the noisy PGs to be clustered into the correct subspaces. If we cluster the noisy PGs in an automatical way, the subspaces we learned will be highly degraded by the signal dependent noise. Secondly, the guidance of external prior for internal clustering is more efficient than directly clustering the internal noisy PGs. It only needs to calculate the MAP probability via the equation (\ref{equ3}) while the internal clustering via GMM is time-consuming on EM algorithm \cite{em}. Thirdly, due to the correct guidance of external prior, the structual decomposition via SVD of each subspace is more adaptive. This will bring better denoising performance than the methods only using the external information.
 
 Through SVD, the PGs in each internal subspace can be divided into singular vectors and singular values. The singular vectors are the basis of the corresponding subspace while the singular values reflect the importance of these basis. The basis can be used as dictionary to code the noisy PGs. And the sigular values are adaptive parameters for internal noisy PGs. We can compare the singular values of one internal subspace and the corresponding space of external PGs. The result is shown in Figure \ref{}. From which we can see that the noisy subspace often have higher values than external space consisted of clean PGs. This gap is clearly made of the noise and can be used for image denoising in a natural way.
