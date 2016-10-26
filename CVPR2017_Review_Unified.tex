@@ -172,7 +172,7 @@ where $K$ is the number of Gaussians and the parameters $\pi_{k}$, $\boldsymbol{
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
 \end{equation} 
-We maximize the above objective function via EM algorithm \cite{em} and finally obtain the GMM model with learned parameters as the learned external PG prior.
+We maximize the above objective function via EM algorithm \cite{em} and finally obtain the GMM model with learned parameters as the learned external PG prior. Similar to \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
 
 \subsection{External Prior Guided Internal Prior Learning}
 
@@ -180,19 +180,34 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 
 \vspace{-2mm}
 \subsubsection{Guided Internal Subspace Selection}
+\vspace{-1mm}
 
-Similar to the previous section, we extract noisy PGs from the given real noisy image and extract the mean substracted PG, which is defined as $\mathbf{\overline{Y}}$. Noted that, the mean vectors of external PGs are discarded in the external prior learning stage while the mean vectors of internal PGs are saved for recovering. For better adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM trained by external PGs. The selection can be done by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
-\vspace{-2mm}
+Given a real noisy image, we extract the noisy PGs and corresponding mean vectors. Each mean substracted PG is defined as $\mathbf{\overline{Y}}\triangleq \{\mathbf{\overline{x}}_{m}\}_{m=1}^{M}$. Noted that, different from the external PGs, the mean vectors of the internal noisy PGs are saved for recovering. For adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
+\vspace{-3mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
 P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
 \end{equation}
-and then selecting the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$ as the most suitable subspace for $\mathbf{\overline{Y}}$.
+and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$.
 
 \vspace{-2mm}
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
+\vspace{-2mm}
 
-To better and adaptively charactering the internal PGs from the testing image, we need learn a more specific dictionary for noisy PGs assigned into each cluster. For notation simplicity, we ignore the index of subspace $k$. The internal PGs $\mathbf{Y}$ form a subspace which can be obtained by singular value decomposition (SVD),
+Now each internal noisy PG has been assigned to its most suitable Gaussian component $\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})$ (subspace). In order to recover the latent clean PG, we employ the sparse coding framework under which we need a suitable dictionary for coding. As we know, given a dictionary $\mathbf{D}$, its \emph{mutual incoherence} $\mu(\mathbf{D})$ \cite{donoho2003optimally}, which is difined as
+\vspace{-2mm}
 \begin{equation}\label{equ4}
+\vspace{-2mm}
+\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}},
+\end{equation}
+is a measure of quality of dictionary. Since the \emph{mutual incoherence} of a orthogonal dictionary is $0$, its quality is often better than non-orthogonal dictionaries. 
+
+external subspace through covariance matrix via singular value decomposition (SVD) 
+\begin{equation}\label{equ4}
+\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{V}_{e}^{T}.
+\end{equation}
+can learn for each subspace an internal orthogonal dictionary adaptive to the noisy PGs. For notation simplicity, we ignore the index of subspace $k$.
+
+\begin{equation}\label{equ5}
 \begin{split}
 &\min_{\mathbf{D}_{i}\in \mathbb{R}^{3p^2\times r},\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
 \|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}
@@ -209,7 +224,7 @@ Similar to the K-SVD \cite{ksvd}, we employ an alternating iterative framework t
 
 \textbf{Updating Sparse Coefficients}: given the initialization orthogonal dictioanry $\textbf{D}_{i}^{(t)}$, the sparce coefficients 
 $\textbf{A}^{(t)}$ are obtained via solving
-\begin{equation}\label{equ5}
+\begin{equation}\label{equ6}
 \textbf{A}^{(t)}:=\argmin_{\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
 \|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}.
 \end{equation}
@@ -218,7 +233,7 @@ where $T_{\lambda}(\mathbf{A}) = \text{sgn}(\mathbf{A})\odot\max(\mathbf{A},\lam
 
 \textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(0)}$, the sparce coefficients 
 $\textbf{A}^{(t)}$ are obtained via solving
-\begin{equation}\label{equ6} 
+\begin{equation}\label{equ7} 
 \begin{split}
 \textbf{D}_{i}^{(t+1)}:=
 &
@@ -270,11 +285,7 @@ With these solutions, the final obtained dictionary $\mathbf{D} = [\mathbf{D}_{e
 \end{equation}
 
 \subsection{Discussions on Learning External Priors and Internal Priors}
-Until now, we have divided the noisy PGs into multiple internal subspaces. Here we take a deep analysis on how the external NSS prior guide the subspace learning of internal PGs. The help are at least threefold. Firstly, through MAP in (\ref{equ3}), the external prior guides the noisy PGs to be clustered into the correct subspaces. If we cluster the noisy PGs in an automatical way, the subspaces we learned will be highly degraded by the signal dependent noise. Secondly, the guidance of external prior for internal clustering is more efficient than directly clustering the internal noisy PGs. It only needs to calculate the MAP probability via the equation (\ref{equ3}) while the internal clustering via GMM is time-consuming on EM algorithm \cite{em}. Thirdly, due to the correct guidance of external prior, the structual decomposition via SVD of each subspace is more adaptive. This will bring better denoising performance than the methods only using the external information. The \emph{mutual incoherence} $\mu(\mathbf{U})$ \cite{donoho2003optimally}, which is difined as
-\begin{equation}\label{equ9}
-\mu(\mathbf{U})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
-\end{equation},
-is a measure of quality of dictionary. 
+Until now, we have divided the noisy PGs into multiple internal subspaces. Here we take a deep analysis on how the external NSS prior guide the subspace learning of internal PGs. The help are at least threefold. Firstly, through MAP in (\ref{equ3}), the external prior guides the noisy PGs to be clustered into the correct subspaces. If we cluster the noisy PGs in an automatical way, the subspaces we learned will be highly degraded by the signal dependent noise. Secondly, the guidance of external prior for internal clustering is more efficient than directly clustering the internal noisy PGs. It only needs to calculate the MAP probability via the equation (\ref{equ3}) while the internal clustering via GMM is time-consuming on EM algorithm \cite{em}. Thirdly, due to the correct guidance of external prior, the structual decomposition via SVD of each subspace is more adaptive. This will bring better denoising performance than the methods only using the external information.
 
 Through SVD, the PGs in each internal subspace can be divided into singular vectors and singular values. The singular vectors are the basis of the corresponding subspace while the singular values reflect the importance of these basis. The basis can be used as dictionary to code the noisy PGs. And the sigular values are adaptive parameters for internal noisy PGs. We can compare the singular values of one internal subspace and the corresponding space of external PGs. The result is shown in Figure \ref{}. From which we can see that the noisy subspace often have higher values than external space consisted of clean PGs. This gap is clearly made of the noise and can be used for image denoising in a natural way.
 
