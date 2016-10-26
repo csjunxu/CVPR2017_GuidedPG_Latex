@@ -176,19 +176,19 @@ where $K$ is the number of Gaussians and the parameters $\pi_{k}$, $\boldsymbol{
 \end{equation} 
 We maximize the above objective function via EM algorithm \cite{em} and finally obtain the GMM model with learned parameters. Similar to \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
 
-Until now, we have clustered the PGs extracted from external clean images into $K$ subspaces (Gaussians). In order to better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix of each subspace:
-\vspace{-1mm}
+Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. For notation simplicity, we ignore the index of subspace $k$. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
+\vspace{-2mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
-\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{V}_{e}^{T},
+\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{V}_{e}^{T}.
 \end{equation}
-and the singular vectors in $\mathbf{U}_{e}$ are employed as the learned external orthogonal dictionary. Besides, the singular values are employed as weight prior which will be discussed in Section 4. The reason we use singular vectors $\mathbf{U}_{e}$ as external dictionary is, its \emph{mutual incoherence} $\mu(\mathbf{D})$ \cite{donoho2003optimally}, which is a measure of quality of dictionary (lower is better) and difined as
+The singular vectors in $\mathbf{U}_{e}$ are employed as the external orthogonal dictionary to guide the internal orthogonal dictionary learning (the singular values are employed as prior weights for sparse coding which will be discussed in Section 4). For a dictionary $\mathbf{D}$, its \emph{mutual incoherence} $\mu(\mathbf{D})$ \cite{donoho2003optimally} difined by
 \vspace{-2mm}
 \begin{equation}\label{equ4}
 \vspace{-2mm}
-\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}},
+\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
 \end{equation}
-is naturally $0$. 
-
+is a measure of quality of dictionary (lower is better). The dictionary $\mathbf{U}_{e}$ always has $0$
+\emph{mutual incoherence} and hence better quality than non-orthogonal dictionaries.
 
 \subsection{External Prior Guided Internal Prior Learning}
 
@@ -199,8 +199,8 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 \vspace{-1mm}
 
 Given a real noisy image, we extract the noisy PGs and corresponding mean vectors. Each mean substracted PG is defined as $\mathbf{\overline{Y}}\triangleq \{\mathbf{\overline{x}}_{m}\}_{m=1}^{M}$. Noted that, different from the external PGs, the mean vectors of the internal noisy PGs are saved for recovering. For adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
-\vspace{-3mm}
-\begin{equation}\label{equ3}\vspace{-2mm}
+\vspace{-2mm}
+\begin{equation}\label{equ5}\vspace{-2mm}
 P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
 \end{equation}
 and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$.
@@ -209,14 +209,9 @@ and then choosing the component with the maximum A-posteriori (MAP) probability 
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Now all internal noisy PGs have been assigned to their corresponding most suitable Gaussian components (subspaces) in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace including internal noisy PGs, we employ the $k$-th Gaussian from external prior  internal prior learning framework to learn the internal orthogonal dictionary and the image denoising is simultaneously done with the learning process
-
-sparse coding 
-in order to recover the latent clean PGs, for under which we need a suitable dictionary for coding.
-
-can learn for each subspace an internal orthogonal dictionary adaptive to the noisy PGs. 
-
-\begin{equation}\label{equ5}
+Now all internal noisy PGs have been assigned to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For each subspace, we employ its external orthogonal dictionary $\mathbf{D}_{e}$ to guide the internal orthogonal dictionary learning. The learning is performed under the sparse coding framework (along with which the denoising of real noisy image is simultaneously done) as follows:
+\vspace{-2mm}
+\begin{equation}\label{equ6}\vspace{-2mm}
 \begin{split}
 &\min_{\mathbf{D}_{i}\in \mathbb{R}^{3p^2\times r},\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
 \|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}
