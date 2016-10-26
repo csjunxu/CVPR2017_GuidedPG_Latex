@@ -150,7 +150,7 @@ Learning dictionaries to represent images has been successfully used in image mo
 In the last decade, there are many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} proposed for real image denoising problem. In the seminar work of BLS-GSM \cite{blsgsm} for real image denoising, Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu et al. \cite{Liu2008} proposed to use 'noise level function' (NLF) to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} models the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and remove the noise via Low-Rank Mixture of Gaussians (LR-MoG). The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly.
 
 \section{External Patch Group Prior Guided Internal Orthogonal Dictionary Learning}
-In this section, we formulate the framework of external Patch Group prior guided internal subspace learning. We first introduce the patch group prior leaning on clean natural RGB images. Then we formulate the external guided internal subspace learning. Finally, we discuss the differences between external subspaces and the corresponding internal subspace.
+In this section, we formulate the framework of external patch group (PG) prior guided internal orthogonal dictionary learning. We first introduce the patch PG leaning on clean natural RGB images. Then we propose to exploy the external PG prior to guide the internal clustering and orthogonal dictionary learning (DL). The orthogonal DL has alternative closed-form solutions in term of updating sparse coefficients and dictionary. Finally, we discuss the advantages of our proposed external PG prior guided internal orthogonal dictionary learning algorithm.
 
 \subsection{External Patch Group Prior Learning}
 Natural images often demonstrate repepitive patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd} and restoration methods \cite{}. In \cite{pgpd}, the NSS property is directly learned as an external prior in a patch group manner. In this section, we formulate the Patch Group prior on natural color images.
@@ -598,7 +598,7 @@ Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\tex
 \\ 
 \cline{2-11}    
 & 32.91 & 32.98 & 32.96 & 38.54 & \color{blue}{40.05} & \color{red}{40.59} & 36.91 & 36.76 & 39.06 & 38.80
-\\
+\\ 
 \hline
 \multirow{3}{*}{Nikon D800} 
 & 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & \color{blue}{34.25} & 31.28 & 33.49 & \color{red}{34.61} & 33.31
