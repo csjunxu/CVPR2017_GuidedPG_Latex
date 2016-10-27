@@ -286,13 +286,14 @@ has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}_{i}\mathbf{V}_{i}^{T}$
 Here we take a detailed analysis on the guiance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ5}). The guided subspace clustering is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ5}) for all noisy PGs while by internal clustering via GMM we need perform EM algorithm \cite{em}. 2) the external dictionary guides the internal dictionary learning, and the obtained dictionary consisted of the two parts is orthogonal and more adaptive to the given noisy image. The learning process has closed-form solutions and hence is very efficient. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under sparse coding framework. 3) the singular values obtained by SVD in Equ. (\ref{equ3}) reflect the prior weights of the atoms in learned dictionary and can be used as adaptive parameters for real image denoising.
 
 \section{The Denoising Algorithm}
+
+In this work, we solve the real noisy image denoising problem by employing the sparse coding framework \cite{pgpd} in Equ. (\ref{equ6}). We utilize two strategies to gain better performance: one is the 'Summed Area Table' \cite{sat} for faster patch group (PG) searching and the other is that the prior weights in Equ. (\ref{equ3}) are used for better denoising effects. 
+
 \subsection{Fast Internal Patch Group Searching}
 
 Given a RGB image of size $256\times256\times3$, we can extract over 60 thousands local patches of size $6\times6\times3$. It is time-consumming to search patch groups (PG) for local patches one by one. To speed up the searching process, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. Hence, we do not need do distance measure for each local patch.
 
 \subsection{Prior Weights for Sparse Coding}
-
-To remove the real noise, we employ the sparse coding framework. And in order to be adaptive to the input image, we employ the internal learned $\mathbf{U}$ of each cluster as an adaptive dictioanry to represent the structural variations of the PGs in that cluster. Since the $\mathbf{U}$ is orthonormal, its \emph{mutual incoherence} is naturally $0$ and therefore better than other redundant dictionaries. 
 
 \begin{equation}\label{equ10}
 \min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{U}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|.
@@ -541,6 +542,66 @@ SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
 \caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
 \end{figure*}
 
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
+{\footnotesize (a) Noisy Image \\ (37.00dB/0.9345) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
+{\footnotesize (b) CBM3D \\ (37.02dB/0.9351)}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
+{\footnotesize (c) WNNM \\ (37.01dB/0.9347)}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
+{\footnotesize (d) MLP \\ (33.90dB/0.9171) }
+\end{minipage}
+\centering
+\begin{minipage}[t]{0.195\textwidth}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
+{\footnotesize (e) TRD \\ (36.18dB/0.9454)   }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
+{\footnotesize (f) Noise Clinic \\ (38.76dB/0.9689) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
+{\footnotesize (g) Neat Image \\ (37.68dB/0.9600) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
+{\footnotesize (h) CCNoise \\ (38.37dB/0.9678) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
+{\footnotesize (i) Guided \\ (\textbf{40.26}dB/\textbf{0.9800})}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
+{\footnotesize (j) Mean Image}
+\end{minipage}
+}
+\caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
+\label{fig3}
+\end{figure*}
+
 
 \subsection{Comparison With other Competing Methods}
 We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently.  The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
@@ -644,67 +705,6 @@ Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
-{\footnotesize (a) Noisy Image \\ (37.00dB/0.9345) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) CBM3D \\ (37.02dB/0.9351)}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
-{\footnotesize (c) WNNM \\ (37.01dB/0.9347)}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
-{\footnotesize (d) MLP \\ (33.90dB/0.9171) }
-\end{minipage}
-\centering
-\begin{minipage}[t]{0.195\textwidth}
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TRD \\ (36.18dB/0.9454)   }
-\end{minipage}
-}
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) Noise Clinic \\ (38.76dB/0.9689) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) Neat Image \\ (37.68dB/0.9600) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CCNoise \\ (38.37dB/0.9678) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Guided \\ (\textbf{40.26}dB/\textbf{0.9800})}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
-{\footnotesize (j) Mean Image}
-\end{minipage}
-}
-\caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
-\label{fig3}
-\end{figure*}
-
-
-\begin{figure*}
-\centering
-\subfigure{
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
@@ -752,13 +752,13 @@ Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.
 \label{fig4}
 \end{figure*}
 
-\subsection{Discussion on Parameter $\lambda$}
-The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
-\begin{figure}
-\includegraphics[width=1\linewidth]{images/param.png}
-\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
-\label{fig10}
-\end{figure}
+%\subsection{Discussion on Parameter $\lambda$}
+%The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
+%\begin{figure}
+%\includegraphics[width=1\linewidth]{images/param.png}
+%\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
+%\label{fig10}
+%\end{figure}
 
 \section{Conclusion and Future Work}
 
