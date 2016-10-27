@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  27 OCT 2016 18:34
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  27 OCT 2016 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -332,9 +332,6 @@ File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
 LaTeX Warning: Label `tab1' multiply defined.
 
 
-LaTeX Warning: Label `fig2' multiply defined.
-
-
 LaTeX Warning: Label `tab1' multiply defined.
 
 
@@ -342,6 +339,9 @@ LaTeX Warning: Label `tab1' multiply defined.
 
 
 LaTeX Warning: Label `tab1' multiply defined.
+
+
+LaTeX Warning: Label `fig4' multiply defined.
 
 )
 \openout1 = `CVPR2017_Review_Unified.aux'.
@@ -555,6 +555,61 @@ Underfull \hbox (badness 1975) in paragraph at lines 138--139
 []\OT1/ptm/m/n/10 For real im-age de-nois-ing prob-lem, the pro-posed
  []
 
+
+<images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=85, 250.9375
+pt x 250.9375pt>
+File: images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fil
+e (type png)
+
+<use images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1
+_95.png used on input line 173.
+(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+
+<images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=86, 250.93
+75pt x 250.9375pt>
+File: images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic f
+ile (type png)
+
+<use images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_
+C1_95.png used on input line 173.
+(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+
+<images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=87, 250.937
+5pt x 250.9375pt>
+File: images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fi
+le (type png)
+
+<use images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C
+1_95.png used on input line 173.
+(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+
+<images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=88, 250.937
+5pt x 250.9375pt>
+File: images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fi
+le (type png)
+
+<use images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C
+1_95.png used on input line 173.
+(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+
+<images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=89, 250.9375p
+t x 250.9375pt>
+File: images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic file
+ (type png)
+
+<use images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_
+95.png used on input line 173.
+(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 173--174
+ [][] 
+ []
+
 [2 <./images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>
  <./images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <
 ./images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./i
@@ -564,467 +619,425 @@ size_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize
 _br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_N
 I_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Guided
 _CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Mean_CC
-_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>] [3] [4]
-
-LaTeX Warning: Reference `equ13' on page 5 undefined on input line 314.
-
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=221, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_
-47.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png, id=222, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_
-52.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png, id=223, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_
-44.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png, id=224, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_
-66.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png, id=225, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_
-26.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png, id=226, 167.6262
-5pt x 167.62625pt>
-File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png Graphic file
- (type png)
-
-<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_
-73.png used on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=227, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png u
-sed on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png, id=228, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png u
-sed on input line 390.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png, id=229, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png, id=230, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png, id=231, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png, id=232, 167.62625pt x 1
-67.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png Graphic file (type 
-png)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png 
-used on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=233, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png, id=234, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png, id=235, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png, id=236, 167.62625pt x 16
-7.62625pt>
-File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png Graphic file (type p
-ng)
- <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png>
-Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png u
-sed on input line 416.
-(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
-
-Overfull \hbox (3.95158pt too wide) in paragraph at lines 390--417
- [][] 
- []
-
-
-Overfull \hbox (3.95158pt too wide) in paragraph at lines 390--417
- [][] 
- []
-
-
-Underfull \vbox (badness 1975) has occurred while \output is active []
-
-
-<images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=246, 250.937
-5pt x 250.9375pt>
-File: images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fil
-e (type png)
-
-<use images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1
-_95.png used on input line 475.
-(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-
-<images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=247, 250.9
-375pt x 250.9375pt>
-File: images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic f
-ile (type png)
-
-<use images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_
-C1_95.png used on input line 475.
-(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-
-<images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=248, 250.93
-75pt x 250.9375pt>
-File: images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fi
-le (type png)
-
-<use images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C
-1_95.png used on input line 475.
-(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-
-<images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=249, 250.93
-75pt x 250.9375pt>
-File: images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic fi
-le (type png)
-
-<use images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C
-1_95.png used on input line 475.
-(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-
-<images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=250, 250.9375
-pt x 250.9375pt>
-File: images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic file
- (type png)
-
-<use images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
-Package pdftex.def Info: images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_
-95.png used on input line 475.
-(pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 475--476
- [][] 
- []
-
-
-<images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=251,
+_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>]
+<images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=140,
  250.9375pt x 250.9375pt>
 File: images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Gra
 phic file (type png)
 
 <use images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
 Package pdftex.def Info: images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO
-_3200_C1_47.png used on input line 507.
+_3200_C1_47.png used on input line 221.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-<images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=25
-2, 250.9375pt x 250.9375pt>
+<images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=14
+1, 250.9375pt x 250.9375pt>
 File: images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png G
 raphic file (type png)
 
 <use images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
 Package pdftex.def Info: images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_I
-SO_3200_C1_47.png used on input line 507.
+SO_3200_C1_47.png used on input line 221.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-<images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=253
+<images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=142
 , 250.9375pt x 250.9375pt>
 File: images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Gr
 aphic file (type png)
 
 <use images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
 Package pdftex.def Info: images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_IS
-O_3200_C1_47.png used on input line 507.
+O_3200_C1_47.png used on input line 221.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-<images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=254
+<images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=143
 , 250.9375pt x 250.9375pt>
 File: images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Gr
 aphic file (type png)
 
 <use images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
 Package pdftex.def Info: images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_IS
-O_3200_C1_47.png used on input line 507.
+O_3200_C1_47.png used on input line 221.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-<images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=255, 
+<images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=144, 
 250.9375pt x 250.9375pt>
 File: images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Grap
 hic file (type png)
 
 <use images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
 Package pdftex.def Info: images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_
-3200_C1_47.png used on input line 507.
+3200_C1_47.png used on input line 221.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 507--508
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 221--222
+ [][] 
+ []
+
+[3 <./images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)>
+ <./images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)>
+ <./images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> 
+<./images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> <
+./images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)>]
+[4 <./images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (PN
+G copy)> <./images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47
+.png (PNG copy)> <./images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_320
+0_C1_47.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_
+ISO_3200_C1_47.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_M
+ark3_ISO_3200_C1_47.png (PNG copy)>] [5]
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png, id=237, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_
+47.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png, id=238, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_
+52.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png, id=239, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_
+44.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png, id=240, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_
+66.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png, id=241, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_
+26.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png, id=242, 167.6262
+5pt x 167.62625pt>
+File: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png Graphic file
+ (type png)
+
+<use images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_
+73.png used on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png, id=243, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png u
+sed on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png, id=244, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png u
+sed on input line 450.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png, id=245, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B2_80.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png, id=246, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3_82.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png, id=247, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png, id=248, 167.62625pt x 1
+67.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png Graphic file (type 
+png)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png 
+used on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=249, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png, id=250, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png, id=251, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_6400_B3_95.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+<images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png, id=252, 167.62625pt x 16
+7.62625pt>
+File: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png Graphic file (type p
+ng)
+ <use images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png>
+Package pdftex.def Info: images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png u
+sed on input line 476.
+(pdftex.def)             Requested size: 27.32344pt x 27.32207pt.
+
+Overfull \hbox (3.95158pt too wide) in paragraph at lines 450--477
  [][] 
  []
 
 
-<images/resize_br_Noisy_5dmark3_iso3200_1_real.png, id=256, 256.96pt x 256.96pt
+Overfull \hbox (3.95158pt too wide) in paragraph at lines 450--477
+ [][] 
+ []
+
+
+<images/resize_br_Noisy_5dmark3_iso3200_1_real.png, id=254, 256.96pt x 256.96pt
 >
 File: images/resize_br_Noisy_5dmark3_iso3200_1_real.png Graphic file (type png)
 
  <use images/resize_br_Noisy_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_Noisy_5dmark3_iso3200_1_real.png used
- on input line 539.
+ on input line 509.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_CBM3D_5dmark3_iso3200_1_real.png, id=257, 256.96pt x 256.96pt
+<images/resize_br_CBM3D_5dmark3_iso3200_1_real.png, id=255, 256.96pt x 256.96pt
 >
 File: images/resize_br_CBM3D_5dmark3_iso3200_1_real.png Graphic file (type png)
 
  <use images/resize_br_CBM3D_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_CBM3D_5dmark3_iso3200_1_real.png used
- on input line 539.
+ on input line 509.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_WNNM_5dmark3_iso3200_1_real.png, id=258, 256.96pt x 256.96pt>
+<images/resize_br_WNNM_5dmark3_iso3200_1_real.png, id=256, 256.96pt x 256.96pt>
 File: images/resize_br_WNNM_5dmark3_iso3200_1_real.png Graphic file (type png)
 <use images/resize_br_WNNM_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_WNNM_5dmark3_iso3200_1_real.png used 
-on input line 539.
+on input line 509.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_MLP_5dmark3_iso3200_1_real.png, id=259, 256.96pt x 256.96pt>
+<images/resize_br_MLP_5dmark3_iso3200_1_real.png, id=257, 256.96pt x 256.96pt>
 File: images/resize_br_MLP_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_MLP_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_MLP_5dmark3_iso3200_1_real.png used o
-n input line 539.
+n input line 509.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_TRD_5dmark3_iso3200_1_real.png, id=260, 256.96pt x 256.96pt>
+<images/resize_br_TRD_5dmark3_iso3200_1_real.png, id=258, 256.96pt x 256.96pt>
 File: images/resize_br_TRD_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_TRD_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_TRD_5dmark3_iso3200_1_real.png used o
-n input line 539.
+n input line 509.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_NC_5dmark3_iso3200_1_real.png, id=261, 256.96pt x 256.96pt>
+<images/resize_br_NC_5dmark3_iso3200_1_real.png, id=259, 256.96pt x 256.96pt>
 File: images/resize_br_NC_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_NC_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_NC_5dmark3_iso3200_1_real.png used on
- input line 566.
+ input line 536.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_NI_5dmark3_iso3200_1_real.png, id=262, 256.96pt x 256.96pt>
+<images/resize_br_NI_5dmark3_iso3200_1_real.png, id=260, 256.96pt x 256.96pt>
 File: images/resize_br_NI_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_NI_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_NI_5dmark3_iso3200_1_real.png used on
- input line 566.
+ input line 536.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_CCNoise_5dmark3_iso3200_1.png, id=263, 256.96pt x 256.96pt>
+<images/resize_br_CCNoise_5dmark3_iso3200_1.png, id=261, 256.96pt x 256.96pt>
 File: images/resize_br_CCNoise_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/resize_br_CCNoise_5dmark3_iso3200_1.png>
 Package pdftex.def Info: images/resize_br_CCNoise_5dmark3_iso3200_1.png used on
- input line 566.
+ input line 536.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_Guided_5dmark3_iso3200_1_real.png, id=264, 256.96pt x 256.96p
+<images/resize_br_Guided_5dmark3_iso3200_1_real.png, id=262, 256.96pt x 256.96p
 t>
 File: images/resize_br_Guided_5dmark3_iso3200_1_real.png Graphic file (type png
 )
  <use images/resize_br_Guided_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_Guided_5dmark3_iso3200_1_real.png use
-d on input line 566.
+d on input line 536.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_Mean_5dmark3_iso3200_1_real.png, id=265, 256.96pt x 256.96pt>
+<images/resize_br_Mean_5dmark3_iso3200_1_real.png, id=263, 256.96pt x 256.96pt>
 File: images/resize_br_Mean_5dmark3_iso3200_1_real.png Graphic file (type png)
 <use images/resize_br_Mean_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_Mean_5dmark3_iso3200_1_real.png used 
-on input line 566.
+on input line 536.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 539--567
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 509--537
  [][] 
  []
 
 
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 539--567
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 509--537
  [][] 
  []
 
 
-Underfull \hbox (badness 1178) in paragraph at lines 573--574
+Underfull \hbox (badness 1178) in paragraph at lines 588--589
 []\OT1/ptm/m/n/10 We com-pare with pre-vi-ous state-of-the-art Gaus-sian
  []
 
+<images/param.png, id=286, 277.7577pt x 265.7127pt>
+File: images/param.png Graphic file (type png)
+ <use images/param.png>
+Package pdftex.def Info: images/param.png used on input line 596.
+(pdftex.def)             Requested size: 237.13594pt x 226.85425pt.
 
-Underfull \vbox (badness 1917) has occurred while \output is active []
-
- [5 <./images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (PNG copy)>
- <./images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png (PNG copy)> <.
-/images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./im
-ages/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png (PNG copy)> <./image
-s/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./images/r
-esize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png (PNG copy)> <./images/resi
-ze_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_CC_Noisy
-_Nikon_D600_ISO_3200_C2_67.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800
-_ISO_1600_B2_80.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_1600_B
-3_82.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png (P
-NG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png (PNG copy)> 
-<./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/r
-esize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png (PNG copy)> <./images/resize_CC_No
-isy_Nikon_D800_ISO_6400_B3_95.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D
-800_ISO_3200_A2_80.png (PNG copy)>]
-Overfull \hbox (5.48451pt too wide) in paragraph at lines 601--668
+Overfull \hbox (5.48451pt too wide) in paragraph at lines 606--673
  [] 
  []
 
-<images/resize_br_Noisy_dog.png, id=294, 200.75pt x 200.75pt>
+<images/resize_br_Noisy_dog.png, id=288, 200.75pt x 200.75pt>
 File: images/resize_br_Noisy_dog.png Graphic file (type png)
 
 <use images/resize_br_Noisy_dog.png>
-Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 694.
+Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 699.
 
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_BM3D_dog.png, id=295, 200.75pt x 200.75pt>
+<images/resize_br_BM3D_dog.png, id=289, 200.75pt x 200.75pt>
 File: images/resize_br_BM3D_dog.png Graphic file (type png)
 
 <use images/resize_br_BM3D_dog.png>
-Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 694.
+Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 699.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_WNNM_dog.png, id=296, 200.75pt x 200.75pt>
+<images/resize_br_WNNM_dog.png, id=290, 200.75pt x 200.75pt>
 File: images/resize_br_WNNM_dog.png Graphic file (type png)
 
 <use images/resize_br_WNNM_dog.png>
-Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 694.
+Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 699.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_MLP_dog.png, id=297, 200.75pt x 200.75pt>
+<images/resize_br_MLP_dog.png, id=291, 200.75pt x 200.75pt>
 File: images/resize_br_MLP_dog.png Graphic file (type png)
 
 <use images/resize_br_MLP_dog.png>
-Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 694.
+Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 699.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_TRD_dog.png, id=298, 200.75pt x 200.75pt>
+<images/resize_br_TRD_dog.png, id=292, 200.75pt x 200.75pt>
 File: images/resize_br_TRD_dog.png Graphic file (type png)
 
 <use images/resize_br_TRD_dog.png>
-Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 716.
+Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 721.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NC_dog.png, id=299, 200.75pt x 200.75pt>
+<images/resize_br_NC_dog.png, id=293, 200.75pt x 200.75pt>
 File: images/resize_br_NC_dog.png Graphic file (type png)
 
 <use images/resize_br_NC_dog.png>
-Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 716.
+Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 721.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NI_dog.png, id=300, 200.75pt x 200.75pt>
+<images/resize_br_NI_dog.png, id=294, 200.75pt x 200.75pt>
 File: images/resize_br_NI_dog.png Graphic file (type png)
 
 <use images/resize_br_NI_dog.png>
-Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 716.
+Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 721.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_Guided_dog.png, id=301, 200.75pt x 200.75pt>
+<images/resize_br_Guided_dog.png, id=295, 200.75pt x 200.75pt>
 File: images/resize_br_Guided_dog.png Graphic file (type png)
 
 <use images/resize_br_Guided_dog.png>
-Package pdftex.def Info: images/resize_br_Guided_dog.png used on input line 716
+Package pdftex.def Info: images/resize_br_Guided_dog.png used on input line 721
 .
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 694--717
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 699--722
  [][] 
  []
 
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 694--717
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 699--722
  [][] 
  []
+
+[6 <./images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (PNG copy)> 
+<./images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_52.png (PNG copy)> <./
+images/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./ima
+ges/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_66.png (PNG copy)> <./images
+/resize_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./images/re
+size_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_73.png (PNG copy)> <./images/resiz
+e_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_CC_Noisy_
+Nikon_D600_ISO_3200_C2_67.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_
+ISO_1600_B2_80.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_1600_B3
+_82.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_21.png (PN
+G copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png (PNG copy)> <
+./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/re
+size_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png (PNG copy)> <./images/resize_CC_Noi
+sy_Nikon_D800_ISO_6400_B3_95.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D8
+00_ISO_3200_A2_80.png (PNG copy)>]
+
+LaTeX Warning: Text page 7 contains only floats.
+
+
+Underfull \vbox (badness 1297) has occurred while \output is active []
+
 
 (./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
@@ -1032,19 +1045,6 @@ Overfull \hbox (0.58199pt too wide) in paragraph at lines 694--717
 
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 30.
- [6 <./images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)
-> <./images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)
-> <./images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)>
- <./images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> 
-<./images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png (PNG copy)> <./
-images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (PNG copy
-)> <./images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (
-PNG copy)> <./images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_4
-7.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_32
-00_C1_47.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_I
-SO_3200_C1_47.png (PNG copy)>]
-Missing character: There is no Ã in font ptmr7t!
-Missing character: There is no ¼ in font ptmr7t!
  [7 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
 resize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM
 _5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_MLP_5dmark3_iso3200
@@ -1053,7 +1053,7 @@ _1_real.png (PNG copy)> <./images/resize_br_TRD_5dmark3_iso3200_1_real.png (PNG
 /resize_br_NI_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_CCNois
 e_5dmark3_iso3200_1.png (PNG copy)> <./images/resize_br_Guided_5dmark3_iso3200_
 1_real.png (PNG copy)> <./images/resize_br_Mean_5dmark3_iso3200_1_real.png (PNG
- copy)>]
+ copy)> <./images/param.png (PNG copy)>]
 Underfull \vbox (badness 1609) has occurred while \output is active []
 
  [8 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM3D_dog.
@@ -1061,6 +1061,8 @@ png (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_b
 r_MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images
 /resize_br_NC_dog.png (PNG copy)> <./images/resize_br_NI_dog.png (PNG copy)> <.
 /images/resize_br_Guided_dog.png (PNG copy)>]
+Missing character: There is no Ã in font ptmr7t!
+Missing character: There is no ¼ in font ptmr7t!
 LaTeX Font Info:    Try loading font information for OT1+pcr on input line 146.
 
 
@@ -1076,34 +1078,29 @@ Missing character: There is no â in font ptmr7t!
 Missing character: There is no „ in font ptmr7t!
 Missing character: There is no “ in font ptmr7t!
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 738.
- [9
-
-]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 738.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 735.
+ [9]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 735.
  (./CVPR2017_Review_Unified.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 738.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 738.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 735.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 735.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: 278552C77FDD8A2C9CE5978EABB7896E;3346.
-
-
-LaTeX Warning: There were undefined references.
+(rerunfilecheck)             Checksum: FD363B55E0485D15D2881918043BBACA;3275.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 738.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 735.
  ) 
 Here is how much of TeX's memory you used:
- 7396 strings out of 493091
- 116771 string characters out of 6134517
- 219525 words of memory out of 5000000
- 10572 multiletter control sequences out of 15000+600000
+ 7401 strings out of 493091
+ 116862 string characters out of 6134517
+ 224840 words of memory out of 5000000
+ 10576 multiletter control sequences out of 15000+600000
  52400 words of font info for 121 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,18n,27p,1427b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,18n,30p,1427b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -1131,10 +1128,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/
 2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4137404 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4258939 bytes).
 PDF statistics:
- 526 PDF objects out of 1000 (max. 8388607)
- 428 compressed objects within 5 object streams
+ 523 PDF objects out of 1000 (max. 8388607)
+ 424 compressed objects within 5 object streams
  97 named destinations out of 1000 (max. 500000)
- 271 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

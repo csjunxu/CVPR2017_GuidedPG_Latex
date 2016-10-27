@@ -138,9 +138,42 @@ The contributions of this paper are summarized as follows:
 \item For real image denoising problem, the proposed method achieves much better performance than other competing methods.
 \end{itemize}
 
-The rest of this paper will be summerized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model; in Section 4, we formulate the overall image denoising algorithm; in Section 4, we demonstrate extensive experiments on real image denoising probelm; in Section 5, we conclude our paper and give future work.
+The rest of this paper will be summerized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model and formulate the overall image denoising algorithm; in Section 3, we demonstrate extensive experiments on real image denoising probelm; in Section 4, we conclude our paper and give future work.
 
 \section{Related Work}
+
+\begin{figure*}\label{fig2}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (a) Noisy Image \\ (34.66dB/0.9178)   }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (h) Offline \\ (34.97dB/0.9441) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (i) Online \\ (36.86dB/0.9622) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.09}dB/\textbf{0.9638})}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+{\footnotesize (h) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\end{figure*}
+
 \subsection{Patch Group Prior of Natural Images}
 
 The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self similar (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. In \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we make use of PGs both from external clean images and internal given real noisy image for better denoising performance.
@@ -155,9 +188,42 @@ Learning priors to represent images has been successfully used in image modeling
 
 In the last decade, there are many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} proposed for real image denoising problem. In the seminar work of BLS-GSM \cite{blsgsm} for real image denoising, Portilla et al. proposed to use scale mixture of Gaussian in overcomplete oriented pyramids to estimate the latent clean images. In \cite{fullyblind}, Portilla proposed to use a correlated Gaussian model for noise estimation of each wavelet subband. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu et al. \cite{Liu2008} proposed to use 'noise level function' to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} models the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called 'Noise Clinic' \cite{noiseclinic}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via Low-Rank Mixture of Gaussians.
 
-\section{External Patch Group Prior Guided Internal Prior Learning}
+\section{External Patch Group Prior Guided Internal Prior Learning for Image Denoising}
 
-In this section, we formulate the framework of external patch group (PG) prior guided internal orthogonal dictionary learning. We first introduce the patch PG leaning on clean natural RGB images. Then we propose to exploy the external PG prior to guide the internal clustering and orthogonal dictionary learning (DL). The orthogonal DL has alternative closed-form solutions in term of updating sparse coefficients and dictionary. Finally, we discuss the advantages of our proposed external PG prior guided internal orthogonal dictionary learning algorithm.
+\begin{figure*}\label{fig3}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (a) Noisy Image \\ (36.15dB/0.9523)    }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (h) Offline \\ (37.12dB/0.9776) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (i) Online \\ (35.70dB/0.9755)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (j) Guided \\ (\textbf{37.94}dB/\textbf{0.9804})}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
+{\footnotesize (h) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\end{figure*}
+
+
+In this section, we formulate the framework of external patch group (PG) prior guided internal prior learning. We first introduce the external PG prior leaning on natural clean RGB images. Then we propose to employ the learned external PG prior to guide the internal prior (subspace selection and dictionary learning (DL)) learning of given degraded (such as noisy) images. Under the weighted sparse coding framework, the internal prior learning process has alternative closed-form solutions in term of updating sparse coefficients and orthogonal dictionary. Finally, we discuss in details how external prior learned from natural clean images guide the internal prior learning of given degraded (noisy) images.
 
 \subsection{External Patch Group Prior Learning}
 
@@ -180,7 +246,7 @@ We maximize the above objective function via EM algorithm \cite{em} and finally 
 Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
-\mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{T}.
+\mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{\top}.
 \end{equation}
 The singular vector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ are employed as the external orthogonal dictionary to guide the internal dictionary learning. The singular values in the diagonal of $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$ and utilized as prior weights for weighted sparse coding which will be discussed in next section.
 
@@ -192,18 +258,19 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 \subsubsection{Guided Internal Subspace Selection}
 \vspace{-1mm}
 
-Given a real noisy image, we extract the noisy PGs and corresponding mean vectors. Each mean substracted PG is defined as $\mathbf{\overline{Y}}\triangleq \{\mathbf{\overline{x}}_{m}\}_{m=1}^{M}$. Noted that, different from the external PGs, the mean vectors of the internal noisy PGs are saved for recovering. For adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
+
+Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}$. Each mean substracted PG is defined as $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$ where $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}_{n}$ belonging to the $k$th Gaussian component":
 \vspace{-2mm}
 \begin{equation}\label{equ4}\vspace{-1mm}
-P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
+P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})},
 \end{equation}
-and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$.
+and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}}_{n})$.
 
 \vspace{-2mm}
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For noisy PGs $\mathbf{Y}=[\mathbf{y}_{1},...,\mathbf{y}_{N_{k}}]$ in the $k$-th subspace, we consider to utilize the external orthogonal dictionary to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is obtained from the external prior by Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of adaptive dictionary atoms learned from the internal noisy PGs. The learning and denoising are simultaneously performed under the proposed reweighted sparse coding framework as f(for notation simplicity, we ignore the subspace index $k$):
+Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. Assume $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ are the noisy PGs assigned to the $k$-th subspace, such that $\sum_{k=1}^{K}N_{k}=N$ and $\sum_{k=1}^{K}\sum_{n=1}^{N_{k}}k_{n}=NM$, we have that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{y}_{k_{n},1},...,\mathbf{y}_{k_{n},M}]$. We consider to utilize the external orthogonal dictionary $\mathbf{U}_{k}$ to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary in Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\mathbf{Y}_{k}$. The learning and denoising are simultaneously performed under the proposed reweighted sparse coding framework as f(for notation simplicity, we ignore the subspace index $k$):
 \vspace{-2mm}
 \begin{equation}\label{equ5}\vspace{-2mm}
 \begin{split}
@@ -213,7 +280,7 @@ Assume we have assigned all internal noisy PGs to their corresponding most suita
 &
 \text{s.t.}
 \quad
-\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
 where $\lambda_{j}$ is the $j$-th regularization parameter defined as
@@ -224,18 +291,18 @@ where $\lambda_{j}$ is the $j$-th regularization parameter defined as
 We employ square roots of the singular values in $\mathbf{S}$ (please refer Equ. (\ref{equ3})) as external prior weights and add a small positive number $\varepsilon$ to avoid zero denominator. Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{k}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
 \vspace{-2mm}
 \begin{equation}\label{equ7}\vspace{-1mm}
-\mathbf{D}^{T}\mathbf{D} = 
+\mathbf{D}^{\top}\mathbf{D} = 
 \left[\begin{array}{c}
-\mathbf{D}_{e}^{T}
+\mathbf{D}_{e}^{\top}
 \\
-\mathbf{D}_{i}^{T}
+\mathbf{D}_{i}^{\top}
 \end{array}\right]
 [\mathbf{D}_{e}\ \mathbf{D}_{i}]
 =
 \left[\begin{array}{cc}
-\mathbf{D}_{e}^{T}\mathbf{D}_{e}\ \mathbf{D}_{e}^{T}\mathbf{D}_{i}
+\mathbf{D}_{e}^{\top}\mathbf{D}_{e}\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i}
 \\
-\mathbf{D}_{i}^{T}\mathbf{D}_{e}\ \mathbf{D}_{i}^{T}\mathbf{D}_{i}
+\mathbf{D}_{i}^{\top}\mathbf{D}_{e}\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i}
 \end{array}\right]
 =
 \mathbf{I}
@@ -248,18 +315,18 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 \begin{equation}\label{equ8}\vspace{-2mm}
 \begin{split}
 &\bm{\alpha}_{n}^{(t)}:=\argmin_{\bm{\alpha}_{n}\in\mathbb{R}^{3p^2\times 1}}
-\|\mathbf{y}_{m}-\mathbf{D}_{(t)}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|
+\|\mathbf{y}_{n}-\mathbf{D}_{(t)}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|
 \\
 &
 \text{s.t.}
 \quad
-\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
 Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ8}) has a closed-form solution \cite{pgpd} 
 \vspace{-2mm}
 \begin{equation}\label{equ9}\vspace{-2mm}
-\hat{\bm{\alpha}}_{n}= \text{sgn}(\mathbf{D}_{(t)}^{T}\mathbf{y}_{n})\odot \text{max}(|\mathbf{D}_{(t)}^{T}\mathbf{y}_{n}|-\mathbf{\Lambda},\mathbf{0}),
+\hat{\bm{\alpha}}_{n}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{y}_{n})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{y}_{n}|-\mathbf{\Lambda},\mathbf{0}),
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
 \\
@@ -284,34 +351,25 @@ where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the v
 \mathbf{D}
 &
 =
-[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Here we ignore the index $t$ for notation simplicity. The sparse coefficient matrix $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}^{T}]^{T}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ9}) 
-has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}_{i}\mathbf{V}_{i}^{T}$, where $\mathbf{U}_{i}$ and $\mathbf{V}_{i}$ are the orthogonal matrices obtained by the following SVD
-\vspace{-2mm}
+Here we ignore the index $t$ for notation simplicity. The sparse coefficient matrix $\mathbf{A}=[\mathbf{A}_{e}^{\top}\ \mathbf{A}_{i}^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ9}) 
+has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}$ and $\mathbf{V}_{i}$ are the orthogonal matrices obtained by the following SVD
+\vspace{-1mm}
 \begin{equation}\label{equ11}\vspace{-2mm}
-(\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{T})\mathbf{Y}\mathbf{A}_{i}^{T}
+(\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{\top})\mathbf{Y}\mathbf{A}_{i}^{\top}
 =
-\mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{T}
+\mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{\top}
 \end{equation}
 
 \subsection{Discussions}
 
 Here we take a detailed analysis on the guiance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ5}). The guided subspace clustering is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ5}) for all noisy PGs while by internal clustering via GMM we need perform EM algorithm \cite{em}. 2) the external dictionary guides the internal dictionary learning, and the obtained dictionary consisted of the two parts is orthogonal and more adaptive to the given noisy image. The learning process has closed-form solutions and hence is very efficient. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under sparse coding framework. 3) the singular values obtained by SVD in Equ. (\ref{equ3}) reflect the prior weights of the atoms in learned dictionary and can be used as adaptive parameters for real image denoising.
 
-\section{The Denoising Algorithm}
+\subsection{The Denoising Algorithm}
 
-In this work, we solve the real noisy image denoising problem by employing the sparse coding framework \cite{pgpd} in Equ. (\ref{equ6}). We utilize two strategies to gain better performance: one is the 'Summed Area Table' \cite{sat} for faster patch group (PG) searching and the other is that the prior weights in Equ. (\ref{equ3}) are used for better denoising effects. 
-
-\subsection{Fast Internal Patch Group Searching}
-
-Given a RGB image of size $256\times256\times3$, we can extract over 60 thousands local patches of size $6\times6\times3$. It is time-consumming to search patch groups (PG) for local patches one by one. To speed up the searching process, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. Hence, we do not need do distance measure for each local patch.
-
-
-\subsection{The Overall Algorithm}
-
-With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ13}), each column of the PG $\mathbf{Y}$ can be estimated as $\hat{\mathbf{y}}=\mathbf{D}\hat{\boldsymbol{\upalpha}}$. Then we add back its PG mean denoted as $\boldsymbol{\upmu}_{y}$ and reconstruct the clean image $\hat{\mathbf{x}}$ by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it is not effective in our method. The proposed denoising algorithm is summarized in Algorithm 1.
+As discussed in previous section, the proposed framework employs the external prior learned from natural clean images to guide the internal prior learning for any given noisy image. The image denoising is simultaneously done with the learning process. In the denoising procedure, for each subspace (we ignore the indexes $k=1,...,K$ of subspaces for notation simplicity), the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of the internal noisy PGs $\{\mathbf{y}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficients $\{\hat{\bm{\alpha}}_{n}^{T-1}\}$ in (\ref{equ9}) and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Equ. (\ref{equ10}). Then the latent clean PGs $\{\hat{\mathbf{y}}_{n}\}_{n=1}^{N}$ are recovered by $\hat{\mathbf{y}}_{n}=\mathbf{D}_{}^{}\hat{\boldsymbol{\upalpha}}$. We add back its PG mean denoted as $\boldsymbol{\upmu}_{y}$ and reconstruct the clean image $\hat{\mathbf{x}}$ by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it is not effective in our method. The proposed denoising algorithm is summarized in Alg. 1.
 \begin{table}
 \label{alg1}
 \begin{tabular}{l}
@@ -328,6 +386,8 @@ With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ13}), each column of
 \textbf{Initialization:} $\hat{\mathbf{x}}^{(0)}=\mathbf{y}$;
 \\
 \textbf{for} $t = 1:IteNum$ \textbf{do}
+\\
+1. Extracting internal patch groups (PGs) from $\hat{\mathbf{x}}^{(0)}$;
 \\
 \quad\textbf{for} each PG $\mathbf{Y}_{n}$ \textbf{do}
 \\
@@ -415,98 +475,8 @@ In this section, we perform real image denoising experiments on three standard d
 \end{minipage}
 }
 \caption{Some cropped images of the dataset \cite{crosschannel2016}.}
-\label{fig5}
+\label{fig4}
 \end{figure}
-
-\subsection{Implementation Details}
-Our proposed method contains two stages, the external prior guided internal subspace learning stage and the adaptive denoising stage. In the learning stage, there are 4 parameters: the patch size $p$, the number of patches in a PG $M$, the window size $W$ for PG searching and the number of clusters $K$. We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We extracted about 3.6 million PGs from the Kodak PhotoCD Dataset, which includes 24 high quality color images, to train the external prior via PG-GMM. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term. The $\delta$ in iterative regularization is set as $\delta = 0.09$.
-
-\subsection{Comparison on External and Internal methods}
-In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
-
-\begin{table}\label{tab1}
-\caption{Average PSNR(dB)/SSIM results of external, internal, and guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
-\label{tab1}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|}
-\hline
- & \textbf{Noisy} &\textbf{Offline} &\textbf{Online} &\textbf{Guided}  
-\\
-\hline
-PSNR & 34.51 & 38.19 & 38.07 & \textbf{38.55} 
-\\
-\hline
-SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
-\\
-\hline
-\end{tabular}
-\end{center}
-\end{table}
-
-\begin{figure*}\label{fig2}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (a) Noisy Image \\ (34.66dB/0.9178)   }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (h) Offline \\ (34.97dB/0.9441) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (i) Online \\ (36.86dB/0.9622) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.09}dB/\textbf{0.9638})}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (h) Mean Image }
-\end{minipage}
-}
-\caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*}
-
-\begin{figure*}\label{fig2}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (a) Noisy Image \\ (36.15dB/0.9523)    }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) Offline \\ (37.12dB/0.9776) }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (i) Online \\ (35.70dB/0.9755)  }
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (j) Guided \\ (\textbf{37.94}dB/\textbf{0.9804})}
-\end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) Mean Image }
-\end{minipage}
-}
-\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
-\end{figure*}
 
 \begin{figure*}
 \centering
@@ -565,14 +535,35 @@ SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
 \end{minipage}
 }
 \caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
-\label{fig3}
+\label{fig5}
 \end{figure*}
 
+\subsection{Implementation Details}
+Our proposed method contains two stages, the external prior guided internal subspace learning stage and the adaptive denoising stage. In the learning stage, there are 4 parameters: the patch size $p$, the number of patches in a PG $M$, the window size $W$ for PG searching and the number of clusters $K$. We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We extracted about 3.6 million PGs from the Kodak PhotoCD Dataset, which includes 24 high quality color images, to train the external prior via PG-GMM. In the denoising stage, the paramter $\lambda = 0.002$ is used to regularize the sparse term. The $\delta$ in iterative regularization is set as $\delta = 0.09$. Given a RGB image of size $256\times256\times3$, we can extract over 60 thousands local patches of size $6\times6\times3$. It is time-consumming to search patch groups (PG) for local patches one by one. To speed up the searching process, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. Hence, we do not need do distance measure for each local patch.
 
-\subsection{Comparison With other Competing Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently.  The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
+\subsection{Comparison on External and Internal methods}
+In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
 
-We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}. The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
+\begin{table}\label{tab1}
+\caption{Average PSNR(dB)/SSIM results of external, internal, and guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
+\label{tab1}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ & \textbf{Noisy} &\textbf{Offline} &\textbf{Online} &\textbf{Guided}  
+\\
+\hline
+PSNR & 34.51 & 38.19 & 38.07 & \textbf{38.55} 
+\\
+\hline
+SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
+\\
+\hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \begin{table*}\label{tab1}
 \caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
 \label{tab1}
@@ -592,6 +583,20 @@ SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9
 \end{tabular}
 \end{center}
 \end{table*}
+
+\subsection{Comparison With other Competing Methods}
+We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently.  The commercial software Neat Image \cite{neatimage} first estimates the parameters of noise via a large flat area and then filters the noise accordingly. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
+
+We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}. The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
+
+
+\subsection{Discussion on Parameter $\lambda$}
+The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
+\begin{figure}
+\includegraphics[width=1\linewidth]{images/param.png}
+\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
+\label{fig10}
+\end{figure}
 
 \begin{table*}\label{tab2}
 \caption{Average PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
@@ -717,14 +722,6 @@ Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.
 \caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
 \label{fig4}
 \end{figure*}
-
-%\subsection{Discussion on Parameter $\lambda$}
-%The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
-%\begin{figure}
-%\includegraphics[width=1\linewidth]{images/param.png}
-%\caption{The PSNR/SSIM results as a function of the parameter $\lambda$.}
-%\label{fig10}
-%\end{figure}
 
 \section{Conclusion and Future Work}
 
