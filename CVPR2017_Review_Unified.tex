@@ -10,6 +10,7 @@
 \usepackage{upgreek}
 \usepackage{multirow}
 \usepackage{color}
+\usepackage{bm}
 \DeclareMathOperator*{\argmin}{arg\,min}
 
 
@@ -176,19 +177,12 @@ where $K$ is the number of Gaussians and the parameters $\pi_{k}$, $\boldsymbol{
 \end{equation} 
 We maximize the above objective function via EM algorithm \cite{em} and finally obtain the GMM model with learned parameters. Similar to \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
 
-Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. For notation simplicity, we ignore the index of subspace $k$. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
+Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
-\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{U}_{e}^{T}.
+\mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{T}.
 \end{equation}
-The singular vectors in $\mathbf{U}_{e}$ are employed as the external orthogonal dictionary to guide the internal orthogonal dictionary learning (the singular values are employed as prior weights for sparse coding which will be discussed in Section 4). For a dictionary $\mathbf{D}$, its \emph{mutual incoherence} $\mu(\mathbf{D})$ \cite{donoho2003optimally} difined by
-\vspace{-2mm}
-\begin{equation}\label{equ4}
-\vspace{-2mm}
-\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}
-\end{equation} 
-is a measure of quality of dictionary (lower is better). The dictionary $\mathbf{U}_{e}$ always has $0$
-\emph{mutual incoherence} and hence better quality than non-orthogonal dictionaries.
+The singular vector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ are employed as the external orthogonal dictionary to guide the internal dictionary learning. The singular values in the diagonal of $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$ and utilized as prior weights for weighted sparse coding which will be discussed in next section.
 
 \subsection{External Prior Guided Internal Prior Learning}
 
@@ -200,7 +194,7 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 
 Given a real noisy image, we extract the noisy PGs and corresponding mean vectors. Each mean substracted PG is defined as $\mathbf{\overline{Y}}\triangleq \{\mathbf{\overline{x}}_{m}\}_{m=1}^{M}$. Noted that, different from the external PGs, the mean vectors of the internal noisy PGs are saved for recovering. For adaptivity, we project the PG $\mathbf{\overline{Y}}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}$ belonging to the $k$th Gaussian component":
 \vspace{-2mm}
-\begin{equation}\label{equ5}\vspace{-1mm}
+\begin{equation}\label{equ4}\vspace{-1mm}
 P(k|\mathbf{\overline{Y}})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{m}|\mathbf{0},\mathbf{\Sigma}_{l})},
 \end{equation}
 and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}})$.
@@ -209,20 +203,25 @@ and then choosing the component with the maximum A-posteriori (MAP) probability 
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For each subspace, we consider to utilize the external orthogonal dictionary to guide the learning of an orthogonal dictionary $\mathbf{D}:=[\mathbf{D}_{e}\ \mathbf{D}_{i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{e}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is consisted of the first ($3p^2-r$) columns of the singular vector matrix $\mathbf{U}_{e}$ obtained from the external prior by Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{i}$ is consisted of adaptive dictionary atoms learned from the internal noisy PGs. The learning is performed under the sparse coding framework (along with which the denoising of real noisy image is simultaneously done) as follows:
+Assume we have assigned all internal noisy PGs to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For noisy PGs $\mathbf{Y}=[\mathbf{y}_{1},...,\mathbf{y}_{N_{k}}]$ in the $k$-th subspace, we consider to utilize the external orthogonal dictionary to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is obtained from the external prior by Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of adaptive dictionary atoms learned from the internal noisy PGs. The learning and denoising are simultaneously performed under the proposed reweighted sparse coding framework as f(for notation simplicity, we ignore the subspace index $k$):
 \vspace{-2mm}
-\begin{equation}\label{equ6}\vspace{-2mm}
+\begin{equation}\label{equ5}\vspace{-2mm}
 \begin{split}
-&\min_{\mathbf{D}_{i}\in \mathbb{R}^{3p^2\times r},\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
-\|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}
+&\min_{\mathbf{D}_{i},\{\bm{\alpha}_{n}\}}
+\sum_{n=1}^{N}(\|\mathbf{y}_{n}-\mathbf{D}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|)
 \\
 &
 \text{s.t.}
 \quad
-\mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{e}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
+where $\lambda_{j}$ is the $j$-th regularization parameter defined as
+\vspace{-2mm}
+\begin{equation}\label{equ6}\vspace{-2mm}
+\lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{j}}+\varepsilon).
+\end{equation}
+We employ square roots of the singular values in $\mathbf{S}$ (please refer Equ. (\ref{equ3})) as external prior weights and add a small positive number $\varepsilon$ to avoid zero denominator. Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{k}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
 \vspace{-2mm}
 \begin{equation}\label{equ7}\vspace{-1mm}
 \mathbf{D}^{T}\mathbf{D} = 
@@ -242,44 +241,60 @@ Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{
 \mathbf{I}
 \end{equation}
 
-Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem (\ref{equ6}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}=\mathbf{U}_{e}$ and for $t=0, 1, ..., T-1$, alternatively do:
+Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem (\ref{equ5}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}_{(0)}=\mathbf{U}_{k}$ and for $t=0, 1, ..., T-1$, alternatively do:
 \\
-\textbf{Updating Sparse Coefficients}: given the orthogonal dictioanry $\textbf{D}_{i}^{(t)}$, we update the sparse coefficients via solving
+\textbf{Updating Sparse Coefficients}: given the orthogonal dictioanry $\textbf{D}_{(t)}$, we update the sparse coefficients via solving
 \vspace{-2mm}
 \begin{equation}\label{equ8}\vspace{-2mm}
-\textbf{A}^{(t)}:=\argmin_{\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
-\|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}.
-\end{equation}
-Since dictionary $\mathbf{D}_{t}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problem (\ref{equ8}) has closed-form solution $\mathbf{A}^{(t)}=T_{\lambda}(\mathbf{D}_{t}^{T}\mathbf{Y})$, where $T_{\lambda}$ is the soft-thresholding function \cite{softthresholding} (we will give explicit solution in next section).
-%where $T_{\lambda}(\mathbf{\bullet
-%}) = \text{sgn}(\mathbf{\bullet
-%})\odot\max(\mathbf{\bullet
-%},\lambda)$ is soft-thresholding function and $\odot$ is element-wise product.
-\\
-\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}$, we update the orthogonal dictionary via solving
-\vspace{-2mm}
-\begin{equation}\label{equ9} \vspace{-2mm}
 \begin{split}
-\textbf{D}_{i}^{(t+1)}:=
-&
-\argmin_{\textbf{D}_{i}\in\mathbb{R}^{3p^2\times r}}
-\|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}]\mathbf{A}^{(t)}\|_{F}^{2}
+&\bm{\alpha}_{n}^{(t)}:=\argmin_{\bm{\alpha}_{n}\in\mathbb{R}^{3p^2\times 1}}
+\|\mathbf{y}_{m}-\mathbf{D}_{(t)}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|
 \\
 &
 \text{s.t.}
 \quad
-\mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Here we ignore the index ($t$) for notation simplicity. The sparse coefficient matrix $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}^{T}]^{T}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ9}) 
+Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ8}) has a closed-form solution \cite{pgpd} 
+\vspace{-2mm}
+\begin{equation}\label{equ9}\vspace{-2mm}
+\hat{\bm{\alpha}}_{n}= \text{sgn}(\mathbf{D}_{(t)}^{T}\mathbf{y}_{n})\odot \text{max}(|\mathbf{D}_{(t)}^{T}\mathbf{y}_{n}|-\mathbf{\Lambda},\mathbf{0}),
+\end{equation}
+where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
+\\
+\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}=[\bm{\alpha}_{1}^{(t)},...,\bm{\alpha}_{N}^{(t)}]$, we update the internal orthogonal dictionary via solving
+\vspace{-2mm}
+\begin{equation}\label{equ10} \vspace{-2mm}
+\begin{split}
+\textbf{D}_{i}^{(t+1)}
+:
+&
+=
+\argmin_{\textbf{D}_{i}}
+\sum_{n=1}^{N}(\|\mathbf{y}_{n}-\mathbf{D}\bm{\alpha}_{n}^{(t)}\|_{2}^{2})
+\\
+&
+=
+\argmin_{\textbf{D}_{i}}
+\|\mathbf{Y}-\mathbf{D}\mathbf{A}^{(t)}\|_{F}^{2}
+\\
+\text{s.t.}
+\quad
+\mathbf{D}
+&
+=
+[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{T}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{T}\mathbf{D}_{i} = \mathbf{0},
+\end{split}
+\end{equation}
+Here we ignore the index $t$ for notation simplicity. The sparse coefficient matrix $\mathbf{A}=[\mathbf{A}_{e}^{T}\ \mathbf{A}_{i}^{T}]^{T}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ9}) 
 has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}_{i}\mathbf{V}_{i}^{T}$, where $\mathbf{U}_{i}$ and $\mathbf{V}_{i}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-2mm}
-\begin{equation}\label{equ10}\vspace{-2mm}
+\begin{equation}\label{equ11}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{T})\mathbf{Y}\mathbf{A}_{i}^{T}
 =
 \mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{T}
 \end{equation}
-
 
 \subsection{Discussions}
 
@@ -293,24 +308,6 @@ In this work, we solve the real noisy image denoising problem by employing the s
 
 Given a RGB image of size $256\times256\times3$, we can extract over 60 thousands local patches of size $6\times6\times3$. It is time-consumming to search patch groups (PG) for local patches one by one. To speed up the searching process, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. Hence, we do not need do distance measure for each local patch.
 
-\subsection{Prior Weights for Weighted Sparse Coding}
-
-Under the sparse coding framework \cite{ksvd} in Equ. (\ref{equ6}), the dictionary atoms are treated equally for each subspace. This ignores the external weight prior learned from clean images. The singular values in the diagonal of $\mathbf{S}_{e}$ (Equ. (\ref{equ3})) reflect the significance of the singular vectors in $\mathbf{U}_{e}$. Therefore, similar to \cite{pgpd}, we employ a weighted sparse coding framework for real noisy image denoising problem. Given a real noisy image, we extract the internal PGs  from it and assign the noisy PGs into different subspaces via Equ. (\ref{equ5}). For each subspace, the learned orthogonal dictionary is denoted as $\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}]$, and the PGs in this subspace is denoted as $\mathbf{Y}$. We employ the square root of singular values in $\mathbf{S}_{e}$ as the weight prior. For each column $\mathbf{y}$ of the noisy PG $\mathbf{Y}$, its sparse coefficients on dictionary $\mathbf{D}$ is obtained by solving
-\vspace{-2mm}
-\begin{equation}\label{equ11}\vspace{-2mm}
-\hat{\boldsymbol{\upalpha}}:=\arg\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{y}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|,
-\end{equation}
-where $\lambda_{i}$ is the $i$th regularization parameter defined as
-\vspace{-2mm}
-\begin{equation}\label{equ12}\vspace{-2mm}
-\lambda_{i} = \lambda/(\sqrt{\mathbf{S}_{i}}+\varepsilon).
-\end{equation}
-We add a small positive number $\varepsilon$ to avoid zero denominator. Since the learned dictionary $\mathbf{D}$ is orthonormal, the Equ. (\ref{equ11}) also has a closed-form solution \cite{pgpd} 
-\vspace{-2mm}
-\begin{equation}\label{equ13}\vspace{-2mm}
-\hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{D}^{T}\mathbf{y})\odot \text{max}(|\mathbf{D}^{T}\mathbf{y}|-\mathbf{\Lambda},\mathbf{0}),
-\end{equation}
-where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{D}^{T}\mathbf{y}|$ is the absolute value of each entry of vector $|\mathbf{D}^{T}\mathbf{y}|$. The closed-form solution makes our denoising process very efficient. 
 
 \subsection{The Overall Algorithm}
 
@@ -319,22 +316,24 @@ With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ13}), each column of
 \label{alg1}
 \begin{tabular}{l}
 \hline
-\textbf{Alg. 1}: External Prior Guided Internal Orthogonal 
+\textbf{Alg. 1}: External PG Prior Guided Internal PG Prior
 \\
-\quad \quad \quad Dictionary Learning for Denoising
+\quad \quad \quad Learning for Real Image Denoising
 \\
 \hline
-\textbf{Input:} Noisy image $\mathbf{y}$, PG-GMM model
+\textbf{Input:} Noisy image $\mathbf{y}$, external prior GMM model
 \\
-1. Initialization: $\hat{\mathbf{x}}^{(0)}=\mathbf{y},\mathbf{y}^{(0)}=\mathbf{y}$;
+\textbf{Output:} The denoised image $\hat{\mathbf{x}}$.
+\\
+\textbf{Initialization:} $\hat{\mathbf{x}}^{(0)}=\mathbf{y}$;
 \\
 \textbf{for} $t = 1:IteNum$ \textbf{do}
 \\
-\quad\textbf{for} each PG $\mathbf{Y}$ \textbf{do}
+\quad\textbf{for} each PG $\mathbf{Y}_{n}$ \textbf{do}
 \\
-2.\quad Calculate group mean $\boldsymbol{\upmu}_{y}$ and form PG $\mathbf{\overline{Y}}$;
+2.\quad Calculate group mean $\boldsymbol{\upmu}_{n}$ and form PG $\mathbf{\overline{Y}}_{n}$;
 \\
-3.\quad Gaussian component selection via (\ref{equ3});
+3.\quad Gaussian component selection via Equ. (\ref{equ5});
 \\
 \quad\textbf{end for}
 \\
@@ -352,7 +351,6 @@ With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ13}), each column of
 \\
 \textbf{end for}
 \\
-\textbf{Output:} The recovered image $\hat{\mathbf{x}}^{(IteNum)}$.\\
 \hline
 \end{tabular}
 \end{table}
