@@ -150,27 +150,10 @@ G.~Yu, G.~Sapiro, and S.~Mallat.
   {Gaussian} mixture models to structured sparsity.
 \newblock {\em IEEE Transactions on Image Processing}, 21(5):2481--2499, 2012.
 
-\bibitem{Irani2009sr}
-Daniel Glasner, Shai Bagon, and Michal Irani.
-\newblock Super-resolution from a single image.
-\newblock {\em ICCV}, 2009.
-
-\bibitem{Irani2013separating}
-Maria Zontak, Inbar Mosseri, and Michal Irani.
-\newblock Separating signal from noise using patch recurrence across scales.
-\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
-  Pattern Recognition}, pages 1195--1202, 2013.
-
-\bibitem{Irani2014deblur}
-Tomer Michaeli and Michal Irani.
-\newblock Blind deblurring using internal patch recurrence.
-\newblock {\em European Conference on Computer Vision}, pages 783--798, 2014.
-
-\bibitem{Irani2016dehazing}
-Y.~Bahat and M.~Irani.
-\newblock Blind dehazing using internal patch recurrence.
-\newblock {\em IEEE International Conference on Computational Photography
-  (ICCP)}, pages 1--9, May 2016.
+\bibitem{ncsr}
+W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
+\newblock Nonlocally centralized sparse representation for image restoration.
+\newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
 
 \bibitem{blsgsm}
 J.~Portilla, V.~Strela, M.J. Wainwright, and E.P. Simoncelli.
@@ -189,18 +172,6 @@ M.~Lebrun, A.~Buades, and J.~M. Morel.
 \newblock A nonlocal bayesian image denoising algorithm.
 \newblock {\em SIAM Journal on Imaging Sciences}, 6(3):1665--1688, 2013.
 
-\bibitem{ncsr}
-W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
-\newblock Nonlocally centralized sparse representation for image restoration.
-\newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
-
-\bibitem{bao2013fast}
-Chenglong Bao, Jian-Feng Cai, and Hui Ji.
-\newblock Fast sparsity-based orthogonal dictionary learning for image
-  restoration.
-\newblock {\em Proceedings of the IEEE International Conference on Computer
-  Vision}, pages 3384--3391, 2013.
-
 \bibitem{em}
 A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
 \newblock Maximum likelihood from incomplete data via the {EM} algorithm.
@@ -214,15 +185,22 @@ David~L Donoho and Michael Elad.
 \newblock {\em Proceedings of the National Academy of Sciences},
   100(5):2197--2202, 2003.
 
+\bibitem{softthresholding}
+D.~L. Donoho.
+\newblock De-noising by soft-thresholding.
+\newblock {\em IEEE Trans. Inf. Theor.}, 41(3):613--627, 1995.
+
+\bibitem{bao2013fast}
+Chenglong Bao, Jian-Feng Cai, and Hui Ji.
+\newblock Fast sparsity-based orthogonal dictionary learning for image
+  restoration.
+\newblock {\em Proceedings of the IEEE International Conference on Computer
+  Vision}, pages 3384--3391, 2013.
+
 \bibitem{sat}
 Franklin~C. Crow.
 \newblock Summed-area tables for texture mapping.
 \newblock {\em SIGGRAPH Comput. Graph.}, 18(3):207--212, January 1984.
-
-\bibitem{viola2004robust}
-Paul Viola and Michael~J Jones.
-\newblock Robust real-time face detection.
-\newblock {\em International journal of computer vision}, 57(2):137--154, 2004.
 
 \bibitem{osher2005iterative}
 S.~Osher, M.~Burger, D.~Goldfarb, J.~Xu, and W.~Yin.

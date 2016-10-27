@@ -5,46 +5,45 @@ The style file: unsrt.bst
 Database file #1: egbib.bib
 Warning--I'm ignoring sat's extra "year" field
 --line 1262 of file egbib.bib
-Warning--I didn't find a database entry for "csr"
-You've used 39 entries,
+You've used 35 entries,
             1791 wiz_defined-function locations,
-            671 strings with 9538 characters,
-and the built_in function-call counts, 10856 in all, are:
-= -- 1054
-> -- 414
-< -- 14
-+ -- 153
-- -- 114
-* -- 743
-:= -- 1608
-add.period$ -- 117
-call.type$ -- 39
-change.case$ -- 37
+            650 strings with 8911 characters,
+and the built_in function-call counts, 9718 in all, are:
+= -- 941
+> -- 372
+< -- 11
++ -- 138
+- -- 103
+* -- 683
+:= -- 1447
+add.period$ -- 105
+call.type$ -- 35
+change.case$ -- 33
 chr.to.int$ -- 0
-cite$ -- 39
-duplicate$ -- 478
-empty$ -- 992
-format.name$ -- 114
-if$ -- 2467
+cite$ -- 35
+duplicate$ -- 418
+empty$ -- 894
+format.name$ -- 103
+if$ -- 2194
 int.to.chr$ -- 0
-int.to.str$ -- 39
-missing$ -- 40
-newline$ -- 198
-num.names$ -- 39
-pop$ -- 87
+int.to.str$ -- 35
+missing$ -- 36
+newline$ -- 178
+num.names$ -- 35
+pop$ -- 75
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 303
+skip$ -- 255
 stack$ -- 0
-substring$ -- 1000
-swap$ -- 171
-text.length$ -- 14
+substring$ -- 916
+swap$ -- 142
+text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 115
-width$ -- 41
-write$ -- 425
-(There were 2 warnings)
+while$ -- 103
+width$ -- 37
+write$ -- 382
+(There was 1 warning)

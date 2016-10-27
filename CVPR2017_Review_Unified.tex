@@ -179,7 +179,7 @@ We maximize the above objective function via EM algorithm \cite{em} and finally 
 Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. For notation simplicity, we ignore the index of subspace $k$. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
-\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{V}_{e}^{T}.
+\mathbf{\Sigma}=\mathbf{U}_{e}\mathbf{S}_{e}\mathbf{U}_{e}^{T}.
 \end{equation}
 The singular vectors in $\mathbf{U}_{e}$ are employed as the external orthogonal dictionary to guide the internal orthogonal dictionary learning (the singular values are employed as prior weights for sparse coding which will be discussed in Section 4). For a dictionary $\mathbf{D}$, its \emph{mutual incoherence} $\mu(\mathbf{D})$ \cite{donoho2003optimally} difined by
 \vspace{-2mm}
@@ -250,11 +250,11 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 \textbf{A}^{(t)}:=\argmin_{\textbf{A}\in\mathbb{R}^{3p^2\times MN}}
 \|\mathbf{Y}-[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]\mathbf{A}\|_{F}^{2}+\lambda\|\mathbf{A}\|_{1}.
 \end{equation}
-Since dictionary $\mathbf{D}_{t}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problem (\ref{equ8}) has closed-form solution $\mathbf{A}^{(t)}=T_{\lambda}(\mathbf{D}_{t}^{T}\mathbf{Y})$, 
-where $T_{\lambda}(\mathbf{\bullet
-}) = \text{sgn}(\mathbf{\bullet
-})\odot\max(\mathbf{\bullet
-},\lambda)$ is soft-thresholding function and $\odot$ is element-wise product.
+Since dictionary $\mathbf{D}_{t}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problem (\ref{equ8}) has closed-form solution $\mathbf{A}^{(t)}=T_{\lambda}(\mathbf{D}_{t}^{T}\mathbf{Y})$, where $T_{\lambda}$ is the soft-thresholding function \cite{softthresholding} (we will give explicit solution in next section).
+%where $T_{\lambda}(\mathbf{\bullet
+%}) = \text{sgn}(\mathbf{\bullet
+%})\odot\max(\mathbf{\bullet
+%},\lambda)$ is soft-thresholding function and $\odot$ is element-wise product.
 \\
 \textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}$, we update the orthogonal dictionary via solving
 \vspace{-2mm}
@@ -293,33 +293,28 @@ In this work, we solve the real noisy image denoising problem by employing the s
 
 Given a RGB image of size $256\times256\times3$, we can extract over 60 thousands local patches of size $6\times6\times3$. It is time-consumming to search patch groups (PG) for local patches one by one. To speed up the searching process, we employ the technique of 'Summed Area Table' \cite{sat} for efficient PG searching. The SAT permits to evaluate the sum of pixel values in rectangular regions of the image with four operations, regardless of the region size. Hence, we do not need do distance measure for each local patch.
 
-\subsection{Prior Weights for Sparse Coding}
+\subsection{Prior Weights for Weighted Sparse Coding}
 
-\begin{equation}\label{equ10}
-\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{\overline{y}}_{m}-\mathbf{U}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|.
+Under the sparse coding framework \cite{ksvd} in Equ. (\ref{equ6}), the dictionary atoms are treated equally for each subspace. This ignores the external weight prior learned from clean images. The singular values in the diagonal of $\mathbf{S}_{e}$ (Equ. (\ref{equ3})) reflect the significance of the singular vectors in $\mathbf{U}_{e}$. Therefore, similar to \cite{pgpd}, we employ a weighted sparse coding framework for real noisy image denoising problem. Given a real noisy image, we extract the internal PGs  from it and assign the noisy PGs into different subspaces via Equ. (\ref{equ5}). For each subspace, the learned orthogonal dictionary is denoted as $\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}]$, and the PGs in this subspace is denoted as $\mathbf{Y}$. We employ the square root of singular values in $\mathbf{S}_{e}$ as the weight prior. For each column $\mathbf{y}$ of the noisy PG $\mathbf{Y}$, its sparse coefficients on dictionary $\mathbf{D}$ is obtained by solving
+\vspace{-2mm}
+\begin{equation}\label{equ11}\vspace{-2mm}
+\hat{\boldsymbol{\upalpha}}:=\arg\min\nolimits_{\boldsymbol{\upalpha}}\|\mathbf{y}-\mathbf{D}\boldsymbol{\upalpha}\|_{2}^{2}+\sum_{i=1}^{3p^{2}}\lambda_{i}|\boldsymbol{\upalpha}_{i}|,
 \end{equation}
-The $i$th entry of the regularization parameter $\lambda_{i}$ 
-\begin{equation}\label{equ11}
-\lambda_{i} = \lambda/(\mathbf{S}_{i}+\varepsilon),
+where $\lambda_{i}$ is the $i$th regularization parameter defined as
+\vspace{-2mm}
+\begin{equation}\label{equ12}\vspace{-2mm}
+\lambda_{i} = \lambda/(\sqrt{\mathbf{S}_{i}}+\varepsilon).
 \end{equation}
-where $\varepsilon$ is a small positive number to avoid dividing by zero. Since the dictionary $\mathbf{U}$ is orthonormal, it is not difficult to find out that (\ref{equ4}) has a closed-form solution (detailed derivation can be found in the supplementary material):
-\begin{equation}\label{equ12}
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{4pt}
-\hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{U^{T}\overline{y}}_{m})\odot \text{max}(|\mathbf{U^{T}\overline{y}}_{m}|-\mathbf{\Lambda},\mathbf{0}),
+We add a small positive number $\varepsilon$ to avoid zero denominator. Since the learned dictionary $\mathbf{D}$ is orthonormal, the Equ. (\ref{equ11}) also has a closed-form solution \cite{pgpd} 
+\vspace{-2mm}
+\begin{equation}\label{equ13}\vspace{-2mm}
+\hat{\boldsymbol{\upalpha}}= \text{sgn}(\mathbf{D}^{T}\mathbf{y})\odot \text{max}(|\mathbf{D}^{T}\mathbf{y}|-\mathbf{\Lambda},\mathbf{0}),
 \end{equation}
-where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{U^{T}\overline{y}}_{m}|$ is the absolute value of each entry of vector $|\mathbf{U^{T}\overline{y}}_{m}|$. The closed-form solution makes our weighted sparse coding process very efficient. 
-
-%\subsection{Effectively dealing with different noisy images}
-%For real image denoising, we can perform well on images which have similar noise levels with the training dataset. How can we deal with the real noisy images whose noise levels are higher than the training dataset? The answer is to remove the noise by more iterations. The input image of each iteration is the recovered image of previous iteration. This makes sense since we can still view the recovered image as a real noisy image. 
-
-%This will also bring a second problem, that how we could automatically terminate the iteration. This can be solved by two methods. One way is to compare the images between two iterations and calculate their difference, the iteration can be terminated if the difference is smaller than a threshold. The other way is to estimate the noise level of the current image and terminate the iterations when the noise level is lower than a preset threshold. We employ the second way and set the threshold as 0.002 in our experiments. In fact, most of our testing images will be denoised well in one iteration.
-
-%\subsection{Efficient Model Selection by Gating Network}
-%In the Gaussian component selection procedure, if we employ the full posterior estimation, the speed is not fast. Our algorithm can be speeded up by introducing the Gating network model.
+where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication, and $|\mathbf{D}^{T}\mathbf{y}|$ is the absolute value of each entry of vector $|\mathbf{D}^{T}\mathbf{y}|$. The closed-form solution makes our denoising process very efficient. 
 
 \subsection{The Overall Algorithm}
-With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ7}), the clean patch in a PG can be estimated as $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$. Then the clean image $\hat{\mathbf{x}}$ can be reconstructed by aggregating all the estimated PGs. In practice, we could perform the above denoising procedures for several iterations for better denoising outputs. In iteration $t$, we use the iterative regularization strategy \cite{osher2005iterative} to add back to the recovered image $\hat{\mathbf{x}}^{(t-1)}$ some estimation residual in iteration $t-1$. The proposed denoising algorithm is summarized in Algorithm 1 (Alg. 1).
+
+With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ13}), each column of the PG $\mathbf{Y}$ can be estimated as $\hat{\mathbf{y}}=\mathbf{D}\hat{\boldsymbol{\upalpha}}$. Then we add back its PG mean denoted as $\boldsymbol{\upmu}_{y}$ and reconstruct the clean image $\hat{\mathbf{x}}$ by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it is not effective in our method. The proposed denoising algorithm is summarized in Algorithm 1.
 \begin{table}
 \label{alg1}
 \begin{tabular}{l}
@@ -366,33 +361,6 @@ With the solution $\hat{\boldsymbol{\upalpha}}$ in (\ref{equ7}), the clean patch
 %------------------------------------------------------------------------
 \section{Experiments}
 In this section, we perform real image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}, some samples are shown in Figure \ref{fig5}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
-\begin{figure}[t]
-\centering
-\subfigure{
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Canon_EOS_5D_Mark3_ISO_3200_C3.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D600_ISO_3200_C1.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_1600_B2.png}
-\end{minipage}
-}\vspace{-0.14in}
-\subfigure{
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A1.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_3200_A5.png}
-\end{minipage}
-\begin{minipage}{0.15\textwidth}
-\includegraphics[width=1\textwidth]{images/resize_CC_Mean_Nikon_D800_ISO_6400_B1.png}
-\end{minipage}
-}
-\caption{Some testing images in the dataset \cite{crosschannel2016}.}
-\label{fig5}
-\end{figure}
 
 \begin{figure}[t]
 \centering
