@@ -270,12 +270,12 @@ and then choosing the component with the maximum A-posteriori (MAP) probability 
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. Assume $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ are the noisy PGs assigned to the $k$-th subspace, such that $\sum_{k=1}^{K}N_{k}=N$ and $\sum_{k=1}^{K}\sum_{n=1}^{N_{k}}k_{n}=NM$, we have that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{y}_{k_{n},1},...,\mathbf{y}_{k_{n},M}]$. We consider to utilize the external orthogonal dictionary $\mathbf{U}_{k}$ to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary in Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\mathbf{Y}_{k}$. The learning and denoising are simultaneously performed under the proposed reweighted sparse coding framework as f(for notation simplicity, we ignore the subspace index $k$):
+Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. Assume $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ are the noisy PGs assigned to the $k$-th subspace, such that $\sum_{k=1}^{K}N_{k}=N$ and $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$. We consider to utilize the external orthogonal dictionary $\mathbf{U}_{k}$ to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary in Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\mathbf{Y}_{k}=\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. For notation simplicity, we ignore the subspace index $k$ and denote as noisy PGs $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning and denoising are simultaneously performed under the weighted sparse coding framework proposed as follows:
 \vspace{-2mm}
 \begin{equation}\label{equ5}\vspace{-2mm}
 \begin{split}
-&\min_{\mathbf{D}_{i},\{\bm{\alpha}_{n}\}}
-\sum_{n=1}^{N}(\|\mathbf{y}_{n}-\mathbf{D}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|)
+&\min_{\mathbf{D}_{i},\{\bm{\alpha}_{n,m}\}}
+\sum_{n=1}^{N}\sum_{m=1}^{M}(\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|)
 \\
 &
 \text{s.t.}
@@ -283,7 +283,7 @@ Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n
 \mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\lambda_{j}$ is the $j$-th regularization parameter defined as
+where $\bm{\alpha}_{n,m}$ is the sparse coefficients vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ of the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
 \vspace{-2mm}
 \begin{equation}\label{equ6}\vspace{-2mm}
 \lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{j}}+\varepsilon).
@@ -314,8 +314,8 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 \vspace{-2mm}
 \begin{equation}\label{equ8}\vspace{-2mm}
 \begin{split}
-&\bm{\alpha}_{n}^{(t)}:=\argmin_{\bm{\alpha}_{n}\in\mathbb{R}^{3p^2\times 1}}
-\|\mathbf{y}_{n}-\mathbf{D}_{(t)}\bm{\alpha}_{n}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,j}|
+&\bm{\alpha}_{n,m}^{(t)}:=\argmin_{\bm{\alpha}_{n,m}}
+\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}_{(t)}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|
 \\
 &
 \text{s.t.}
@@ -326,11 +326,11 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ8}) has a closed-form solution \cite{pgpd} 
 \vspace{-2mm}
 \begin{equation}\label{equ9}\vspace{-2mm}
-\hat{\bm{\alpha}}_{n}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{y}_{n})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{y}_{n}|-\mathbf{\Lambda},\mathbf{0}),
+\bm{\alpha}_{n,m}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m}|-\mathbf{\Lambda},\mathbf{0}),
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
 \\
-\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}=[\bm{\alpha}_{1}^{(t)},...,\bm{\alpha}_{N}^{(t)}]$, we update the internal orthogonal dictionary via solving
+\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$, we update the internal orthogonal dictionary via solving
 \vspace{-2mm}
 \begin{equation}\label{equ10} \vspace{-2mm}
 \begin{split}
@@ -339,7 +339,7 @@ where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the v
 &
 =
 \argmin_{\textbf{D}_{i}}
-\sum_{n=1}^{N}(\|\mathbf{y}_{n}-\mathbf{D}\bm{\alpha}_{n}^{(t)}\|_{2}^{2})
+\sum_{n=1}^{N}(\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}\bm{\alpha}_{n,m}^{(t)}\|_{2}^{2})
 \\
 &
 =
@@ -354,11 +354,11 @@ where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the v
 [\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Here we ignore the index $t$ for notation simplicity. The sparse coefficient matrix $\mathbf{A}=[\mathbf{A}_{e}^{\top}\ \mathbf{A}_{i}^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}$ and the internal part $\mathbf{A}_{i}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ9}) 
-has a closed-form solution $\mathbf{D}_{i}^{*}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}$ and $\mathbf{V}_{i}$ are the orthogonal matrices obtained by the following SVD
+The sparse coefficient matrix $\mathbf{A}^{(t)}=[(\mathbf{A}_{e}^{(t)})^{\top}\ (\mathbf{A}_{i}^{(t)})^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}^{(t)}$ and the internal part $\mathbf{A}_{i}^{(t)}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}^{(t)}$, respectively. According to the Proposition 2.2 in \cite{bao2013fast}, the problem (\ref{equ10}) 
+has a closed-form solution $\mathbf{D}_{i}^{(t+1)}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}$ and $\mathbf{V}_{i}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-1mm}
 \begin{equation}\label{equ11}\vspace{-2mm}
-(\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{\top})\mathbf{Y}\mathbf{A}_{i}^{\top}
+(\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{\top})\mathbf{Y}(\mathbf{A}_{i}^{(t)})^{\top}
 =
 \mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{\top}
 \end{equation}
