@@ -330,7 +330,7 @@ Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is or
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
 \\
-\textbf{Updating Orthogonal Dictionary}: given the sparse coefficients $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$, we update the internal orthogonal dictionary via solving
+\textbf{Updating Internal Orthogonal Dictionary}: given the sparse coefficients vectors $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$, we update the internal orthogonal dictionary via solving
 \vspace{-2mm}
 \begin{equation}\label{equ10} \vspace{-2mm}
 \begin{split}
@@ -369,51 +369,63 @@ Here we take a detailed analysis on the guiance of the external patch group (PG)
 
 \subsection{The Denoising Algorithm}
 
-As discussed in previous section, the proposed framework employs the external prior learned from natural clean images to guide the internal prior learning for any given noisy image. The image denoising is simultaneously done with the learning process. In the denoising procedure, for each subspace (we ignore the indexes $k=1,...,K$ of subspaces for notation simplicity), the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of the internal noisy PGs $\{\mathbf{y}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficients $\{\hat{\bm{\alpha}}_{n}^{T-1}\}$ in (\ref{equ9}) and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Equ. (\ref{equ10}). Then the latent clean PGs $\{\hat{\mathbf{y}}_{n}\}_{n=1}^{N}$ are recovered by $\hat{\mathbf{y}}_{n}=\mathbf{D}_{}^{}\hat{\boldsymbol{\upalpha}}$. We add back its PG mean denoted as $\boldsymbol{\upmu}_{y}$ and reconstruct the clean image $\hat{\mathbf{x}}$ by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it is not effective in our method. The proposed denoising algorithm is summarized in Alg. 1.
+We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning (DL) process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean substracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficients vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in (\ref{equ9}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Equ. (\ref{equ10}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
+\vspace{-2mm}
+\begin{equation}\label{equ12}\vspace{-2mm}
+\hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
+\end{equation}
+where $n=1,...,N;m=1,...,M$.
+
 \begin{table}
 \label{alg1}
 \begin{tabular}{l}
 \hline
-\textbf{Alg. 1}: External PG Prior Guided Internal PG Prior
+\textbf{Alg. 1}: External Patch Group (PG) Prior Guided Internal
 \\
-\quad \quad \quad Learning for Real Image Denoising
+\quad \quad \quad PG Prior Learning for Image Denoising
 \\
 \hline
-\textbf{Input:} Noisy image $\mathbf{y}$, external prior GMM model
+\textbf{Input:} Noisy image $\mathbf{y}$, external PG prior GMM model
 \\
 \textbf{Output:} The denoised image $\hat{\mathbf{x}}$.
 \\
 \textbf{Initialization:} $\hat{\mathbf{x}}^{(0)}=\mathbf{y}$;
 \\
-\textbf{for} $t = 1:IteNum$ \textbf{do}
+\textbf{for} $Ite = 1:IteNum$ \textbf{do}
 \\
-1. Extracting internal patch groups (PGs) from $\hat{\mathbf{x}}^{(0)}$;
+1. Extracting internal PGs from $\hat{\mathbf{x}}^{(Ite-1)}$;
 \\
 \quad\textbf{for} each PG $\mathbf{Y}_{n}$ \textbf{do}
 \\
-2.\quad Calculate group mean $\boldsymbol{\upmu}_{n}$ and form PG $\mathbf{\overline{Y}}_{n}$;
+2.\quad Calculate group mean vector $\boldsymbol{\upmu}_{n}$ and form 
 \\
-3.\quad Gaussian component selection via Equ. (\ref{equ5});
+\quad \ \ \ mean substracted PG $\mathbf{\overline{Y}}_{n}$;
+\\
+3.\quad Subspace selection via Equ. (\ref{equ4});
 \\
 \quad\textbf{end for}
 \\
-\quad\textbf{for} each Internal Subspace \textbf{do}
+\quad\textbf{for} the PGs in each Subspace \textbf{do}
 \\
-4.\quad Internal Subspace Learning by (\ref{equ4});
+4.\quad External PG prior Guided Internal Orthogonal
 \\
-5.\quad Recover each patch in all PGs via $\hat{\mathbf{x}}_{m}=\mathbf{D}\hat{\boldsymbol{\upalpha}}+\boldsymbol{\upmu}_{y}$;
+\quad \ \ \ Dictionary Learning by solving (\ref{equ5});
+\\
+5.\quad Recover each patch in all PGs via Equ. (\ref{equ12});
 \\
 \quad\textbf{end for}
 \\
 6. Aggregate the recovered PGs of all subspaces to form
 \\
-\quad the recovered image $\hat{\mathbf{x}}^{(t)}$;
+\quad the recovered image $\hat{\mathbf{x}}^{(Ite)}$;
 \\
 \textbf{end for}
 \\
 \hline
 \end{tabular}
 \end{table}
+
+The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it does no help to our proposed method. The proposed denoising algorithm is summarized in Alg. 1.
 
 
 %------------------------------------------------------------------------
