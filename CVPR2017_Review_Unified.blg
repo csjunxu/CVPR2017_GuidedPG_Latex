@@ -4,46 +4,46 @@ The top-level auxiliary file: CVPR2017_Review_Unified.aux
 The style file: unsrt.bst
 Database file #1: egbib.bib
 Warning--I'm ignoring sat's extra "year" field
---line 1262 of file egbib.bib
-You've used 35 entries,
+--line 1271 of file egbib.bib
+You've used 32 entries,
             1791 wiz_defined-function locations,
-            650 strings with 8911 characters,
-and the built_in function-call counts, 9718 in all, are:
-= -- 941
-> -- 372
-< -- 11
-+ -- 138
-- -- 103
-* -- 683
-:= -- 1447
-add.period$ -- 105
-call.type$ -- 35
-change.case$ -- 33
+            632 strings with 8373 characters,
+and the built_in function-call counts, 8830 in all, are:
+= -- 851
+> -- 343
+< -- 10
++ -- 127
+- -- 95
+* -- 620
+:= -- 1319
+add.period$ -- 96
+call.type$ -- 32
+change.case$ -- 30
 chr.to.int$ -- 0
-cite$ -- 35
-duplicate$ -- 418
-empty$ -- 894
-format.name$ -- 103
-if$ -- 2194
+cite$ -- 32
+duplicate$ -- 380
+empty$ -- 812
+format.name$ -- 95
+if$ -- 1993
 int.to.chr$ -- 0
-int.to.str$ -- 35
-missing$ -- 36
-newline$ -- 178
-num.names$ -- 35
-pop$ -- 75
+int.to.str$ -- 32
+missing$ -- 33
+newline$ -- 163
+num.names$ -- 32
+pop$ -- 70
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 255
+skip$ -- 230
 stack$ -- 0
-substring$ -- 916
-swap$ -- 142
-text.length$ -- 11
+substring$ -- 820
+swap$ -- 128
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 103
-width$ -- 37
-write$ -- 382
+while$ -- 93
+width$ -- 34
+write$ -- 349
 (There was 1 warning)

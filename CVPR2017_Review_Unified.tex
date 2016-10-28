@@ -12,7 +12,7 @@
 \usepackage{color}
 \usepackage{bm}
 \DeclareMathOperator*{\argmin}{arg\,min}
-
+\usepackage{arydshln}
 
 % Include other packages here, before hyperref.
 
@@ -65,7 +65,7 @@ For image denoising problem, the external and internal priors are playing key ro
 
 Most vision systems, such as medical imaging and surveillance, need accurate feature extraction from high-quality images. The camera sensors and outdoor low light conditions will unavoidly bring noise to the captured images. The impact is that the image details will be lost or hardly visible. As a result, image denoising is an essential procedure for the reliability of these vision systems. In the research ara, image denoising is also an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. 
 
-For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). In real world, the cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. Under these situations, the noise is generated in a complex form and also been changed during the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian \cite{crosschannel2016,healey1994radiometric}. It depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed for AWGN would become much less effective on real noisy images. 
+For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,cbm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). In real world, the cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. Under these situations, the noise is generated in a complex form and also been changed during the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian \cite{crosschannel2016,healey1994radiometric}. It depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed for AWGN would become much less effective on real noisy images. 
 
 In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016} are developed to deal with real noisy images. Almost all these methods employ a two-stage framework: estimating the parameters of the assumed noise model (usually Gaussian) and performing denoising with the help of the noise modeling and estimation in the first stage. However, the Gaussian assumption is inflexible in describing the complex noise on real noisy images \cite{Liu2008}. Although the mixture of Gaussians (MoG) model is possible to approximate any noise distribution \cite{Bishop}, estimating its parameters is time consuming via nonparametric Bayesian techniques \cite{Zhu_2016_CVPR}. To evaluate the performanec of these methods on dealing with complex real noise, we apply these methods, with corresponding default parameters, on a real noisy image provided in \cite{crosschannel2016}. The testing image is captured by a Nikon D800 camera when ISO is 3200. The "ground truth" image is also provided with which we can calculate objective measurements such as PSNR and SSIM \cite{ssim}. The denoised images are listed in Figure \ref{fig1}, from which we can see that these methods either remove the noise or oversmooth the complex details in real noisy image. 
 \begin{figure*}\label{fig1}
@@ -434,7 +434,8 @@ The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all th
 
 %------------------------------------------------------------------------
 \section{Experiments}
-In this section, we perform real image denoising experiments on three standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}, some samples are shown in Figure \ref{fig5}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
+
+In this section, we evaluate the performance of the proposed algorithm on real image denoising. To evaluation the effectiveness of the proposed framework of external prior guided internal prior learning, we compare it with the methods with only external prior or only internal prior. This will be discussed in Section 4.2. We also compare the proposed algorithm with other state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,neatimage}. The evaluations are performed on two standard datasets. The first dataset is real noisy images with mean images as ground truths provided by \cite{crosschannel2016}, some samples are shown in Figure \ref{fig5}. The second dataset is provided by the website of Noise Clinic \cite{noiseclinic}. The third dataset is provided by the Commercial software Neat Image \cite{neatimage}. The second and third dataset do not have ground truth images.
 
 \begin{figure}[t]
 \centering
@@ -490,7 +491,7 @@ In this section, we perform real image denoising experiments on three standard d
 \includegraphics[width=1\textwidth]{images/resize_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png}
 \end{minipage}
 }
-\caption{Some cropped images of the dataset \cite{crosschannel2016}.}
+\caption{Some samples cropped from real noisy images of \cite{crosschannel2016}.}
 \label{fig4}
 \end{figure}
 
@@ -500,49 +501,49 @@ In this section, we perform real image denoising experiments on three standard d
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
-{\footnotesize (a) Noisy Image \\ (37.00dB/0.9345) }
+{\footnotesize (a) Noisy: 37.00dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) CBM3D \\ (37.02dB/0.9351)}
+{\footnotesize (b) CBM3D: 37.02dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
-{\footnotesize (c) WNNM \\ (37.01dB/0.9347)}
+{\footnotesize (c) WNNM: 37.01dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
-{\footnotesize (d) MLP \\ (33.90dB/0.9171) }
+{\footnotesize (d) MLP: 33.90dB }
 \end{minipage}
 \centering
 \begin{minipage}[t]{0.195\textwidth}
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TRD \\ (36.18dB/0.9454)   }
+{\footnotesize (e) TRD: 36.18dB  }
 \end{minipage}
-}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) Noise Clinic \\ (38.76dB/0.9689) }
+{\footnotesize (f) Noise Clinic: 38.76dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) Neat Image \\ (37.68dB/0.9600) }
+{\footnotesize (g) Neat Image:37.68dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CCNoise \\ (38.37dB/0.9678) }
+{\footnotesize (h) CCNoise:38.37dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Guided \\ (\textbf{40.26}dB/\textbf{0.9800})}
+{\footnotesize (i) Guided: \textbf{40.26}dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -561,21 +562,21 @@ Our proposed method contains two stages, the external prior guided internal subs
 In this subsection, we compared the proposed external prior guided internal subspace learning model on real image denoising. The three methods are evaluated on the dataset provided in \cite{crosschannel2016}. We calculate the PSNR, SSIM \cite{ssim} and visual quality of these three methods. We also compare the speed. The PSNR and SSIM results on 60 cropped images from \cite{crosschannel2016} are listed in Table 1. The images are cropped into size of $500\times 500$ for better illustration. We also compare the three methods on visual quality in Figure \ref{fig2}. Compare the denoised images listed in Figure \ref{fig2} and Figure \ref{fig2}, we can see that the Offline method is better at edges, smooth regions while the Online method is good at complex textures. The reason is two folds. Firstly, the Offline method is learned on clean images and hence is better at representing edges, structuals, and smooth area. The online method is influenced by the noise and hence some noise cannot be removed. Secondly, the Online method is better at recovering complex area sicne they could learn adaptive dictionaries for the specific area. The Offline method cannot recover the complex area since they did not learn the similar structures from the external natural clean images.
 
 \begin{table}\label{tab1}
-\caption{Average PSNR(dB)/SSIM results of external, internal, and guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
+\caption{Average PSNR(dB) results of External, Internal, and Guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
 \label{tab1}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|}
 \hline
- & \textbf{Noisy} &\textbf{Offline} &\textbf{Online} &\textbf{Guided}  
+ & \textbf{Noisy} &\textbf{External} &\textbf{Internal} &\textbf{Guided}  
 \\
 \hline
 PSNR & 34.51 & 38.19 & 38.07 & \textbf{38.55} 
 \\
 \hline
-SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
-\\
-\hline
+%SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
+%\\
+%\hline
 \end{tabular}
 \end{center}
 \end{table}
@@ -590,10 +591,10 @@ SSIM & 0.8718 &  0.9663   & 0.9625 & \textbf{0.9675}
  & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Guided}  &\textbf{Guided2} 
 \\
 \hline
-PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & 37.75 & 36.53 & 37.57 &  \color{blue}{38.72} & \color{red}{ 38.90}
-\\
-\hline
-SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & \color{blue}{0.9694} & \color{red}{0.9702}
+PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & 37.75 & 36.53 & 37.57 &  {\color{blue}{38.72}} & {\color{red}{ 38.90}}
+%\\
+%\hline
+%SSIM & 0.8718  & 0.8748  & 0.8743   & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & {\color{blue}{0.9694}} & {\color{red}{0.9702}}
 \\
 \hline
 \end{tabular}
@@ -625,66 +626,66 @@ Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\tex
 \\
 \hline
 \multirow{3}{*}{\small{Canon 5D Mark III}} 
-& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & \color{blue}{38.76} & 38.37 & \color{red}{40.50}
+& 37.00 & 37.08 & 37.09 & 33.92 & 35.68 & 36.20 & 37.68 & {\color{blue}{38.76}} & 38.37 & {\color{red}{40.50}}
 \\ 
-\cline{2-11} 
+\cdashline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & \color{blue}{35.69} & 35.37 & \color{red}{37.22}
+& 33.88 & 33.94 & 33.93 & 33.24 & 34.03 & 34.35 & 34.87 & {\color{blue}{35.69}} & 35.37 & {\color{red}{37.22}}
 \\ 
-\cline{2-11}    
-& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & \color{blue}{35.54} & 34.91 & \color{red}{37.13}  
+\cdashline{2-11}    
+& 33.83 & 33.88 & 33.90 & 32.37 & 32.63 & 33.10 & 34.77 & {\color{blue}{35.54}} & 34.91 & {\color{red}{37.13}}  
 \\
 \hline
 \multirow{3}{*}{Nikon D600} 
-& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & \color{red}{35.57} & 34.98 & \color{blue}{35.34}
+& 33.28 & 33.33 & 33.34 & 31.93 & 31.78 & 32.28 & 34.12 & {\color{red}{35.57}} & 34.98 & {\color{blue}{35.34}}
 \\ 
-\cline{2-11} 
+\cdashline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & \color{red}{36.70} & 35.95 & \color{blue}{36.69}
+& 33.77 & 33.85 & 33.79 & 34.15 & 35.16 & 35.34 & 35.36 & {\color{red}{36.70}} & 35.95 & {\color{blue}{36.69}}
 \\ 
-\cline{2-11}    
-& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & \color{blue}{40.51} & 38.68 & 39.28 & \color{red}{41.15} & 39.17
+\cdashline{2-11}    
+& 34.93 & 35.02 & 34.95 & 37.89 & 39.98 & {\color{blue}{40.51}} & 38.68 & 39.28 & {\color{red}{41.15}} & 39.17
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & \color{blue}{38.01} & 37.99 & \color{red}{38.82}
+& 35.47 & 35.54 & 35.57 & 33.77 & 34.84 & 35.09 & 37.34 & {\color{blue}{38.01}} & 37.99 & {\color{red}{38.82}}
 \\ 
-\cline{2-11} 
+\cdashline{2-11} 
 \multirow{3}{*}{ISO = 1600}   
-& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & \color{blue}{40.36} & \color{red}{40.98}
+& 35.71 & 35.79 & 35.77 & 35.89 & 38.42 & 38.65 & 38.57 & 39.05 & {\color{blue}{40.36}} & {\color{red}{40.98}}
 \\ 
-\cline{2-11}    
-& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & \color{blue}{38.30} & \color{red}{38.90}
+\cdashline{2-11}    
+& 34.81 & 34.92 & 34.95 & 34.25 & 35.79 & 35.85 & 37.87 & 38.20 & {\color{blue}{38.30}} & {\color{red}{38.90}}
 \\
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & \color{red}{39.01} & \color{blue}{38.69}
+& 33.26 & 33.34 & 33.31 & 37.42 & 38.36 & 38.56 & 36.95 & 38.07 & {\color{red}{39.01}} & {\color{blue}{38.69}}
 \\ 
-\cline{2-11} 
+\cdashline{2-11} 
 \multirow{3}{*}{ISO = 3200}   
-& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & \color{blue}{36.75} & \color{red}{36.82}
+& 32.89 & 32.95 & 32.96 & 34.88 & 35.53 & 35.76 & 35.09 & 35.72 & {\color{blue}{36.75}} & {\color{red}{36.82}}
 \\ 
-\cline{2-11}    
-& 32.91 & 32.98 & 32.96 & 38.54 & \color{blue}{40.05} & \color{red}{40.59} & 36.91 & 36.76 & 39.06 & 38.80
+\cdashline{2-11}    
+& 32.91 & 32.98 & 32.96 & 38.54 & {\color{blue}{40.05}} & {\color{red}{40.59}} & 36.91 & 36.76 & 39.06 & 38.80
 \\ 
 \hline
 \multirow{3}{*}{Nikon D800} 
-& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & \color{blue}{34.25} & 31.28 & 33.49 & \color{red}{34.61} & 33.31
+& 29.63 & 29.66 & 29.71 & 33.59 & 34.08 & {\color{blue}{34.25}} & 31.28 & 33.49 & {\color{red}{34.61}} & 33.31
 \\ 
-\cline{2-11} 
+\cdashline{2-11} 
 \multirow{3}{*}{ISO = 6400}   
-& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & \color{red}{33.21} & \color{blue}{33.18}
+& 29.97 & 30.01 & 29.98 & 31.55 & 32.13 & 32.38 & 31.38 & 32.79 & {\color{red}{33.21}} & {\color{blue}{33.18}}
 \\ 
-\cline{2-11}    
-& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & \color{blue}{33.22} & \color{red}{33.35}
+\cdashline{2-11}    
+& 29.87 & 29.90 & 29.95 & 31.42 & 31.52 & 31.76 & 31.40 & 32.86 & {\color{blue}{33.22}} & {\color{red}{33.35}}
 \\
 \hline
-Average PSNR & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & \color{blue}{36.88} & \color{red}{ 37.26}
+Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\color{blue}{36.88}} & {\color{red}{ 37.26}}
 \\
 \hline
-Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & \color{blue}{0.9481} & \color{red}{ 0.9505}
-\\
-\hline
+%Average SSIM & 0.8483 & 0.8511 & 0.8512 & 0.9113 & 0.9250 & 0.9280 & 0.9126 & 0.9364 & {\color{blue}{0.9481}} & {\color{red}{ 0.9505}}
+%\\
+%\hline
 \end{tabular}
 \end{center}
 \end{table*}

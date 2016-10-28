@@ -1,4 +1,4 @@
-\backcite {nlm,foe,ksvd,bm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}{{1}{1}{section.1}}
+\backcite {nlm,foe,ksvd,bm3d,cbm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}{{1}{1}{section.1}}
 \backcite {NewInCamera,crosschannel2016}{{1}{1}{section.1}}
 \backcite {crosschannel2016,healey1994radiometric}{{1}{1}{section.1}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,Zhu_2016_CVPR,crosschannel2016}{{1}{1}{section.1}}
@@ -43,14 +43,15 @@
 \backcite {em}{{5}{3.3}{subsection.3.3}}
 \backcite {pgpd}{{5}{3.4}{equation.3.12}}
 \backcite {crosschannel2016}{{6}{4}{figure.4}}
+\backcite {bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,neatimage}{{6}{4}{section.4}}
 \backcite {crosschannel2016}{{6}{4}{section.4}}
 \backcite {noiseclinic}{{6}{4}{section.4}}
 \backcite {neatimage}{{6}{4}{section.4}}
 \backcite {sat}{{6}{4.1}{subsection.4.1}}
 \backcite {crosschannel2016}{{6}{4.2}{subsection.4.2}}
 \backcite {ssim}{{6}{4.2}{subsection.4.2}}
-\backcite {crosschannel2016}{{6}{4.2}{subsection.4.2}}
 \backcite {crosschannel2016}{{6}{1}{table.1}}
+\backcite {crosschannel2016}{{6}{4.2}{subsection.4.2}}
 \backcite {bm3d}{{6}{4.3}{subsection.4.3}}
 \backcite {wnnm}{{6}{4.3}{subsection.4.3}}
 \backcite {mlp}{{6}{4.3}{subsection.4.3}}
