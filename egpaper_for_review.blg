@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2015/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: egpaper_for_review.aux
+The style file: unsrt.bst
+Database file #1: egbib.bib
+Warning--I'm ignoring sat's extra "year" field
+--line 1246 of file egbib.bib
+Warning--I didn't find a database entry for "ssim"
+You've used 36 entries,
+            1791 wiz_defined-function locations,
+            655 strings with 8971 characters,
+and the built_in function-call counts, 9937 in all, are:
+= -- 963
+> -- 378
+< -- 13
++ -- 140
+- -- 104
+* -- 674
+:= -- 1474
+add.period$ -- 108
+call.type$ -- 36
+change.case$ -- 34
+chr.to.int$ -- 0
+cite$ -- 36
+duplicate$ -- 440
+empty$ -- 910
+format.name$ -- 104
+if$ -- 2260
+int.to.chr$ -- 0
+int.to.str$ -- 36
+missing$ -- 37
+newline$ -- 183
+num.names$ -- 36
+pop$ -- 82
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 279
+stack$ -- 0
+substring$ -- 904
+swap$ -- 157
+text.length$ -- 13
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 105
+width$ -- 38
+write$ -- 392
+(There were 2 warnings)
