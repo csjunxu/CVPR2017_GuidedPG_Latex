@@ -122,6 +122,12 @@ M.~Lebrun, M.~Colom, and J.-M. Morel.
 \newblock {\em Image Processing, IEEE Transactions on}, 24(10):3149--3161,
   2015.
 
+\bibitem{ncwebsite}
+M.~Lebrun, M.~Colom, and J.~M. Morel.
+\newblock The noise clinic: a blind image denoising algorithm.
+\newblock \url{http://www.ipol.im/pub/art/2015/125/}.
+\newblock Accessed 01 28, 2015.
+
 \bibitem{Zhu_2016_CVPR}
 Fengyuan Zhu, Guangyong Chen, and Pheng-Ann Heng.
 \newblock From noise modeling to blind image denoising.
