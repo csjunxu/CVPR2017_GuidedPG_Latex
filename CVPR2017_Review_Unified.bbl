@@ -178,34 +178,15 @@ A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
 \newblock {\em Journal of the Royal Statistical Society. Series B
   (methodological)}, pages 1--38, 1977.
 
-\bibitem{donoho2003optimally}
-David~L Donoho and Michael Elad.
-\newblock Optimally sparse representation in general (nonorthogonal)
-  dictionaries via ℓ1 minimization.
-\newblock {\em Proceedings of the National Academy of Sciences},
-  100(5):2197--2202, 2003.
-
-\bibitem{softthresholding}
-D.~L. Donoho.
-\newblock De-noising by soft-thresholding.
-\newblock {\em IEEE Trans. Inf. Theor.}, 41(3):613--627, 1995.
-
-\bibitem{bao2013fast}
-Chenglong Bao, Jian-Feng Cai, and Hui Ji.
-\newblock Fast sparsity-based orthogonal dictionary learning for image
-  restoration.
-\newblock {\em Proceedings of the IEEE International Conference on Computer
-  Vision}, pages 3384--3391, 2013.
+\bibitem{spca}
+Hui Zou, Trevor Hastie, and Robert Tibshirani.
+\newblock Sparse principal component analysis.
+\newblock {\em Journal of computational and graphical statistics},
+  15(2):265--286, 2006.
 
 \bibitem{sat}
 Franklin~C. Crow.
 \newblock Summed-area tables for texture mapping.
 \newblock {\em SIGGRAPH Comput. Graph.}, 18(3):207--212, January 1984.
-
-\bibitem{osher2005iterative}
-S.~Osher, M.~Burger, D.~Goldfarb, J.~Xu, and W.~Yin.
-\newblock An iterative regularization method for total variation-based image
-  restoration.
-\newblock {\em Multiscale Modeling \& Simulation}, 4(2):460--489, 2005.
 
 \end{thebibliography}

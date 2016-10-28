@@ -362,12 +362,12 @@ has a closed-form solution $\mathbf{D}_{i}^{(t+1)}=\mathbf{U}_{i}\mathbf{V}_{i}^
 =
 \mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{\top}.
 \end{equation}
-The orthogonality of the dictionary $\mathbf{D}_{i}^{(t+1)}$ can be checked by 
+The orthogonality of internal dictionary $\mathbf{D}_{i}^{(t+1)}$ can be checked by 
 $(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U}_{i}^{\top}\mathbf{U}_{i}\mathbf{V}_{i}^{\top}=\mathbf{I}_{r}$.
 
 \subsection{Discussions}
 
-Here we take a detailed analysis on the guiance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ5}). The guided subspace clustering is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ5}) for all noisy PGs while by internal clustering via GMM we need perform EM algorithm \cite{em}. 2) the external dictionary guides the internal dictionary learning, and the obtained dictionary consisted of the two parts is orthogonal and more adaptive to the given noisy image. The learning process has closed-form solutions and hence is very efficient. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under sparse coding framework. 3) the singular values obtained by SVD in Equ. (\ref{equ3}) reflect the prior weights of the atoms in learned dictionary and can be used as adaptive parameters for real image denoising.
+Here we take a detailed analysis on the guidance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ4}). The guided subspace selection is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ4}) for all noisy PGs while by internal clustering via GMM we have to perform time-consuming EM algorithm \cite{em}. 2) the external clean dictionary guides the learning of orthogonal dictionaries more adaptive for internal noisy images. The learning process is very efficient because of closed-form solutions. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under weighted sparse coding framework. 3) the singular values learned by SVD in Equ. (\ref{equ3}) reflect the prior weights of the dictionary atoms and can be used as adaptive parameters for real image denoising.
 
 \subsection{The Denoising Algorithm}
 
