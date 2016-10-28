@@ -259,18 +259,18 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 \vspace{-1mm}
 
 
-Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}$. Each mean substracted PG is defined as $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$ where $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}_{n}$ belonging to the $k$th Gaussian component":
+Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its $M$ most similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of "$\mathbf{\overline{Y}}_{n}$ belonging to the $k$th Gaussian component":
 \vspace{-2mm}
 \begin{equation}\label{equ4}\vspace{-1mm}
-P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})},
+P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})}
 \end{equation}
-and then choosing the component with the maximum A-posteriori (MAP) probability $\ln P(k|\mathbf{\overline{Y}}_{n})$.
+for $k=1,...,K$, and then choosing the component with the maximum A-posteriori (MAP) probability $\max_{k}P(k|\mathbf{\overline{Y}}_{n})$.
 
 \vspace{-2mm}
 \subsubsection{Guided Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. Assume $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ are the noisy PGs assigned to the $k$-th subspace, such that $\sum_{k=1}^{K}N_{k}=N$ and $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$. We consider to utilize the external orthogonal dictionary $\mathbf{U}_{k}$ to guide the learning of an orthogonal dictionary $\mathbf{D}_{k}:=[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary in Equ. (\ref{equ3}), and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\mathbf{Y}_{k}=\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. For notation simplicity, we ignore the subspace index $k$ and denote as noisy PGs $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning and denoising are simultaneously performed under the weighted sparse coding framework proposed as follows:
+Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, assume the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ such that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We consider to utilize the external orthogonal dictionary $\mathbf{U}_{k}$ (Equ. (\ref{equ3})) to guide the learning of an orthogonal dictionary defined as $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$. This dictionary has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary $\mathbf{U}_{k}$, and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. Therefore, the dictionary $\mathbf{D}_{k}$ can adaptively characterize the internal PGs in the $k$-th subspace. For notation simplicity, we ignore the subspace index $k$ and denote the noisy PGs assigned to each subspace as $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning is performed under the weighted sparse coding framework proposed as follows:
 \vspace{-2mm}
 \begin{equation}\label{equ5}\vspace{-2mm}
 \begin{split}
@@ -283,7 +283,7 @@ Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n
 \mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\bm{\alpha}_{n,m}$ is the sparse coefficients vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ of the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
+where $\bm{\alpha}_{n,m}$ is the sparse coefficients vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
 \vspace{-2mm}
 \begin{equation}\label{equ6}\vspace{-2mm}
 \lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{j}}+\varepsilon).
@@ -369,13 +369,12 @@ Here we take a detailed analysis on the guiance of the external patch group (PG)
 
 \subsection{The Denoising Algorithm}
 
-We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning (DL) process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean substracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficients vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in (\ref{equ9}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Equ. (\ref{equ10}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
+We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning (DL) process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficients vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in (\ref{equ9}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Equ. (\ref{equ10}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
 \vspace{-2mm}
 \begin{equation}\label{equ12}\vspace{-2mm}
 \hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
 \end{equation}
 where $n=1,...,N;m=1,...,M$.
-
 \begin{table}
 \label{alg1}
 \begin{tabular}{l}
@@ -395,16 +394,20 @@ where $n=1,...,N;m=1,...,M$.
 \\
 1. Extracting internal PGs from $\hat{\mathbf{x}}^{(Ite-1)}$;
 \\
+%\textbf{Guided Internal Subspace Selection:}
+%\\
 \quad\textbf{for} each PG $\mathbf{Y}_{n}$ \textbf{do}
 \\
 2.\quad Calculate group mean vector $\boldsymbol{\upmu}_{n}$ and form 
 \\
-\quad \ \ \ mean substracted PG $\mathbf{\overline{Y}}_{n}$;
+\quad \ \ \ mean subtracted PG $\mathbf{\overline{Y}}_{n}$;
 \\
 3.\quad Subspace selection via Equ. (\ref{equ4});
 \\
 \quad\textbf{end for}
 \\
+%\textbf{Guided Internal Orthogonal Dictionary Learning:}
+%\\
 \quad\textbf{for} the PGs in each Subspace \textbf{do}
 \\
 4.\quad External PG prior Guided Internal Orthogonal
@@ -424,8 +427,7 @@ where $n=1,...,N;m=1,...,M$.
 \hline
 \end{tabular}
 \end{table}
-
-The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. But different from \cite{pgpd}, we do not employ the iterative regularization strategy \cite{osher2005iterative} since it does no help to our proposed method. The proposed denoising algorithm is summarized in Alg. 1.
+The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all the estimated PGs. Similar to \cite{pgpd}, we perform the above denoising procedures for several iterations for better denoising outputs. The proposed denoising algorithm is summarized in Alg. 1.
 
 
 %------------------------------------------------------------------------

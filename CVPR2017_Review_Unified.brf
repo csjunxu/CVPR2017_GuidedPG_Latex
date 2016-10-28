@@ -42,12 +42,10 @@
 \backcite {bao2013fast}{{5}{3.2.2}{equation.3.10}}
 \backcite {em}{{5}{3.3}{subsection.3.3}}
 \backcite {pgpd}{{5}{3.4}{equation.3.12}}
+\backcite {crosschannel2016}{{5}{4}{section.4}}
+\backcite {noiseclinic}{{5}{4}{section.4}}
+\backcite {neatimage}{{5}{4}{section.4}}
 \backcite {crosschannel2016}{{6}{4}{figure.4}}
-\backcite {pgpd}{{6}{3.4}{equation.3.12}}
-\backcite {osher2005iterative}{{6}{3.4}{equation.3.12}}
-\backcite {crosschannel2016}{{6}{4}{section.4}}
-\backcite {noiseclinic}{{6}{4}{section.4}}
-\backcite {neatimage}{{6}{4}{section.4}}
 \backcite {sat}{{6}{4.1}{subsection.4.1}}
 \backcite {crosschannel2016}{{6}{4.2}{subsection.4.2}}
 \backcite {ssim}{{6}{4.2}{subsection.4.2}}
