@@ -5,45 +5,45 @@ The style file: unsrt.bst
 Database file #1: egbib.bib
 Warning--I'm ignoring sat's extra "year" field
 --line 1278 of file egbib.bib
-You've used 33 entries,
+You've used 31 entries,
             1791 wiz_defined-function locations,
-            639 strings with 8563 characters,
-and the built_in function-call counts, 8995 in all, are:
-= -- 864
-> -- 354
+            629 strings with 8149 characters,
+and the built_in function-call counts, 8445 in all, are:
+= -- 814
+> -- 326
 < -- 10
-+ -- 131
-- -- 98
-* -- 625
-:= -- 1346
-add.period$ -- 100
-call.type$ -- 33
-change.case$ -- 31
++ -- 121
+- -- 90
+* -- 575
+:= -- 1258
+add.period$ -- 94
+call.type$ -- 31
+change.case$ -- 29
 chr.to.int$ -- 0
-cite$ -- 33
-duplicate$ -- 385
-empty$ -- 830
-format.name$ -- 98
-if$ -- 2031
+cite$ -- 31
+duplicate$ -- 367
+empty$ -- 780
+format.name$ -- 90
+if$ -- 1915
 int.to.chr$ -- 0
-int.to.str$ -- 33
-missing$ -- 33
-newline$ -- 169
-num.names$ -- 33
-pop$ -- 77
+int.to.str$ -- 31
+missing$ -- 31
+newline$ -- 159
+num.names$ -- 31
+pop$ -- 75
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 232
+skip$ -- 226
 stack$ -- 0
-substring$ -- 820
-swap$ -- 129
+substring$ -- 764
+swap$ -- 127
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 94
-width$ -- 35
-write$ -- 360
+while$ -- 88
+width$ -- 33
+write$ -- 338
 (There was 1 warning)

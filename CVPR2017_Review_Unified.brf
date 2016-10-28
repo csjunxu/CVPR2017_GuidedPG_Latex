@@ -6,7 +6,6 @@
 \backcite {Bishop}{{1}{1}{section.1}}
 \backcite {Zhu_2016_CVPR}{{1}{1}{section.1}}
 \backcite {crosschannel2016}{{1}{1}{section.1}}
-\backcite {ssim}{{1}{1}{section.1}}
 \backcite {pgpd}{{1}{1}{figure.1}}
 \backcite {crosschannel2016}{{2}{1(a)}{subfigure.1.1}}
 \backcite {bm3d,cbm3d}{{2}{1(a)}{subfigure.1.1}}
@@ -28,7 +27,6 @@
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016}{{3}{2.3}{subsection.2.3}}
-\backcite {blsgsm}{{3}{2.3}{subsection.2.3}}
 \backcite {fullyblind}{{3}{2.3}{subsection.2.3}}
 \backcite {rabie2005robust}{{3}{2.3}{subsection.2.3}}
 \backcite {huber2011robust}{{3}{2.3}{subsection.2.3}}
@@ -55,10 +53,10 @@
 \backcite {ncwebsite}{{6}{4.1}{subsection.4.1}}
 \backcite {noiseclinic}{{6}{4.1}{subsection.4.1}}
 \backcite {neatimage}{{6}{4.1}{subsection.4.1}}
+\backcite {neatimage}{{6}{4.1}{subsection.4.1}}
 \backcite {crosschannel2016}{{6}{1}{table.1}}
 \backcite {sat}{{6}{4.2}{subsection.4.2}}
 \backcite {crosschannel2016}{{6}{4.3}{subsection.4.3}}
-\backcite {ssim}{{6}{4.3}{subsection.4.3}}
 \backcite {crosschannel2016}{{6}{4.3}{subsection.4.3}}
 \backcite {bm3d}{{6}{4.4}{subsection.4.4}}
 \backcite {wnnm}{{6}{4.4}{subsection.4.4}}

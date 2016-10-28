@@ -41,7 +41,7 @@ D.~Zoran and Y.~Weiss.
 \newblock {\em ICCV}, pages 479--486, 2011.
 
 \bibitem{mlp}
-Harold~C Burger, Christian~J Schuler, and Stefan Harmeling.
+H.~C. Burger, C.~J. Schuler, and S.~Harmeling.
 \newblock Image denoising: Can plain neural networks compete with bm3d?
 \newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
   Conference on}, pages 2392--2399, 2012.
@@ -66,7 +66,7 @@ J.~Xu, L.~Zhang, W.~Zuo, D.~Zhang, and X.~Feng.
   pages 244--252, 2015.
 
 \bibitem{chen2015learning}
-Yunjin Chen, Wei Yu, and Thomas Pock.
+Y.~Chen, W.~Yu, and T.~Pock.
 \newblock On learning optimized reaction diffusion processes for effective
   image restoration.
 \newblock {\em Proceedings of the IEEE Conference on Computer Vision and
@@ -80,14 +80,14 @@ S.~J. Kim, H.~T. Lin, Z.~Lu, S.~Süsstrunk, S.~Lin, and M.~S. Brown.
   34(12):2289--2302, Dec 2012.
 
 \bibitem{crosschannel2016}
-Seonghyeon Nam, Youngbae Hwang, Yasuyuki Matsushita, and Seon~Joo Kim.
+S.~Nam, Y.~Hwang, Y.~Matsushita, and S.~J. Kim.
 \newblock A holistic approach to cross-channel image noise modeling and its
   application to image denoising.
 \newblock {\em Proc. Computer Vision and Pattern Recognition (CVPR)}, pages
   1683--1691, 2016.
 
 \bibitem{healey1994radiometric}
-Glenn~E Healey and Raghava Kondepudy.
+G.~E Healey and R.~Kondepudy.
 \newblock Radiometric ccd camera calibration and noise estimation.
 \newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
   16(3):267--276, 1994.
@@ -100,7 +100,7 @@ J.~Portilla.
   on}, 2:1217--1220, 2004.
 
 \bibitem{rabie2005robust}
-Tamer Rabie.
+T.~Rabie.
 \newblock Robust estimation approach for blind denoising.
 \newblock {\em Image Processing, IEEE Transactions on}, 14(11):1755--1765,
   2005.
@@ -112,7 +112,7 @@ C.~Liu, R.~Szeliski, S.~Bing Kang, C.~L. Zitnick, and W.~T. Freeman.
   30(2):299--314, 2008.
 
 \bibitem{almapg}
-Zheng Gong, Zuowei Shen, and Kim-Chuan Toh.
+Z.~Gong, Z.~Shen, and K.-C. Toh.
 \newblock Image restoration with mixed or unknown noises.
 \newblock {\em Multiscale Modeling \& Simulation}, 12(2):458--487, 2014.
 
@@ -129,7 +129,7 @@ M.~Lebrun, M.~Colom, and J.~M. Morel.
 \newblock Accessed 01 28, 2015.
 
 \bibitem{Zhu_2016_CVPR}
-Fengyuan Zhu, Guangyong Chen, and Pheng-Ann Heng.
+F.~Zhu, G.~Chen, and P.-A. Heng.
 \newblock From noise modeling to blind image denoising.
 \newblock {\em The IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, June 2016.
@@ -138,12 +138,6 @@ Fengyuan Zhu, Guangyong Chen, and Pheng-Ann Heng.
 C.~M. Bishop.
 \newblock {\em Pattern recognition and machine learning}.
 \newblock New York: Springer, 2006.
-
-\bibitem{ssim}
-Z.~Wang, A.~C. Bovik, H.~R. Sheikh, and E.~P. Simoncelli.
-\newblock Image quality assessment: from error visibility to structural
-  similarity.
-\newblock {\em IEEE Transactions on Image Processing}, 13(4):600--612, 2004.
 
 \bibitem{neatimage}
 Neatlab ABSoft.
@@ -161,15 +155,8 @@ W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
 \newblock Nonlocally centralized sparse representation for image restoration.
 \newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
 
-\bibitem{blsgsm}
-J.~Portilla, V.~Strela, M.J. Wainwright, and E.P. Simoncelli.
-\newblock Image denoising using scale mixtures of {Gaussians} in the wavelet
-  domain.
-\newblock {\em Image Processing, IEEE Transactions on}, 12(11):1338--1351,
-  2003.
-
 \bibitem{huber2011robust}
-Peter~J Huber.
+P.~J. Huber.
 \newblock {\em Robust statistics}.
 \newblock Springer, 2011.
 
@@ -185,13 +172,13 @@ A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
   (methodological)}, pages 1--38, 1977.
 
 \bibitem{spca}
-Hui Zou, Trevor Hastie, and Robert Tibshirani.
+H.~Zou, T.~Hastie, and R.~Tibshirani.
 \newblock Sparse principal component analysis.
 \newblock {\em Journal of computational and graphical statistics},
   15(2):265--286, 2006.
 
 \bibitem{sat}
-Franklin~C. Crow.
+F.~C. Crow.
 \newblock Summed-area tables for texture mapping.
 \newblock {\em SIGGRAPH Comput. Graph.}, 18(3):207--212, January 1984.
 
