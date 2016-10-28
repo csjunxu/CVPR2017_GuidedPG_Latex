@@ -177,9 +177,4 @@ H.~Zou, T.~Hastie, and R.~Tibshirani.
 \newblock {\em Journal of computational and graphical statistics},
   15(2):265--286, 2006.
 
-\bibitem{sat}
-F.~C. Crow.
-\newblock Summed-area tables for texture mapping.
-\newblock {\em SIGGRAPH Comput. Graph.}, 18(3):207--212, January 1984.
-
 \end{thebibliography}
