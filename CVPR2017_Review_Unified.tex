@@ -79,7 +79,7 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 33.33dB  }
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}: 33.33dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -155,22 +155,22 @@ The rest of this paper will be summerized as follows: in Section 2, we briefly i
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) External: 37.12dB }
+{\footnotesize (b) External: 37.12dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (i) Internal: 35.70dB  }
+{\footnotesize (c) Internal: 35.70dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (j) Guided: \textbf{37.94}dB  }
+{\footnotesize (d) Ours: \textbf{37.94}dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (h) Mean Image \cite{crosschannel2016} }
+{\footnotesize (e) Mean Image \cite{crosschannel2016} }
 \end{minipage}
 }
 \caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}\vspace{-4mm}
@@ -214,7 +214,7 @@ In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (d) Guided: \textbf{37.13}dB }
+{\footnotesize (d) Ours: \textbf{37.13}dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -442,7 +442,8 @@ The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all th
 In this section, we evaluate the performance of the proposed algorithm on real image denoising. To evaluation the effectiveness of the proposed framework of external prior guided internal prior learning, we compare it with the methods with only external prior or only internal prior. This will be discussed in Section 4.3. We also compare the proposed algorithm with other state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage} in Section 4.4..
 
 \subsection{The Testing Datasets}
-The comparisons are performed on three standard datasets, in which the images were captured by different types of cameras and camera settings under indoor and outdoor lighting conditions. The first dataset provided in \cite{crosschannel2016} includes 17 real noisy images and corresponding mean images. The noisy images were collected under controlled indoor environment. Some samples can be found in \cite{crosschannel2016}. For each image, the same scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the "ground truth", with which the PSNR can be computed for comparison. Since there are many similar contents in these 17 images, we cropped the 17 images into 60 smaller parts ($500\times 500$) including different contents. Some samples are shown in Figure \ref{fig4}. The second dataset provided on \cite{ncwebsite} includes about 15 real noisy images collected by the authors of Noise Clinic \cite{noiseclinic}. The third dataset includes 18 color images provided by the website of Neat Image \cite{neatimage}. Different from the first dataset, the other two datasets do not have "ground truth" images. 
+
+The comparisons are performed on two standard datasets in which the images were captured under indoor and outdoor lighting conditions by different types of cameras and camera settings. The first dataset is provided in \cite{crosschannel2016}. It includes 17 real noisy images and corresponding mean images. The noisy images were collected under controlled indoor environment. Some samples can be found in \cite{crosschannel2016}. For each image, the same scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the "ground truth", with which the PSNR can be computed. Since there are many similar contents in these 17 images, we cropped thses images into 60 smaller images (of size $500\times 500$) including different contents. Some samples are shown in Figure \ref{fig4}. The authors of \cite{crosschannel2016} also provided us the 15 images (of size $512\times 512$) used in \cite{crosschannel2016} and hence we can compare with the method of \cite{crosschannel2016}. Noted that the noise in the 15 images used in \cite{crosschannel2016} is different from the noise in the 60 images cropped from \cite{crosschannel2016} since they are taken in different shots. The second dataset is provided in \cite{ncwebsite} includes about 15 real noisy images collected under uncontrolled outdoor environment. This dataset do not have "ground truth" images. 
 
 \begin{figure}[t]
 \centering
@@ -514,7 +515,7 @@ The comparisons are performed on three standard datasets, in which the images we
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 37.02dB}
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}: 37.02dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -551,7 +552,7 @@ The comparisons are performed on three standard datasets, in which the images we
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Guided: \textbf{40.26}dB}
+{\footnotesize (i) Ours: \textbf{40.26}dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -564,22 +565,22 @@ The comparisons are performed on three standard datasets, in which the images we
 \end{figure*}
 
 \subsection{Implementation Details}
-Our proposed method contains two learning stages, the external prior learning stage and the external prior guided internal learning stage. In the external stage, there are 4 parameters: the patch size $p$, the number of patches in a patch group (PG) $M$, the window size $W$ for PG searching and the number of Gaussians or subspaces $K$ in Gaussian Mixture Model (GMM). We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the external prior guided internal learning stage, there are 4 parameters: $r$ is the number of internal atoms in the learned orthogonal dictionaries, $\lambda$ is the sparse regularization parameter, $T$ the number of iterations for alternative solving problem (\ref{equ5}), and $IteNum$ the number of iterations for the denoising algorithm Alg. 1. We set $r=3p^2/2=54$ to treat equally external and internal priors. We set $\lambda=0.001$, $T=2$, and $IteNum=4$.
+Our proposed denoising method contains two learning stages, the external prior learning stage and the external prior guided internal learning stage. In the external stage, there are 4 parameters: the patch size $p$, the number of patches in a patch group (PG) $M$, the window size $W$ for PG searching and the number of Gaussians or subspaces $K$ in Gaussian Mixture Model (GMM). We set $p = 6$ (hence the patch size is $6\times 6 \times 3$), $M=10$, $W = 31$, $K=32$. We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the external prior guided internal learning stage, there are 4 parameters: $r$ is the number of internal atoms in the learned orthogonal dictionaries, $\lambda$ is the sparse regularization parameter, $T$ the number of iterations for alternative solving problem (\ref{equ5}), and $IteNum$ the number of iterations for the denoising algorithm Alg. 1. We set $r=3p^2/2=54$ to treat equally external and internal priors. We set $\lambda=0.001$, $T=2$, and $IteNum=4$.
 
 \subsection{Comparison with External and Internal Priors}
-In this section, we compare the proposed external prior guided internal prior learning framework with external prior method (denoted as "External") and internal prior method (denoted as "Internal") on real image denoising. Both methods perform real image denoising under the weighted sparse coding framework in Equ. (\ref{equ5}). The "External" method employs the external dictionaries (i.e., $r=0$ in Equ. (\ref{equ5})) to recover the latent clean images, while the "Internal" method directly utilizes the Gaussian Mixture Model to cluster the internal niosy PGs into multiple subspaces and perform denoising with internal dictionaries (i.e., $r=128$ in Equ. (\ref{equ5})). 
+In this section, we compare the proposed method with external prior method (denoted as "External") and internal prior method (denoted as "Internal") on real image denoising. Both methods perform real image denoising under the weighted sparse coding framework in Equ. (\ref{equ5}). The "External" method employs the external dictionaries (i.e., $r=0$ in Equ. (\ref{equ5})) to recover the latent clean images, while the "Internal" method directly utilizes the Gaussian Mixture Model to cluster the internal niosy PGs into multiple subspaces and perform denoising with internal dictionaries (i.e., $r=128$ in Equ. (\ref{equ5})). 
 
-We compare the "External" method, the "Internal" method, and the proposed method (denoted as "Guided") on the first dataset provided in \cite{crosschannel2016}. We compare the PSNR and visual quality of these three methods. The average PSNR results on 60 cropped images from \cite{crosschannel2016} are listed in Table \ref{tab1}. It can be seen that the proposed "Guided" method achieves higher PSNR results then the "External" and "Internal" methods. We also compare the visual qualities of denoised images listed in Figure \ref{fig2} and Figure \ref{fig3}. We can see that the "External" method is good at recovering structures (Figure \ref{fig2}) while the "Internal" method is good at recovering complex textures (Figure \ref{fig3}). And if we make use of both the external and internal priors, the proposed "Guided" method can recover well both the structures and complex textures.
+We compare the PSNR and visual quality of the "External" method, the "Internal" method, and the proposed method (denoted as "Ours") on the first dataset provided in \cite{crosschannel2016}. The average PSNR results of these methods on 60 cropped images from \cite{crosschannel2016} are listed in Table \ref{tab1}. It can be seen that the proposed "Guided" method achieves higher PSNR results then the "External" and "Internal" methods. We also compare the visual qualities of denoised images listed in Figure \ref{fig2} and Figure \ref{fig3}. We can see that the "External" method is good at recovering structures (Figure \ref{fig2}) while the "Internal" method is good at recovering complex textures (Figure \ref{fig3}). And if we make use of both the external and internal priors, our proposed method can recover well both the structures and complex textures.
 
 \begin{table}
-\caption{Average PSNR(dB) results of External, Internal, and Guided methods on 60 cropped real noisy images in \cite{crosschannel2016}.}
+\caption{Average PSNR(dB) results of External, Internal, and our proposed methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
 \label{tab1}
 \vspace{-2mm}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|}
 \hline
- & \textbf{Noisy} &\textbf{External} &\textbf{Internal} &\textbf{Guided}  
+ & \textbf{Noisy} &\textbf{External} &\textbf{Internal} &\textbf{Ours}  
 \\
 \hline
 PSNR & 34.51 & 38.21 & 38.07 & \textbf{38.75} 
@@ -595,13 +596,13 @@ PSNR & 34.51 & 38.21 & 38.07 & \textbf{38.75}
 
 
 \begin{table*}
-\caption{Average PSNR(dB) results of different methods on 60 cropped real noisy images captured in \cite{crosschannel2016}.}
+\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
 \label{tab2}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
- & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Guided} 
+ & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Ours} 
 \\
 \hline
 PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 37.57  & {\color{red}{ 38.75}}
@@ -615,21 +616,16 @@ PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 3
 \end{table*}
 
 \subsection{Comparison with Other Denoising Methods}
-We compare with previous state-of-the-art Gaussian noise removal methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and the recently proposed TRD \cite{chen2015learning}. We also compare with three competing real image denoising methods such as Noise Clinic, Neat Image, and the CCNoise method proposed recently. Neat Image \cite{neatimage} is a commercial software embeded in Photoshop CC and Corel PaintShop Pro X9 \cite{neatimage}. It first estimates the parameters of noise via a large flat area and then filters the noise accordingly. All these methods need noise estimation which is vary hard to perform if there is no uniform regions are available in the testing image. The NeatImage will fail to perform automatical parameters settings if there is no uniform regions. \footnote{To compare with CCNoise, we first transform the denoised images into double format.}
+%For BM3D, we employ its color version \cite{cbm3d} which would have better performance on color images. 
 
-We the competing denoising methods from various research directions on two datasets. Both the two datasets comes from the \cite{crosschannel2016}. The first dataset contains 17 images of size over $7000\times5000$. Since this dataset contains repetitive contents across different images, we crop 60 small images of size $500\times500$ from these 17 images in \cite{crosschannel2016}. The PSNR and SSIM resluts are listed in Table \ref{tab1}. The number in red color and blue color means the best and second best results, respectively. From the Table \ref{tab1}, we can see that the external based method can already surpass largely the previous denoising methods. The improvement on PSNR over the second best method, i.e., TRD, is 0.44dB. The 
+In this section, we compare the proposed method  with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and TRD \cite{chen2015learning}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default paramters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels seperately for color noisy images. We also compare with three other denoising methods \cite{noiseclinic,neatimage,crosschannel2016}. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior for image denoising. The Neat Image (NI) is a commercial software on image denoising and is embeded into Photoshop CC and Corel PaintShop Pro X9 \cite{neatimage}. The recently proposed method Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method for real image denoising problem. The comparison is performed on the two datasets mentioned in Section 4.1. 
 
+For the first dataset, the average PSNR values on the 60 images cropped from \cite{crosschannel2016} are listed in Table \ref{tab2}. The number in red color and blue color means the best and second best results, respectively. It can be seen that our proposed method achieves the best PSNR results than other methods and the gap over the second best result (blue) is 1dB. Considering that the 60 cropped images contain different scenes with complex noise, the improvements of our proposed method is impressed. Besides, to compare with the recently proposed \cite{crosschannel2016}, we also perform experiments on the 15 images used in \cite{crosschannel2016}. The comparison  on PSNR values are listed in Table \ref{tab3}. As we can see, our proposed method obtains best PSNR values on most (9 out of 15) of the images captured by different camera settings. Noted that, though the method \cite{crosschannel2016} trains a specific model for each camera settng, our proposed general method still gains 0.28dB improvements over \cite{crosschannel2016}. We also compare the visual quality of the compared method. For example, Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO$=3200$. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts while MLP, TRD are likely to over-smooth the image. Our proposed method preserves edges and textures much better than other methods. 
 
-\subsection{Discussion on Parameter $\lambda$}
-The proposed method only has a key parameter, namely the regularization paramters $\lambda$. To demonstrate that the proposed method is robust to the variance of $\lambda$, we vary the parameter $\lambda$ across a wide range and obtain the PSNR and SSIM results as a function of the parameter $\lambda$. The results is shown in Figure \ref{fig10}, from which we can see that the proposed method can achieve a PSNR (SSIM) over 38.5dB (0.9660) when $\lambda$ varies from $0.0015$ to $0.0025$. This shows that the proposed method is indeed robust to the chosen of the paramter $\lambda$.
+For the second dataset provided in \cite{ncwebsite}, we can only compare the visual quality of the images denoised by different methods. In Figure \ref{fig6}, we take the real noisy image "Dog" as an example and more visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM would over-smooth the whole image while remain some noise in local areas. The methods of MLP, TRD also remain a lot of noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not suitable for the complex noise in real noisy images. Even Noise Clinic and Neat Image, which are specifically developed for real noisy images, would sometimes fail to deal with the complex noise in real noisy images. However, we can see that the proposed algorithm recoveries more faithfully the fine structures of the eye area than the other competing methods.
 
-\begin{figure}\vspace{-3mm}
-\includegraphics[width=1\linewidth]{images/param.png}
-\vspace{-6mm}
-\caption{The PSNR results as a function of the parameter $\lambda$.}
-\vspace{-4mm}
-\label{fig6}
-\end{figure}
+In summary, our proposed external prior guided internal prior learning algorithm demonstrates impressing ability on dealing with the complex noise in real noisy images in terms of PSNR and visual quality.
+
 
 \begin{table*}
 \caption{Average PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
@@ -638,7 +634,7 @@ The proposed method only has a key parameter, namely the regularization paramter
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Camera Settings & \textbf{Noisy} &\textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided} 
+Camera Settings & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided} 
 \\
 \hline
 \multirow{3}{*}{\small{Canon 5D Mark III}} 
@@ -717,7 +713,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
-{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}  }
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}  }
 \end{minipage}
 \begin{minipage}[t]{0.244\textwidth}
 \centering
@@ -753,13 +749,12 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \end{minipage}
 }
 \caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
-\label{fig7}
+\label{fig6}
 \end{figure*}
 
 \section{Conclusion and Future Work}
 
-In the future, we will evaluate the proposed method on other conputer vision tasks such as single image super-resolution, photo-sketch synthesis, and cross-domain image recognition. Our proposed method can be improved if we use better training images, fine tune the parameters via cross-validation. We believe that our framework can be useful not just for real image denoising, but for image super-resolution, image cross-style synthesis, and recognition tasks. This will be our line of future work.
-
+In the future, we will evaluate the proposed method on other conputer vision tasks such as single image super-resolution, photo-sketch synthesis, and cross-domain image recognition. Our proposed method can be improved if we use better training images, fine tune the parameters via cross-validation. We believe that our framework can be useful not just for real image denoising, but for image super-resolution, image cross-style synthesis, and recognition tasks. This will be our line of future work. In the future, we will evaluate the proposed method on other conputer vision tasks such as single image super-resolution, photo-sketch synthesis, and cross-domain image recognition. Our proposed method can be improved if we use better training images, fine tune the parameters via cross-validation.
 \clearpage
 {
 \small
