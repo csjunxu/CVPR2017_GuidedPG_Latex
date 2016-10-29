@@ -25,6 +25,7 @@
 \backcite {epll,pgpd}{{2}{2.2}{subsection.2.2}}
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
+\backcite {crosschannel2016}{{3}{2}{figure.2}}
 \backcite {ksvd,ple,ncsr}{{3}{2.2}{subsection.2.2}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016}{{3}{2.3}{subsection.2.3}}
 \backcite {fullyblind}{{3}{2.3}{subsection.2.3}}
@@ -41,6 +42,7 @@
 \backcite {pgpd}{{3}{3.1}{equation.3.2}}
 \backcite {crosschannel2016}{{4}{3(a)}{subfigure.3.1}}
 \backcite {crosschannel2016}{{4}{3(a)}{subfigure.3.1}}
+\backcite {crosschannel2016}{{4}{3}{figure.3}}
 \backcite {ksvd}{{4}{3.2.2}{equation.3.7}}
 \backcite {pgpd}{{5}{3.2.2}{equation.3.8}}
 \backcite {spca}{{5}{3.2.2}{equation.3.10}}

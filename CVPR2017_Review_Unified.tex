@@ -56,7 +56,7 @@ First line of institution2 address\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-For image denoising problem, the external and internal priors are playing key roles in many different methods. External priors learn from external images to restore noisy images while internal ones exploit priors of given images for denoising. The external priors are more generative and efficient on recovering structures existing in most images while the internal priors are more adaptive on recovering details existed in given noisy images. In this paper, we propose to employ the external patch group prior of images to guide the clustering of internal patch groups, and develop an external dictionary guided internal orthogonal dictionary learning algorithm for real image denoising. The internal orthogonal dictionary learning process has closed-form solutions and hence very efficient for image denoising. We perform extensive experiments on dozens of real noisy images captured by different cameras and camera settings under controlled indoor or uncontrolled outdoor lighting conditions. The results demonstrate that the proposed method achieves better performance than other state-of-the-art methods on real image denoising. 
+For image denoising problem, the external and internal priors are playing key roles in many different methods. External priors learn from external images to restore noisy images while internal ones exploit priors of given images for denoising. The external priors are more generative and efficient on recovering structure s existing in most images while the internal priors are more adaptive on recovering details existed in given noisy images. In this paper, we propose to employ the external patch group prior of images to guide the clustering of internal patch groups, and develop an external dictionary guided internal orthogonal dictionary learning algorithm for real image denoising. The internal orthogonal dictionary learning process has closed-form solutions and hence very efficient for image denoising. We perform extensive experiments on dozens of real noisy images captured by different cameras and camera settings under controlled indoor or uncontrolled outdoor lighting conditions. The results demonstrate that the proposed method achieves better performance than other state-of-the-art methods on real image denoising. 
 \end{abstract}
 %Though these methods are very effective in Gaussian noise removal, the noise in real images are signal dependent and more complex than Gaussian noise. Therefore, only exploiting the external or internal priors are not enough for real image denoising.
 
@@ -149,31 +149,31 @@ The rest of this paper will be summarized as follows: in Section 2, we briefly i
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (a) Noisy \cite{crosschannel2016}: 36.15dB   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (a) Noisy \cite{crosschannel2016}: 35.89dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (b) External: 37.12dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (b) External: 39.05dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (c) Internal: 35.70dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (c) Internal: 38.75dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (d) Ours: \textbf{37.94}dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (d) Ours: \textbf{39.39}dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
-{\footnotesize (e) Mean Image \cite{crosschannel2016} }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the $96$-th cropped image from "Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
 \vspace{-3mm}
 \label{fig2}
 \end{figure*}
@@ -197,31 +197,31 @@ In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (a) Noisy \cite{crosschannel2016}: 34.66dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png}}
+{\footnotesize (a) Noisy \cite{crosschannel2016}: 34.55dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (b) External: 34.97dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png}}
+{\footnotesize (b) External: 36.09dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (c) Internal: 36.86dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png}}
+{\footnotesize (c) Internal: 37.11dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
-{\footnotesize (d) Ours: \textbf{37.13}dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png}}
+{\footnotesize (d) Ours: \textbf{37.39}dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_95.png}}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png}}
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the $94$-th cropped image from "Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
 \vspace{-3mm}
 \label{fig3}
 \end{figure*}
