@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 10:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 10:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1038,7 +1038,7 @@ Overfull \hbox (0.58199pt too wide) in paragraph at lines 729--752
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 6477) has occurred while \output is active []
 
  [7 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
 resize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM
@@ -1085,7 +1085,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 768.
 Here is how much of TeX's memory you used:
  7575 strings out of 493091
  119111 string characters out of 6134517
- 226785 words of memory out of 5000000
+ 225889 words of memory out of 5000000
  10753 multiletter control sequences out of 15000+600000
  49733 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1113,7 +1113,7 @@ xlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/
 2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4118382 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4118310 bytes).
 PDF statistics:
  572 PDF objects out of 1000 (max. 8388607)
  477 compressed objects within 5 object streams
