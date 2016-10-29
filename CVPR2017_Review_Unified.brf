@@ -61,6 +61,8 @@
 \backcite {mlp}{{6}{4.4}{subsection.4.4}}
 \backcite {csf}{{6}{4.4}{subsection.4.4}}
 \backcite {chen2015learning}{{6}{4.4}{subsection.4.4}}
+\backcite {noiseclinic}{{6}{4.4}{subsection.4.4}}
+\backcite {crosschannel2016}{{6}{4.4}{subsection.4.4}}
 \backcite {noiselevel}{{6}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{7}{5(a)}{subfigure.5.1}}
 \backcite {bm3d,cbm3d}{{7}{5(a)}{subfigure.5.1}}
@@ -72,8 +74,8 @@
 \backcite {crosschannel2016}{{7}{5(b)}{subfigure.5.2}}
 \backcite {crosschannel2016}{{7}{5(b)}{subfigure.5.2}}
 \backcite {crosschannel2016}{{7}{2}{table.2}}
-\backcite {noiseclinic,neatimage,crosschannel2016}{{7}{4.4}{subsection.4.4}}
 \backcite {noiseclinic}{{7}{4.4}{subsection.4.4}}
+\backcite {crosschannel2016}{{7}{4.4}{subsection.4.4}}
 \backcite {neatimage}{{7}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{7}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{7}{4.4}{subsection.4.4}}
