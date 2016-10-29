@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 14:38
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 15:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -682,20 +682,17 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 223--224
  [][] 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [3 <./images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (P
-NG copy)> <./images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_4
-7.png (PNG copy)> <./images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_32
-00_C1_47.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3
-_ISO_3200_C1_47.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_
-Mark3_ISO_3200_C1_47.png (PNG copy)>] [4 <./images/resize_br_Noisy_CC_Noisy_Nik
-on_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Offline_CC_Noisy_Nik
-on_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Online_CC_Noisy_Niko
-n_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Nikon
-_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Nikon_D6
-00_ISO_3200_C1_95.png (PNG copy)>]
+[3 <./images/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png (PN
+G copy)> <./images/resize_br_Offline_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47
+.png (PNG copy)> <./images/resize_br_Online_CC_Noisy_Canon_EOS_5D_Mark3_ISO_320
+0_C1_47.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_
+ISO_3200_C1_47.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Canon_EOS_5D_M
+ark3_ISO_3200_C1_47.png (PNG copy)>] [4 <./images/resize_br_Noisy_CC_Noisy_Niko
+n_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Offline_CC_Noisy_Niko
+n_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Online_CC_Noisy_Nikon
+_D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Guided_CC_Noisy_Nikon_
+D600_ISO_3200_C1_95.png (PNG copy)> <./images/resize_br_Mean_CC_Noisy_Nikon_D60
+0_ISO_3200_C1_95.png (PNG copy)>]
 Overfull \hbox (2.67215pt too wide) in paragraph at lines 384--433
 [][] 
  []
@@ -1082,13 +1079,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 768.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 768.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: 444E306157A1DEB4FC3E8688566B645F;4943.
+(rerunfilecheck)             Checksum: 023CE4EBA8F374A373760B59C1EB8C44;4943.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 768.
  ) 
 Here is how much of TeX's memory you used:
  7575 strings out of 493091
  119111 string characters out of 6134517
- 226769 words of memory out of 5000000
+ 225769 words of memory out of 5000000
  10753 multiletter control sequences out of 15000+600000
  49733 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1116,10 +1113,10 @@ xlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/
 2015/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texm
 f-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fo
 nts/type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4118043 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4118582 bytes).
 PDF statistics:
- 572 PDF objects out of 1000 (max. 8388607)
- 477 compressed objects within 5 object streams
+ 574 PDF objects out of 1000 (max. 8388607)
+ 479 compressed objects within 5 object streams
  92 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
