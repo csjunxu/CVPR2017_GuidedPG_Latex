@@ -559,7 +559,7 @@ The comparisons are performed on two standard datasets in which the images were 
 \end{minipage}
 }\vspace{-1mm}
 \caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
-%\vspace{-1mm}
+\vspace{-1mm}
 \label{fig5}
 \end{figure*}
 
@@ -567,9 +567,9 @@ The comparisons are performed on two standard datasets in which the images were 
 Our proposed method contains two stages, the external prior learning stage and the external prior guided internal learning stage. In the first stage, we set $p = 6$ (so the patch size is $6\times 6 \times 3$), $M=10$ (the number of patches in a patch group (PG)), $W=31$ (so the window size for PG searching is $31\times31$, and $K=32$ (the number of Gaussians in Gaussian Mixture Model (GMM)). We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the second stage, we set $r=54$ (the number of internal atoms in the learned dictionaries), $\lambda=0.001$ (the sparse regularization parameter), $T=2$ (the number of iterations for solving problem (\ref{equ5})), and $IteNum=4$ (the number of iterations for Alg. 1). Our proposed method needs about 60 seconds to denoise an image of size $512\times512\times3$ under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
 \subsection{Comparison with External and Internal Priors}
-In this section, we compare our proposed method on real image denoising with external prior based method (denoted as "External") and internal prior based method (denoted as "Internal"). All the three methods perform real image denoising under the weighted sparse coding framework in Equ. (\ref{equ5}). The "External" method employs the external dictionaries (i.e., $r=0$ in Equ. (\ref{equ5})) to recover the latent clean images, while the "Internal" method employ the GMM (with also $K=32$ Gaussians) to directly cluster the internal noisy PGs into multiple subspaces, and perform denoising with internal dictionary learning (i.e., $r=3p^{2}$ in Equ. (\ref{equ5})) for each subspace. All parameters of the three methods are tuned to achieve corresponding best performance.
+In this section, we compare our proposed method on real image denoising with external prior based method (denoted as "External") and internal prior based method (denoted as "Internal"). The three methods perform denoising under the same framework as Equ. (\ref{equ5}). The "External" method employs the external dictionaries (i.e., $r=0$ in Equ. (\ref{equ5})) for denoising, while the "Internal" method employ the GMM (also with $K=32$ Gaussians) to directly cluster the internal noisy PGs into multiple subspaces, and for each subspace perform denoising with internal dictionary learning (i.e., $r=3p^{2}$ in Equ. (\ref{equ5})). All parameters of the three methods are tuned to achieve corresponding best performance.
 
-We compare the above mentioned three methods on the 60 cropped images from \cite{crosschannel2016}. The average PSNR results of these methods are listed in Table \ref{tab1}. It can be seen that our proposed method achieves higher PSNR results then the methods of "External" and "Internal". We also compare the visual quality of the images denoised by these methods. From the results listed in Figure \ref{fig2} and Figure \ref{fig3}, we can see that the "External" method is good at recovering structures (Figure \ref{fig2}) while the "Internal" method is good at recovering internal complex textures (Figure \ref{fig3}). And by making use of both the external and internal priors, our proposed method can recover well both the structures and textures.
+We compare the above mentioned three methods on the 60 cropped images from \cite{crosschannel2016}. The average PSNR results of these methods are listed in Table \ref{tab1}. It can be seen that our proposed method achieves higher PSNR results then the methods of "External" and "Internal". We also compare the visual quality of the images denoised by these methods. From the results listed in Figure \ref{fig2} and Figure \ref{fig3}, we can see that the "External" method is good at recovering structures (Figure \ref{fig2}) while the "Internal" method is good at recovering internal complex textures (Figure \ref{fig3}). And by making use of both the external and internal priors, our proposed method can recover well both the structures and textures. Noted that the noisy images in Figures \ref{fig2} and \ref{fig3} are cropped from the same image captured by Nikon D600 at ISO $=3200$ in \cite{crosschannel2016}. Therefore the differences on PSNR and visual quality among the three methods are not influenced by the noise, but by the contents of the cropped images.
 
 In summary, the proposed algorithm achieves better performance on denoising real noisy images than the external prior based method and internal prior based method. 
 
@@ -591,7 +591,7 @@ PSNR & 34.51 & 38.21 & 38.07 & \textbf{38.75}
 %\\
 %\hline
 \end{tabular}
-\end{center}\vspace{-4mm}
+\end{center}\vspace{-5mm}
 \end{table}
 
 
@@ -613,7 +613,7 @@ PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 3
 \\
 \hline
 \end{tabular}
-\end{center}\vspace{-4mm}
+\end{center}\vspace{-5mm}
 \end{table*}
 
 \subsection{Comparison with Other Denoising Methods}

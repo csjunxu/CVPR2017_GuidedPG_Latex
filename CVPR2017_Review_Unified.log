@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 21:33
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  29 OCT 2016 21:56
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -966,10 +966,7 @@ PNG copy)> <./images/resize_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png (PNG copy)>
 resize_CC_Noisy_Nikon_D800_ISO_3200_A4_51.png (PNG copy)> <./images/resize_CC_N
 oisy_Nikon_D800_ISO_6400_B3_95.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_
 D800_ISO_3200_A2_80.png (PNG copy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-<images/resize_br_Noisy_dog.png, id=351, 200.75pt x 200.75pt>
+<images/resize_br_Noisy_dog.png, id=353, 200.75pt x 200.75pt>
 File: images/resize_br_Noisy_dog.png Graphic file (type png)
 
 <use images/resize_br_Noisy_dog.png>
@@ -977,49 +974,49 @@ Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 729.
 
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_BM3D_dog.png, id=353, 200.75pt x 200.75pt>
+<images/resize_br_BM3D_dog.png, id=355, 200.75pt x 200.75pt>
 File: images/resize_br_BM3D_dog.png Graphic file (type png)
 
 <use images/resize_br_BM3D_dog.png>
 Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 729.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_WNNM_dog.png, id=356, 200.75pt x 200.75pt>
+<images/resize_br_WNNM_dog.png, id=358, 200.75pt x 200.75pt>
 File: images/resize_br_WNNM_dog.png Graphic file (type png)
 
 <use images/resize_br_WNNM_dog.png>
 Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 729.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_MLP_dog.png, id=358, 200.75pt x 200.75pt>
+<images/resize_br_MLP_dog.png, id=360, 200.75pt x 200.75pt>
 File: images/resize_br_MLP_dog.png Graphic file (type png)
 
 <use images/resize_br_MLP_dog.png>
 Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 729.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_TRD_dog.png, id=360, 200.75pt x 200.75pt>
+<images/resize_br_TRD_dog.png, id=362, 200.75pt x 200.75pt>
 File: images/resize_br_TRD_dog.png Graphic file (type png)
 
 <use images/resize_br_TRD_dog.png>
 Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 751.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NC_dog.png, id=362, 200.75pt x 200.75pt>
+<images/resize_br_NC_dog.png, id=364, 200.75pt x 200.75pt>
 File: images/resize_br_NC_dog.png Graphic file (type png)
 
 <use images/resize_br_NC_dog.png>
 Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 751.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NI_dog.png, id=364, 200.75pt x 200.75pt>
+<images/resize_br_NI_dog.png, id=366, 200.75pt x 200.75pt>
 File: images/resize_br_NI_dog.png Graphic file (type png)
 
 <use images/resize_br_NI_dog.png>
 Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 751.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_Guided_dog.png, id=366, 200.75pt x 200.75pt>
+<images/resize_br_Guided_dog.png, id=368, 200.75pt x 200.75pt>
 File: images/resize_br_Guided_dog.png Graphic file (type png)
 
 <use images/resize_br_Guided_dog.png>
@@ -1036,18 +1033,15 @@ Overfull \hbox (0.58199pt too wide) in paragraph at lines 729--752
  [][] 
  []
 
-
-Underfull \vbox (badness 4144) has occurred while \output is active []
-
- [7 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
-resize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM
-_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_MLP_5dmark3_iso3200
-_1_real.png (PNG copy)> <./images/resize_br_TRD_5dmark3_iso3200_1_real.png (PNG
- copy)> <./images/resize_br_NC_5dmark3_iso3200_1_real.png (PNG copy)> <./images
-/resize_br_NI_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_CCNois
-e_5dmark3_iso3200_1.png (PNG copy)> <./images/resize_br_Guided_5dmark3_iso3200_
-1_real.png (PNG copy)> <./images/resize_br_Mean_5dmark3_iso3200_1_real.png (PNG
- copy)>]
+[7 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/r
+esize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM_
+5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_MLP_5dmark3_iso3200_
+1_real.png (PNG copy)> <./images/resize_br_TRD_5dmark3_iso3200_1_real.png (PNG 
+copy)> <./images/resize_br_NC_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
+resize_br_NI_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_CCNoise
+_5dmark3_iso3200_1.png (PNG copy)> <./images/resize_br_Guided_5dmark3_iso3200_1
+_real.png (PNG copy)> <./images/resize_br_Mean_5dmark3_iso3200_1_real.png (PNG 
+copy)>]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM3D_dog.
@@ -1078,13 +1072,13 @@ Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 768.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 768.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: C45A8FDA87023452C2123BD31FF238FA;5037.
+(rerunfilecheck)             Checksum: 24D234E90A61023E935809BDD9F7944B;5092.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 768.
  ) 
 Here is how much of TeX's memory you used:
  7575 strings out of 493091
  118911 string characters out of 6134517
- 225843 words of memory out of 5000000
+ 227066 words of memory out of 5000000
  10753 multiletter control sequences out of 15000+600000
  49733 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1113,10 +1107,10 @@ ive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/20
 15/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-
 dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4071452 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4071713 bytes).
 PDF statistics:
- 582 PDF objects out of 1000 (max. 8388607)
- 484 compressed objects within 5 object streams
+ 585 PDF objects out of 1000 (max. 8388607)
+ 487 compressed objects within 5 object streams
  92 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
