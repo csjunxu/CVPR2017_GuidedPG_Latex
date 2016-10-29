@@ -56,18 +56,18 @@ First line of institution2 address\\
 
 %%%%%%%%% ABSTRACT
 \begin{abstract}
-For image denoising problem, the external and internal priors are playing key roles in many different methdos. External priors learn from external images to restore noisy images while internal ones exploit priors of given images for denoising. The external priors are more generative and efficient on recovering structures existing in most images while the internal priors are more adaptive on recovering detials existed in given noisy images. In this paper, we propose to employ the external patch group prior of images to guide the clustering of internal patch groups, and develop an external dictionary guided internal orthogonal dictionary learning algorithm for real image denoising. The internal orthogonal dictionary learning process has closed-form solutions and hence very efficient for online denoising. The experiments on standard datasets demonstrate that, that the proposed method achieves better performance than other state-of-the-art methods on real image denoising. 
+For image denoising problem, the external and internal priors are playing key roles in many different methods. External priors learn from external images to restore noisy images while internal ones exploit priors of given images for denoising. The external priors are more generative and efficient on recovering structures existing in most images while the internal priors are more adaptive on recovering details existed in given noisy images. In this paper, we propose to employ the external patch group prior of images to guide the clustering of internal patch groups, and develop an external dictionary guided internal orthogonal dictionary learning algorithm for real image denoising. The internal orthogonal dictionary learning process has closed-form solutions and hence very efficient for online denoising. The experiments on standard datasets demonstrate that, that the proposed method achieves better performance than other state-of-the-art methods on real image denoising. 
 \end{abstract}
 %Though these methods are very effective in Gaussian noise removal, the noise in real images are signal dependent and more complex than Gaussian noise. Therefore, only exploiting the external or internal priors are not enough for real image denoising.
 
 %%%%%%%%% BODY TEXT
 \section{Introduction} 
 
-Most vision systems, such as medical imaging and surveillance, need accurate feature extraction from high-quality images. The camera sensors and outdoor low light conditions will unavoidly bring noise to the captured images. The impact is that the image details will be lost or hardly visible. As a result, image denoising is an essential procedure for the reliability of these vision systems. In the research ara, image denoising is also an ideal platform for testing natural image models and provides high-quality images for other conputer vision tasks such as image registration, segmentation, and pattern recognition, etc. 
+Most vision systems, such as medical imaging and surveillance, need accurate feature extraction from high-quality images. The camera sensors and outdoor low light conditions will unavoidably bring noise to the captured images. The impact is that the image details will be lost or hardly visible. As a result, image denoising is an essential procedure for the reliability of these vision systems. In the research area, image denoising is also an ideal platform for testing natural image models and provides high-quality images for other computer vision tasks such as image registration, segmentation, and pattern recognition. 
 
-For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,cbm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). In real world, the cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. Under these situations, the noise is generated in a complex form and also been changed during the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian \cite{crosschannel2016,healey1994radiometric}. It depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc). The models designed for AWGN would become much less effective on real noisy images. 
+For several decades, there emerge numerous image denoising methods \cite{nlm,foe,ksvd,bm3d,cbm3d,lssc,epll,mlp,wnnm,csf,pgpd,chen2015learning}, and all of them focus mainly on dealing with additive white Gaussian noise (AWGN). In real world, the cameras will undertake high ISO settings for high-speed shots on actions, long exposure for low light on night shots, etc. Under these situations, the noise is generated in a complex form and also been changed during the in-camera imaging pipeline \cite{NewInCamera,crosschannel2016}. Therefore, the noise in real images are much more complex than Gaussian \cite{crosschannel2016,healey1994radiometric}. It depends on camera series, brands, as well as the settings (ISO, shutter speed, and aperture, etc.). The models designed for AWGN would become much less effective on real noisy images. 
 
-In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} are developed to deal with real noisy images. Almost all these methods employ a two-stage framework: estimating the parameters of the assumed noise model (usually Gaussian) and performing denoising with the help of the noise modeling and estimation in the first stage. However, the Gaussian assumption is inflexible in describing the complex noise on real noisy images \cite{Liu2008}. Although the mixture of Gaussians (MoG) model is possible to approximate any noise distribution \cite{Bishop}, estimating its parameters is time consuming via nonparametric Bayesian techniques \cite{Zhu_2016_CVPR}. To evaluate the performanec of these methods on dealing with complex real noise, we apply these methods, with corresponding default parameters, on a real noisy image provided in \cite{crosschannel2016}. The testing image is captured by a Nikon D800 camera when ISO is 3200. The "ground truth" image is also provided with which we can calculate objective measurements such as PSNR. The denoised images are listed in Figure \ref{fig1}, from which we can see that these methods either remove the noise or oversmooth the complex details in real noisy image. 
+In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} are developed to deal with real noisy images. Almost all these methods employ a two-stage framework: estimating the parameters of the assumed noise model (usually Gaussian) and performing denoising with the help of the noise modeling and estimation in the first stage. However, the Gaussian assumption is inflexible in describing the complex noise on real noisy images \cite{Liu2008}. Although the mixture of Gaussians (MoG) model is possible to approximate any noise distribution \cite{Bishop}, estimating its parameters is time consuming via nonparametric Bayesian techniques \cite{Zhu_2016_CVPR}. To evaluate the performance of these methods on dealing with complex real noise, we apply these methods, with corresponding default parameters, on a real noisy image provided in \cite{crosschannel2016}. The testing image is captured by a Nikon D800 camera when ISO is 3200. The "ground truth" image is also provided with which we can calculate objective measurements such as PSNR. The denoised images are listed in Figure \ref{fig1}, from which we can see that these methods either remove the noise or over-smooth the complex details in real noisy image. 
 \begin{figure*}
 \centering
 \subfigure{
@@ -106,12 +106,12 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (g) NoiseClinic \cite{noiseclinic}: 35.33dB  }
+{\footnotesize (g) NC \cite{noiseclinic}: 35.33dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (h) Neat Image \cite{neatimage}: 34.39dB  }
+{\footnotesize (h) NI \cite{neatimage}: 34.39dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -125,11 +125,11 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 \end{minipage}
 }\vspace{-1mm}
 \caption{Denoised images of the real noisy image "Nikon D800 ISO 3200 A3" from \cite{crosschannel2016} by different methods. The images are better viewed by zooming in on screen.} 
-\vspace{-4mm}
+\vspace{-3mm}
 \label{fig1}
 \end{figure*}
 
-The above mentioned methods can be categorized into external methods which learn priors from external images to recover noisy images, and internal ones which exploit priors of given images for denoising. The external priors in natural images are free of the high correlation between noise and siganls in real noisy images, while the internal prior is adaptive to the image and can recover better the latent clean image. Combining the priors of external clean images and adaptivety of internal testing images can naturally improve the performance of denoising methods, especially on real noisy images. Based on these observations, in this paper, we propose to employ the external patch group prior \cite{pgpd} of natural clean images to guide the clustering of internal patch groups in given noisy image, and develop an external prior guided internal orthogonal dictionary learning (DL) algorithm for real image denoising. The internal orthogonal DL process includes two alternating stages: updating sparse coefficients and updating orthogonal dictionary. Both of the two stages have closed-form solutions. Hence, our internal DL process is very efficient for online internal denoising. Through comprehensive experiments on real noisy images captured by different cameras and settings, we demonstrate that the proposed method achieves better performance on real image denoising
+The above mentioned methods can be categorized into external methods which learn priors from external images to recover noisy images, and internal ones which exploit priors of given images for denoising. The external priors in natural images are free of the high correlation between noise and signals in real noisy images, while the internal prior is adaptive to the image and can recover better the latent clean image. Combining the priors of external clean images and priors of internal testing images can naturally improve the performance of denoising methods, especially on real noisy images. Based on these observations, in this paper, we propose to employ the external patch group prior \cite{pgpd} of natural clean images to guide the clustering of internal patch groups in given noisy image, and develop an external prior guided internal orthogonal dictionary learning (DL) algorithm for real image denoising. The internal orthogonal DL process includes two alternating stages: updating sparse coefficients and updating orthogonal dictionary. Both of the two stages have closed-form solutions. Hence, our internal DL process is very efficient for online internal denoising. Through comprehensive experiments on real noisy images captured by different cameras and settings, we demonstrate that the proposed method achieves better performance on real image denoising
 
 \subsection{Our Contributions}
 
@@ -140,7 +140,7 @@ The contributions of this paper are summarized as follows:
 \item For real image denoising problem, the proposed method achieves much better performance than other competing methods.
 \end{itemize}
 
-The rest of this paper will be summerized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model and formulate the overall image denoising algorithm; in Section 3, we demonstrate extensive experiments on real image denoising probelm; in Section 4, we conclude our paper and give future work.
+The rest of this paper will be summarized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model and formulate the overall image denoising algorithm; in Section 3, we demonstrate extensive experiments on real image denoising problem; in Section 4, we conclude our paper and give future work.
 
 \section{Related Work}
 
@@ -173,15 +173,14 @@ The rest of this paper will be summerized as follows: in Section 2, we briefly i
 {\footnotesize (e) Mean Image \cite{crosschannel2016} }
 \end{minipage}
 }
-\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}\vspace{-4mm}
+\caption{Denoised images of the image "Canon EOS 5D Mark3 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
+\vspace{-3mm}
 \label{fig2}
 \end{figure*}
 
 \subsection{Patch Group Prior of Natural Images}
 
-The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self similar (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. In \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we make use of PGs both from external clean images and internal given real noisy image for better denoising performance.
-
-%In fact, we use the external Pacth Group prior to guide the structural clustering of internal patch groups in real noisy images. For each cluster of PGs, we propose to use PCA for subspace learning. The eigenvectors are the basis of this subspace and hence can be used as an orthonormal dictionary. The eigenvalues reflect the information describing the noise levels and hence can be used as parameters for image denoising. Noted that the dictionary and parameters are obtained via a fully unsupervised way by subspace learning. Therefore, our model is highly adaptive to the noisy input images.
+The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-local self-similarity (NSS) property of natural images. The NSS property is commonly used in image restoration tasks \cite{nlm,bm3d,lssc,wnnm,pgpd}. The PG prior largely reduces the space of images to be modeled when compared to the patch prior \cite{epll}. In \cite{pgpd}, only the PGs of clean natural images is utilized, while the PGs of noisy input images are ignored. In this paper, we make use of PGs both from external clean images and internal given real noisy image for better denoising performance.
 
 \subsection{Internal v.s. External Prior Learning}
 
@@ -223,7 +222,7 @@ In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005
 \end{minipage}
 }
 \caption{Denoised images of the image "Nikon D600 ISO 3200 C1" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-4mm}
+\vspace{-3mm}
 \label{fig3}
 \end{figure*}
 
@@ -232,7 +231,7 @@ In this section, we formulate the framework of external patch group (PG) prior g
 
 \subsection{External Patch Group Prior Learning}
 
-Natural images often demonstrate repepitive local patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd}. In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is destracted, and hence different groups patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
+Natural images often demonstrate repetitive local patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd}. In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is subtracted, and hence different groups patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
 
 In this work, each local patch extracted from RGB images is of size $p\times p \times 3$. Then we search the $M$ most similar patches $\{\mathbf{x}_{m}\}_{m=1}^{M}$ around each local patch through Euclidean distance, in a local window of size $W\times W$. The $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector formed by combining the 3 patch vectors (of size $p^{2}\times 1$) in R, G, B channels. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}, m=1,...,M$. Assume we have extracted $N$ PGs from a set of external natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the Gaussian Mixture Model (GMM) to learn the external patch group based NSS prior. In this model, the likelihood of the $n$-th PG $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \vspace{-2mm}
@@ -314,7 +313,7 @@ We employ square roots of the singular values in $\mathbf{S}$ (please refer to E
 
 Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem (\ref{equ5}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}_{(0)}=\mathbf{U}_{k}$ and for $t=0, 1, ..., T-1$, alternatively do:
 \\
-\textbf{Updating Sparse Coefficient}: given the orthogonal dictioanry $\textbf{D}_{(t)}$, we update the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ via solving
+\textbf{Updating Sparse Coefficient}: given the orthogonal dictionary $\textbf{D}_{(t)}$, we update the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ via solving
 \vspace{-3mm}
 \begin{equation}\label{equ8}\vspace{-3mm}
 \begin{split}
@@ -371,7 +370,7 @@ $(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U
 
 \subsection{Discussions}
 
-Here we take a detailed analysis on the guidance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ4}). The guided subspace selection is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ4}) for all noisy PGs while by internal clustering via GMM we have to perform time-consuming EM algorithm \cite{em}. 2) the external clean dictionary guides the learning of orthogonal dictionaries more adaptive for internal noisy images. The learning process is very efficient because of closed-form solutions. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under weighted sparse coding framework. 3) the singular values learned by SVD in Equ. (\ref{equ3}) reflect the prior weights of the dictionary atoms and can be used as adaptive parameters for real image denoising.
+Here we take a detailed analysis on the guidance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Equ. (\ref{equ4}). The guided subspace selection is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Equ. (\ref{equ4}) for all noisy PGs while by internal clustering via GMM we have to perform time-consuming EM algorithm \cite{em}; 2) the external clean dictionary guides the learning of orthogonal dictionaries more adaptive for internal noisy images. The learning process is very efficient because of closed-form solutions. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under weighted sparse coding framework. 3) the singular values learned by SVD in Equ. (\ref{equ3}) reflect the prior weights of the dictionary atoms and can be used as adaptive parameters for real image denoising.
 
 \subsection{The Denoising Algorithm}
 
@@ -536,17 +535,17 @@ The comparisons are performed on two standard datasets in which the images were 
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) NoiseClinic \cite{noiseclinic}: 38.76dB }
+{\footnotesize (f) NC \cite{noiseclinic}: 38.76dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) Neat Image \cite{neatimage}: 37.68dB  }
+{\footnotesize (g) NI \cite{neatimage}: 37.68dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CCNoise \cite{crosschannel2016}: 38.37dB }
+{\footnotesize (h) CC \cite{crosschannel2016}: 38.37dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -558,8 +557,9 @@ The comparisons are performed on two standard datasets in which the images were 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
 {\footnotesize (j) Mean Image \cite{crosschannel2016}}
 \end{minipage}
-}\vspace{-4mm}
+}\vspace{-1mm}
 \caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
+%\vspace{-1mm}
 \label{fig5}
 \end{figure*}
 
@@ -619,11 +619,11 @@ PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 3
 \subsection{Comparison with Other Denoising Methods}
 %For BM3D, we employ its color version \cite{cbm3d} which would have better performance on color images. 
 
-In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default paramters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels seperately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. The recently proposed Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method on real image denoising problem. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellant performance, NI is embeded into Photoshop and Corel PaintShop Pro \cite{neatimage}.
+In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default parameters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels separately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. The recently proposed Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method on real image denoising problem. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellent performance, NI is embedded into Photoshop and Corel PaintShop \cite{neatimage}.
 
-The comparisons are performed on the two datasets mentioned before. For the first dataset \cite{crosschannel2016}, the average PSNR results on the 60 cropped images  are listed in Table \ref{tab2} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (\textbf{TRD}) is 1dB. To compare with \cite{crosschannel2016}, we also perform experiments on the 15 cropped images used in \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab3}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. Owe to the unify of external and internal priors, our proposed method preserves edges and textures better than other methods. 
+The comparisons are performed on the two datasets mentioned before. For the first dataset \cite{crosschannel2016}, the average PSNR results on the 60 cropped images  are listed in Table \ref{tab2} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (TRD) is 1dB. To compare with \cite{crosschannel2016}, we also perform experiments on the 15 cropped images used in \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab3}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. Owe to the unify of external and internal priors, our proposed method preserves edges and textures better than other methods. 
 
-For the second dataset \cite{ncwebsite} with no "ground truth" images, we only compare the visual quality of the denoised images. Figure \ref{fig6} shows the denoised images of "Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specificly developed for removing complex noise, they would sometimes fail to recovery real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
+For the second dataset \cite{ncwebsite} with no "ground truth" images, we only compare the visual quality of the denoised images. Figure \ref{fig6} shows the denoised images of "Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specifically developed for removing complex noise, they would sometimes fail to recovery real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
 
 In summary, our proposed method demonstrates impressing ability on dealing with the complex noise in real noisy images in terms of PSNR and visual quality.
 
@@ -635,7 +635,7 @@ In summary, our proposed method demonstrates impressing ability on dealing with 
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Camera Settings & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Guided} 
+Camera Settings & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Ours} 
 \\
 \hline
 \multirow{3}{*}{\small{Canon 5D Mark III}} 
@@ -736,17 +736,17 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
-{\footnotesize (f) Noise Clinic \cite{noiseclinic}  }
+{\footnotesize (f) NC \cite{noiseclinic}  }
 \end{minipage}
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
-{\footnotesize (g) Neat Image \cite{neatimage}   }
+{\footnotesize (g) NI \cite{neatimage}   }
 \end{minipage}
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
-{\footnotesize (h) Guided  }
+{\footnotesize (h) Ours  }
 \end{minipage}
 }
 \caption{Denoised images of the image "Dog" by different methods. The images are better to be zoomed in on screen.}
@@ -756,7 +756,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 
 \section{Conclusion and Future Work}
 
-The image priors are commonly used for image denoising problem. The external priors are general but not adaptive to specific images, while the internal priors are adaptive but would largely degraded by the complex noise in real noisy images. In this paper, we demonstrates that, we can unify the priors in external clean images and in internal noisy images to achieve better performance on real image denoising problem. This unify can be attempted by employing the external prior learned on natural images to guide the internal prior learning on given noisy images. The experiments on standard datasets have demonstrated the powerful ability of the proposed method. In the future, we will evaluate the proposed method on other conputer vision tasks such as image super-resolution, image deblurring, etc.
+The image priors are commonly used for image denoising problem. The external priors are general but not adaptive to specific images, while the internal priors are adaptive but would largely degraded by the complex noise in real noisy images. In this paper, we demonstrates that, we can unify the priors in external clean images and in internal noisy images to achieve better performance on real image denoising problem. This unify can be attempted by employing the external prior learned on natural images to guide the internal prior learning on given noisy images. The experiments on standard datasets have demonstrated the powerful ability of the proposed method. In the future, we will evaluate the proposed method on other computer vision tasks such as image super-resolution, image deblurring, etc.
 
 \clearpage
 {
