@@ -328,8 +328,8 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 \end{split}
 \end{equation}
 Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ8}) has a closed-form solution \cite{pgpd} 
-\vspace{-2mm}
-\begin{equation}\label{equ9}\vspace{-2mm}
+\vspace{-1mm}
+\begin{equation}\label{equ9}\vspace{-1mm}
 \bm{\alpha}_{n,m}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m}|-\mathbf{\Lambda},\mathbf{0}),
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
@@ -439,11 +439,11 @@ The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all th
 %------------------------------------------------------------------------
 \section{Experiments}
 
-In this section, we evaluate the performance of the proposed algorithm on real image denoising. To evaluation the effectiveness of the proposed framework of external prior guided internal prior learning, we compare it with the methods with only external prior or only internal prior. This will be discussed in Section 4.3. We also compare the proposed algorithm with other state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage} in Section 4.4..
+In this section, we evaluate the performance of the proposed algorithm on real image denoising. To evaluation the effectiveness of the proposed framework of external prior guided internal prior learning, we compare it with the methods with only external prior or only internal prior (Section 4.3). We also compare the proposed algorithm with other state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage} (Section 4.4).
 
 \subsection{The Testing Datasets}
 
-The comparisons are performed on two standard datasets in which the images were captured under indoor and outdoor lighting conditions by different types of cameras and camera settings. The first dataset is provided in \cite{crosschannel2016}. It includes 17 real noisy images and corresponding mean images. The noisy images were collected under controlled indoor environment. Some samples can be found in \cite{crosschannel2016}. For each image, the same scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the "ground truth", with which the PSNR can be computed. Since there are many similar contents in these 17 images, we cropped thses images into 60 smaller images (of size $500\times 500$) including different contents. Some samples are shown in Figure \ref{fig4}. The authors of \cite{crosschannel2016} also provided us the 15 images (of size $512\times 512$) used in \cite{crosschannel2016} and hence we can compare with the method of \cite{crosschannel2016}. Noted that the noise in the 15 images used in \cite{crosschannel2016} is different from the noise in the 60 images cropped from \cite{crosschannel2016} since they are taken in different shots. The second dataset is provided in \cite{ncwebsite} includes about 15 real noisy images collected under uncontrolled outdoor environment. This dataset do not have "ground truth" images. 
+The comparisons are performed on two standard datasets in which the images were captured under indoor and outdoor lighting conditions by different types of cameras and camera settings. The first dataset provided in \cite{crosschannel2016} includes 17 real noisy images and corresponding mean images. The noisy images were collected under controlled indoor environment. Some samples can be found in \cite{crosschannel2016}. For each image, the same scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the "ground truth", with which the PSNR can be computed. Since the 17 images share repetitive contents, we cropped these images into 60 smaller images (of size $500\times 500\times3$) including different contents. Some samples are shown in Figure \ref{fig4}. We also perform comparison on the 15 testing images (of size $512\times 521\times3$) used in \cite{crosschannel2016}. Noted that the noise in the 15 images used in \cite{crosschannel2016} is different from the noise in the 60 images cropped from \cite{crosschannel2016} since they are taken in different shots. The second dataset provided in \cite{ncwebsite} includes about 20 real noisy images collected under uncontrolled outdoor environment. These images do not have "ground truth" images. 
 
 \begin{figure}[t]
 \centering
@@ -750,7 +750,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 {\footnotesize (h) Guided  }
 \end{minipage}
 }
-\caption{Denoised images of the image "$5dmark3 iso3200 3$" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the image "Dog" by different methods. The images are better to be zoomed in on screen.}
 \vspace{-2mm}
 \label{fig6}
 \end{figure*}
