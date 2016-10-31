@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  31 OCT 2016 10:41
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  31 OCT 2016 15:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -969,7 +969,7 @@ D800_ISO_3200_A2_80.png (PNG copy)>]
 Underfull \vbox (badness 4132) has occurred while \output is active []
 
 
-<images/resize_br_Noisy_dog.png, id=353, 200.75pt x 200.75pt>
+<images/resize_br_Noisy_dog.png, id=354, 200.75pt x 200.75pt>
 File: images/resize_br_Noisy_dog.png Graphic file (type png)
 
 <use images/resize_br_Noisy_dog.png>
@@ -977,49 +977,49 @@ Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 727.
 
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_BM3D_dog.png, id=355, 200.75pt x 200.75pt>
+<images/resize_br_BM3D_dog.png, id=356, 200.75pt x 200.75pt>
 File: images/resize_br_BM3D_dog.png Graphic file (type png)
 
 <use images/resize_br_BM3D_dog.png>
 Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 727.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_WNNM_dog.png, id=358, 200.75pt x 200.75pt>
+<images/resize_br_WNNM_dog.png, id=359, 200.75pt x 200.75pt>
 File: images/resize_br_WNNM_dog.png Graphic file (type png)
 
 <use images/resize_br_WNNM_dog.png>
 Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 727.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_MLP_dog.png, id=360, 200.75pt x 200.75pt>
+<images/resize_br_MLP_dog.png, id=361, 200.75pt x 200.75pt>
 File: images/resize_br_MLP_dog.png Graphic file (type png)
 
 <use images/resize_br_MLP_dog.png>
 Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 727.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_TRD_dog.png, id=362, 200.75pt x 200.75pt>
+<images/resize_br_TRD_dog.png, id=363, 200.75pt x 200.75pt>
 File: images/resize_br_TRD_dog.png Graphic file (type png)
 
 <use images/resize_br_TRD_dog.png>
 Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 749.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NC_dog.png, id=364, 200.75pt x 200.75pt>
+<images/resize_br_NC_dog.png, id=365, 200.75pt x 200.75pt>
 File: images/resize_br_NC_dog.png Graphic file (type png)
 
 <use images/resize_br_NC_dog.png>
 Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 749.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_NI_dog.png, id=366, 200.75pt x 200.75pt>
+<images/resize_br_NI_dog.png, id=367, 200.75pt x 200.75pt>
 File: images/resize_br_NI_dog.png Graphic file (type png)
 
 <use images/resize_br_NI_dog.png>
 Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 749.
 (pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
 
-<images/resize_br_Guided_dog.png, id=368, 200.75pt x 200.75pt>
+<images/resize_br_Guided_dog.png, id=369, 200.75pt x 200.75pt>
 File: images/resize_br_Guided_dog.png Graphic file (type png)
 
 <use images/resize_br_Guided_dog.png>
@@ -1081,7 +1081,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 766.
 Here is how much of TeX's memory you used:
  7575 strings out of 493091
  118911 string characters out of 6134517
- 226083 words of memory out of 5000000
+ 226109 words of memory out of 5000000
  10753 multiletter control sequences out of 15000+600000
  49733 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1101,19 +1101,20 @@ re/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Software
 exlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Software/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/tex
 live/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb><c:/Software/texl
-ive/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb><c:/Software/t
-exlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Softw
-are/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/
-Software/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/Softwar
-e/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Software/texl
-ive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/20
-15/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-
-dist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/font
-s/type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4072772 bytes).
+ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb><c:/Software/texli
+ve/2015/texmf-dist/fonts/type1/public/amsfonts/euler/eurb10.pfb><c:/Software/te
+xlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb><c:/Softwa
+re/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb><c:/S
+oftware/texlive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/Software
+/texlive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Software/texli
+ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
+5/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-d
+ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
+/type1/urw/times/utmri8a.pfb>
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4080605 bytes).
 PDF statistics:
- 585 PDF objects out of 1000 (max. 8388607)
- 487 compressed objects within 5 object streams
+ 589 PDF objects out of 1000 (max. 8388607)
+ 490 compressed objects within 5 object streams
  92 named destinations out of 1000 (max. 500000)
  271 words of extra memory for PDF output out of 10000 (max. 10000000)
 
