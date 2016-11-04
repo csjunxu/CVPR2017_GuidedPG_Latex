@@ -124,7 +124,7 @@ In the last decade, the methods of \cite{fullyblind,rabie2005robust,Liu2008,alma
 {\footnotesize (j) Mean Image \cite{crosschannel2016} }
 \end{minipage}
 }\vspace{-1mm}
-\caption{Denoised images of the real noisy image "Nikon D800 ISO 3200 A3" from \cite{crosschannel2016} by different methods. The images are better viewed by zooming in on screen.} 
+\caption{Denoised images of the real noisy image ``Nikon D800 ISO 3200 A3" from \cite{crosschannel2016} by different methods. The images are better viewed by zooming in on screen.} 
 \vspace{-3mm}
 \label{fig1}
 \end{figure*}
@@ -173,7 +173,7 @@ The rest of this paper will be summarized as follows: in Section 2, we briefly i
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\caption{Denoised images of the $96$-th cropped image from "Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the $96$-th cropped image from ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
 \vspace{-3mm}
 \label{fig2}
 \end{figure*}
@@ -221,7 +221,7 @@ In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\caption{Denoised images of the $94$-th cropped image from "Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the $94$-th cropped image from ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
 \vspace{-3mm}
 \label{fig3}
 \end{figure*}
@@ -558,7 +558,7 @@ The comparisons are performed on two standard datasets in which the images were 
 {\footnotesize (j) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }\vspace{-1mm}
-\caption{Denoised images of the image "Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
+\caption{Denoised images of the image ``Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
 \vspace{-1mm}
 \label{fig5}
 \end{figure*}
@@ -747,14 +747,14 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\caption{Denoised images of the image "Dog" by different methods. The images are better to be zoomed in on screen.}
-%\vspace{-2mm}
+\caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
+\vspace{-2mm}
 \label{fig6}
 \end{figure*}
 
 \section{Conclusion and Future Work}
 
-Image priors are commonly used for solving image denoising problems. The external priors are general but not adaptive to specific images, while the internal priors are adaptive but would largely degraded by the complex noise in real noisy images. In this paper, we demonstrates that, we can unify the priors in external clean images and in internal noisy images to achieve better performance on real image denoising problem. This unify can be attempted by employing the external prior learned on natural images to guide the internal prior learning on given noisy images. The experiments on standard datasets have demonstrated the powerful ability of the proposed method. In the future, we will evaluate the proposed method on other computer vision tasks such as image super-resolution, image deblurring, etc.
+Image priors are important for solving image denoising problems. The external priors learned from external clean images are generally effective to most images, while the internal priors learned directly from the noisy image are adaptive to the given image but would be biased by the complex noise in real noisy images. In this paper, we demonstrates that, once unifying both the priors in external clean images and internal noisy images, we can achieve much better while still efficient performance on real image denoising problem. Specifically, the external patch group (PG) priors learned on natural clean images can be used to guide the subspace selection and orthogonal dictionary learning of internal noisy PGs from given noisy images. The experiments on real image denoising problem have demonstrated the powerful ability of the proposed method. In the future, we will speed up the proposed algorithm and evaluate the proposed method on other computer vision tasks such as image super-resolution.
 
 \clearpage
 {

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  4 NOV 2016 12:55
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  4 NOV 2016 13:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1044,12 +1044,18 @@ copy)> <./images/resize_br_NC_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
 resize_br_NI_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_CCNoise
 _5dmark3_iso3200_1.png (PNG copy)> <./images/resize_br_Guided_5dmark3_iso3200_1
 _real.png (PNG copy)> <./images/resize_br_Mean_5dmark3_iso3200_1_real.png (PNG 
-copy)>] [8 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM
-3D_dog.png (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/r
-esize_br_MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <.
-/images/resize_br_NC_dog.png (PNG copy)> <./images/resize_br_NI_dog.png (PNG co
-py)> <./images/resize_br_Guided_dog.png (PNG copy)>]
-(./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
+copy)>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [8 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM3D_dog.
+png (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_b
+r_MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images
+/resize_br_NC_dog.png (PNG copy)> <./images/resize_br_NI_dog.png (PNG copy)> <.
+/images/resize_br_Guided_dog.png (PNG copy)>] (./CVPR2017_Review_Unified.bbl
+(./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
 \openout3 = `CVPR2017_Review_Unified.brf'.
 
@@ -1084,7 +1090,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 766.
 Here is how much of TeX's memory you used:
  7570 strings out of 493091
  118872 string characters out of 6134517
- 226082 words of memory out of 5000000
+ 227090 words of memory out of 5000000
  10749 multiletter control sequences out of 15000+600000
  49733 words of font info for 119 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1114,7 +1120,7 @@ ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4079700 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4080018 bytes).
 PDF statistics:
  583 PDF objects out of 1000 (max. 8388607)
  484 compressed objects within 5 object streams
