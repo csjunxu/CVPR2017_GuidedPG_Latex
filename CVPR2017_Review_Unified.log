@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  4 NOV 2016 12:52
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  4 NOV 2016 12:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1062,8 +1062,8 @@ Underfull \hbox (badness 1320) in paragraph at lines 19--19
 Missing character: There is no Ã in font ptmr7t!
 Missing character: There is no ¼ in font ptmr7t!
 
-Underfull \hbox (badness 7468) in paragraph at lines 148--148
-[]\OT1/ptm/m/n/9 Neatlab AB-Soft.  Neat im-age.  [][]$\OT1/pcr/m/n/9 https : / 
+Underfull \hbox (badness 7238) in paragraph at lines 148--148
+[]\OT1/ptm/m/n/9 Neatlab AB-Soft.  Neat Im-age.  [][]$\OT1/pcr/m/n/9 https : / 
 / ni .
  []
 
@@ -1114,7 +1114,7 @@ ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
 5/texmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4079705 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4079701 bytes).
 PDF statistics:
  583 PDF objects out of 1000 (max. 8388607)
  484 compressed objects within 5 object streams
