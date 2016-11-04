@@ -45,7 +45,7 @@ D.~Zoran and Y.~Weiss.
 
 \bibitem{mlp}
 H.~C. Burger, C.~J. Schuler, and S.~Harmeling.
-\newblock Image denoising: Can plain neural networks compete with bm3d?
+\newblock Image denoising: Can plain neural networks compete with {BM3D}?
 \newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, pages 2392--2399, 2012.
 
