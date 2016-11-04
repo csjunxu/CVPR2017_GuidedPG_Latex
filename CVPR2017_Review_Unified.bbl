@@ -8,7 +8,7 @@ A.~Buades, B.~Coll, and J.~M. Morel.
 
 \bibitem{foe}
 S.~Roth and M.~J. Black.
-\newblock Fields of {Experts}.
+\newblock Fields of experts.
 \newblock {\em International Journal of Computer Vision}, 82(2):205--229, 2009.
 
 \bibitem{ksvd}
@@ -25,7 +25,7 @@ K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
 
 \bibitem{cbm3d}
 K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
-\newblock Color image denoising via sparse 3d collaborative filtering with
+\newblock Color image denoising via sparse 3{D} collaborative filtering with
   grouping constraint in luminance-chrominance space.
 \newblock {\em IEEE International Conference on Image Processing (ICIP)}, pages
   313--316, 2007.
