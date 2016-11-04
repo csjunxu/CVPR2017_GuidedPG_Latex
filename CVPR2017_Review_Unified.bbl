@@ -3,7 +3,8 @@
 \bibitem{nlm}
 A.~Buades, B.~Coll, and J.~M. Morel.
 \newblock A non-local algorithm for image denoising.
-\newblock {\em CVPR}, pages 60--65, 2005.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 60--65, 2005.
 
 \bibitem{foe}
 S.~Roth and M.~J. Black.
@@ -14,63 +15,66 @@ S.~Roth and M.~J. Black.
 M.~Elad and M.~Aharon.
 \newblock Image denoising via sparse and redundant representations over learned
   dictionaries.
-\newblock {\em Image Processing, IEEE Transactions on}, 15(12):3736--3745,
-  2006.
+\newblock {\em IEEE Transactions on Image Processing}, 15(12):3736--3745, 2006.
 
 \bibitem{bm3d}
 K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
 \newblock Image denoising by sparse 3-{D} transform-domain collaborative
   filtering.
-\newblock {\em Image Processing, IEEE Transactions on}, 16(8):2080--2095, 2007.
+\newblock {\em IEEE Transactions on Image Processing}, 16(8):2080--2095, 2007.
 
 \bibitem{cbm3d}
 K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
 \newblock Color image denoising via sparse 3d collaborative filtering with
   grouping constraint in luminance-chrominance space.
-\newblock {\em IEEE International Conference on Image Processing}, 1, 2007.
+\newblock {\em IEEE International Conference on Image Processing (ICIP)}, pages
+  313--316, 2007.
 
 \bibitem{lssc}
 J.~Mairal, F.~Bach, J.~Ponce, G.~Sapiro, and A.~Zisserman.
 \newblock Non-local sparse models for image restoration.
-\newblock {\em ICCV}, pages 2272--2279, 2009.
+\newblock {\em IEEE International Conference on Computer Vision (ICCV)}, pages
+  2272--2279, 2009.
 
 \bibitem{epll}
 D.~Zoran and Y.~Weiss.
 \newblock From learning models of natural image patches to whole image
   restoration.
-\newblock {\em ICCV}, pages 479--486, 2011.
+\newblock {\em IEEE International Conference on Computer Vision (ICCV)}, pages
+  479--486, 2011.
 
 \bibitem{mlp}
 H.~C. Burger, C.~J. Schuler, and S.~Harmeling.
 \newblock Image denoising: Can plain neural networks compete with bm3d?
-\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2012 IEEE
-  Conference on}, pages 2392--2399, 2012.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2392--2399, 2012.
 
 \bibitem{wnnm}
 S.~Gu, L.~Zhang, W.~Zuo, and X.~Feng.
 \newblock Weighted nuclear norm minimization with application to image
   denoising.
-\newblock {\em CVPR}, pages 2862--2869, 2014.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2862--2869, 2014.
 
 \bibitem{csf}
 U.~Schmidt and S.~Roth.
 \newblock Shrinkage fields for effective image restoration.
-\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2014 IEEE
-  Conference on}, pages 2774--2781, June 2014.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 2774--2781, June 2014.
 
 \bibitem{pgpd}
 J.~Xu, L.~Zhang, W.~Zuo, D.~Zhang, and X.~Feng.
 \newblock Patch group based nonlocal self-similarity prior learning for image
   denoising.
-\newblock {\em 2015 IEEE International Conference on Computer Vision (ICCV)},
-  pages 244--252, 2015.
+\newblock {\em IEEE International Conference on Computer Vision (ICCV)}, pages
+  244--252, 2015.
 
 \bibitem{chen2015learning}
 Y.~Chen, W.~Yu, and T.~Pock.
 \newblock On learning optimized reaction diffusion processes for effective
   image restoration.
-\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
-  Pattern Recognition}, pages 5261--5269, 2015.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 5261--5269, 2015.
 
 \bibitem{NewInCamera}
 S.~J. Kim, H.~T. Lin, Z.~Lu, S.~Süsstrunk, S.~Lin, and M.~S. Brown.
@@ -83,12 +87,12 @@ S.~J. Kim, H.~T. Lin, Z.~Lu, S.~Süsstrunk, S.~Lin, and M.~S. Brown.
 S.~Nam, Y.~Hwang, Y.~Matsushita, and S.~J. Kim.
 \newblock A holistic approach to cross-channel image noise modeling and its
   application to image denoising.
-\newblock {\em Proc. Computer Vision and Pattern Recognition (CVPR)}, pages
-  1683--1691, 2016.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 1683--1691, 2016.
 
 \bibitem{healey1994radiometric}
 G.~E Healey and R.~Kondepudy.
-\newblock Radiometric ccd camera calibration and noise estimation.
+\newblock Radiometric {CCD} camera calibration and noise estimation.
 \newblock {\em IEEE Transactions on Pattern Analysis and Machine Intelligence},
   16(3):267--276, 1994.
 
@@ -96,14 +100,13 @@ G.~E Healey and R.~Kondepudy.
 J.~Portilla.
 \newblock Full blind denoising through noise covariance estimation using
   gaussian scale mixtures in the wavelet domain.
-\newblock {\em Image Processing, 2004. ICIP '04. 2004 International Conference
-  on}, 2:1217--1220, 2004.
+\newblock {\em IEEE International Conference on Image Processing (ICIP)},
+  2:1217--1220, 2004.
 
 \bibitem{rabie2005robust}
 T.~Rabie.
 \newblock Robust estimation approach for blind denoising.
-\newblock {\em Image Processing, IEEE Transactions on}, 14(11):1755--1765,
-  2005.
+\newblock {\em IEEE Transactions on Image Processing}, 14(11):1755--1765, 2005.
 
 \bibitem{Liu2008}
 C.~Liu, R.~Szeliski, S.~Bing Kang, C.~L. Zitnick, and W.~T. Freeman.
@@ -119,8 +122,7 @@ Z.~Gong, Z.~Shen, and K.-C. Toh.
 \bibitem{noiseclinic}
 M.~Lebrun, M.~Colom, and J.-M. Morel.
 \newblock Multiscale image blind denoising.
-\newblock {\em Image Processing, IEEE Transactions on}, 24(10):3149--3161,
-  2015.
+\newblock {\em IEEE Transactions on Image Processing}, 24(10):3149--3161, 2015.
 
 \bibitem{ncwebsite}
 M.~Lebrun, M.~Colom, and J.~M. Morel.
@@ -131,7 +133,7 @@ M.~Lebrun, M.~Colom, and J.~M. Morel.
 \bibitem{Zhu_2016_CVPR}
 F.~Zhu, G.~Chen, and P.-A. Heng.
 \newblock From noise modeling to blind image denoising.
-\newblock {\em The IEEE Conference on Computer Vision and Pattern Recognition
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, June 2016.
 
 \bibitem{Bishop}
@@ -149,11 +151,6 @@ G.~Yu, G.~Sapiro, and S.~Mallat.
 \newblock Solving inverse problems with piecewise linear estimators: {From}
   {Gaussian} mixture models to structured sparsity.
 \newblock {\em IEEE Transactions on Image Processing}, 21(5):2481--2499, 2012.
-
-\bibitem{ncsr}
-W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
-\newblock Nonlocally centralized sparse representation for image restoration.
-\newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
 
 \bibitem{huber2011robust}
 P.~J. Huber.

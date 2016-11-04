@@ -184,7 +184,7 @@ The Patch Group (PG) prior \cite{pgpd} is proposed to directly model the non-loc
 
 \subsection{Internal v.s. External Prior Learning}
 
-Learning priors to represent images has been successfully used in image modeling \cite{ksvd,epll,pgpd,ple,ncsr}. There are mainly two categories of prior learning methods: 1) External methods pre-learned priors (e.g., dictionaries) from a set of clean images, and the learned priors are used to recover the noisy images \cite{epll,pgpd}. 2) Internal methods directly learned priors from the given noisy image, and the image denoising is simultaneously done with the learning process \cite{ksvd,ple,ncsr}. Both the two categories of methods have limitations. The external methods is not adaptive to the noisy image, while the internal methods ignores the information hidden in clean images. In this paper, our goal is to employ the external prior to guide the internal prior learning.
+Learning priors to represent images has been successfully used in image modeling \cite{ksvd,epll,pgpd,ple}. There are mainly two categories of prior learning methods: 1) External methods pre-learned priors (e.g., dictionaries) from a set of clean images, and the learned priors are used to recover the noisy images \cite{epll,pgpd}. 2) Internal methods directly learned priors from the given noisy image, and the image denoising is simultaneously done with the learning process \cite{ksvd,ple}. Both the two categories of methods have limitations. The external methods is not adaptive to the noisy image, while the internal methods ignores the information hidden in clean images. In this paper, our goal is to employ the external prior to guide the internal prior learning.
 
 \subsection{Real Image Denoising}
 
@@ -231,7 +231,7 @@ In this section, we formulate the framework of external patch group (PG) prior g
 
 \subsection{External Patch Group Prior Learning}
 
-Natural images often demonstrate repetitive local patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,ncsr,wnnm,pgpd}. In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is subtracted, and hence different groups patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
+Natural images often demonstrate repetitive local patterns, this nonlocal self-similarity (NSS) property is a key successful factor for many image denoising methods \cite{nlm,bm3d,lssc,wnnm,pgpd}. In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is subtracted, and hence different groups patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
 
 In this work, each local patch extracted from RGB images is of size $p\times p \times 3$. Then we search the $M$ most similar patches $\{\mathbf{x}_{m}\}_{m=1}^{M}$ around each local patch through Euclidean distance, in a local window of size $W\times W$. The $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector formed by combining the 3 patch vectors (of size $p^{2}\times 1$) in R, G, B channels. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}, m=1,...,M$. Assume we have extracted $N$ PGs from a set of external natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the Gaussian Mixture Model (GMM) to learn the external patch group based NSS prior. In this model, the likelihood of the $n$-th PG $\{\mathbf{\overline{X}}_{n}\}$ can be calculated as
 \vspace{-2mm}
@@ -748,13 +748,13 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \end{minipage}
 }
 \caption{Denoised images of the image "Dog" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-2mm}
+%\vspace{-2mm}
 \label{fig6}
 \end{figure*}
 
 \section{Conclusion and Future Work}
 
-The image priors are commonly used for image denoising problem. The external priors are general but not adaptive to specific images, while the internal priors are adaptive but would largely degraded by the complex noise in real noisy images. In this paper, we demonstrates that, we can unify the priors in external clean images and in internal noisy images to achieve better performance on real image denoising problem. This unify can be attempted by employing the external prior learned on natural images to guide the internal prior learning on given noisy images. The experiments on standard datasets have demonstrated the powerful ability of the proposed method. In the future, we will evaluate the proposed method on other computer vision tasks such as image super-resolution, image deblurring, etc.
+Image priors are commonly used for solving image denoising problems. The external priors are general but not adaptive to specific images, while the internal priors are adaptive but would largely degraded by the complex noise in real noisy images. In this paper, we demonstrates that, we can unify the priors in external clean images and in internal noisy images to achieve better performance on real image denoising problem. This unify can be attempted by employing the external prior learned on natural images to guide the internal prior learning on given noisy images. The experiments on standard datasets have demonstrated the powerful ability of the proposed method. In the future, we will evaluate the proposed method on other computer vision tasks such as image super-resolution, image deblurring, etc.
 
 \clearpage
 {

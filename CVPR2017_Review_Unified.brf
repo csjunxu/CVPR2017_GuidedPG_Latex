@@ -21,12 +21,12 @@
 \backcite {nlm,bm3d,lssc,wnnm,pgpd}{{2}{2.1}{subsection.2.1}}
 \backcite {epll}{{2}{2.1}{subsection.2.1}}
 \backcite {pgpd}{{2}{2.1}{subsection.2.1}}
-\backcite {ksvd,epll,pgpd,ple,ncsr}{{2}{2.2}{subsection.2.2}}
+\backcite {ksvd,epll,pgpd,ple}{{2}{2.2}{subsection.2.2}}
 \backcite {epll,pgpd}{{2}{2.2}{subsection.2.2}}
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
 \backcite {crosschannel2016}{{3}{2(a)}{subfigure.2.1}}
 \backcite {crosschannel2016}{{3}{2}{figure.2}}
-\backcite {ksvd,ple,ncsr}{{3}{2.2}{subsection.2.2}}
+\backcite {ksvd,ple}{{3}{2.2}{subsection.2.2}}
 \backcite {fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016}{{3}{2.3}{subsection.2.3}}
 \backcite {fullyblind}{{3}{2.3}{subsection.2.3}}
 \backcite {rabie2005robust}{{3}{2.3}{subsection.2.3}}
@@ -36,7 +36,7 @@
 \backcite {noiseclinic,ncwebsite}{{3}{2.3}{subsection.2.3}}
 \backcite {nlbayes}{{3}{2.3}{subsection.2.3}}
 \backcite {Zhu_2016_CVPR}{{3}{2.3}{subsection.2.3}}
-\backcite {nlm,bm3d,lssc,ncsr,wnnm,pgpd}{{3}{3.1}{subsection.3.1}}
+\backcite {nlm,bm3d,lssc,wnnm,pgpd}{{3}{3.1}{subsection.3.1}}
 \backcite {pgpd}{{3}{3.1}{subsection.3.1}}
 \backcite {em}{{3}{3.1}{equation.3.2}}
 \backcite {pgpd}{{3}{3.1}{equation.3.2}}
