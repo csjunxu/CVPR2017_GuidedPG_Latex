@@ -146,27 +146,11 @@ Neatlab ABSoft.
 \newblock Neat {I}mage.
 \newblock \url{https://ni.neatvideo.com/home}.
 
-\bibitem{Irani2009sr}
-Daniel Glasner, Shai Bagon, and Michal Irani.
-\newblock Super-resolution from a single image.
-\newblock {\em IEEE International Conference on Computer Vision (ICCV)}, 2009.
-
 \bibitem{Irani2013separating}
 Maria Zontak, Inbar Mosseri, and Michal Irani.
 \newblock Separating signal from noise using patch recurrence across scales.
 \newblock {\em Proceedings of the IEEE Conference on Computer Vision and
   Pattern Recognition}, pages 1195--1202, 2013.
-
-\bibitem{Irani2014deblur}
-Tomer Michaeli and Michal Irani.
-\newblock Blind deblurring using internal patch recurrence.
-\newblock {\em European Conference on Computer Vision}, pages 783--798, 2014.
-
-\bibitem{Irani2016dehazing}
-Y.~Bahat and M.~Irani.
-\newblock Blind dehazing using internal patch recurrence.
-\newblock {\em IEEE International Conference on Computational Photography
-  (ICCP)}, pages 1--9, May 2016.
 
 \bibitem{ple}
 G.~Yu, G.~Sapiro, and S.~Mallat.
@@ -184,11 +168,10 @@ M.~Lebrun, A.~Buades, and J.~M. Morel.
 \newblock A nonlocal {B}ayesian image denoising algorithm.
 \newblock {\em SIAM Journal on Imaging Sciences}, 6(3):1665--1688, 2013.
 
-\bibitem{em}
-A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
-\newblock Maximum likelihood from incomplete data via the {EM} algorithm.
-\newblock {\em Journal of the Royal Statistical Society. Series B
-  (methodological)}, pages 1--38, 1977.
+\bibitem{Bishop}
+C.~M. Bishop.
+\newblock {\em Pattern recognition and machine learning}.
+\newblock New York: Springer, 2006.
 
 \bibitem{spca}
 H.~Zou, T.~Hastie, and R.~Tibshirani.
