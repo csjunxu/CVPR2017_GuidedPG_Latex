@@ -146,6 +146,28 @@ Neatlab ABSoft.
 \newblock Neat {I}mage.
 \newblock \url{https://ni.neatvideo.com/home}.
 
+\bibitem{Irani2009sr}
+Daniel Glasner, Shai Bagon, and Michal Irani.
+\newblock Super-resolution from a single image.
+\newblock {\em IEEE International Conference on Computer Vision (ICCV)}, 2009.
+
+\bibitem{Irani2013separating}
+Maria Zontak, Inbar Mosseri, and Michal Irani.
+\newblock Separating signal from noise using patch recurrence across scales.
+\newblock {\em Proceedings of the IEEE Conference on Computer Vision and
+  Pattern Recognition}, pages 1195--1202, 2013.
+
+\bibitem{Irani2014deblur}
+Tomer Michaeli and Michal Irani.
+\newblock Blind deblurring using internal patch recurrence.
+\newblock {\em European Conference on Computer Vision}, pages 783--798, 2014.
+
+\bibitem{Irani2016dehazing}
+Y.~Bahat and M.~Irani.
+\newblock Blind dehazing using internal patch recurrence.
+\newblock {\em IEEE International Conference on Computational Photography
+  (ICCP)}, pages 1--9, May 2016.
+
 \bibitem{ple}
 G.~Yu, G.~Sapiro, and S.~Mallat.
 \newblock Solving inverse problems with piecewise linear estimators: {From}
