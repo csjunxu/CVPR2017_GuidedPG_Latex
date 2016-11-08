@@ -145,7 +145,7 @@ Image priors are playing key factors in image denoising methods \cite{nlm,ksvd,e
 
 \subsection{Real Image Denoising}
 
-In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} for real image denoising problem. In \cite{fullyblind}, Portilla proposed to use scale mixture of Gaussians to estimate the noise covariance matrix and latent clean images in wavelet domain. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu \etal \cite{Liu2008} proposed to use ``noise level function" to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} m odels the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called ``Noise Clinic" \cite{noiseclinic,ncwebsite}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via low-rank mixture of Gaussians. However, these methods largely depends on the modeling of noise in real noisy images which is hard to be modeled by explict distributions. Besides, the parametric estimation of the Gaussian or MoG distribution is often time consumming. 
+In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} for real image denoising problem. In \cite{fullyblind}, Portilla proposed to use scale mixture of Gaussians to estimate the noise covariance matrix and latent clean images in wavelet domain. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator. Liu \etal \cite{Liu2008} proposed to use ``noise level function" to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} m odels the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called ``Noise Clinic" \cite{noiseclinic,ncwebsite}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via low-rank mixture of Gaussians. However, these methods largely depends on the modeling of noise in real noisy images which is hard to be modeled by explict distributions. Besides, the parametric estimation of the Gaussian or MoG distribution is often time consumming. 
 
 \section{External Prior Guided Internal Prior Learning}
 
@@ -300,9 +300,9 @@ where $n=1,...,N;m=1,...,M$.
 \begin{table}\label{alg1}
 \begin{tabular}{l}
 \hline
-\textbf{Alg. 1}: External Patch Group (PG) Prior Guided Internal
+\textbf{Alg. 1}: External Prior Guided Internal Prior Learning
 \\
-\quad \quad \quad PG Prior Learning for Image Denoising
+\quad \quad \quad for Real Noisy Image Denoising
 \\
 \hline
 \textbf{Input:} Noisy image $\mathbf{y}$, external PG prior GMM model
@@ -491,61 +491,51 @@ The comparisons are performed on two standard datasets in which the images were 
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
-{\footnotesize (a) Noisy  \cite{crosschannel2016}: 37.00dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
+{\footnotesize (a) Noisy \cite{ncwebsite}   }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) BM3D \cite{bm3d,cbm3d}: 37.02dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}  }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
-{\footnotesize (c) WNNM \cite{wnnm}: 37.01dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
+{\footnotesize (c) WNNM \cite{wnnm}   }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
-{\footnotesize (d) MLP \cite{mlp}: 33.90dB }
-\end{minipage}
-\centering
-\begin{minipage}[t]{0.195\textwidth}
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TRD \cite{chen2015learning}: 36.18dB  } 
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
+{\footnotesize (d) MLP \cite{mlp}  }
 \end{minipage}
 }\vspace{-3mm}
 \subfigure{
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) NC \cite{noiseclinic}: 38.76dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
+{\footnotesize (e) TRD \cite{chen2015learning}}
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) NI \cite{neatimage}: 37.68dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
+{\footnotesize (f) NC \cite{noiseclinic}  }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CC \cite{crosschannel2016}: 38.37dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
+{\footnotesize (g) NI \cite{neatimage}   }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
+\begin{minipage}[t]{0.244\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Ours: \textbf{40.50}dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
+{\footnotesize (h) Ours  }
 \end{minipage}
-\begin{minipage}[t]{0.195\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
-{\footnotesize (j) Mean Image \cite{crosschannel2016}}
-\end{minipage}
-}\vspace{-1mm}
-\caption{Denoised images of the image ``Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-1mm}
+}
+\caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
+\vspace{-2mm}
 \label{fig5}
 \end{figure*}
 
@@ -553,9 +543,9 @@ The comparisons are performed on two standard datasets in which the images were 
 Our proposed method contains two stages, the external prior learning stage and the external prior guided internal learning stage. In the first stage, we set $p = 6$ (so the patch size is $6\times 6 \times 3$), $M=10$ (the number of patches in a patch group (PG)), $W=31$ (so the window size for PG searching is $31\times31$, and $K=32$ (the number of Gaussians in Gaussian Mixture Model (GMM)). We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the second stage, we set $r=54$ (the number of internal atoms in the learned dictionaries), $\lambda=0.001$ (the sparse regularization parameter), $T=2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum=4$ (the number of iterations for Alg. 1). All experiments are performed under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
 \subsection{Comparison among external, internal and external guided internal priors}
-In this section, we compare our proposed method on real image denoising with external prior based method (denoted as ``External") and internal prior based method (denoted as ``Internal"). The three methods perform denoising under the same framework as Eqn. (\ref{equ5}). The ``External" method employs the external dictionaries (i.e., $r=0$ in Eqn. (\ref{equ5})) for denoising, while the ``Internal" method employ the GMM (also with $K=32$ Gaussians) to directly cluster the internal noisy PGs into multiple subspaces, and for each subspace perform denoising with fully learned dictionary (i.e., $r=3p^{2}$ in Eqn. (\ref{equ5})). All parameters of the three methods are tuned to achieve best performance.
+In this section, we compare our proposed method on real image denoising with external prior based method (denoted as ``External") and internal prior based method (denoted as ``Internal"). For the ``External" method, we utilize the external dictionaries (i.e., $r=0$ in Eqn. (\ref{equ5})) for denoising. For the given noisy image, we extract the PGs and then do internal subspace selection via Eqn.\ \ref{equ3}. The denoising is performed via the weighted sparse coding framework proposed in \cite{pgpd}. For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}. We employ the GMM model (also with $K=32$ Gaussians) to cluster the noisy PGs extracted from given noisy image into multiple subspaces, and for each subspace, we utilize the internal orthogonal dictionary obtained via Eqn.\ (\ref{equ2}) by weighted sparse coding framework in \cite{pgpd}. All parameters of the three methods are tuned to achieve best performance.
 
-We compare the above mentioned methods on the 60 cropped images from \cite{crosschannel2016}. The average PSNR and speed of these methods are listed in Table \ref{tab1}. It can be seen that our proposed method achieves better PSNR results than the methods of ``External" and ``Internal". The speed of our proposed method is much faster than the ``Internal" method while only a little slower than the ``External" method. We also compare the visual quality of the denoised images by these methods. From the results listed in Figure \ref{fig2} and Figure \ref{fig3}, we can see that the ``External" method is good at recovering structures (Figure \ref{fig2}) while the ``Internal" method is good at recovering internal complex textures (Figure \ref{fig3}). And by utilizing both the external and internal priors, our proposed method can recover well both the structures and textures. Noted that the noisy images in Figures \ref{fig2} and \ref{fig3} are cropped from the same image captured by Nikon D600 at ISO $=3200$ in \cite{crosschannel2016}. Hence, the differences on PSNR and visual quality among these methods only depends on the contents of the cropped images.
+We compare the above mentioned methods on the 60 cropped images (of size $500\times 500\times3$) from \cite{crosschannel2016}. The average PSNR and speed of these methods are listed in Table \ref{tab1}. It can be seen that our proposed method achieves better PSNR results than the methods of ``External" and ``Internal". The speed of our proposed method is much faster than the ``Internal" method while only a little slower than the ``External" method. We also compare the visual quality of the denoised images by these methods. From the results listed in Figure \ref{fig2} and Figure \ref{fig3}, we can see that the ``External" method is good at recovering structures (Figure \ref{fig2}) while the ``Internal" method is good at recovering internal complex textures (Figure \ref{fig3}). And by utilizing both the external and internal priors, our proposed method can recover well both the structures and textures. Noted that the noisy images in Figures \ref{fig2} and \ref{fig3} are cropped from the same image captured by Nikon D600 at ISO $=3200$ in \cite{crosschannel2016}. Hence, the differences on PSNR and visual quality among these methods only depends on the contents of the cropped images.
 
 \begin{table}
 \caption{Average PSNR (dB) results and Run Time (seconds) of the External, the Internal, and our proposed methods on 60 real noisy images (of size $500\times500\times3$) cropped from \cite{crosschannel2016}.}
@@ -578,28 +568,6 @@ Time & | &  \textbf{41.39}  & 667.36 & 44.06
 \end{center}\vspace{-6mm}
 \end{table}
 
-
-
-\begin{table*}
-\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
-\label{tab2}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
-\hline
- & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Ours} 
-\\
-\hline
-PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 37.57  & {\color{red}{ 38.75}}
-%\\
-%\hline
-%SSIM & 0.8718  & 0.8748  & 0.8743 & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & {\color{blue}{0.9685}} & {\color{red}{0.9691}}
-\\
-\hline
-\end{tabular}
-\end{center}\vspace{-6mm}
-\end{table*}
-
 \subsection{Comparison with Other Denoising Methods}
 %For BM3D, we employ its color version \cite{cbm3d} which would have better performance on color images. 
 
@@ -607,26 +575,17 @@ In this section, we compare the proposed method with other state-of-the-art imag
 
 \subsubsection{Comparison on the First Dataset \cite{ncwebsite}}
 
-The real noisy images in the first dataset \cite{ncwebsite} do not have ``ground truth" images. 
-We compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. 
-
-For the second dataset \cite{ncwebsite} with no ``ground truth" images, we only compare the visual quality of the denoised images. Figure \ref{fig6} shows the denoised images of ``Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specifically developed for removing complex noise, they would sometimes fail to recover real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
+The real noisy images in the dataset \cite{ncwebsite} do not have ``ground truth" images. On this dataset, we compare the proposed method with the methods of BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, and Neat Image (NI) \cite{neatimage}. We only compare the visual quality of the denoised images. Figure \ref{fig5} shows the denoised images of ``Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specifically developed for removing complex noise, they would sometimes fail to recover real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
 
 \subsubsection{Comparison on the Second Dataset \cite{crosschannel2016}}
 
-while those in the second dataset \cite{crosschannel2016} have corresponding ``ground truth" images.
+The real noisy images in the second dataset \cite{crosschannel2016} have corresponding ``ground truth" images. On this dataset, we firstly perform comparison on the 15 cropped images used in \cite{crosschannel2016}. The compared method are BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, and Cross-Channel (CC) \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab2}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig6} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. By combining the external and internal priors, our proposed method preserves edges and textures better than other methods. 
 
-In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default parameters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels separately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. The recently proposed Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method on real image denoising problem. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellent performance, NI is embedded into Photoshop and Corel PaintShop \cite{neatimage}.
-
-For the first dataset \cite{crosschannel2016}, the average PSNR results on the 60 cropped images  are listed in Table \ref{tab2} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (TRD) is 1dB. To compare with \cite{crosschannel2016}, we also perform experiments on the 15 cropped images used in \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab3}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. By combining the external and internal priors, our proposed method preserves edges and textures better than other methods. 
-
-
-In summary, our proposed method demonstrates impressing ability on dealing with the complex noise in real noisy images in terms of PSNR and visual quality.
-
+To evaluate the compared methods on more samples, we then perform denoising experiments on the 60 smaller images cropped from the 17 images provided in \cite{crosschannel2016}. The average PSNR results are listed in Table \ref{tab3} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (TRD) is 1dB. Due to the spacial limitations, the visual comparisions are provided in the supplementary file.
 
 \begin{table*}
 \caption{Average PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
-\label{tab3}
+\label{tab2}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
@@ -702,53 +661,90 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \begin{figure*}
 \centering
 \subfigure{
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
-{\footnotesize (a) Noisy \cite{ncwebsite}   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
+{\footnotesize (a) Noisy  \cite{crosschannel2016}: 37.00dB }
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
-{\footnotesize (b) BM3D \cite{bm3d,cbm3d}  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}: 37.02dB}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
-{\footnotesize (c) WNNM \cite{wnnm}   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
+{\footnotesize (c) WNNM \cite{wnnm}: 37.01dB}
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
-{\footnotesize (d) MLP \cite{mlp}  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
+{\footnotesize (d) MLP \cite{mlp}: 33.90dB }
+\end{minipage}
+\centering
+\begin{minipage}[t]{0.195\textwidth}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
+{\footnotesize (e) TRD \cite{chen2015learning}: 36.18dB  } 
 \end{minipage}
 }\vspace{-3mm}
 \subfigure{
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
-{\footnotesize (e) TRD \cite{chen2015learning}}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
+{\footnotesize (f) NC \cite{noiseclinic}: 38.76dB }
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
-{\footnotesize (f) NC \cite{noiseclinic}  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
+{\footnotesize (g) NI \cite{neatimage}: 37.68dB  }
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
-{\footnotesize (g) NI \cite{neatimage}   }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
+{\footnotesize (h) CC \cite{crosschannel2016}: 38.37dB }
 \end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
+\begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
-{\footnotesize (h) Ours  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
+{\footnotesize (i) Ours: \textbf{40.50}dB}
 \end{minipage}
-}
-\caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-2mm}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
+{\footnotesize (j) Mean Image \cite{crosschannel2016}}
+\end{minipage}
+}\vspace{-1mm}
+\caption{Denoised images of the image ``Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
+\vspace{-1mm}
 \label{fig6}
 \end{figure*}
+
+
+\begin{table}
+\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
+\vspace{-3mm}
+\label{tab3}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ Methods& \textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}
+\\
+\hline
+PSNR &   34.58 & 34.52 & 36.19 & 37.40
+\\
+\hline
+Methods& \textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Ours} 
+\\
+\hline
+PSNR &  {\color{blue}{37.75}} & 36.53 & 37.57  & {\color{red}{ 38.75}}
+%SSIM &   0.8748  & 0.8743 & 0.9470 & 0.9598 &  0.9617 & 0.9241  &  0.9514  & {\color{blue}{0.9685}} & {\color{red}{0.9691}}
+\\
+\hline
+\end{tabular}
+\end{center}\vspace{-8mm}
+\end{table}
+
 
 \section{Conclusion and Future Work}
 

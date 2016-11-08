@@ -158,22 +158,10 @@ G.~Yu, G.~Sapiro, and S.~Mallat.
   {Gaussian} mixture models to structured sparsity.
 \newblock {\em IEEE Transactions on Image Processing}, 21(5):2481--2499, 2012.
 
-\bibitem{huber2011robust}
-P.~J. Huber.
-\newblock {\em Robust statistics}.
-\newblock Springer, 2011.
-
 \bibitem{nlbayes}
 M.~Lebrun, A.~Buades, and J.~M. Morel.
 \newblock A nonlocal {B}ayesian image denoising algorithm.
 \newblock {\em SIAM Journal on Imaging Sciences}, 6(3):1665--1688, 2013.
-
-\bibitem{donoho2003optimally}
-David~L Donoho and Michael Elad.
-\newblock Optimally sparse representation in general (nonorthogonal)
-  dictionaries via ℓ1 minimization.
-\newblock {\em Proceedings of the National Academy of Sciences},
-  100(5):2197--2202, 2003.
 
 \bibitem{spca}
 H.~Zou, T.~Hastie, and R.~Tibshirani.
