@@ -3,44 +3,44 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: CVPR2017_Review_Unified.aux
 The style file: unsrt.bst
 Database file #1: egbib.bib
-You've used 31 entries,
+You've used 30 entries,
             1791 wiz_defined-function locations,
-            618 strings with 7837 characters,
-and the built_in function-call counts, 8670 in all, are:
-= -- 840
-> -- 333
+            613 strings with 7754 characters,
+and the built_in function-call counts, 8524 in all, are:
+= -- 828
+> -- 329
 < -- 11
-+ -- 123
-- -- 92
-* -- 588
-:= -- 1281
-add.period$ -- 94
-call.type$ -- 31
++ -- 121
+- -- 91
+* -- 585
+:= -- 1258
+add.period$ -- 91
+call.type$ -- 30
 change.case$ -- 29
 chr.to.int$ -- 0
-cite$ -- 31
-duplicate$ -- 377
-empty$ -- 797
-format.name$ -- 92
-if$ -- 1973
+cite$ -- 30
+duplicate$ -- 367
+empty$ -- 778
+format.name$ -- 91
+if$ -- 1938
 int.to.chr$ -- 0
-int.to.str$ -- 31
-missing$ -- 31
-newline$ -- 159
-num.names$ -- 31
-pop$ -- 77
+int.to.str$ -- 30
+missing$ -- 29
+newline$ -- 154
+num.names$ -- 30
+pop$ -- 70
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 237
+skip$ -- 235
 stack$ -- 0
 substring$ -- 802
-swap$ -- 136
+swap$ -- 135
 text.length$ -- 11
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 0
-while$ -- 91
-width$ -- 33
-write$ -- 338
+while$ -- 90
+width$ -- 32
+write$ -- 328
