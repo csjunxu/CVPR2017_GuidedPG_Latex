@@ -168,10 +168,12 @@ M.~Lebrun, A.~Buades, and J.~M. Morel.
 \newblock A nonlocal {B}ayesian image denoising algorithm.
 \newblock {\em SIAM Journal on Imaging Sciences}, 6(3):1665--1688, 2013.
 
-\bibitem{Bishop}
-C.~M. Bishop.
-\newblock {\em Pattern recognition and machine learning}.
-\newblock New York: Springer, 2006.
+\bibitem{donoho2003optimally}
+David~L Donoho and Michael Elad.
+\newblock Optimally sparse representation in general (nonorthogonal)
+  dictionaries via ℓ1 minimization.
+\newblock {\em Proceedings of the National Academy of Sciences},
+  100(5):2197--2202, 2003.
 
 \bibitem{spca}
 H.~Zou, T.~Hastie, and R.~Tibshirani.

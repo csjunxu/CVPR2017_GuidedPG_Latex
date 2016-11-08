@@ -98,7 +98,7 @@ In the last decade, there are also several methods \cite{crosschannel2016,fullyb
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (e) CSF \cite{csf}: 35.39dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-3.5mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -131,9 +131,9 @@ In the last decade, there are also several methods \cite{crosschannel2016,fullyb
 \label{fig1}
 \end{figure*}
 
-The external priors in natural clean images are free of the high correlation between noise and signals in real noisy images, while the internal prior is adaptive to the image and can recover better the latent clean image. Combining the priors of external clean images and priors of internalwould naturally achieves better performance. In this paper, we propose to employ the external priors learned from natural clean images to guide the learning of internal priors of given noisy image. We learn the external priors of patch groups \cite{pgpd} since nonlocal self-similarity is successfully used in many denoising methods \cite{nlm,bm3d,wnnm,pgpd}. The learning of external priors is performed by Gaussian Mixture Model. The learning of internal priors includes Gaussian selection and orthogonal dictionary learning (DL). The internal orthogonal DL process includes two alternating stages: updating sparse coefficients and updating orthogonal dictionary. The real noisy image denoising is simultaneously done with the DL process. Both of the two stages have closed-form solutions. Hence, our proposed denoising method is very efficient. Through comprehensive experiments on real noisy images captured by different cameras and settings, we demonstrate that the proposed method achieves better performance on real image denoising.
+The external priors in natural clean images are free of the high correlation between noise and signals in real noisy images, while the internal prior is adaptive to the image and can recover better the latent clean image. Combining the priors of external clean images and priors of internalwould naturally achieves better performance. Based on above considerations, in this paper, we propose to employ the external priors learned from natural clean images to guide the learning of internal priors of given noisy image.\ The flowchart of the proposed method is illustrated in Fig.\ \ref{fig2}.\ In the external stage, we learn the external priors of patch groups \cite{pgpd} since nonlocal self-similarity is successfully used in many denoising methods \cite{nlm,bm3d,wnnm,pgpd}.\ The learning of external priors is performed by Gaussian Mixture Model. In the internal stage, the learning of internal priors includes Gaussian selection and orthogonal dictionary learning (DL).\ The internal DL process includes two alternating stages: updating sparse coefficients and updating orthogonal dictionary. The image denoising is simultaneously done with the DL process.\ Both of the two stages have closed-form solutions.\ Hence, our proposed denoising method is very efficient.\ Through extensive experiments on real noisy image denoising, we demonstrate that the proposed method achieves better performance on real image denoising.
 
-The rest of this paper will be summarized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model and formulate the overall image denoising algorithm; in Section 3, we demonstrate extensive experiments on real image denoising problem; in Section 4, we conclude our paper and give future work.
+The rest of this paper will be summarized as follows: in Section 2, we briefly introduce the related work; in Section 3, we develop the proposed external prior guided internal prior learning model and formulate the overall image denoising algorithm; in Section 3, we perform extensive experiments on real image denoising problem; in Section 4, we conclude our paper and give future work.
 
 \section{Related Work}
 
@@ -145,7 +145,7 @@ Image priors are playing key factors in image denoising methods \cite{nlm,ksvd,e
 
 \subsection{Real Image Denoising}
 
-In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} for real image denoising problem. In \cite{fullyblind}, Portilla proposed to use scale mixture of Gaussians to estimate the noise covariance matrix and latent clean images in wavelet domain. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu \etal \cite{Liu2008} proposed to use ``noise level function" to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} m odels the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called ``Noise Clinic" \cite{noiseclinic,ncwebsite}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via low-rank mixture of Gaussians. However, these methods largely depends on the modeling of noise in real noisy images which is hard to be modeled by explict distributions. Besides, the parametric estimation of the Gaussian or MoG distribution is often time consumming \cite{B}. 
+In the last decade, researchers proposed many methods \cite{fullyblind,rabie2005robust,Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016} for real image denoising problem. In \cite{fullyblind}, Portilla proposed to use scale mixture of Gaussians to estimate the noise covariance matrix and latent clean images in wavelet domain. The work of Rabie \cite{rabie2005robust} modeled the noisy pixels as outliers which are removed via Lorentzian robust estimator \cite{huber2011robust}. Liu \etal \cite{Liu2008} proposed to use ``noise level function" to estimate the noise and then use Gaussian conditional random field to obtain the latent clean image. Gong et al. \cite{almapg} m odels the noise by mixed $\ell_{1}$ and $\ell_{2}$ norms and remove the noise by sparsity prior in the wavelet transform domain. Later, Lebrun el al. proposed a multiscale denoising algorithm called ``Noise Clinic" \cite{noiseclinic,ncwebsite}. This method generalizes the NL-Bayes model \cite{nlbayes} to deal with blind noise and achieves state-of-the-art performance. Recently, Zhu et al. proposed a Bayesian model \cite{Zhu_2016_CVPR} which approximates and removes the noise via low-rank mixture of Gaussians. However, these methods largely depends on the modeling of noise in real noisy images which is hard to be modeled by explict distributions. Besides, the parametric estimation of the Gaussian or MoG distribution is often time consumming. 
 
 \section{External Prior Guided Internal Prior Learning}
 
@@ -156,7 +156,7 @@ In this section, we formulate the framework of external patch group (PG) prior g
 In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is subtracted, and hence different groups of patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
 
 In this work, each local patch extracted from RGB images is of size $p\times p \times 3$. Then we search the $M$ most similar patches $\{\mathbf{x}_{m}\}_{m=1}^{M}$ around each local patch through Euclidean distance, in a local window of size $W\times W$. The $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector formed by combining the 3 patch vectors (of size $p^{2}\times 1$) in R, G, B channels. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}, m=1,...,M$. Assume we have extracted $N$ PGs from a set of external natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the Gaussian Mixture Model (GMM) to learn the external patch group based NSS prior. The overall objective log-likelihood function of GMM is
-\begin{equation}\label{equ2}
+\begin{equation}\label{equ1}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
@@ -165,10 +165,10 @@ The learning process is similar to the learning stage of the PGPD method \cite{p
 
 Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
-\begin{equation}\label{equ3}\vspace{-2mm}
+\begin{equation}\label{equ2}\vspace{-2mm}
 \mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{\top}.
 \end{equation}
-The singular vector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ are employed as the external orthogonal dictionary to guide the internal dictionary learning. The singular values in the diagonal of $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$ and utilized as prior weights for weighted sparse coding which will be discussed in next section.
+The singular vector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ are employed as the external orthogonal dictionary to guide the internal dictionary learning. In Figure \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image. To better illustrate the dictionary The singular values in the diagonal of $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$ and utilized as prior weights for weighted sparse coding which will be discussed in next section.
 
 \subsection{External Prior Guided Internal Prior Learning}
 
@@ -180,7 +180,7 @@ After the external patch group (PG) prior is learned, we can employ it to guide 
 
 Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its $M$ most similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of ``$\mathbf{\overline{Y}}_{n}$ belonging to the $k$-th Gaussian component":
 \vspace{-2mm}
-\begin{equation}\label{equ4}\vspace{-1mm}
+\begin{equation}\label{equ3}\vspace{-1mm}
 P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})}
 \end{equation}
 for $k=1,...,K$, and then choosing the component with the maximum A-posteriori (MAP) probability $\max_{k}P(k|\mathbf{\overline{Y}}_{n})$.
@@ -189,9 +189,12 @@ for $k=1,...,K$, and then choosing the component with the maximum A-posteriori (
 \subsubsection{Internal Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, assume the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ such that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We utilize the external orthogonal dictionary $\mathbf{U}_{k}$ (Eqn. (\ref{equ3})) to guide the learning of an orthogonal dictionary for adaptively characterizing the internal PGs in the $k$-th subspace. The learned dictionary defined as $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$ has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary $\mathbf{U}_{k}$, and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. For notation simplicity, we ignore the subspace index $k$ and denote the noisy PGs assigned to each subspace as $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning is performed under the weighted sparse coding framework proposed as follows:
+Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, assume the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ such that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We utilize the external orthogonal dictionary $\mathbf{U}_{k}$ (Eqn.\ (\ref{equ2})) to guide the learning of an orthogonal dictionary for adaptively characterizing the internal PGs in the $k$-th subspace. The reasons we aim to learn orthogonal dictionaries are two-fold: firstly, given an orthonormal dictionary  $\mathbf{D}$, its quality measure \emph{mutual incoherence} $\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}$
+is naturally $0$ and therefore better than other redundant dictionaries; secondly, the orthogonality of dictioanry can guarantee the dictionary learning stage has closed-form solutions (please refer to Eqn.\ (\ref{equ9})) and the closed-form solutions will make our proposed method efficient, which will be discussed in experimental section.
+
+The learned dictionary $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$ has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary $\mathbf{U}_{k}$, and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. For notation simplicity, we ignore the subspace index $k$ and denote the noisy PGs assigned to each subspace as $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning is performed under the weighted sparse coding framework proposed as follows:
 \vspace{-2mm}
-\begin{equation}\label{equ5}\vspace{-3mm}
+\begin{equation}\label{equ4}\vspace{-3mm}
 \begin{split}
 &\min_{\mathbf{D}_{i},\{\bm{\alpha}_{n,m}\}}
 \sum_{n=1}^{N}\sum_{m=1}^{M}(\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|)
@@ -204,12 +207,12 @@ s.t.
 \end{equation}
 where $\bm{\alpha}_{n,m}$ is the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
 \vspace{-1mm}
-\begin{equation}\label{equ6}\vspace{-1mm}
+\begin{equation}\label{equ5}\vspace{-1mm}
 \lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{j}}+\varepsilon).
 \end{equation}
-We employ square roots of the singular values in $\mathbf{S}$ (please refer to Eqn. (\ref{equ3})) as external prior weights and add a small positive number $\varepsilon$ to avoid zero denominator. Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{k}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
+We employ square roots of the singular values in $\mathbf{S}$ (please refer to Eqn. (\ref{equ2})) as external prior weights and add a small positive number $\varepsilon$ to avoid zero denominator. Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{k}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
 \vspace{-2mm}
-\begin{equation}\label{equ7}\vspace{-1mm}
+\begin{equation}\label{equ6}\vspace{-1mm}
 \mathbf{D}^{\top}\mathbf{D} = 
 \left[\begin{array}{c}
 \mathbf{D}_{e}^{\top}
@@ -231,7 +234,7 @@ Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to so
 \\
 \textbf{Updating Sparse Coefficient}: given the orthogonal dictionary $\textbf{D}_{(t)}$, we update the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ via solving
 \vspace{-3mm}
-\begin{equation}\label{equ8}\vspace{-3mm}
+\begin{equation}\label{equ7}\vspace{-3mm}
 \begin{split}
 &\bm{\alpha}_{n,m}^{(t)}:=\argmin_{\bm{\alpha}_{n,m}}
 \|\mathbf{\overline{y}}_{n,m}-\mathbf{D}_{(t)}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|
@@ -242,16 +245,16 @@ s.t.
 \mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ8}) has a closed-form solution \cite{pgpd} 
+Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ7}) has a closed-form solution \cite{pgpd} 
 \vspace{-1mm}
-\begin{equation}\label{equ9}\vspace{-1mm}
+\begin{equation}\label{equ8}\vspace{-1mm}
 \bm{\alpha}_{n,m}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m}|-\mathbf{\Lambda},\mathbf{0}),
 \end{equation}
 where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
 \\
 \textbf{Updating Internal Dictionary}: given the sparse coefficient vectors $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$, we update the internal orthogonal dictionary via solving
 \vspace{-2mm}
-\begin{equation}\label{equ10} \vspace{-2mm}
+\begin{equation}\label{equ9} \vspace{-2mm}
 \begin{split}
 \textbf{D}_{i}^{(t+1)}
 :
@@ -273,24 +276,24 @@ s.t.
 [\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-The sparse coefficient matrix $\mathbf{A}^{(t)}=[(\mathbf{A}_{e}^{(t)})^{\top}\ (\mathbf{A}_{i}^{(t)})^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{i}^{(t)}\in\mathbb{R}^{r\times NM}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}^{(t)}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ10}) 
+The sparse coefficient matrix $\mathbf{A}^{(t)}=[(\mathbf{A}_{e}^{(t)})^{\top}\ (\mathbf{A}_{i}^{(t)})^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{i}^{(t)}\in\mathbb{R}^{r\times NM}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}^{(t)}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) 
 has a closed-form solution $\mathbf{D}_{i}^{(t+1)}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{i}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-1mm}
-\begin{equation}\label{equ11}\vspace{-2mm}
+\begin{equation}\label{equ10}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{\top})\mathbf{Y}(\mathbf{A}_{i}^{(t)})^{\top}
 =
 \mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{\top}.
 \end{equation}
 The orthogonality of internal dictionary $\mathbf{D}_{i}^{(t+1)}$ can be checked by 
-$(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U}_{i}^{\top}\mathbf{U}_{i}\mathbf{V}_{i}^{\top}=\mathbf{I}_{r}$.
+$(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U}_{i}^{\top}\mathbf{U}_{i}\mathbf{V}_{i}^{\top}=\mathbf{I}_{r}$. In Figure \ref{fig3} (c) and (d), we illustrate a denoised image by our proposed method and one internal orthogonal dictionary learned from PGs of the given noisy image.
 
-%Here we take a detailed analysis on the guidance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Eqn. (\ref{equ4}). The guided subspace selection is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Eqn. (\ref{equ4}) for all noisy PGs while by internal clustering via GMM we have to perform time-consuming EM algorithm \cite{em}; 2) the external clean dictionary guides the learning of orthogonal dictionaries more adaptive for internal noisy images. The learning process is very efficient because of closed-form solutions. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under weighted sparse coding framework. 3) the singular values learned by SVD in Eqn. (\ref{equ3}) reflect the prior weights of the dictionary atoms and can be used as adaptive parameters for real image denoising.
+%Here we take a detailed analysis on the guidance of the external patch group (PG) prior for the internal noisy PGs of given real noisy images. The guidance comes from at least three aspects: 1) the external prior guides the internal PGs to be clustered into suitable subspaces through MAP in Eqn. (\ref{equ4}). The guided subspace selection is more efficient than directly clustering the internal noisy PGs via k-means or Gaussian Mixture Model (GMM). The reason is, by guidance we only need calculate the probabilities via Eqn. (\ref{equ4}) for all noisy PGs while by internal clustering via GMM we have to perform time-consuming EM algorithm \cite{em}; 2) the external clean dictionary guides the learning of orthogonal dictionaries more adaptive for internal noisy images. The learning process is very efficient because of closed-form solutions. Besides, the learned orthogonal dictionary also makes the denoising process very efficient under weighted sparse coding framework. 3) the singular values learned by SVD in Eqn. (\ref{equ3}) reflect the prior weights of the dictionary atoms and can be used as adaptive parameters for real image denoising. When compared with Figure \ref{fig3} (b), we can see that the internal dictionary are more adaptive to the testing real noisy image.
 
 \subsection{The Denoising Algorithm}
 
-We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficient vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in (\ref{equ9}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Eqn. (\ref{equ10}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
+We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficient vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eqn.\ (\ref{equ8}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Eqn. (\ref{equ9}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
 \vspace{-2mm}
-\begin{equation}\label{equ12}\vspace{-2mm}
+\begin{equation}\label{equ11}\vspace{-2mm}
 \hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
 \end{equation}
 where $n=1,...,N;m=1,...,M$.
@@ -320,7 +323,7 @@ where $n=1,...,N;m=1,...,M$.
 \\
 \quad \ \ \ mean subtracted PG $\mathbf{\overline{Y}}_{n}$;
 \\
-3.\quad Subspace selection via Eqn. (\ref{equ4});
+3.\quad Subspace selection via Eqn. (\ref{equ3});
 \\
 \quad\textbf{end for}
 \\
@@ -330,9 +333,9 @@ where $n=1,...,N;m=1,...,M$.
 \\
 4.\quad External PG prior Guided Internal Orthogonal
 \\
-\quad \ \ \ Dictionary Learning by solving (\ref{equ5});
+\quad \ \ \ Dictionary Learning by solving (\ref{equ4});
 \\
-5.\quad Recover each patch in all PGs via Eqn. (\ref{equ12});
+5.\quad Recover each patch in all PGs via Eqn. (\ref{equ11});
 \\
 \quad\textbf{end for}
 \\
@@ -547,7 +550,7 @@ The comparisons are performed on two standard datasets in which the images were 
 \end{figure*}
 
 \subsection{Implementation Details}
-Our proposed method contains two stages, the external prior learning stage and the external prior guided internal learning stage. In the first stage, we set $p = 6$ (so the patch size is $6\times 6 \times 3$), $M=10$ (the number of patches in a patch group (PG)), $W=31$ (so the window size for PG searching is $31\times31$, and $K=32$ (the number of Gaussians in Gaussian Mixture Model (GMM)). We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the second stage, we set $r=54$ (the number of internal atoms in the learned dictionaries), $\lambda=0.001$ (the sparse regularization parameter), $T=2$ (the number of iterations for solving problem (\ref{equ5})), and $IteNum=4$ (the number of iterations for Alg. 1). All experiments are performed under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
+Our proposed method contains two stages, the external prior learning stage and the external prior guided internal learning stage. In the first stage, we set $p = 6$ (so the patch size is $6\times 6 \times 3$), $M=10$ (the number of patches in a patch group (PG)), $W=31$ (so the window size for PG searching is $31\times31$, and $K=32$ (the number of Gaussians in Gaussian Mixture Model (GMM)). We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the second stage, we set $r=54$ (the number of internal atoms in the learned dictionaries), $\lambda=0.001$ (the sparse regularization parameter), $T=2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum=4$ (the number of iterations for Alg. 1). All experiments are performed under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
 \subsection{Comparison among external, internal and external guided internal priors}
 In this section, we compare our proposed method on real image denoising with external prior based method (denoted as ``External") and internal prior based method (denoted as ``Internal"). The three methods perform denoising under the same framework as Eqn. (\ref{equ5}). The ``External" method employs the external dictionaries (i.e., $r=0$ in Eqn. (\ref{equ5})) for denoising, while the ``Internal" method employ the GMM (also with $K=32$ Gaussians) to directly cluster the internal noisy PGs into multiple subspaces, and for each subspace perform denoising with fully learned dictionary (i.e., $r=3p^{2}$ in Eqn. (\ref{equ5})). All parameters of the three methods are tuned to achieve best performance.
@@ -568,7 +571,7 @@ We compare the above mentioned methods on the 60 cropped images from \cite{cross
 PSNR & 34.51 & 38.21 & 38.07 & \textbf{38.75} 
 \\
 \hline
-Time & | &  \textbf{56.39}  & 667.36 & 58.47
+Time & | &  \textbf{41.39}  & 667.36 & 44.06
 \\
 \hline
 \end{tabular}
@@ -600,11 +603,23 @@ PSNR & 34.51 & 34.58 & 34.52 & 36.19 & 37.40 & {\color{blue}{37.75}} & 36.53 & 3
 \subsection{Comparison with Other Denoising Methods}
 %For BM3D, we employ its color version \cite{cbm3d} which would have better performance on color images. 
 
-In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default parameters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels separately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. The recently proposed Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method on real image denoising problem. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellent performance, NI is embedded into Photoshop and Corel PaintShop \cite{neatimage}.
+In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}, and Neat Image (NI) \cite{neatimage}. The methods of BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and TRD \cite{chen2015learning} are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default parameters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels separately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellent performance, Neat Image (NI) is embedded into Photoshop and Corel PaintShop \cite{neatimage}. The comparisons are performed on the real noisy images from \cite{ncwebsite} and \cite{crosschannel2016}.
 
-The comparisons are performed on the two datasets mentioned before. For the first dataset \cite{crosschannel2016}, the average PSNR results on the 60 cropped images  are listed in Table \ref{tab2} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (TRD) is 1dB. To compare with \cite{crosschannel2016}, we also perform experiments on the 15 cropped images used in \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab3}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. By combining the external and internal priors, our proposed method preserves edges and textures better than other methods. 
+\subsubsection{Comparison on the First Dataset \cite{ncwebsite}}
+
+The real noisy images in the first dataset \cite{ncwebsite} do not have ``ground truth" images. 
+We compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. 
 
 For the second dataset \cite{ncwebsite} with no ``ground truth" images, we only compare the visual quality of the denoised images. Figure \ref{fig6} shows the denoised images of ``Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specifically developed for removing complex noise, they would sometimes fail to recover real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
+
+\subsubsection{Comparison on the Second Dataset \cite{crosschannel2016}}
+
+while those in the second dataset \cite{crosschannel2016} have corresponding ``ground truth" images.
+
+In this section, we compare the proposed method with other state-of-the-art image denoising methods such as BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}. These methods are designed for removing Gaussian noise. For BM3D and WNNM, the level $\sigma$ of Gaussian noise is very important and is estimated by the method \cite{noiselevel}. The other parameters are set as default. For the methods of MLP, CSF, and TRD, we employ their default parameters settings. Since these methods are designed for grayscale images, we utilize them to denoise the R, G, B channels separately for color noisy images. The Noise Clinic (NC) \cite{noiseclinic} is a blind image denoising method which does not need any noise prior. The recently proposed Cross-Channel (CC) \cite{crosschannel2016} is a state-of-the-art method on real image denoising problem. We also compare with Neat Image (NI), a commercial software for image denoising. Due to its excellent performance, NI is embedded into Photoshop and Corel PaintShop \cite{neatimage}.
+
+For the first dataset \cite{crosschannel2016}, the average PSNR results on the 60 cropped images  are listed in Table \ref{tab2} (the code of \cite{crosschannel2016} is not available so that it is not compared). The numbers in red color and blue color are the best and second best results, respectively. It can be seen that our proposed method achieves much better PSNR results than the other methods. The improvement of our method over the second best method (TRD) is 1dB. To compare with \cite{crosschannel2016}, we also perform experiments on the 15 cropped images used in \cite{crosschannel2016}. The PSNR values are listed in Table \ref{tab3}. As we can see, on most (9 out of the 15) images captured by different cameras and camera settings, our proposed method obtains better PSNR values than the other methods. Noted that, though in \cite{crosschannel2016} a specific model is trained for each camera and camera setting, our proposed general method still gains 0.28dB improvements on PNSR over \cite{crosschannel2016}. We also compare the visual quality of the denoised images by the competing methods. Figure \ref{fig5} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO $=3200$ by the competing methods. More visual comparisons can be found in the supplementary file. We can see that BM3D, WNNM, NC, NI, and CC would either remain noise or generate artifacts, while MLP, TRD are likely to over-smooth the image. By combining the external and internal priors, our proposed method preserves edges and textures better than other methods. 
+
 
 In summary, our proposed method demonstrates impressing ability on dealing with the complex noise in real noisy images in terms of PSNR and visual quality.
 
