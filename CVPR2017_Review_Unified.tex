@@ -130,17 +130,17 @@ There have been a few methods \cite{Liu2008,almapg,Zhu_2016_CVPR,crosschannel201
 \label{fig1}
 \end{figure*}
 
-\begin{figure}\vspace{-0.1in}
+This work aims to develop a robust solution for real noisy image denoising without explicitly assuming certain noise models. To achieve this goal, we propose to first learn image priors from external clean images, and then employ the learned external priors to guide the learning of internal latent priors from the given noisy image. The flowchart of the proposed method is illustrated in\ Fig.\ \ref{fig2}. We first extract millions of patch groups from a set of high quality natural images, with which a Gaussian Mixture Model (GMM) is learned as the external prior. The learned GMM prior model is used to cluster the patch groups extracted from the given noisy image, and then a hybrid orthogonal dictionary (HOD) is learned as the internal prior for image denoising. Our proposed denoising method is simple and efficient, yet our extensive experiments on real noisy images clearly demonstrate its better denoising performance than the current state-of-the-arts.
+
+\begin{figure*}\vspace{-0.1in}
 \centering
-\includegraphics[width=1\linewidth]{Flowchart.png}
-\vspace{-0.25in}
+\includegraphics[width=0.8\linewidth]{Flowchart.png}
+\vspace{-3mm}
 \caption{Flowchart of the proposed external prior guided internal prior learning and real noisy image denoising framework.
 }
-\vspace{-0.2in}
+\vspace{-3mm}
 \label{fig2}
-\end{figure}
-
-This work aims to develop a robust solution for real noisy image denoising without explicitly assuming certain noise models. To achieve this goal, we propose to first learn image priors from external clean images, and then employ the learned external priors to guide the learning of internal latent priors from the given noisy image. The flowchart of the proposed method is illustrated in\ Fig.\ \ref{fig2}. We first extract millions of patch groups from a set of high quality natural images, with which a Gaussian Mixture Model (GMM) is learned as the external prior. The learned GMM prior model is used to cluster the patch groups extracted from the given noisy image, and then a hybrid orthogonal dictionary (HOD) is learned as the internal prior for image denoising. Our proposed denoising method is simple and efficient, yet our extensive experiments on real noisy images clearly demonstrate its better denoising performance than the current state-of-the-arts.
+\end{figure*}
 
 \section{Related Work}
 
@@ -301,11 +301,7 @@ The denoising of the given noisy image can be simultaneously done with the guide
 \begin{equation}\label{equ11}\vspace{-2mm}
 \hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
 \end{equation}
-where $\bm{\mu}_{n}$ is the group mean of Yn. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs. We perform the above denoising procedures for several iterations for better denoising outputs. The proposed denoising algorithm is summarized in Alg. 1.
-
-We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficient vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq. for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ . Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
-
-where $n=1,...,N;m=1,...,M$.
+where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs. We perform the above denoising procedures for several iterations for better denoising outputs. The proposed denoising algorithm is summarized in Alg. 1.
 \begin{table}\label{alg1}
 \begin{tabular}{l}
 \hline
@@ -363,7 +359,16 @@ The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all th
 %------------------------------------------------------------------------
 \section{Experiments}
 
-In this section, we evaluate the performance of the proposed algorithm on real image denoising. To evaluation the effectiveness of the proposed framework of external prior guided internal prior learning, we compare it with the methods with only external prior or only internal prior (Section 4.3). We also compare the proposed algorithm with other state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage} (Section 4.4).
+We evaluate the performance of the proposed algorithm on real-world noisy images \cite{crosschannel2016,ncwebsite}  in comparison with  state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage}.
+
+\subsection{Implementation Details}
+
+Our proposed method has two stages: the external prior learning stage and the external prior guided internal prior learning stage. In the first stage, we set $p = 6$ (the patch size), $M = 10$ (the number of similar patches in a PG), $W = 31$ (the window size for PG searching) and $K = 32$ (the number of Gaussian components in GMM. We learn the external GMM prior with 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. 
+
+In the second stage, we set $r = 54$ (the number of atoms in the external sub-dictionaries); that is, we let the external sub-dictionary have the same number of atoms as the internal sub-dictionary to be learned. Our experiments show that setting $r$ between 27 and 81 will lead to very similar results. For other parameters, we set $\lambda=0.001$ (the sparse regularization parameter), $T = 2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum = 4$ (the number of iterations for Alg.1). All parameters of our method are fixed to all experiments, which are run under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
+
+
+
 
 \subsection{The Testing Datasets}
 
@@ -547,9 +552,6 @@ The comparisons are performed on two standard datasets in which the images were 
 \vspace{-2mm}
 \label{fig5}
 \end{figure*}
-
-\subsection{Implementation Details}
-Our proposed method contains two stages, the external prior learning stage and the external prior guided internal learning stage. In the first stage, we set $p = 6$ (so the patch size is $6\times 6 \times 3$), $M=10$ (the number of patches in a patch group (PG)), $W=31$ (so the window size for PG searching is $31\times31$, and $K=32$ (the number of Gaussians in Gaussian Mixture Model (GMM)). We learn the external prior via GMM on about 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. In the second stage, we set $r=54$ (the number of internal atoms in the learned dictionaries), $\lambda=0.001$ (the sparse regularization parameter), $T=2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum=4$ (the number of iterations for Alg. 1). All experiments are performed under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
 \subsection{Comparison among external, internal and external guided internal priors}
 In this section, we compare our proposed method on real image denoising with external prior based method (denoted as ``External") and internal prior based method (denoted as ``Internal"). For the ``External" method, we utilize the external dictionaries (i.e., $r=0$ in Eq. (\ref{equ5})) for denoising. For the given noisy image, we extract the PGs and then do internal subspace selection via Eq.\ \ref{equ3}. The denoising is performed via the weighted sparse coding framework proposed in \cite{pgpd}. For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}. We employ the GMM model (also with $K=32$ Gaussians) to cluster the noisy PGs extracted from given noisy image into multiple subspaces, and for each subspace, we utilize the internal orthogonal dictionary obtained via Eq.\ (\ref{equ2}) by weighted sparse coding framework in \cite{pgpd}. All parameters of the three methods are tuned to achieve best performance.
