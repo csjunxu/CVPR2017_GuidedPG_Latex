@@ -79,7 +79,6 @@
 \backcite {csf}{{6}{4.4}{subsection.4.4}}
 \backcite {chen2015learning}{{6}{4.4}{subsection.4.4}}
 \backcite {noiselevel}{{6}{4.4}{subsection.4.4}}
-\backcite {noiseclinic}{{6}{4.4}{subsection.4.4}}
 \backcite {ncwebsite}{{7}{6(a)}{subfigure.6.1}}
 \backcite {bm3d,cbm3d}{{7}{6(a)}{subfigure.6.1}}
 \backcite {wnnm}{{7}{6(a)}{subfigure.6.1}}
@@ -87,6 +86,7 @@
 \backcite {chen2015learning}{{7}{6(b)}{subfigure.6.2}}
 \backcite {noiseclinic}{{7}{6(b)}{subfigure.6.2}}
 \backcite {neatimage}{{7}{6(b)}{subfigure.6.2}}
+\backcite {noiseclinic}{{7}{4.4}{subsection.4.4}}
 \backcite {neatimage}{{7}{4.4}{subsection.4.4}}
 \backcite {ncwebsite}{{7}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{7}{4.4}{subsection.4.4}}
@@ -111,7 +111,7 @@
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
+\backcite {crosschannel2016}{{8}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{9}{2}{table.2}}
 \backcite {crosschannel2016}{{9}{7(a)}{subfigure.7.1}}
 \backcite {bm3d,cbm3d}{{9}{7(a)}{subfigure.7.1}}

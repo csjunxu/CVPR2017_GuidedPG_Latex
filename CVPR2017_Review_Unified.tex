@@ -301,7 +301,7 @@ The denoising of the given noisy image can be simultaneously done with the guide
 \begin{equation}\label{equ11}\vspace{-2mm}
 \hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
 \end{equation}
-
+where $\bm{\mu}_{n}$ is the group mean of Yn. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs. We perform the above denoising procedures for several iterations for better denoising outputs. The proposed denoising algorithm is summarized in Alg. 1.
 
 We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficient vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq. for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ . Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
 
