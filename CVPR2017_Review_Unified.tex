@@ -179,23 +179,25 @@ To better describe the subspace of each Gaussian component, we perform singular 
 \end{equation}
 The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal dictionary learning in next sub-section. In Fig.\ \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image. The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$. They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
 
-\subsection{External Prior Guided Internal Prior Learning}
+\subsection{Guided Internal Prior Learning}
 
-After the external patch group (PG) prior is learned, we can employ it to guide the internal PG prior learning for the given testing (real noisy) image. The guidance mainly comes from two aspects. One aspect is that the external prior can guide the internal noisy PGs to be assigned to most suitable Gaussians or subspaces. And for each subspace, the other aspect is to guide the orthogonal dictionary learning of internal noisy PGs.
+After the external PG prior is learned, we employ it to guide the internal PG prior learning for a given real noisy image.\ The guidance lies in two aspects.\ One is that the external prior can guide the subspace assignment of internal noisy PGs, while the other is that the external prior could guide the orthogonal dictionary learning of internal noisy PGs.
 
 \vspace{-2mm}
 \subsubsection{Internal Subspace Assignment}
 \vspace{-1mm}
 
-Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its $M$ most similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of ``$\mathbf{\overline{Y}}_{n}$ belonging to the $k$-th Gaussian component":
+Given a real noisy image, we extract $N$ (overlapped) local patches from it. Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
+
+The external GMM prior models $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ basically characterize the subspaces of natural high quality PGs. Therefore, we project the noisy PG $\mathbf{\overline{Y}}_{n}$ into the subspaces of $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ and assign it to the most suitable subspace based on the posterior probability:
 \vspace{-2mm}
-\begin{equation}\label{equ3}\vspace{-1mm}
+\begin{equation}\label{equ3}\vspace{-2mm}
 P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})}
 \end{equation}
-for $k=1,...,K$, and then choosing the component with the maximum A-posteriori (MAP) probability $\max_{k}P(k|\mathbf{\overline{Y}}_{n})$.
+for $k=1,...,K$.\ Then $\mathbf{\overline{Y}}_{n}$ is assigned to the component with the maximum A-posteriori (MAP) probability $\max_{k}P(k|\mathbf{\overline{Y}}_{n})$.
 
 \vspace{-2mm}
-\subsubsection{Internal Orthogonal Dictionary Learning}
+\subsubsection{Guided Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
 Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, assume the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ such that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We utilize the external orthogonal dictionary $\mathbf{U}_{k}$ (Eqn.\ (\ref{equ2})) to guide the learning of an orthogonal dictionary for adaptively characterizing the internal PGs in the $k$-th subspace. The reasons we aim to learn orthogonal dictionaries are two-fold: firstly, given an orthonormal dictionary  $\mathbf{D}$, its quality measure \emph{mutual incoherence} $\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}$
