@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 21:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 21:50
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,11 +557,11 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 
 
 ]
-<Flowchart2.png, id=122, 748.9581pt x 408.8073pt>
-File: Flowchart2.png Graphic file (type png)
- <use Flowchart2.png>
-Package pdftex.def Info: Flowchart2.png used on input line 137.
-(pdftex.def)             Requested size: 422.33084pt x 230.52742pt.
+<Flowchart3.png, id=122, 796.4154pt x 453.1329pt>
+File: Flowchart3.png Graphic file (type png)
+ <use Flowchart3.png>
+Package pdftex.def Info: Flowchart3.png used on input line 137.
+(pdftex.def)             Requested size: 422.33084pt x 240.29066pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 147.
  [2 <./images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)
@@ -578,7 +578,7 @@ Underfull \hbox (badness 1436) in paragraph at lines 203--204
 \OT1/ptm/m/n/10 Assume we have as-signed all the in-ter-nal noisy PGs
  []
 
-[3 <./Flowchart2.png>]
+[3 <./Flowchart3.png>]
 Underfull \hbox (badness 2932) in paragraph at lines 205--206
 []\OT1/ptm/m/n/10 We let the or-thog-o-nal dic-tio-nary $\OT1/cmr/bx/n/10 D[]$ 
 \OT1/ptm/m/n/10 be $\OT1/cmr/bx/n/10 D[] \U/msa/m/n/10 ,
@@ -1118,7 +1118,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 783.
 Here is how much of TeX's memory you used:
  7552 strings out of 493091
  118608 string characters out of 6134517
- 225575 words of memory out of 5000000
+ 225576 words of memory out of 5000000
  10732 multiletter control sequences out of 15000+600000
  55144 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1149,7 +1149,7 @@ ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
 ist/fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 7513637 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 7036132 bytes).
 PDF statistics:
  618 PDF objects out of 1000 (max. 8388607)
  515 compressed objects within 6 object streams
