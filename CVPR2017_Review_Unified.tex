@@ -215,7 +215,7 @@ framework:
 &
 s.t.
 \quad
-\mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
+\mathbf{D}=[\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{r},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
 \end{split}
 \end{equation}
 where $\bm{\alpha}_{n,m}$ is the sparse coding vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
@@ -228,16 +228,16 @@ where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular valu
 \begin{equation}\label{equ6}\vspace{-1mm}
 \mathbf{D}^{\top}\mathbf{D} = 
 \left[\begin{array}{c}
-\mathbf{D}_{e}^{\top}
+\mathbf{D}_{\text{E}}^{\top}
 \\
-\mathbf{D}_{i}^{\top}
+\mathbf{D}_{\text{I}}^{\top}
 \end{array}\right]
-[\mathbf{D}_{e}\ \mathbf{D}_{i}]
+[\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]
 =
 \left[\begin{array}{cc}
-\mathbf{D}_{e}^{\top}\mathbf{D}_{e}\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i}
+\mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}}
 \\
-\mathbf{D}_{i}^{\top}\mathbf{D}_{e}\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i}
+\mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}}
 \end{array}\right]
 =
 \mathbf{I}
@@ -554,7 +554,11 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 \label{fig5}
 \end{figure*}
 
-\subsection{Comparison among external, internal and external guided internal priors}
+\subsection{Comparison among external, internal and guided internal priors}
+
+To demonstrate the advantages of external prior guided internal priors, in this section we perform real noisy image denoising by using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively. For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq. (ref{equ4})) for denoising. For the “Internal” method, the overall framework is similar to the method of [9]. A GMM model (with K = 32 Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionary is obtained via Eqn. (2) to perform denoising. All parameters of the
+
+
 In this section, we compare our proposed method on real image denoising with external prior based method (denoted as ``External") and internal prior based method (denoted as ``Internal"). For the ``External" method, we utilize the external dictionaries (i.e., $r=0$ in Eq. (\ref{equ5})) for denoising. For the given noisy image, we extract the PGs and then do internal subspace selection via Eq.\ \ref{equ3}. The denoising is performed via the weighted sparse coding framework proposed in \cite{pgpd}. For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}. We employ the GMM model (also with $K=32$ Gaussians) to cluster the noisy PGs extracted from given noisy image into multiple subspaces, and for each subspace, we utilize the internal orthogonal dictionary obtained via Eq.\ (\ref{equ2}) by weighted sparse coding framework in \cite{pgpd}. All parameters of the three methods are tuned to achieve best performance.
 
 We compare the above mentioned methods on the 60 cropped images (of size $500\times 500\times3$) from \cite{crosschannel2016}. The average PSNR and speed of these methods are listed in Table \ref{tab1}. It can be seen that our proposed method achieves better PSNR results than the methods of ``External" and ``Internal". The speed of our proposed method is much faster than the ``Internal" method while only a little slower than the ``External" method. We also compare the visual quality of the denoised images by these methods. From the results listed in Figure \ref{fig2} and Figure \ref{fig3}, we can see that the ``External" method is good at recovering structures (Figure \ref{fig2}) while the ``Internal" method is good at recovering internal complex textures (Figure \ref{fig3}). And by utilizing both the external and internal priors, our proposed method can recover well both the structures and textures. Noted that the noisy images in Figures \ref{fig2} and \ref{fig3} are cropped from the same image captured by Nikon D600 at ISO $=3200$ in \cite{crosschannel2016}. Hence, the differences on PSNR and visual quality among these methods only depends on the contents of the cropped images.
