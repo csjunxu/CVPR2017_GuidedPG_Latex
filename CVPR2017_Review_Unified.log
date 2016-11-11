@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 15:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 15:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -557,11 +557,11 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 
 
 ]
-<Flowchart.png, id=122, 826.5279pt x 575.9919pt>
+<Flowchart.png, id=122, 575.9919pt x 826.5279pt>
 File: Flowchart.png Graphic file (type png)
  <use Flowchart.png>
 Package pdftex.def Info: Flowchart.png used on input line 137.
-(pdftex.def)             Requested size: 347.79785pt x 242.38075pt.
+(pdftex.def)             Requested size: 173.90271pt x 249.53676pt.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/it' in size <10> not available
 (Font)              Font shape `OT1/ptm/b/it' tried instead on input line 147.
  [2 <./images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)
@@ -578,10 +578,7 @@ Underfull \hbox (badness 1436) in paragraph at lines 205--206
 \OT1/ptm/m/n/10 Assume we have as-signed all the in-ter-nal noisy PGs
  []
 
-
-Underfull \vbox (badness 1082) has occurred while \output is active []
-
- [3 <./Flowchart.png>]
+[3 <./Flowchart.png>]
 Underfull \hbox (badness 2932) in paragraph at lines 207--208
 []\OT1/ptm/m/n/10 We let the or-thog-o-nal dic-tio-nary $\OT1/cmr/bx/n/10 D[]$ 
 \OT1/ptm/m/n/10 be $\OT1/cmr/bx/n/10 D[] \U/msa/m/n/10 ,
@@ -893,6 +890,74 @@ sy_Nikon_D800_ISO_6400_B3_95.png (PNG copy)> <./images/resize_CC_Noisy_Nikon_D8
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 527.
 
+<images/resize_br_Noisy_dog.png, id=313, 200.75pt x 200.75pt>
+File: images/resize_br_Noisy_dog.png Graphic file (type png)
+
+<use images/resize_br_Noisy_dog.png>
+Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 564.
+
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_BM3D_dog.png, id=315, 200.75pt x 200.75pt>
+File: images/resize_br_BM3D_dog.png Graphic file (type png)
+
+<use images/resize_br_BM3D_dog.png>
+Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 564.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_WNNM_dog.png, id=318, 200.75pt x 200.75pt>
+File: images/resize_br_WNNM_dog.png Graphic file (type png)
+
+<use images/resize_br_WNNM_dog.png>
+Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 564.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_MLP_dog.png, id=320, 200.75pt x 200.75pt>
+File: images/resize_br_MLP_dog.png Graphic file (type png)
+
+<use images/resize_br_MLP_dog.png>
+Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 564.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_TRD_dog.png, id=322, 200.75pt x 200.75pt>
+File: images/resize_br_TRD_dog.png Graphic file (type png)
+
+<use images/resize_br_TRD_dog.png>
+Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 586.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_NC_dog.png, id=324, 200.75pt x 200.75pt>
+File: images/resize_br_NC_dog.png Graphic file (type png)
+
+<use images/resize_br_NC_dog.png>
+Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 586.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_NI_dog.png, id=326, 200.75pt x 200.75pt>
+File: images/resize_br_NI_dog.png Graphic file (type png)
+
+<use images/resize_br_NI_dog.png>
+Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 586.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+<images/resize_br_Guided_dog.png, id=328, 200.75pt x 200.75pt>
+File: images/resize_br_Guided_dog.png Graphic file (type png)
+
+<use images/resize_br_Guided_dog.png>
+Package pdftex.def Info: images/resize_br_Guided_dog.png used on input line 586
+.
+(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
+
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 564--587
+ [][] 
+ []
+
+
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 564--587
+ [][] 
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6 <./images/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PNG copy)
@@ -905,73 +970,6 @@ ages/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png (PNG copy)> <./im
 ages/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png (PNG copy)> <./ima
 ges/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png (PNG copy)> <./imag
 es/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_94.png (PNG copy)>]
-<images/resize_br_Noisy_dog.png, id=347, 200.75pt x 200.75pt>
-File: images/resize_br_Noisy_dog.png Graphic file (type png)
-
-<use images/resize_br_Noisy_dog.png>
-Package pdftex.def Info: images/resize_br_Noisy_dog.png used on input line 576.
-
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_BM3D_dog.png, id=349, 200.75pt x 200.75pt>
-File: images/resize_br_BM3D_dog.png Graphic file (type png)
-
-<use images/resize_br_BM3D_dog.png>
-Package pdftex.def Info: images/resize_br_BM3D_dog.png used on input line 576.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_WNNM_dog.png, id=352, 200.75pt x 200.75pt>
-File: images/resize_br_WNNM_dog.png Graphic file (type png)
-
-<use images/resize_br_WNNM_dog.png>
-Package pdftex.def Info: images/resize_br_WNNM_dog.png used on input line 576.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_MLP_dog.png, id=354, 200.75pt x 200.75pt>
-File: images/resize_br_MLP_dog.png Graphic file (type png)
-
-<use images/resize_br_MLP_dog.png>
-Package pdftex.def Info: images/resize_br_MLP_dog.png used on input line 576.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_TRD_dog.png, id=356, 200.75pt x 200.75pt>
-File: images/resize_br_TRD_dog.png Graphic file (type png)
-
-<use images/resize_br_TRD_dog.png>
-Package pdftex.def Info: images/resize_br_TRD_dog.png used on input line 598.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_NC_dog.png, id=358, 200.75pt x 200.75pt>
-File: images/resize_br_NC_dog.png Graphic file (type png)
-
-<use images/resize_br_NC_dog.png>
-Package pdftex.def Info: images/resize_br_NC_dog.png used on input line 598.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_NI_dog.png, id=360, 200.75pt x 200.75pt>
-File: images/resize_br_NI_dog.png Graphic file (type png)
-
-<use images/resize_br_NI_dog.png>
-Package pdftex.def Info: images/resize_br_NI_dog.png used on input line 598.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-<images/resize_br_Guided_dog.png, id=362, 200.75pt x 200.75pt>
-File: images/resize_br_Guided_dog.png Graphic file (type png)
-
-<use images/resize_br_Guided_dog.png>
-Package pdftex.def Info: images/resize_br_Guided_dog.png used on input line 598
-.
-(pdftex.def)             Requested size: 121.23456pt x 121.23816pt.
-
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 576--599
- [][] 
- []
-
-
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 576--599
- [][] 
- []
-
 
 LaTeX Warning: Reference `fig7' on page 7 undefined on input line 607.
 
@@ -1066,7 +1064,12 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 739--767
  [][] 
  []
 
-(./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
+[7 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM3D_dog.p
+ng (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_br
+_MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images/
+resize_br_NC_dog.png (PNG copy)> <./images/resize_br_NI_dog.png (PNG copy)> <./
+images/resize_br_Guided_dog.png (PNG copy)>] (./CVPR2017_Review_Unified.bbl
+(./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
 \openout3 = `CVPR2017_Review_Unified.brf'.
 
@@ -1076,22 +1079,10 @@ Underfull \hbox (badness 1320) in paragraph at lines 8--8
 .
  []
 
-[7]
-Underfull \vbox (badness 3735) has occurred while \output is active []
 
- [8 <./images/resize_br_Noisy_dog.png (PNG copy)> <./images/resize_br_BM3D_dog.
-png (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_b
-r_MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images
-/resize_br_NC_dog.png (PNG copy)> <./images/resize_br_NI_dog.png (PNG copy)> <.
-/images/resize_br_Guided_dog.png (PNG copy)>]
-Underfull \hbox (badness 7238) in paragraph at lines 129--129
-[]\OT1/ptm/m/n/9 Neatlab AB-Soft.  Neat Im-age.  [][]$\OT1/pcr/m/n/9 https : / 
-/ ni .
- []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-)
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 785.
- [9 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
+ [8 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
 resize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM
 _5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_MLP_5dmark3_iso3200
 _1_real.png (PNG copy)> <./images/resize_br_TRD_5dmark3_iso3200_1_real.png (PNG
@@ -1100,13 +1091,21 @@ _1_real.png (PNG copy)> <./images/resize_br_TRD_5dmark3_iso3200_1_real.png (PNG
 e_5dmark3_iso3200_1.png (PNG copy)> <./images/resize_br_Guided_5dmark3_iso3200_
 1_real.png (PNG copy)> <./images/resize_br_Mean_5dmark3_iso3200_1_real.png (PNG
  copy)>]
+Underfull \hbox (badness 7238) in paragraph at lines 129--129
+[]\OT1/ptm/m/n/9 Neatlab AB-Soft.  Neat Im-age.  [][]$\OT1/pcr/m/n/9 https : / 
+/ ni .
+ []
+
+)
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 785.
+ [9]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 785.
  (./CVPR2017_Review_Unified.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 785.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 785.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: 1BB0E531E78E925300D19FA9DCABE432;6194.
+(rerunfilecheck)             Checksum: B44285742B8AD927FE7A9A30F1F0936F;5980.
 
 
 LaTeX Warning: There were undefined references.
@@ -1119,7 +1118,7 @@ Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 785.
 Here is how much of TeX's memory you used:
  7552 strings out of 493091
  118578 string characters out of 6134517
- 231183 words of memory out of 5000000
+ 224179 words of memory out of 5000000
  10732 multiletter control sequences out of 15000+600000
  55144 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1150,10 +1149,10 @@ ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
 ist/fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 7837686 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 7754612 bytes).
 PDF statistics:
- 657 PDF objects out of 1000 (max. 8388607)
- 554 compressed objects within 6 object streams
+ 618 PDF objects out of 1000 (max. 8388607)
+ 515 compressed objects within 6 object streams
  87 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
