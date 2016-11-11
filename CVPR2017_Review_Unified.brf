@@ -32,13 +32,13 @@
 \backcite {pgpd,epll}{{2}{2.1}{subsection.2.1}}
 \backcite {ksvd,ncsr,ple,iraniinternal}{{2}{2.1}{subsection.2.1}}
 \backcite {Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016}{{2}{2.2}{subsection.2.2}}
-\backcite {Liu2008}{{2}{2.2}{subsection.2.2}}
-\backcite {almapg}{{2}{2.2}{subsection.2.2}}
-\backcite {Zhu_2016_CVPR}{{2}{2.2}{subsection.2.2}}
-\backcite {noiseclinic,ncwebsite}{{2}{2.2}{subsection.2.2}}
-\backcite {neatimage}{{2}{2.2}{subsection.2.2}}
 \backcite {noiseclinic,ncwebsite}{{2}{2.2}{subsection.2.2}}
 \backcite {nlbayes}{{2}{2.2}{subsection.2.2}}
+\backcite {Zhu_2016_CVPR}{{2}{2.2}{subsection.2.2}}
+\backcite {crosschannel2016,neatimage}{{2}{2.2}{subsection.2.2}}
+\backcite {crosschannel2016}{{2}{2.2}{subsection.2.2}}
+\backcite {neatimage}{{2}{2.2}{subsection.2.2}}
+\backcite {Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016}{{2}{2.2}{subsection.2.2}}
 \backcite {pgpd}{{2}{3.1}{subsection.3.1}}
 \backcite {pgpd,epll}{{3}{3.1}{equation.3.1}}
 \backcite {donoho2001uncertainty}{{4}{3.2.2}{subsubsection.3.2.2}}
@@ -91,6 +91,7 @@
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
+\backcite {Liu2008,almapg,noiseclinic,ncwebsite,Zhu_2016_CVPR,crosschannel2016,neatimage}{{7}{5}{section.5}}
 \backcite {ncwebsite}{{8}{6(a)}{subfigure.6.1}}
 \backcite {bm3d,cbm3d}{{8}{6(a)}{subfigure.6.1}}
 \backcite {wnnm}{{8}{6(a)}{subfigure.6.1}}
