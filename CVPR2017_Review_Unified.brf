@@ -59,8 +59,8 @@
 \backcite {crosschannel2016}{{6}{5}{figure.5}}
 \backcite {ncsr}{{6}{4.3}{subsection.4.3}}
 \backcite {crosschannel2016}{{6}{4.3}{subsection.4.3}}
-\backcite {bm3d,cbm3d}{{6}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{6}{1}{table.1}}
+\backcite {bm3d,cbm3d}{{6}{4.4}{subsection.4.4}}
 \backcite {wnnm}{{6}{4.4}{subsection.4.4}}
 \backcite {mlp}{{6}{4.4}{subsection.4.4}}
 \backcite {csf}{{6}{4.4}{subsection.4.4}}
@@ -71,9 +71,6 @@
 \backcite {noiselevel}{{6}{4.4}{subsection.4.4}}
 \backcite {neatimage}{{6}{4.4}{subsection.4.4}}
 \backcite {crosschannel2016}{{6}{4.4}{subsection.4.4}}
-\backcite {crosschannel2016}{{6}{4.4}{subsection.4.4}}
-\backcite {ncwebsite}{{6}{4.4.1}{subsubsection.4.4.1}}
-\backcite {ncwebsite}{{6}{4.4.1}{subsubsection.4.4.1}}
 \backcite {ncwebsite}{{7}{6(a)}{subfigure.6.1}}
 \backcite {bm3d,cbm3d}{{7}{6(a)}{subfigure.6.1}}
 \backcite {wnnm}{{7}{6(a)}{subfigure.6.1}}
@@ -81,6 +78,9 @@
 \backcite {chen2015learning}{{7}{6(b)}{subfigure.6.2}}
 \backcite {noiseclinic}{{7}{6(b)}{subfigure.6.2}}
 \backcite {neatimage}{{7}{6(b)}{subfigure.6.2}}
+\backcite {crosschannel2016}{{7}{4.4}{subsection.4.4}}
+\backcite {ncwebsite}{{7}{4.4.1}{subsubsection.4.4.1}}
+\backcite {ncwebsite}{{7}{4.4.1}{subsubsection.4.4.1}}
 \backcite {crosschannel2016}{{7}{4.4.1}{subsubsection.4.4.1}}
 \backcite {ncwebsite}{{7}{4.4.1}{subsubsection.4.4.1}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
@@ -94,11 +94,9 @@
 \backcite {noiseclinic}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{7}{2}{table.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{8}{3}{table.3}}
 \backcite {crosschannel2016}{{8}{7(a)}{subfigure.7.1}}
 \backcite {bm3d,cbm3d}{{8}{7(a)}{subfigure.7.1}}
 \backcite {wnnm}{{8}{7(a)}{subfigure.7.1}}
@@ -108,3 +106,5 @@
 \backcite {neatimage}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
+\backcite {crosschannel2016}{{8}{2}{table.2}}
+\backcite {crosschannel2016}{{9}{3}{table.3}}

@@ -284,15 +284,15 @@ s.t.
 [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{r},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$. The sparse coefficient matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{r\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) has a closed-form solution $\mathbf{D}_{i}^{(t+1)}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{i}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
+where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$. The sparse coefficient matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{r\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-1mm}
 \begin{equation}\label{equ10}\vspace{-2mm}
-(\mathbf{I}-\mathbf{D}_{e}\mathbf{D}_{e}^{\top})\mathbf{Y}(\mathbf{A}_{i}^{(t)})^{\top}
+(\mathbf{I}-\mathbf{D}_{\text{E}}\mathbf{D}_{\text{E}}^{\top})\mathbf{Y}(\mathbf{A}_{\text{I}}^{(t)})^{\top}
 =
-\mathbf{U}_{i}\mathbf{S}_{i}\mathbf{V}_{i}^{\top}.
+\mathbf{U}_{\text{I}}\mathbf{S}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}.
 \end{equation}
-The orthogonality of internal dictionary $\mathbf{D}_{i}^{(t+1)}$ can be checked by 
-$(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U}_{i}^{\top}\mathbf{U}_{i}\mathbf{V}_{i}^{\top}=\mathbf{I}_{r}$. 
+The orthogonality of internal dictionary $\mathbf{D}_{\text{I}}^{(t+1)}$ can be checked by 
+$(\mathbf{D}_{\text{I}}^{(t+1)})^{\top}(\mathbf{D}_{\text{I}}^{(t+1)})=\mathbf{V}_{\text{I}}\mathbf{U}_{\text{I}}^{\top}\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}=\mathbf{I}_{r}$. 
 
 %In Fig. \ref{fig3} (c) and (d), we illustrate a denoised image by our proposed method and one internal orthogonal dictionary learned from PGs of the given noisy image.
 
