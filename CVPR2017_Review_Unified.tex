@@ -249,23 +249,18 @@ We employ an alternating iterative approach to solve the optimization problem (\
 \vspace{-3mm}
 \begin{equation}\label{equ7}\vspace{-3mm}
 \begin{split}
-&\bm{\alpha}_{n,m}^{(t)}:=\argmin_{\bm{\alpha}_{n,m}}
-\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}_{(t)}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|
-\\
-&
-s.t.
-\quad
-\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
+\bm{\alpha}_{n,m}^{(t)}:=\argmin_{\bm{\alpha}_{n,m}}
+\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}^{(t)}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|
 \end{split}
 \end{equation}
-Since dictionary $\mathbf{D}_{(t)}=[\mathbf{D}_{e}\ \mathbf{D}_{i}^{(t)}]$ is orthogonal, the problems (\ref{equ7}) has a closed-form solution \cite{pgpd} 
-\vspace{-1mm}
-\begin{equation}\label{equ8}\vspace{-1mm}
-\bm{\alpha}_{n,m}^{(t)}= \text{sgn}(\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m})\odot \text{max}(|\mathbf{D}_{(t)}^{\top}\mathbf{\overline{y}}_{n,m}|-\mathbf{\Lambda},\mathbf{0}),
+Since dictionary $\mathbf{D}^{(t)}$ is orthogonal, the problems (\ref{equ7}) has a closed-form solution
+\vspace{-2mm}
+\begin{equation}\label{equ8}\vspace{-2mm}
+\bm{\alpha}_{n,m}^{(t)}= \text{sgn}((\mathbf{D}^{(t)})^{\top}\mathbf{\overline{y}}_{n,m})\odot \text{max}(|(\mathbf{D}^{(t)})^{\top}\mathbf{\overline{y}}_{n,m}|-\bm{\lambda},\mathbf{0}),
 \end{equation}
-where $\mathbf{\Lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.
-\\
-\textbf{Updating Internal Dictionary}: given the sparse coefficient vectors $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$, we update the internal orthogonal dictionary via solving
+where $\bm{\lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.\ The detailed derivation of Eqn. (\ref{equ8}) can be found in the supplementary file.
+\vspace{2mm}\\
+\textbf{Updating Internal Sub-dictionary}: Given the sparse coding vectors $\bm{\alpha}_{n,m}^{(t)}$, we update the internal orthogonal dictionary via solving
 \vspace{-2mm}
 \begin{equation}\label{equ9} \vspace{-2mm}
 \begin{split}
