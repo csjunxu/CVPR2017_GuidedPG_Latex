@@ -431,59 +431,8 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 }
 \caption{Some samples cropped from real noisy images of \cite{crosschannel2016}.}
 \vspace{-3mm}
-\label{fig4}
-\end{figure}
-
-\begin{figure*}
-\centering
-\subfigure{
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
-{\footnotesize (a) Noisy \cite{ncwebsite}   }
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
-{\footnotesize (b) BM3D \cite{bm3d,cbm3d}  }
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
-{\footnotesize (c) WNNM \cite{wnnm}   }
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
-{\footnotesize (d) MLP \cite{mlp}  }
-\end{minipage}
-}\vspace{-3mm}
-\subfigure{
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
-{\footnotesize (e) TRD \cite{chen2015learning}}
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
-{\footnotesize (f) NC \cite{noiseclinic}  }
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
-{\footnotesize (g) NI \cite{neatimage}   }
-\end{minipage}
-\begin{minipage}[t]{0.244\textwidth}
-\centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
-{\footnotesize (h) Ours  }
-\end{minipage}
-}
-\caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-2mm}
 \label{fig3}
-\end{figure*}
+\end{figure}
 
 \begin{figure*}
 \centering
@@ -591,7 +540,58 @@ Like our method, the NC is a blind image denoising method which does not need an
 
 \subsubsection{Results on Dataset \cite{ncwebsite}}
 
-The real noisy images in the dataset \cite{ncwebsite} do not have ``ground truth" images. On this dataset, we compare the proposed method with the methods of BM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, TRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, and Neat Image (NI) \cite{neatimage}. We only compare the visual quality of the denoised images. Fig. \ref{fig5} shows the denoised images of ``Dog" by the competing methods. More visual comparisons can be found in the supplementary file. It can be seen that the methods of BM3D, WNNM tend to globally over-smooth the image while locally remain some noise, while the methods of MLP, TRD are likely to remain noise in the whole image. This demonstrates that the methods designed for Gaussian noise are not effective for removing the complex noise in real noisy images. Though Noise Clinic and Neat Image are specifically developed for removing complex noise, they would sometimes fail to recover real noisy images. However, our proposed method recoveries more faithfully the structures and textures (such as the eye area) than the other competing methods.
+Since there is no ``ground truth" for the real noisy images in  dataset \cite{ncwebsite}, we only compare the visual quality of the denoised images by different methods. (Note that method CC \cite{crosschannel2016} is not compared since its code is not available.) Fig. \ref{fig6} shows the denoised images of ``Dog". It can be seen that CBM3D and WNNM tend to over-smooth much the image while remaining some noise caused color artifacts. MLP and TNRD are likely to remain many noise-caused color artifacts across the whole image. These results demonstrate that the methods designed with Gaussian noise model are not effective for real noise removal. Though NC and NI methods are specifically developed for real noisy images, their performance on noise removal is not very satisfactory. In comparison, our proposed method recovers much better the structures and textures (such as the eye area) than the other competing methods. More visual comparisons on dataset \cite{ncwebsite} can be found in the supplementary file.
+
+\begin{figure*}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_dog.png}}
+{\footnotesize (a) Noisy \cite{ncwebsite}   }
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_BM3D_dog.png}}
+{\footnotesize (b) BM3D \cite{bm3d,cbm3d}  }
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_dog.png}}
+{\footnotesize (c) WNNM \cite{wnnm}   }
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_dog.png}}
+{\footnotesize (d) MLP \cite{mlp}  }
+\end{minipage}
+}\vspace{-3mm}
+\subfigure{
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
+{\footnotesize (e) TRD \cite{chen2015learning}}
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_dog.png}}
+{\footnotesize (f) NC \cite{noiseclinic}  }
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_dog.png}}
+{\footnotesize (g) NI \cite{neatimage}   }
+\end{minipage}
+\begin{minipage}[t]{0.244\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_dog.png}}
+{\footnotesize (h) Ours  }
+\end{minipage}
+}
+\caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
+\vspace{-2mm}
+\label{fig6}
+\end{figure*}
 
 \subsubsection{Comparison on the Second Dataset \cite{crosschannel2016}}
 
