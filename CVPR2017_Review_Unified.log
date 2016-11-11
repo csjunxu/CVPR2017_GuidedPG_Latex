@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 11:12
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  11 NOV 2016 11:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1101,15 +1101,10 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 769.
  (./CVPR2017_Review_Unified.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 769.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 769.
+Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
+.
+(rerunfilecheck)             Checksum: 01D32C009C0C98DFBF1F1204D21448A2;6621.
 
-
-Package rerunfilecheck Warning: File `CVPR2017_Review_Unified.brf' has changed.
-
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `CVPR2017_Review_Unified.brf':
-(rerunfilecheck)             Before: 7BC80486E292CD33A584239B95D74CCC;6621
-(rerunfilecheck)             After:  01D32C009C0C98DFBF1F1204D21448A2;6621.
 
 LaTeX Warning: There were multiply-defined labels.
 
@@ -1149,10 +1144,10 @@ ve/2015/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/201
 ist/fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/font
 s/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/u
 rw/times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (10 pages, 7757664 bytes).
+Output written on CVPR2017_Review_Unified.pdf (10 pages, 7757709 bytes).
 PDF statistics:
- 640 PDF objects out of 1000 (max. 8388607)
- 536 compressed objects within 6 object streams
+ 641 PDF objects out of 1000 (max. 8388607)
+ 537 compressed objects within 6 object streams
  88 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
