@@ -12,6 +12,11 @@ J.~Mairal, F.~Bach, J.~Ponce, G.~Sapiro, and A.~Zisserman.
 \newblock {\em IEEE International Conference on Computer Vision (ICCV)}, pages
   2272--2279, 2009.
 
+\bibitem{ncsr}
+W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
+\newblock Nonlocally centralized sparse representation for image restoration.
+\newblock {\em IEEE Transactions on Image Processing}, 22(4):1620--1630, 2013.
+
 \bibitem{nlm}
 A.~Buades, B.~Coll, and J.~M. Morel.
 \newblock A non-local algorithm for image denoising.
@@ -30,11 +35,6 @@ K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
   grouping constraint in luminance-chrominance space.
 \newblock {\em IEEE International Conference on Image Processing (ICIP)}, pages
   313--316, 2007.
-
-\bibitem{ncsr}
-W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
-\newblock Nonlocally centralized sparse representation for image restoration.
-\newblock {\em IEEE Transactions on Image Processing}, 22(4):1620--1630, 2013.
 
 \bibitem{pgpd}
 J.~Xu, L.~Zhang, W.~Zuo, D.~Zhang, and X.~Feng.
@@ -127,22 +127,28 @@ Neatlab ABSoft.
 \newblock Neat {I}mage.
 \newblock \url{https://ni.neatvideo.com/home}.
 
-\bibitem{iraniinternal}
-M.~Zontak and M.~Irani.
-\newblock Internal statistics of a single natural image.
-\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
-  (CVPR)}, pages 977--984, 2011.
-
 \bibitem{ple}
 G.~Yu, G.~Sapiro, and S.~Mallat.
 \newblock Solving inverse problems with piecewise linear estimators: {From}
   {Gaussian} mixture models to structured sparsity.
 \newblock {\em IEEE Transactions on Image Processing}, 21(5):2481--2499, 2012.
 
+\bibitem{iraniinternal}
+M.~Zontak and M.~Irani.
+\newblock Internal statistics of a single natural image.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 977--984, 2011.
+
 \bibitem{nlbayes}
 M.~Lebrun, A.~Buades, and J.~M. Morel.
 \newblock A nonlocal {B}ayesian image denoising algorithm.
 \newblock {\em SIAM Journal on Imaging Sciences}, 6(3):1665--1688, 2013.
+
+\bibitem{donoho2001uncertainty}
+D.~L. Donoho and X.~Huo.
+\newblock Uncertainty principles and ideal atomic decomposition.
+\newblock {\em IEEE Transactions on Information Theory}, 47(7):2845--2862,
+  2001.
 
 \bibitem{spca}
 H.~Zou, T.~Hastie, and R.~Tibshirani.

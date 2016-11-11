@@ -200,10 +200,12 @@ for $k=1,...,K$.\ Then $\mathbf{\overline{Y}}_{n}$ is assigned to the component 
 \subsubsection{Guided Orthogonal Dictionary Learning}
 \vspace{-2mm}
 
-Assume we have assigned all internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable Gaussians or subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, assume the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ such that $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We utilize the external orthogonal dictionary $\mathbf{U}_{k}$ (Eqn.\ (\ref{equ2})) to guide the learning of an orthogonal dictionary for adaptively characterizing the internal PGs in the $k$-th subspace. The reasons we aim to learn orthogonal dictionaries are two-fold: firstly, given an orthonormal dictionary  $\mathbf{D}$, its quality measure \emph{mutual incoherence} $\mu(\mathbf{D})=\max_{i~=j}\frac{|\mathbf{d}_{i}^{T}\mathbf{d}_{j}|}{\|\mathbf{d}_{i}\|_{2}\|\mathbf{d}_{j}\|_{2}}$
-is naturally $0$ and therefore better than other redundant dictionaries; secondly, the orthogonality of dictioanry can guarantee the dictionary learning stage has closed-form solutions (please refer to Eqn.\ (\ref{equ9})) and the closed-form solutions will make our proposed method efficient, which will be discussed in experimental section.
+Assume we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eqn.\ (\ref{equ2})) to characterize the internal PG prior. The reasons that we learn orthogonal dictionaries are two-fold. Firstly, the PGs $\mathbf{\overline{Y}}_{k_{n}}$ are in a subspace of the whole space of all PGs, therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for details).
 
-The learned dictionary $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,e}\ \mathbf{D}_{k,i}]\in \mathbb{R}^{3p^2\times 3p^2}$ has two parts: the external part $\mathbf{D}_{k,e}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times (3p^2-r)}$ is directly obtained from the external dictionary $\mathbf{U}_{k}$, and the internal part $\mathbf{D}_{k,i}$ is consisted of dictionary atoms adaptively learned from the internal noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. For notation simplicity, we ignore the subspace index $k$ and denote the noisy PGs assigned to each subspace as $\mathbf{Y}\triangleq\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N} = [\mathbf{\overline{y}}_{1,1},...,\mathbf{\overline{y}}_{1,M},...,\mathbf{\overline{y}}_{N,1},...,\mathbf{\overline{y}}_{N,M}]$. The learning is performed under the weighted sparse coding framework proposed as follows:
+We let the orthogonal dictionary $\mathbf{D}_{k}$ be $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,\text{E}}\ \mathbf{D}_{k,\text{I}}]\in \mathbb{R}^{3p^2\times 3p^2}$, where $\mathbf{D}_{k,\text{E}}=\mathbf{U}_{k}(:,1:3p^2-r)\in\mathbb{R}^{3p^2\times r}$ is the external sub-dictionary and it includes the first $r$ most important eigenvectors of $\mathbf{U}_{k}$, and the internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ is to be adaptively learned from the noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. The rationale to design $\mathbf{D}_{k}$ as a hybrid dictionary is as follows. The external sub-dictionary $\mathbf{D}_{k,\text{E}}$ is pre-trained from external clean data, and it represents the $k$-th latent subspace of natural images, which is helpful to reconstruct the common latent structures of images. However, $\mathbf{D}_{k,\text{E}}$ is general to all images and it is not adaptive to the given noisy image. Some fine-scale details specific to the given image may not be well characterized by $\mathbf{D}_{k,\text{E}}$. Therefore, we learn an internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ to supplement $\mathbf{D}_{k,\text{E}}$. In other words, $\mathbf{D}_{k,\text{I}}$ is to reveal the latent subspace adaptive to the input noisy image, which cannot be effectively represented by $\mathbf{D}_{k,\text{E}}$. 
+
+For notation simplicity, in the following development we ignore the subspace index $k$ for $\mathbf{\overline{Y}}_{k_{n}}$ and $\mathbf{D}_{k}$, etc. The learning of hybrid orthogonal dictionary $\mathbf{D}$ is performed under the following weighted sparse coding
+framework:
 \vspace{-2mm}
 \begin{equation}\label{equ4}\vspace{-3mm}
 \begin{split}
@@ -216,12 +218,12 @@ s.t.
 \mathbf{D}=[\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\bm{\alpha}_{n,m}$ is the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
+where $\bm{\alpha}_{n,m}$ is the sparse coding vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ and $\bm{\alpha}_{n,m,j}$ is the $j$-th element of $\bm{\alpha}_{n,m}$. $\lambda_{j}$ is the $j$-th regularization parameter defined as
 \vspace{-1mm}
 \begin{equation}\label{equ5}\vspace{-1mm}
-\lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{j}}+\varepsilon).
+\lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{k}(j)}+\varepsilon),
 \end{equation}
-We employ square roots of the singular values in $\mathbf{S}$ (please refer to Eqn. (\ref{equ2})) as external prior weights and add a small positive number $\varepsilon$ to avoid zero denominator. Noted that $\mathbf{D}_{e}=\emptyset$ if $r=3p^{2}$ and $\mathbf{D}_{e}=\mathbf{U}_{k}$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{e}\ \mathbf{D}_{i}]$ is orthogonal by checking that:
+where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular value matrix $\mathbf{S}_{k}$ (please refer to Eqn. (\ref{equ2})) and $\varepsilon$ is a small positive number to avoid zero denominator. Noted that $\mathbf{D}_{\text{E}}=\mathbf{U}_{k}$ if $r=3p^{2}$ and $\mathbf{D}_{\text{E}}=\emptyset$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]$ is orthogonal by checking that:
 \vspace{-2mm}
 \begin{equation}\label{equ6}\vspace{-1mm}
 \mathbf{D}^{\top}\mathbf{D} = 
@@ -241,9 +243,9 @@ We employ square roots of the singular values in $\mathbf{S}$ (please refer to E
 \mathbf{I}
 \end{equation}
 
-Similar to K-SVD \cite{ksvd}, we employ an alternating iterative framework to solve the optimization problem (\ref{equ5}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}_{(0)}=\mathbf{U}_{k}$ and for $t=0, 1, ..., T-1$, alternatively do:
-\\
-\textbf{Updating Sparse Coefficient}: given the orthogonal dictionary $\textbf{D}_{(t)}$, we update the sparse coefficient vector of the $m$-th patch $\mathbf{\overline{y}}_{n,m}$ in the $n$-th PG $\mathbf{\overline{Y}}_{n}$ via solving
+We employ an alternating iterative approach to solve the optimization problem (\ref{equ4}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}=\mathbf{U}_{k}$ and for $t=0,1, ...,T-1$, we alternatively update $\bm{\alpha}_{n,m}$ and $\mathbf{D}$ as follows:
+\vspace{2mm}\\
+\textbf{Updating Sparse Coefficient}: Given the orthogonal dictionary $\textbf{D}^{(t)}$, we update each sparse coding vector $\bm{\alpha}_{n,m}$ by solving
 \vspace{-3mm}
 \begin{equation}\label{equ7}\vspace{-3mm}
 \begin{split}
