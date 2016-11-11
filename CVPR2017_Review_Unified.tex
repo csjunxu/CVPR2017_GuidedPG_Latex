@@ -157,31 +157,34 @@ In the last decade, there are many methods \cite{Liu2008,almapg,noiseclinic,ncwe
 
 In this section, we first describe the learning of external prior, and then describe in detail the guided internal prior learning. Finally, the denoising algorithm with the learned priors is presented.
 
-\subsection{Learn External Patch Group Prior}
+\subsection{Learn External Patch Group Priors}
 
-In this section, we formulate the Patch Group prior learned on natural color images. Similar to \cite{pgpd}, the patch group (PG) is defined as a group of similar patches to the local patch. The patch group mean is subtracted, and hence different groups of patches can share similar PGs. In this way, the space natural image patches to be modeled is largely reduced. 
+The nonlocal self-similarity based patch group (PG) \cite{pgpd} has proved to be a very effective unit for image prior learning. In this work, we also extract PGs from natural clean images to learn priors. A PG  is a group of similar patches to a local patch. 
 
-In this work, each local patch extracted from RGB images is of size $p\times p \times 3$. Then we search the $M$ most similar patches $\{\mathbf{x}_{m}\}_{m=1}^{M}$ around each local patch through Euclidean distance, in a local window of size $W\times W$. The $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ is a patch vector formed by combining the 3 patch vectors (of size $p^{2}\times 1$) in R, G, B channels. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}, m=1,...,M$. Assume we have extracted $N$ PGs from a set of external natural images, and the $n$-th PG is defined as $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. We employ the Gaussian Mixture Model (GMM) to learn the external patch group based NSS prior. The overall objective log-likelihood function of GMM is
-\begin{equation}\label{equ1}
+In our method, each local patch is extracted from a RGB image with patch size $p\times p \times 3$. We search the $M$ most similar patches to this local patch (including the local patch itself) in a $W\times W$ local region around it. Each patch is stretched to a patch vector $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ to form the PG $\{\mathbf{x}_{m}\}_{m=1}^{M}$. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}$.
+
+Assume we extract a number of $N$ PGs from a set of external natural images, and the $n$-th PG is $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$. A Gaussian Mixture Model (GMM) is learned to model the PG prior. The overall log-likelihood function is
+\vspace{-2mm}
+\begin{equation}\label{equ1}\vspace{-2mm}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
 \end{equation}
-The learning process is similar to the learning stage of the PGPD method \cite{pgpd}. Please refer to \cite{pgpd} for more details. After the learning stage, we finally obtain a GMM model with $K$ Gaussian components. The learned parameters include mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Similar to \cite{pgpd}, the mean vector of each cluster is natural zeros, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.
+The learning process is similar to the GMM learning in \cite{pgpd,epll}. Finally, a GMM model with $K$ Gaussian components is learned, and the learned parameters include mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Note that the mean vector of each cluster is naturally zero, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.  
 
-Now, we have clustered the PGs extracted from external clean images into $K$ Gaussians or subspaces. To better characterize each subspace, we perform singular value decomposition (SVD) on the covariance matrix:
+To better describe the subspace of each Gaussian component, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
 \begin{equation}\label{equ2}\vspace{-2mm}
 \mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{\top}.
 \end{equation}
-The singular vector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ are employed as the external orthogonal dictionary to guide the internal dictionary learning. In Figure \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image. To better illustrate the dictionary The singular values in the diagonal of $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$ and utilized as prior weights for weighted sparse coding which will be discussed in next section.
+The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal dictionary learning in next sub-section. In Fig.\ \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image. The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$. They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
 
 \subsection{External Prior Guided Internal Prior Learning}
 
 After the external patch group (PG) prior is learned, we can employ it to guide the internal PG prior learning for the given testing (real noisy) image. The guidance mainly comes from two aspects. One aspect is that the external prior can guide the internal noisy PGs to be assigned to most suitable Gaussians or subspaces. And for each subspace, the other aspect is to guide the orthogonal dictionary learning of internal noisy PGs.
 
 \vspace{-2mm}
-\subsubsection{Internal Subspace Selection}
+\subsubsection{Internal Subspace Assignment}
 \vspace{-1mm}
 
 Given a real noisy image, assume we can totally extract $N$ local patches from it. Similar to the external prior learning stage, for the $n$-th local patch ($n=1,...,N$), we extract its $M$ most similar patches around it to form a noisy PG denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is calculated and subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$. For adaptivity, we project the PG $\mathbf{\overline{Y}}_{n}$ into its most suitable Gaussian component (subspace) of the GMM learned on external PGs. The subspace most suitable for $\mathbf{\overline{Y}}_{n}$ is selected by firstly calculating the posterior probability of ``$\mathbf{\overline{Y}}_{n}$ belonging to the $k$-th Gaussian component":
