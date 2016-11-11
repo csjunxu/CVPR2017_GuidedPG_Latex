@@ -134,11 +134,11 @@ This work aims to develop a robust solution for real noisy image denoising witho
 
 \begin{figure*}\vspace{-0.1in}
 \centering
-\includegraphics[width=0.35\linewidth]{Flowchart.png}
-\vspace{-3mm}
+\includegraphics[width=0.85\linewidth]{Flowchart2.png}
+\vspace{-2mm}
 \caption{Flowchart of the proposed external prior guided internal prior learning and real noisy image denoising framework.
 }
-\vspace{-3mm}
+\vspace{-1mm}
 \label{fig2}
 \end{figure*}
 
@@ -185,9 +185,7 @@ The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the 
 
 After the external PG prior is learned, we employ it to guide the internal PG prior learning for a given real noisy image.\ The guidance lies in two aspects.\ One is that the external prior can guide the subspace assignment of internal noisy PGs, while the other is that the external prior could guide the orthogonal dictionary learning of internal noisy PGs.
 
-\vspace{-2mm}
 \subsubsection{Internal Subspace Assignment}
-\vspace{-1mm}
 
 Given a real noisy image, we extract $N$ (overlapped) local patches from it. Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
 
@@ -198,9 +196,9 @@ P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overlin
 \end{equation}
 for $k=1,...,K$.\ Then $\mathbf{\overline{Y}}_{n}$ is assigned to the component with the maximum A-posteriori (MAP) probability $\max_{k}P(k|\mathbf{\overline{Y}}_{n})$.
 
-\vspace{-2mm}
+
 \subsubsection{Guided Orthogonal Dictionary Learning}
-\vspace{-2mm}
+
 
 Assume we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eq.\ (\ref{equ2})) to characterize the internal PG prior. The reasons that we learn orthogonal dictionaries are two-fold. Firstly, the PGs $\mathbf{\overline{Y}}_{k_{n}}$ are in a subspace of the whole space of all PGs, therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for details).
 
@@ -361,12 +359,12 @@ The latent clean image $\hat{\mathbf{x}}$ is reconstructed by aggregating all th
 
 
 %------------------------------------------------------------------------
-\vspace{-1mm}
+
 \section{Experiments}\vspace{-1mm}
 
 We evaluate the performance of the proposed algorithm on real-world noisy images \cite{crosschannel2016,ncwebsite}  in comparison with  state-of-the-art denoising methods \cite{bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage}.
 
-\vspace{-1mm}
+
 \subsection{Implementation Details}\vspace{-1mm}
 
 Our proposed method has two stages: the external prior learning stage and the external prior guided internal prior learning stage. In the first stage, we set $p = 6$ (the patch size), $M = 10$ (the number of similar patches in a PG), $W = 31$ (the window size for PG searching) and $K = 32$ (the number of Gaussian components in GMM. We learn the external GMM prior with 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. 
@@ -471,7 +469,7 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 \end{minipage}
 }\vspace{-1mm}
 \caption{Denoised images of the $96$-th cropped image from ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
-\vspace{-3mm}
+\vspace{-1mm}
 \label{fig4}
 \end{figure*}
 \begin{figure*}\vspace{-1mm}
@@ -504,7 +502,7 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 \end{minipage}
 }\vspace{-1mm}
 \caption{Denoised images of the $94$-th cropped image from ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
-\vspace{-3mm}
+\vspace{-2mm}
 \label{fig5}
 \end{figure*}
 
@@ -519,7 +517,7 @@ We compare the three methods mentioned above on the 60 cropped images from \cite
 \caption{Average PSNR (dB) results and Run Time (seconds) of the External, the Internal, and our proposed methods on 60 real noisy images (of size $500\times500\times3$) cropped from \cite{crosschannel2016}.}
 \label{tab1}
 \begin{small}
-\vspace{-3mm}
+\vspace{-1mm}
 \begin{center}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|}
@@ -534,7 +532,7 @@ Time & | &  \textbf{39.57}  & 667.36 & 41.89
 \\
 \hline
 \end{tabular}
-\end{center}\vspace{-6mm}
+\end{center}\vspace{-4mm}
 \end{small}
 \end{table}
 
@@ -585,7 +583,7 @@ Time & | &  \textbf{39.57}  & 667.36 & 41.89
 \end{minipage}
 }
 \caption{Denoised images of the image ``Dog" by different methods. The images are better to be zoomed in on screen.}
-\vspace{-2mm}
+\vspace{-1mm}
 \label{fig6}
 \end{figure*}
 
@@ -610,7 +608,7 @@ We then perform denoising experiments on the 60 images we cropped from \cite{cro
 
 \begin{table}
 \caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
-\vspace{-2mm}
+\vspace{-1mm}
 \label{tab3}
 \begin{center}
 \renewcommand\arraystretch{1}
@@ -705,7 +703,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 %\\
 %\hline
 \end{tabular}
-\end{center}\vspace{-3mm}
+\end{center}\vspace{-1mm}
 \end{table*}
 
 \begin{figure*}
@@ -772,7 +770,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 
 \section{Conclusion}
 
-The noise in real-world noisy images is much more complex than additive white Gaussian noise and hard to be modeled by simple analytical distributions such as Gaussian or mixture of Gaussians. In this paper, we proposed a simple yet effective solution for real noisy image denoising without explicitly assuming certain noise models. Specifically, we firstly learned image priors of Gausian Mixture Model from external clean images, and then employ the learned external priors to guide the learning of internal latent priors from the given noisy image. The learned hybrid orthogonal dictionary are simutaneously utilized in real noisy image denoising. Experiments on two real noisy image datasets demonstrate that our proposed method achieved much better performance than state-of-the-art image denoising methods.
+The noise in real-world noisy images is much more complex than additive white Gaussian noise and hard to be modeled by simple analytical distributions such as Gaussian or mixture of Gaussians. In this paper, we proposed a simple yet effective solution for real noisy image denoising without explicitly assuming certain noise models. Specifically, we firstly learned image priors of Gausian Mixture Model from external clean images, and then employ the learned external priors to guide the learning of internal latent priors from the given noisy image. The learned hybrid orthogonal dictionary are simutaneously utilized in real noisy image denoising. Experiments on two real noisy image datasets, where the images were captured under indoor or outdoor lighting conditions by different types of cameras and camera settings, demonstrate that our proposed method achieved much better performance than state-of-the-art image denoising methods.
 
 
 
