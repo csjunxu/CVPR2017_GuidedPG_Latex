@@ -284,7 +284,7 @@ s.t.
 [\mathbf{D}_{e}\ \mathbf{D}_{i}],\ \mathbf{D}_{i}^{\top}\mathbf{D}_{i} = \mathbf{I}_{r},\ \mathbf{D}_{e}^{\top}\mathbf{D}_{i} = \mathbf{0},
 \end{split}
 \end{equation}
-The sparse coefficient matrix $\mathbf{A}^{(t)}=[(\mathbf{A}_{e}^{(t)})^{\top}\ (\mathbf{A}_{i}^{(t)})^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{i}^{(t)}\in\mathbb{R}^{r\times NM}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}^{(t)}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) 
+where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$. The sparse coefficient matrix $\mathbf{A}^{(t)}=[(\mathbf{A}_{e}^{(t)})^{\top}\ (\mathbf{A}_{i}^{(t)})^{\top}]^{\top}$ also has two parts: the external part $\mathbf{A}_{e}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{i}^{(t)}\in\mathbb{R}^{r\times NM}$ denote the coefficients over external dictionary $\mathbf{D}_{e}$ and internal dictionary $\mathbf{D}_{i}^{(t)}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) 
 has a closed-form solution $\mathbf{D}_{i}^{(t+1)}=\mathbf{U}_{i}\mathbf{V}_{i}^{\top}$, where $\mathbf{U}_{i}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{i}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-1mm}
 \begin{equation}\label{equ10}\vspace{-2mm}
