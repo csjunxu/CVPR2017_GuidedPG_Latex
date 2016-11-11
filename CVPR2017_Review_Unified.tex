@@ -296,6 +296,8 @@ $(\mathbf{D}_{i}^{(t+1)})^{\top}(\mathbf{D}_{i}^{(t+1)})=\mathbf{V}_{i}\mathbf{U
 
 \subsection{The Denoising Algorithm}
 
+The denoising of the given noisy image can be simultaneously done with the guided internal dictionary learning process. Once we obtain the solutions 
+
 We evaluate the performance of the proposed framework on denoising real noisy images. The denoising is simultaneously done with the guided internal dictionary learning process. We ignore the index $k\in\{1,...,K\}$ of subspace for notation simplicity. In the denoising stage, for each subspace, the group mean vectors $\{\bm{\mu}_{n}\}_{n=1}^{N}$ of corresponding mean subtracted noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ are saved for reconstruction. Until now, we obtain the solutions of sparse coefficient vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eqn.\ (\ref{equ8}) for $n=1,...,N;m=1,...,M$ and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{e}\ \mathbf{D}_{i}^{(T)}]$ in Eqn. (\ref{equ9}). Then the $m$-th latent clean patch $\hat{\mathbf{y}}_{n,m}$ in the $n$-th PG $\mathbf{Y}_{n}$ is recovered by 
 \vspace{-2mm}
 \begin{equation}\label{equ11}\vspace{-2mm}
