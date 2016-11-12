@@ -22,8 +22,8 @@
 \backcite {mlp}{{2}{1(a)}{subfigure.1.1}}
 \backcite {csf}{{2}{1(a)}{subfigure.1.1}}
 \backcite {chen2015learning}{{2}{1(b)}{subfigure.1.2}}
-\backcite {noiseclinic,ncwebsite}{{2}{1(b)}{subfigure.1.2}}
 \backcite {neatimage}{{2}{1(b)}{subfigure.1.2}}
+\backcite {noiseclinic,ncwebsite}{{2}{1(b)}{subfigure.1.2}}
 \backcite {crosschannel2016}{{2}{1(b)}{subfigure.1.2}}
 \backcite {crosschannel2016}{{2}{1}{figure.1}}
 \backcite {ksvd,ncsr,pgpd,epll,ple,iraniinternal}{{2}{2.1}{subsection.2.1}}
@@ -80,8 +80,8 @@
 \backcite {wnnm}{{7}{6(a)}{subfigure.6.1}}
 \backcite {mlp}{{7}{6(a)}{subfigure.6.1}}
 \backcite {chen2015learning}{{7}{6(b)}{subfigure.6.2}}
-\backcite {noiseclinic,ncwebsite}{{7}{6(b)}{subfigure.6.2}}
 \backcite {neatimage}{{7}{6(b)}{subfigure.6.2}}
+\backcite {noiseclinic,ncwebsite}{{7}{6(b)}{subfigure.6.2}}
 \backcite {ncwebsite}{{7}{6}{figure.6}}
 \backcite {ncwebsite}{{7}{4.4.1}{subsubsection.4.4.1}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
@@ -106,7 +106,7 @@
 \backcite {wnnm}{{8}{7(a)}{subfigure.7.1}}
 \backcite {mlp}{{8}{7(a)}{subfigure.7.1}}
 \backcite {chen2015learning}{{8}{7(a)}{subfigure.7.1}}
-\backcite {noiseclinic,ncwebsite}{{8}{7(b)}{subfigure.7.2}}
 \backcite {neatimage}{{8}{7(b)}{subfigure.7.2}}
+\backcite {noiseclinic,ncwebsite}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
