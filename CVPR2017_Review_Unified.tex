@@ -65,7 +65,7 @@ Most of existing image denoising methods use some statistical models such as add
 
 Image denoising is a crucial and indispensable step to improve image quality in digital imaging systems. In particular, with the decrease of size of CMOS/CCD sensors, noise is more easily to be corrupted and hence denoising is becoming increasingly important for high resolution imaging. In literature of image denoising, the observed noisy image is usually modeled as $\mathbf{y}=\mathbf{x}+\mathbf{n}$, where $\mathbf{x}$ is the latent clean image and $\mathbf{n}$ is the corrupted noise. Numerous image denoising methods \cite{ksvd,lssc,ncsr,nlm,bm3d,cbm3d,pgpd,wnnm,mlp,csf,chen2015learning,foe,epll} have been proposed in the past decades, including sparse representation and dictionary learning based methods \cite{ksvd,lssc,ncsr}, nonlocal self-similarity based methods \cite{nlm,bm3d,cbm3d,ncsr,pgpd}, low-rank based methods \cite{wnnm}, neural network based methods \cite{mlp}, and discriminative learning based methods \cite{csf,chen2015learning}. 
 
-Most of the existing denoising methods \cite{ksvd,lssc,ncsr,nlm,bm3d,cbm3d,pgpd,wnnm,mlp,csf,chen2015learning,foe,epll} mentioned above assume noise $\mathbf{n}$ to be additive white Gaussian noise (AWGN). Unfortunately, this assumption is too ideal to be true for real-world noisy images, where the noise is much more complex than AWGN \cite{crosschannel2016,healey1994radiometric} and varies by different cameras and camera settings (ISO, shutter speed, and aperture, etc.). According to \cite{healey1994radiometric}, the noise corrupted in the imaging process [is signal dependent and comes from five main sources: photon shot, fixed pattern, dark current, readout, and quantization noise. As a result, many advanced denoising methods in literature becomes much less effective when applied to real-world noisy images.\ Fig.\ \ref{fig1} shows an example, where we apply some representative and state-of-the-art denoising methods, including CBM3D \cite{cbm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and TRD \cite{chen2015learning}, to a real noisy image (captured by a Nikon D800 camera with ISO is 3200) provided in \cite{crosschannel2016}.\ One can see that these methods either remain the noise or over-smooth the image details on this real noisy image. 
+Most of the existing denoising methods \cite{ksvd,lssc,ncsr,nlm,bm3d,cbm3d,pgpd,wnnm,mlp,csf,chen2015learning,foe,epll} mentioned above assume noise $\mathbf{n}$ to be additive white Gaussian noise (AWGN). Unfortunately, this assumption is too ideal to be true for real-world noisy images, where the noise is much more complex than AWGN \cite{crosschannel2016,healey1994radiometric} and varies by different cameras and camera settings (ISO, shutter speed, and aperture, etc.). According to \cite{healey1994radiometric}, the noise corrupted in the imaging process [is signal dependent and comes from five main sources: photon shot, fixed pattern, dark current, readout, and quantization noise. As a result, many advanced denoising methods in literature becomes much less effective when applied to real-world noisy images.\ Fig.\ \ref{fig1} shows an example, where we apply some representative and state-of-the-art denoising methods, including CBM3D \cite{cbm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, and TNRD \cite{chen2015learning}, to a real noisy image (captured by a Nikon D800 camera with ISO is 3200) provided in \cite{crosschannel2016}.\ One can see that these methods either remain the noise or over-smooth the image details on this real noisy image. 
 
 There have been a few methods \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite,neatimage} developed for real noisy image denoising. Almost all of these methods follow a two-stage framework: first estimate the parameters of the assumed noise model (usually Gaussian  or mixture of Gaussians (MoG)), and then perform denoising with the estimated noise model. Again, the noise in real noisy images is very complex and hard to be modeled by explicit distributions such as Gaussian and MoG.\ Fig.\ \ref{fig1} also shows the denoised results of two state-of-the-art real noisy image denoising methods, Noise Clinic \cite{noiseclinic,ncwebsite} and Neat Image \cite{neatimage}.\ One can see that these two methods do not perform well on this noisy image either. 
 
@@ -102,7 +102,7 @@ There have been a few methods \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVP
 \begin{minipage}[t]{0.195\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
-{\footnotesize (f) TRD \cite{chen2015learning}: 35.97dB   }
+{\footnotesize (f) TNRD \cite{chen2015learning}: 35.97dB   }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -134,8 +134,8 @@ This work aims to develop a robust solution for real noisy image denoising witho
 
 \begin{figure*}\vspace{-0.1in}
 \centering
-\includegraphics[width=0.8\linewidth]{Flowchart3.png}
-\vspace{-2mm}
+\includegraphics[width=0.79\linewidth]{Flowchart3.png}
+\vspace{-1.5mm}
 \caption{Flowchart of the proposed external prior guided internal prior learning and real noisy image denoising framework.
 }
 \vspace{-3mm}
@@ -509,9 +509,9 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 
 \subsection{Comparison among external, internal and guided internal priors}
 
-To demonstrate the advantages of external prior guided internal priors, in this section we perform real noisy image denoising by using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively. For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq. (\ref{equ4})) for denoising. For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}. A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionary is obtained via Eqn. (\ref{equ2}) to perform denoising. All parameters of the ``External" and ``Internal" methods are tuned to achieve their best performance. 
+To demonstrate the advantages of external prior guided internal priors, in this section we perform real noisy image denoising by using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively.\ For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq.\ (\ref{equ4})) for denoising.\ For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}.\ A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionary is obtained via Eq.\ (\ref{equ2}) to perform denoising.\ All parameters of the ``External" and ``Internal" methods are tuned to achieve their best performance. 
 
-We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}. The average PSNR and run time  are listed in Table \ref{tab1}. It can be seen that ``Guided Internal" prior achieves better PSNR than both ``External" and ``Internal" priors. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method. Fig. \ref{fig4} and Fig. \ref{fig5} show the denoised images of two noisy image by the three methods. We can see that the ``External" method is good at recovering large-scale structures (see Fig. \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig. \ref{fig5}). By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
+We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}.\ The average PSNR and run time  are listed in Table \ref{tab1}. It can be seen that ``Guided Internal" prior achieves better PSNR than both ``External" and ``Internal" priors. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method.\ Fig.\ \ref{fig4} and Fig.\ \ref{fig5} show the denoised images of two noisy image by the three methods.\ We can see that the ``External" method is good at recovering large-scale structures (see Fig.\ \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig.\ \ref{fig5}).\ By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
 
 \begin{table}
 \caption{Average PSNR (dB) results and Run Time (seconds) of the External, the Internal, and our proposed methods on 60 real noisy images (of size $500\times500\times3$) cropped from \cite{crosschannel2016}.}
@@ -564,7 +564,7 @@ Time & | &  \textbf{39.57}  & 587.36 & 41.89
 \begin{minipage}[t]{0.244\textwidth}
 \centering
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_dog.png}}
-{\footnotesize (e) TRD \cite{chen2015learning}}
+{\footnotesize (e) TNRD \cite{chen2015learning}}
 \end{minipage}
 \begin{minipage}[t]{0.244\textwidth}
 \centering
@@ -589,9 +589,9 @@ Time & | &  \textbf{39.57}  & 587.36 & 41.89
 
 \subsection{Comparison with State-of-the-Art Denoising Methods}
 
-We compare the proposed method with state-of-the-art image denoising methods, including CBM3D \cite{bm3d,cbm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TNRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}, and Neat Image (NI) \cite{neatimage}. Among them, CBM3D, WNNM, MLP, CSF and TNRD are designed based on Gaussian noise model, and they need to know the noise level for denoising. We use the method in \cite{noiselevel} to estimate the noise level for them. All the other parameters in these methods are set as the default ones. Since WNNM, MLP, CSF and TNRD are designed for grayscale images, we use them to denoise the R, G, B channels separately for color noisy images. 
+We compare the proposed method with state-of-the-art image denoising methods, including CBM3D \cite{bm3d,cbm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TNRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic}, Cross-Channel (CC) \cite{crosschannel2016}, and Neat Image (NI) \cite{neatimage}.\ Among them, CBM3D, WNNM, MLP, CSF and TNRD are designed based on Gaussian noise model, and they need to know the noise level for denoising.\ We use the method in \cite{noiselevel} to estimate the noise level for them.\ All the other parameters in these methods are set as the default ones.\ Since WNNM, MLP, CSF and TNRD are designed for grayscale images, we use them to denoise the R, G, B channels separately for color noisy images. 
 
-Like our method, the NC is a blind image denoising method which does not need any noise prior. The NI is a commercial software for image denoising, which has been embedded into Photoshop and Corel PaintShop \cite{neatimage}. The code of CC is not released but its results on the 15 cropped images are available at \cite{crosschannel2016}. Therefore, we only compare with it on the 15 cropped images from \cite{crosschannel2016}. 
+Like our method, the NC is a blind image denoising method which does not need any noise prior.\ The NI is a commercial software for image denoising, which has been embedded into Photoshop and Corel PaintShop \cite{neatimage}. The code of CC is not released but its results on the 15 cropped images are available at \cite{crosschannel2016}. Therefore, we only compare with it on the 15 cropped images from \cite{crosschannel2016}. 
 
 \vspace{-1mm}
 \subsubsection{Results on Dataset \cite{ncwebsite}}
@@ -620,7 +620,7 @@ We then perform denoising experiments on the 60 images we cropped from \cite{cro
 PSNR &   34.58 & 34.52 & 36.19 & 37.40
 \\
 \hline
-Methods& \textbf{TRD}& \textbf{NI}& \textbf{NC} &\textbf{Ours} 
+Methods& \textbf{TNRD}& \textbf{NI}& \textbf{NC} &\textbf{Ours} 
 \\
 \hline
 PSNR &  {\color{blue}{37.75}} & 36.53 & 37.57  & {\color{red}{ 38.75}}
@@ -638,7 +638,7 @@ PSNR &  {\color{blue}{37.75}} & 36.53 & 37.57  & {\color{red}{ 38.75}}
 \renewcommand\arraystretch{1}
 \begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 \hline
-Camera Settings & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Ours} 
+Camera Settings & \textbf{Noisy} &\textbf{BM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}&\textbf{TNRD}& \textbf{NI}& \textbf{NC}& \textbf{CC} &\textbf{Ours} 
 \\
 \hline
 \multirow{3}{*}{\small{Canon 5D Mark III}} 
@@ -732,7 +732,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \centering
 \begin{minipage}[t]{0.195\textwidth}
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TRD \cite{chen2015learning}: 36.18dB  } 
+{\footnotesize (e) TNRD \cite{chen2015learning}: 36.18dB  } 
 \end{minipage}
 }\vspace{-3mm}
 \subfigure{
