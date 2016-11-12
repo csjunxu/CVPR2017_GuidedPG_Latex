@@ -164,31 +164,31 @@ The nonlocal self-similarity based patch group (PG) \cite{pgpd} has proved to be
 
 In our method, each local patch is extracted from a RGB image with patch size $p\times p \times 3$.\ We search the $M$ most similar patches to this local patch (including the local patch itself) in a $W\times W$ local region around it. Each patch is stretched to a patch vector $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ to form the PG $\{\mathbf{x}_{m}\}_{m=1}^{M}$. The mean vector of this PG is $\boldsymbol{\upmu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\boldsymbol{\upmu}\}$.
 
-Assume we extract a number of $N$ PGs from a set of external natural images, and the $n$-th PG is $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$.\ A Gaussian Mixture Model (GMM) is learned to model the PG prior. The overall log-likelihood function is
+Assume we extract a number of $N$ PGs from a set of external natural images, and the $n$-th PG is $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$.\ A Gaussian Mixture Model (GMM) is learned to model the PG prior.\ The overall log-likelihood function is
 \vspace{-2mm}
 \begin{equation}\label{equ1}\vspace{-2mm}
 \begin{split}
 \ln\mathcal{L}=\sum_{n=1}^{N} \ln(\sum_{k=1}^{K}\pi_{k}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{x}}_{n,m}|\boldsymbol{\upmu}_{k},\mathbf{\Sigma}_{k})).
 \end{split}
 \end{equation}
-The learning process is similar to the GMM learning in \cite{pgpd,epll}. Finally, a GMM model with $K$ Gaussian components is learned, and the learned parameters include mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$. Note that the mean vector of each cluster is naturally zero, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.  
+The learning process is similar to the GMM learning in \cite{pgpd,epll}.\ Finally, a GMM model with $K$ Gaussian components is learned, and the learned parameters include mixture weights $\{\pi_{k}\}_{k=1}^{K}$, mean vectors $\{\boldsymbol{\upmu}_{k}\}_{k=1}^{K}$, and covariance matrices $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$.\ Note that the mean vector of each cluster is naturally zero, i.e., $\boldsymbol{\upmu}_{k}=\mathbf{0}$.  
 
 To better describe the subspace of each Gaussian component, we perform singular value decomposition (SVD) on the covariance matrix:
 \vspace{-2mm}
 \begin{equation}\label{equ2}\vspace{-2mm}
 \mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{\top}.
 \end{equation}
-The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal dictionary learning in next sub-section. The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$. They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
+The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal dictionary learning in next sub-section.\ The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$.\ They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
 
 %In Fig.\ \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image.
 
 \subsection{Guided Internal Prior Learning}
 
-After the external PG prior is learned, we employ it to guide the internal PG prior learning for a given real noisy image.\ The guidance lies in two aspects.\ One is that the external prior can guide the subspace assignment of internal noisy PGs, while the other is that the external prior can guide the orthogonal dictionary learning of internal noisy PGs.
+After the external PG prior is learned, we employ it to guide the internal PG prior learning for a given real noisy image.\ The guidance lies in two aspects.\ One is that the external prior can guide the subspace assignment of internal noisy PGs, while the other is that the external prior could guide the orthogonal dictionary learning of internal noisy PGs.
 
 \subsubsection{Internal Subspace Assignment}
 
-Given a real noisy image, we extract $N$ (overlapped) local patches from it. Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$. Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
+Given a real noisy image $\mathbf{y}$, we extract $N$ (overlapped) local patches from it.\ Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$.\ Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}=\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
 
 The external GMM prior models $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ basically characterize the subspaces of natural high quality PGs. Therefore, we project the noisy PG $\mathbf{\overline{Y}}_{n}$ into the subspaces of $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ and assign it to the most suitable subspace based on the posterior probability:
 \vspace{-2mm}
@@ -200,17 +200,16 @@ for $k=1,...,K$.\ Then $\mathbf{\overline{Y}}_{n}$ is assigned to the component 
 
 \subsubsection{Guided Orthogonal Dictionary Learning}
 
+Assume we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$.\ We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ to characterize the internal PG prior with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eq.\ (\ref{equ2})). The reasons that we learn orthogonal dictionaries are two-fold.\ Firstly, the PGs $\mathbf{\overline{Y}}_{k_{n}}$ are in a subspace of the whole space of all PGs, therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for details).
 
-Assume we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$. We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eq.\ (\ref{equ2})) to characterize the internal PG prior. The reasons that we learn orthogonal dictionaries are two-fold. Firstly, the PGs $\mathbf{\overline{Y}}_{k_{n}}$ are in a subspace of the whole space of all PGs, therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for details).
+We let the orthogonal dictionary $\mathbf{D}_{k}$ be $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,\text{E}}\ \mathbf{D}_{k,\text{I}}]\in \mathbb{R}^{3p^2\times 3p^2}$, where $\mathbf{D}_{k,\text{E}}=\mathbf{U}_{k}(:,1:r)\in\mathbb{R}^{3p^2\times r}$ is the external sub-dictionary and it includes the first $r$ most important eigenvectors of $\mathbf{U}_{k}$, and the internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ is to be adaptively learned from the noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$.\ The rationale to design $\mathbf{D}_{k}$ as a hybrid dictionary is as follows.\ The external sub-dictionary $\mathbf{D}_{k,\text{E}}$ is pre-trained from external clean data, and it represents the $k$-th latent subspace of natural images, which is helpful to reconstruct the common latent structures of images. However, $\mathbf{D}_{k,\text{E}}$ is general to all images and it is not adaptive to the given noisy image.\ Some fine-scale details specific to the given image may not be well characterized by $\mathbf{D}_{k,\text{E}}$. Therefore, we learn an internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ to supplement $\mathbf{D}_{k,\text{E}}$.\ In other words, $\mathbf{D}_{k,\text{I}}$ is to reveal the latent subspace adaptive to the input noisy image, which cannot be effectively represented by $\mathbf{D}_{k,\text{E}}$. 
 
-We let the orthogonal dictionary $\mathbf{D}_{k}$ be $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,\text{E}}\ \mathbf{D}_{k,\text{I}}]\in \mathbb{R}^{3p^2\times 3p^2}$, where $\mathbf{D}_{k,\text{E}}=\mathbf{U}_{k}(:,1:r)\in\mathbb{R}^{3p^2\times r}$ is the external sub-dictionary and it includes the first $r$ most important eigenvectors of $\mathbf{U}_{k}$, and the internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ is to be adaptively learned from the noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$. The rationale to design $\mathbf{D}_{k}$ as a hybrid dictionary is as follows. The external sub-dictionary $\mathbf{D}_{k,\text{E}}$ is pre-trained from external clean data, and it represents the $k$-th latent subspace of natural images, which is helpful to reconstruct the common latent structures of images. However, $\mathbf{D}_{k,\text{E}}$ is general to all images and it is not adaptive to the given noisy image. Some fine-scale details specific to the given image may not be well characterized by $\mathbf{D}_{k,\text{E}}$. Therefore, we learn an internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ to supplement $\mathbf{D}_{k,\text{E}}$. In other words, $\mathbf{D}_{k,\text{I}}$ is to reveal the latent subspace adaptive to the input noisy image, which cannot be effectively represented by $\mathbf{D}_{k,\text{E}}$. 
-
-For notation simplicity, in the following development we ignore the subspace index $k$ for $\mathbf{\overline{Y}}_{k_{n}}$ and $\mathbf{D}_{k}$, etc. The learning of hybrid orthogonal dictionary $\mathbf{D}$ is performed under the following weighted sparse coding
+For notation simplicity, in the following development we ignore the subspace index $k$ for $\mathbf{\overline{Y}}_{k_{n}}$ and $\mathbf{D}_{k}$, etc.\ The learning of hybrid orthogonal dictionary $\mathbf{D}$ is performed under the following weighted sparse coding
 framework:
 \vspace{-2mm}
 \begin{equation}\label{equ4}\vspace{-3mm}
 \begin{split}
-&\min_{\mathbf{D}_{i},\{\bm{\alpha}_{n,m}\}}
+&\min_{\mathbf{D}_{\text{I}},\{\bm{\alpha}_{n,m}\}}
 \sum_{n=1}^{N}\sum_{m=1}^{M}(\|\mathbf{\overline{y}}_{n,m}-\mathbf{D}\bm{\alpha}_{n,m}\|_{2}^{2}+\sum_{j=1}^{3p^{2}}\lambda_{j}|\bm{\alpha}_{n,m,j}|)
 \\
 &
@@ -224,7 +223,7 @@ where $\bm{\alpha}_{n,m}$ is the sparse coding vector of the $m$-th patch $\math
 \begin{equation}\label{equ5}\vspace{-1mm}
 \lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{k}(j)}+\varepsilon),
 \end{equation}
-where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular value matrix $\mathbf{S}_{k}$ (please refer to Eq. (\ref{equ2})) and $\varepsilon$ is a small positive number to avoid zero denominator. Noted that $\mathbf{D}_{\text{E}}=\mathbf{U}_{k}$ if $r=3p^{2}$ and $\mathbf{D}_{\text{E}}=\emptyset$ if $r=0$. The dictionary $\mathbf{D} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]$ is orthogonal by checking that:
+where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular value matrix $\mathbf{S}_{k}$ (please refer to Eq.\ (\ref{equ2})) and $\varepsilon$ is a small positive number to avoid zero denominator.\ Noted that $\mathbf{D}_{\text{E}}=\mathbf{U}_{k}$ if $r=3p^{2}$ and $\mathbf{D}_{\text{E}}=\emptyset$ if $r=0$.\ The dictionary $\mathbf{D} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]$ is orthogonal by checking that:
 \vspace{-2mm}
 \begin{equation}\label{equ6}\vspace{-1mm}
 \mathbf{D}^{\top}\mathbf{D} = 
@@ -261,7 +260,7 @@ Since dictionary $\mathbf{D}^{(t)}$ is orthogonal, the problems (\ref{equ7}) has
 \end{equation}
 where $\bm{\lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter and $\text{sgn}(\bullet)$ is the sign function, $\odot$ means element-wise multiplication.\ The detailed derivation of Eq. (\ref{equ8}) can be found in the supplementary file.
 \vspace{2mm}\\
-\textbf{Updating Internal Sub-dictionary}: Given the sparse coding vectors $\bm{\alpha}_{n,m}^{(t)}$, we update the internal sub-dictionary by solving
+\textbf{Updating Internal Sub-dictionary}: Given the sparse coding vectors $\{\bm{\alpha}_{n,m}^{(t)}\}$, we update the internal sub-dictionary by solving
 \vspace{-2mm}
 \begin{equation}\label{equ9} \vspace{-2mm}
 \begin{split}
@@ -285,7 +284,7 @@ s.t.
 [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{r},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$. The sparse coefficient matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{r\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
+where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$. The sparse coefficient matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{r\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}$, respectively. According to the Theorem 4 in \cite{spca}, the problem (\ref{equ9}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times r}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{r\times r}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-1mm}
 \begin{equation}\label{equ10}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{\text{E}}\mathbf{D}_{\text{E}}^{\top})\mathbf{Y}(\mathbf{A}_{\text{I}}^{(t)})^{\top}
@@ -299,12 +298,12 @@ $(\mathbf{D}_{\text{I}}^{(t+1)})^{\top}(\mathbf{D}_{\text{I}}^{(t+1)})=\mathbf{V
 
 \subsection{The Denoising Algorithm}
 
-The denoising of the given noisy image can be simultaneously done with the guided internal dictionary learning process. Once we obtain the solutions of sparse coding vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq.\ (\ref{equ8}) and the orthogonal dictionary $\mathbf{D}_{(T)} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{(T)}]$ in Eq. (\ref{equ9}), the latent clean patch of a noisy patch $\hat{\mathbf{y}}_{n,m}$ in PG $\mathbf{Y}_{n}$ is reconstructed as
+The denoising of the given noisy image $\mathbf{y}$ can be simultaneously done with the guided internal dictionary learning process. Once we obtain the solutions of sparse coding vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq.\ (\ref{equ8}) and the orthogonal dictionary $\mathbf{D}^{(T)} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{(T)}]$ in Eq. (\ref{equ9}), the latent clean patch of a noisy patch $\hat{\mathbf{y}}_{n,m}$ in PG $\mathbf{Y}_{n}$ is reconstructed as
 \vspace{-2mm}
 \begin{equation}\label{equ11}\vspace{-2mm}
-\hat{\mathbf{y}}_{n,m}=\mathbf{D}_{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
+\hat{\mathbf{y}}_{n,m}=\mathbf{D}^{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
 \end{equation}
-where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs. We perform the above denoising procedures for several iterations for better denoising outputs. The proposed denoising algorithm is summarized in Alg. 1.
+where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs.\ We perform the above denoising procedures for several iterations for better denoising outputs.\ The proposed denoising algorithm is summarized in Alg. 1.
 \begin{table}\label{alg1}
 \begin{tabular}{l}
 \hline
@@ -323,15 +322,15 @@ where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean ima
 \\
 1. Extracting internal PGs from $\hat{\mathbf{x}}^{(Ite-1)}$;
 \\
-%\textbf{Guided Internal Subspace Selection:}
+%\textbf{Guided Internal Subspace Assignment:}
 %\\
 \quad\textbf{for} each PG $\mathbf{Y}_{n}$ \textbf{do}
 \\
-2.\quad Calculate group mean vector $\boldsymbol{\upmu}_{n}$ and form 
+2.\quad Calculate group mean vector $\bm{\mu}_{n}$ and form 
 \\
 \quad \ \ \ mean subtracted PG $\mathbf{\overline{Y}}_{n}$;
 \\
-3.\quad Subspace selection via Eq. (\ref{equ3});
+3.\quad Subspace assignment via Eq. (\ref{equ3});
 \\
 \quad\textbf{end for}
 \\
