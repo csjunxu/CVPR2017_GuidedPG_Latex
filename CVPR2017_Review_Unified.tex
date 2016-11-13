@@ -151,12 +151,11 @@ This work aims to develop a robust denoiser for real noisy image denoising witho
 
 Image priors are playing a key role in image denoising \cite{ksvd,ncsr,pgpd,epll,ple,iraniinternal}.\ There are mainly two categories of prior learning methods.\ 1) External prior learning methods \cite{pgpd,foe,epll} learn priors (e.g., dictionaries) from a set of external clean images, and the learned priors are used to recover the latent clean image from noisy images.\ 2) Internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} directly learn priors from the given noisy image, and image denoising is often done simultaneously with the prior learning process.\ It has been demonstrated \cite{pgpd,epll} that the external priors learned from natural clean images are effective and efficient for image denoising problem, but they are not adaptive to the given noisy image so that some fine-scale image structures may not be well recovered.\ By contrast, the internal priors are adaptive to content of the given image, but the learning processing are usually slow.\ In addition, most of the internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} assume AWGN noise, making the learned priors less robust for real noisy images. In this paper, we use external priors to guide the internal prior learning.\ Our method is not only much faster than the traditional internal learning methods, but also very effective to denoise real noisy images.
 
-\vspace{-1mm}
 \subsection{Real Noisy Image Denoising}
 
 Recently, several denoising methods have been proposed to remove unknown noise from images \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite}.\ Among them, the ``Noise Clinic" \cite{noiseclinic,ncwebsite} estimates the noise distribution by using a multivariate Gaussian model and removes the noise by using a generalized version of nonlocal Bayesian model \cite{nlbayes}. Zhu \etal proposed a Bayesian method \cite{Zhu_2016_CVPR} to approximate and remove the noise via a low-rank mixture of Gaussians (MoG) model.\ There are also several methods specifically designed for real noisy image denoising \cite{crosschannel2016,neatimage}.\ The method in \cite{crosschannel2016} models the cross-channel noise in real noisy image as a multivariate Gaussian and the noise is removed by Bayesian nonlocal means.\ The commercial software Neat Image \cite{neatimage} estimates the noise parameters from a flat region of the given noisy image and filtered the noise correspondingly. Almost all the methods mentioned above \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite} use Gaussian or MoG to model the noise in real noisy images. Nonetheless, the noise in real noisy images is very complex and hard to be modeled by explicit distributions. In this paper, we propose a simple yet effective denoising method for real noisy image denoising without explicitly assuming certain noise models.
 
-\section{External Prior Guided Internal Prior Learn\\ing}
+\section{External Prior Guided Internal Prior Learning}
 
 In this section, we first describe the learning of external prior, and then describe in detail the guided internal prior learning. Finally, the denoising algorithm with the learned priors is presented.
 
@@ -639,8 +638,9 @@ PSNR &  {\color{blue}{37.75}}  & 36.53 & 37.57 & {\color{red}{ 38.75}}
 \end{center}\vspace{-6mm}
 \end{table}
 
-\begin{table*}
+\begin{table*}\vspace{2mm}
 \caption{PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
+\vspace{1mm}
 \label{tab3}
 \begin{center}
 \renewcommand\arraystretch{1}
@@ -711,10 +711,10 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 %\\
 %\hline
 \end{tabular}
-\end{center}\vspace{-1mm}
+\end{center}
 \end{table*}
 
-\begin{figure*}
+\begin{figure*}\vspace{1mm}
 \centering
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
@@ -770,10 +770,7 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 {\footnotesize (j) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }\vspace{-1mm}
-\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 1" by different methods. The images 
-\vspace{-0.5mm}
-are better to be zoomed in on screen.}
-\vspace{-1mm}
+\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 1" by different methods. The images are better to be zoomed in on screen.}
 \label{fig7}
 \end{figure*}
 
