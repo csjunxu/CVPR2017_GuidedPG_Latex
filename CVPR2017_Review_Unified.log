@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 22:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 22:17
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -588,11 +588,6 @@ e_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_
 NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Guide
 d_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Mean_C
 C_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>] [3 <./Flowchart.pdf>]
-Underfull \hbox (badness 1436) in paragraph at lines 206--207
-\OT1/ptm/m/n/10 Assume we have as-signed all the in-ter-nal noisy PGs
- []
-
-
 Underfull \hbox (badness 2932) in paragraph at lines 208--209
 []\OT1/ptm/m/n/10 We let the or-thog-o-nal dic-tio-nary $\OT1/cmr/bx/n/10 D[]$ 
 \OT1/ptm/m/n/10 be $\OT1/cmr/bx/n/10 D[] \U/msa/m/n/10 ,
@@ -1061,8 +1056,11 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 749--777
 ng (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_br
 _MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images/
 resize_br_NI_dog.png (PNG copy)> <./images/resize_br_NC_dog.png (PNG copy)> <./
-images/resize_br_Guided_dog.png (PNG copy)>] (./CVPR2017_Review_Unified.bbl
-(./CVPR2017_Review_Unified.brf)
+images/resize_br_Guided_dog.png (PNG copy)>]
+Underfull \vbox (badness 4859) has occurred while \output is active []
+
+
+(./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
 \openout3 = `CVPR2017_Review_Unified.brf'.
 
@@ -1127,7 +1125,7 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4182717 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4182720 bytes).
 PDF statistics:
  623 PDF objects out of 1000 (max. 8388607)
  491 compressed objects within 5 object streams
