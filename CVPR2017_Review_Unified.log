@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 17:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 17:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1061,13 +1061,13 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 748--778
 ng (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_br
 _MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images/
 resize_br_NI_dog.png (PNG copy)> <./images/resize_br_NC_dog.png (PNG copy)> <./
-images/resize_br_Guided_dog.png (PNG copy)>] (./CVPR2017_Review_Unified.bbl
-(./CVPR2017_Review_Unified.brf)
+images/resize_br_Guided_dog.png (PNG copy)>]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+
+(./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
 \openout3 = `CVPR2017_Review_Unified.brf'.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <./images/resize_br_Noisy_5dmark3_iso3200_1_real.png (PNG copy)> <./images/
 resize_br_CBM3D_5dmark3_iso3200_1_real.png (PNG copy)> <./images/resize_br_WNNM
@@ -1092,12 +1092,16 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 796.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
 (rerunfilecheck)             Checksum: 907005B581AC8777F3AC15DC9B5FC724;6083.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 796.
  ) 
 Here is how much of TeX's memory you used:
  7632 strings out of 493091
  119665 string characters out of 6134517
- 226594 words of memory out of 5000000
+ 226652 words of memory out of 5000000
  10810 multiletter control sequences out of 15000+600000
  55144 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1127,7 +1131,7 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4192363 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4192325 bytes).
 PDF statistics:
  623 PDF objects out of 1000 (max. 8388607)
  491 compressed objects within 5 object streams

@@ -369,7 +369,7 @@ We evaluate the performance of the proposed algorithm on real-world noisy images
 
 \subsection{Implementation Details}\vspace{-1mm}
 
-Our proposed method has two stages: the external prior learning stage and the external prior guided internal prior learning stage.\ In the first stage, we set $p = 6$ (the patch size), $M = 10$ (the number of similar patches in a PG), $W = 31$ (the window size for PG searching) and $K = 32$ (the number of Gaussian components in GMM.\ We learn the external GMM prior with 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. 
+Our proposed method has two stages: the external prior learning stage and the external prior guided internal prior learning stage.\ In the first stage, we set $p = 6$ (the patch size), $M = 10$ (the number of similar patches in a PG), $W = 31$ (the window size for PG searching) and $K = 32$ (the number of Gaussian components in GMM).\ We learn the external GMM prior with 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. 
 
 In the second stage, we set $r = 54$ (the number of atoms in the external sub-dictionaries); that is, we let the external sub-dictionary have the same number of atoms as the internal sub-dictionary to be learned. Our experiments show that setting $r$ between 27 and 81 will lead to very similar results. For other parameters, we set $\lambda=0.001$ (the sparse regularization parameter), $T = 2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum = 4$ (the number of iterations for Alg.1). All parameters of our method are fixed to all experiments, which are run under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
@@ -472,7 +472,7 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 \end{minipage}
 }
 \vspace{-2mm}
-\caption{Denoised images of a cropped part from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
+\caption{Denoised images of a region cropped from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
 \vspace{-0.5mm}
 images are better to be zoomed in on screen.}
 \vspace{-1mm}
@@ -508,7 +508,7 @@ images are better to be zoomed in on screen.}
 \end{minipage}
 }
 \vspace{-2mm}  
-\caption{Denoised images of a cropped part from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
+\caption{Denoised images of a region cropped from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
 \vspace{-0.5mm}
 images are better to be zoomed in on screen.}
 \vspace{-1mm}
