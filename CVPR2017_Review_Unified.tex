@@ -20,7 +20,10 @@
 
 
 %\usepackage{sectsty}
-%\sectionfont{\leftskip=0pt}
+%\sectionfont{\fontsize{12}{11}\selectfont\leftskip=0pt\vspace{-2mm}}
+%\subsectionfont{\fontsize{11}{10}\selectfont\leftskip=0pt\vspace{-1mm}}
+%\subsubsectionfont{\fontsize{10}{10}\selectfont\leftskip=0pt\vspace{-1mm}}
+
 
 % Include other packages here, before hyperref.
 
@@ -159,7 +162,7 @@ Image priors are playing a key role in image denoising \cite{ksvd,ncsr,pgpd,epll
 
 Recently, several denoising methods have been proposed to remove unknown noise from images \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite}.\ Among them, the ``Noise Clinic" \cite{noiseclinic,ncwebsite} estimates the noise distribution by using a multivariate Gaussian model and removes the noise by using a generalized version of nonlocal Bayesian model \cite{nlbayes}. Zhu \etal proposed a Bayesian method \cite{Zhu_2016_CVPR} to approximate and remove the noise via a low-rank mixture of Gaussians (MoG) model.\ There are also several methods specifically designed for real noisy image denoising \cite{crosschannel2016,neatimage}.\ The method in \cite{crosschannel2016} models the cross-channel noise in real noisy image as a multivariate Gaussian and the noise is removed by Bayesian nonlocal means.\ The commercial software Neat Image \cite{neatimage} estimates the noise parameters from a flat region of the given noisy image and filters the noise correspondingly.\ Almost all the methods mentioned above \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite} use Gaussian or MoG to model the noise in real noisy images.\ Nonetheless, the noise in real noisy images is very complex and hard to be modeled by explicit distributions.\ In this paper, we propose a simple yet effective denoising method for real noisy image denoising without explicitly assuming certain noise models.
 
-\section{External Prior Guided Internal Prior Learning}
+\section{External Prior Guided Internal Prior Learn-\\ing}
 
 In this section, we first describe the learning of external prior, and then describe in detail the guided internal prior learning. Finally, the denoising algorithm with the learned priors is presented.
 
