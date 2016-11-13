@@ -504,7 +504,7 @@ images are better to be zoomed in on screen.}
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\vspace{-2mm}
+\vspace{-2mm}  
 \caption{Denoised images of a cropped part from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
 \vspace{-0.5mm}
 images are better to be zoomed in on screen.}
@@ -517,7 +517,7 @@ images are better to be zoomed in on screen.}
 
 To demonstrate the advantages of external prior guided internal priors, in this section we perform real noisy image denoising by using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively.\ For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq.\ (\ref{equ4})) for denoising.\ For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}.\ A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionary is obtained via Eq.\ (\ref{equ2}) to perform denoising.\ All parameters of the ``External" and ``Internal" methods are tuned to achieve their corresponding best performance. 
 
-We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}.\ The average PSNR and run time  are listed in Table \ref{tab1}. It can be seen that ``Guided Internal" prior achieves better PSNR than both ``External" and ``Internal" priors. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method.\ Fig.\ \ref{fig4} and Fig.\ \ref{fig5} show the denoised images of two noisy image by the three methods.\ We can see that the ``External" method is good at recovering large-scale structures (see Fig.\ \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig.\ \ref{fig5}).\ By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
+We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}.\ The average PSNR and run time  are listed in Table \ref{tab1}. It can be seen that ``Guided Internal" prior achieves better PSNR than both ``External" and ``Internal" priors. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method.\ Fig.\ \ref{fig4} and Fig.\ \ref{fig5} show the denoised images of two noisy image by the three methods.\ We can see that the  ``External" method is good at recovering large-scale structures (see Fig.\ \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig.\ \ref{fig5}).\ By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
 
 \begin{figure*}
 \centering
