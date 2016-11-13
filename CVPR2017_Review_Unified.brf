@@ -42,7 +42,7 @@
 \backcite {pgpd}{{3}{3.1}{subsection.3.1}}
 \backcite {pgpd,epll}{{3}{3.1}{equation.3.1}}
 \backcite {donoho2001uncertainty}{{4}{3.2.2}{subsubsection.3.2.2}}
-\backcite {spca}{{4}{3.2.2}{equation.3.9}}
+\backcite {spca}{{4}{3.2.2}{equation.3.8}}
 \backcite {crosschannel2016,ncwebsite}{{5}{4}{section.4}}
 \backcite {bm3d,cbm3d,mlp,wnnm,csf,chen2015learning,crosschannel2016,noiseclinic,ncwebsite,neatimage}{{5}{4}{section.4}}
 \backcite {crosschannel2016}{{5}{3}{figure.3}}
