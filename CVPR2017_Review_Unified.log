@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 19:18
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  13 NOV 2016 19:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -967,7 +967,7 @@ ages/resize_br_Offline_CC_Noisy_Nikon_D600_ISO_3200_C1_94b.png (PNG copy)> <./i
 mages/resize_br_Online_CC_Noisy_Nikon_D600_ISO_3200_C1_94b.png (PNG copy)> <./i
 mages/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_94b.png (PNG copy)> <./i
 mages/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_94b.png (PNG copy)>]
-<images/resize_br_Noisy_5dmark3_iso3200_1_real.png, id=387, 256.96pt x 256.96pt
+<images/resize_br_Noisy_5dmark3_iso3200_1_real.png, id=386, 256.96pt x 256.96pt
 >
 File: images/resize_br_Noisy_5dmark3_iso3200_1_real.png Graphic file (type png)
 
@@ -976,7 +976,7 @@ Package pdftex.def Info: images/resize_br_Noisy_5dmark3_iso3200_1_real.png used
  on input line 745.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_CBM3D_5dmark3_iso3200_1_real.png, id=389, 256.96pt x 256.96pt
+<images/resize_br_CBM3D_5dmark3_iso3200_1_real.png, id=388, 256.96pt x 256.96pt
 >
 File: images/resize_br_CBM3D_5dmark3_iso3200_1_real.png Graphic file (type png)
 
@@ -985,14 +985,14 @@ Package pdftex.def Info: images/resize_br_CBM3D_5dmark3_iso3200_1_real.png used
  on input line 745.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_WNNM_5dmark3_iso3200_1_real.png, id=392, 256.96pt x 256.96pt>
+<images/resize_br_WNNM_5dmark3_iso3200_1_real.png, id=391, 256.96pt x 256.96pt>
 File: images/resize_br_WNNM_5dmark3_iso3200_1_real.png Graphic file (type png)
 <use images/resize_br_WNNM_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_WNNM_5dmark3_iso3200_1_real.png used 
 on input line 745.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_MLP_5dmark3_iso3200_1_real.png, id=394, 256.96pt x 256.96pt>
+<images/resize_br_MLP_5dmark3_iso3200_1_real.png, id=393, 256.96pt x 256.96pt>
 File: images/resize_br_MLP_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_MLP_5dmark3_iso3200_1_real.png>
@@ -1000,7 +1000,7 @@ Package pdftex.def Info: images/resize_br_MLP_5dmark3_iso3200_1_real.png used o
 n input line 745.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_TRD_5dmark3_iso3200_1_real.png, id=396, 256.96pt x 256.96pt>
+<images/resize_br_TRD_5dmark3_iso3200_1_real.png, id=395, 256.96pt x 256.96pt>
 File: images/resize_br_TRD_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_TRD_5dmark3_iso3200_1_real.png>
@@ -1008,7 +1008,7 @@ Package pdftex.def Info: images/resize_br_TRD_5dmark3_iso3200_1_real.png used o
 n input line 745.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_NI_5dmark3_iso3200_1_real.png, id=398, 256.96pt x 256.96pt>
+<images/resize_br_NI_5dmark3_iso3200_1_real.png, id=397, 256.96pt x 256.96pt>
 File: images/resize_br_NI_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_NI_5dmark3_iso3200_1_real.png>
@@ -1016,7 +1016,7 @@ Package pdftex.def Info: images/resize_br_NI_5dmark3_iso3200_1_real.png used on
  input line 772.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_NC_5dmark3_iso3200_1_real.png, id=400, 256.96pt x 256.96pt>
+<images/resize_br_NC_5dmark3_iso3200_1_real.png, id=399, 256.96pt x 256.96pt>
 File: images/resize_br_NC_5dmark3_iso3200_1_real.png Graphic file (type png)
 
 <use images/resize_br_NC_5dmark3_iso3200_1_real.png>
@@ -1024,7 +1024,7 @@ Package pdftex.def Info: images/resize_br_NC_5dmark3_iso3200_1_real.png used on
  input line 772.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_CCNoise_5dmark3_iso3200_1.png, id=403, 256.96pt x 256.96pt>
+<images/resize_br_CCNoise_5dmark3_iso3200_1.png, id=402, 256.96pt x 256.96pt>
 File: images/resize_br_CCNoise_5dmark3_iso3200_1.png Graphic file (type png)
 
 <use images/resize_br_CCNoise_5dmark3_iso3200_1.png>
@@ -1032,7 +1032,7 @@ Package pdftex.def Info: images/resize_br_CCNoise_5dmark3_iso3200_1.png used on
  input line 772.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_Guided_5dmark3_iso3200_1_real.png, id=405, 256.96pt x 256.96p
+<images/resize_br_Guided_5dmark3_iso3200_1_real.png, id=404, 256.96pt x 256.96p
 t>
 File: images/resize_br_Guided_5dmark3_iso3200_1_real.png Graphic file (type png
 )
@@ -1041,7 +1041,7 @@ Package pdftex.def Info: images/resize_br_Guided_5dmark3_iso3200_1_real.png use
 d on input line 772.
 (pdftex.def)             Requested size: 96.8906pt x 96.88907pt.
 
-<images/resize_br_Mean_5dmark3_iso3200_1_real.png, id=406, 256.96pt x 256.96pt>
+<images/resize_br_Mean_5dmark3_iso3200_1_real.png, id=405, 256.96pt x 256.96pt>
 File: images/resize_br_Mean_5dmark3_iso3200_1_real.png Graphic file (type png)
 <use images/resize_br_Mean_5dmark3_iso3200_1_real.png>
 Package pdftex.def Info: images/resize_br_Mean_5dmark3_iso3200_1_real.png used 
@@ -1061,11 +1061,8 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 745--773
 ng (PNG copy)> <./images/resize_br_WNNM_dog.png (PNG copy)> <./images/resize_br
 _MLP_dog.png (PNG copy)> <./images/resize_br_TRD_dog.png (PNG copy)> <./images/
 resize_br_NI_dog.png (PNG copy)> <./images/resize_br_NC_dog.png (PNG copy)> <./
-images/resize_br_Guided_dog.png (PNG copy)>]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
-(./CVPR2017_Review_Unified.bbl (./CVPR2017_Review_Unified.brf)
+images/resize_br_Guided_dog.png (PNG copy)>] (./CVPR2017_Review_Unified.bbl
+(./CVPR2017_Review_Unified.brf)
 \tf@brf=\write3
 \openout3 = `CVPR2017_Review_Unified.brf'.
 
@@ -1086,21 +1083,21 @@ Underfull \hbox (badness 1968) in paragraph at lines 33--33
  []
 
 )
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 790.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 791.
  [9]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 790.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 791.
  (./CVPR2017_Review_Unified.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 790.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 790.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 791.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 791.
 Package rerunfilecheck Info: File `CVPR2017_Review_Unified.brf' has not changed
 .
-(rerunfilecheck)             Checksum: 956EFABA71DA9FA48E083B6A3B15E337;6145.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 790.
+(rerunfilecheck)             Checksum: 123E3CF01DAF9544502B0BA3BF6791CE;6083.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 791.
  ) 
 Here is how much of TeX's memory you used:
  7631 strings out of 493091
  119656 string characters out of 6134517
- 227273 words of memory out of 5000000
+ 222327 words of memory out of 5000000
  10809 multiletter control sequences out of 15000+600000
  55144 words of font info for 125 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -1130,10 +1127,10 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4182693 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4182711 bytes).
 PDF statistics:
- 624 PDF objects out of 1000 (max. 8388607)
- 492 compressed objects within 5 object streams
+ 623 PDF objects out of 1000 (max. 8388607)
+ 491 compressed objects within 5 object streams
  86 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 

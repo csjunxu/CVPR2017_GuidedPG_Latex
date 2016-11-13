@@ -95,12 +95,10 @@
 \backcite {neatimage}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{7}{2}{table.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
 \backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{7}{4.4.2}{subsubsection.4.4.2}}
-\backcite {crosschannel2016}{{8}{3}{table.3}}
+\backcite {crosschannel2016}{{8}{2}{table.2}}
 \backcite {crosschannel2016}{{8}{7(a)}{subfigure.7.1}}
 \backcite {bm3d,cbm3d}{{8}{7(a)}{subfigure.7.1}}
 \backcite {wnnm}{{8}{7(a)}{subfigure.7.1}}
@@ -110,3 +108,4 @@
 \backcite {noiseclinic,ncwebsite}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
 \backcite {crosschannel2016}{{8}{7(b)}{subfigure.7.2}}
+\backcite {crosschannel2016}{{8}{3}{table.3}}
