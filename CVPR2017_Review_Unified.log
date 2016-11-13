@@ -436,6 +436,12 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
 (Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
 
+Underfull \hbox (badness 1748) in paragraph at lines 71--72
+\OT1/ptm/m/n/10 as-sume noise $\OT1/cmr/bx/n/10 n$ \OT1/ptm/m/n/10 to be ad-di-
+tive white Gaus-sian noise
+ []
+
+
 <images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=33, 250.9375
 pt x 250.9375pt>
 File: images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic fil
@@ -1134,7 +1140,7 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on CVPR2017_Review_Unified.pdf (9 pages, 4192755 bytes).
+Output written on CVPR2017_Review_Unified.pdf (9 pages, 4192757 bytes).
 PDF statistics:
  624 PDF objects out of 1000 (max. 8388607)
  492 compressed objects within 5 object streams
