@@ -165,7 +165,7 @@ In this section, we first describe the learning of external prior, and then desc
 
 \subsection{Learn External Patch Group Priors}
 
-The nonlocal self-similarity based patch group (PG) \cite{pgpd} has proved to be a very effective unit for image prior learning.\ In this work, we extract PGs from natural clean images to learn priors. A PG is a group of similar patches to a local patch.\ In our method, each local patch is extracted from a RGB image with patch size $p\times p \times 3$.\ We search the $M$ most similar patches to this local patch (including the local patch itself) in a $W\times W$ local region around it. Each patch is stretched to a patch vector $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ to form the PG $\{\mathbf{x}_{m}\}_{m=1}^{M}$. The mean vector of this PG is $\bm{\mu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\bm{\mu}\}$.
+The nonlocal self-similarity based patch group (PG) \cite{pgpd} has proved to be a very effective unit for image prior learning.\ In this work, we extract PGs from natural clean images to learn priors. A PG is a group of similar patches to a local patch.\ In our method, each local patch is extracted from a RGB image with patch size $p\times p \times 3$.\ We search the $M$ most similar patches to this local patch (including the local patch itself) in a $W\times W$ local region around it. Each patch is stretched to a patch vector $\mathbf{x}_{m}\in \mathbb{R}^{3p^{2}\times1}$ to form the PG $\{\mathbf{x}_{m}\}_{m=1}^{M}$. The mean vector of this PG is $\bm{\mu}=\frac{1}{M}\sum_{m=1}^{M}\mathbf{x}_{m}$, and the group mean subtracted PG is defined as $\mathbf{\overline{X}}\triangleq \{\mathbf{\overline{x}}_{m}=\mathbf{x}_{m}-\bm{\mu}\}_{m=1}^{M}$.
 
 Assume that we have extracted a number of $N$ PGs from a set of external natural images, and the $n$-th PG is $\mathbf{\overline{X}}_{n}\triangleq \{\mathbf{\overline{x}}_{n,m}\}_{m=1}^{M}, n=1,...,N$.\ A Gaussian Mixture Model (GMM) is learned to model the PG prior.\ The overall log-likelihood function is
 \vspace{-3mm}
@@ -181,7 +181,7 @@ To better describe the subspace of each Gaussian component, we perform singular 
 \begin{equation}\label{equ2}\vspace{-2mm}
 \mathbf{\Sigma}_{k}=\mathbf{U}_{k}\mathbf{S}_{k}\mathbf{U}_{k}^{\top}.
 \end{equation}
-The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal dictionary learning in next sub-section.\ The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$.\ They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
+The eigenvector matrices $\{\mathbf{U}_{k}\}_{k=1}^{K}$ will be employed as the external orthogonal dictionary to guide the internal sub-dictionary learning in next sub-section.\ The singular values in $\mathbf{S}_{k}$ reflect the significance of the singular vectors in $\mathbf{U}_{k}$.\ They  will also be utilized as prior weights for weighted sparse coding in our denoising algorithm.
 
 %In Fig.\ \ref{fig3} (a) and (b), we illustrate an external clean image and one orthogonal dictionary learned via GMM on PGs of the external clean image.
 
@@ -195,7 +195,7 @@ After the external PG prior is learned on external natural clean images, we empl
 
 Given a real noisy image $\mathbf{y}$, we extract $N$ (overlapped) local patches from it.\ Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$.\ Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}\triangleq\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
 
-The external GMM prior models $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ basically characterize the subspaces of natural high quality PGs.\ Therefore, we project the noisy PG $\mathbf{\overline{Y}}_{n}$ into the subspaces of $\{\mathbf{\Sigma}_{k}\}_{k=1}^{K}$ and assign it to the most suitable subspace based on the posterior probability:
+The external GMM prior models $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$ basically characterize the subspaces of natural high quality PGs.\ Therefore, we project the noisy PG $\mathbf{\overline{Y}}_{n}$ into the subspaces of $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$ and assign it to the most suitable subspace based on the posterior probability:
 \vspace{-3mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
 P(k|\mathbf{\overline{Y}}_{n})=\frac{\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{k})}{\sum_{l=1}^{K}\prod_{m=1}^{M}\mathcal{N}(\mathbf{\overline{y}}_{n,m}|\mathbf{0},\mathbf{\Sigma}_{l})}
@@ -205,7 +205,7 @@ for $k=1,...,K$.\ Then $\mathbf{\overline{Y}}_{n}$ is assigned to the subspace w
 \vspace{-2mm}
 \subsubsection{Guided Orthogonal Dictionary Learning}
 
-Assume that we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$.\ We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ to characterize the internal PG prior with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eq.\ (\ref{equ2})). The reasons that we learn orthogonal dictionaries are two-fold.\ Firstly, the PGs $\mathbf{\overline{Y}}_{k_{n}}$ are in a subspace of the whole space of all PGs; therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for more details).
+Assume that we have assigned all the internal noisy PGs $\{\mathbf{\overline{Y}}_{n}\}_{n=1}^{N}$ to their corresponding most suitable subspaces in $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$. For the $k$-th subspace, the noisy PGs assigned to it are $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ where $\mathbf{\overline{Y}}_{k_{n}}=[\mathbf{\overline{y}}_{k_{n},1},...,\mathbf{\overline{y}}_{k_{n},M}]$ and $\sum_{k=1}^{K}N_{k}=N$.\ We propose to learn an orthogonal dictionary $\mathbf{D}_{k}$ from each set of PGs $\mathbf{\overline{Y}}_{k_{n}}$ to characterize the internal PG prior with the guidance of the corresponding external orthogonal dictionary $\mathbf{U}_{k}$ (Eq.\ (\ref{equ2})). The reasons that we learn orthogonal dictionaries are two-fold.\ Firstly, the PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$ are in a subspace of the whole space of all PGs; therefore, there is no necessary to learn a redundant over-complete dictionary to characterize it, while an orthonormal dictionary has naturally zero \emph{mutual incoherence} \cite{donoho2001uncertainty}. Secondly, the orthogonality of dictionary can make the encoding in the testing stage very efficient, leading to an efficient denoising algorithm (please refer to sub-section 3.3 for more details).
 
 We let the orthogonal dictionary $\mathbf{D}_{k}$ be $\mathbf{D}_{k}\triangleq[\mathbf{D}_{k,\text{E}}\ \mathbf{D}_{k,\text{I}}]\in \mathbb{R}^{3p^2\times 3p^2}$, where $\mathbf{D}_{k,\text{E}}=\mathbf{U}_{k}(:,1:r)\in\mathbb{R}^{3p^2\times r}$ is the external sub-dictionary and it includes the first $r$ most important eigenvectors of $\mathbf{U}_{k}$, and the internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ is to be adaptively learned from the noisy PGs $\{\mathbf{\overline{Y}}_{k_{n}}\}_{n=1}^{N_{k}}$.\ The rationale to design $\mathbf{D}_{k}$ as a hybrid dictionary is as follows.\ The external sub-dictionary $\mathbf{D}_{k,\text{E}}$ is pre-trained from external clean data, and it represents the $k$-th latent subspace of natural images, which is helpful to reconstruct the common latent structures of images. However, $\mathbf{D}_{k,\text{E}}$ is general to all images and it is not adaptive to the given noisy image.\ Some fine-scale details specific to the given image may not be well characterized by $\mathbf{D}_{k,\text{E}}$. Therefore, we learn an internal sub-dictionary $\mathbf{D}_{k,\text{I}}$ to supplement $\mathbf{D}_{k,\text{E}}$.\ In other words, $\mathbf{D}_{k,\text{I}}$ is to reveal the latent subspace adaptive to the input noisy image, which cannot be effectively represented by $\mathbf{D}_{k,\text{E}}$. 
 
@@ -250,7 +250,7 @@ where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular valu
 %\mathbf{I}
 %\end{equation}
 
-We employ an alternating iterative approach to solve the optimization problem (\ref{equ4}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}=\mathbf{U}_{k}$ and for $t=0,1, ...,T-1$, we alternatively update $\bm{\alpha}_{n,m}$ and $\mathbf{D}$ as follows.
+We employ an alternating iterative approach to solve the optimization problem (\ref{equ4}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}=\mathbf{U}_{k}$ and for $t=0,1, ...,T-1$, we alternatively update $\bm{\alpha}_{n,m}$ and $\mathbf{D}_{\text{I}}$ as follows.
 \vspace{2mm}\\
 \textbf{Updating Sparse Coding Coefficients}: Given the orthogonal dictionary $\textbf{D}^{(t)}$, we update each sparse coding vector $\bm{\alpha}_{n,m}$ by solving
 \vspace{-4mm}
@@ -291,24 +291,24 @@ s.t.
 [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{r},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$ and $\mathbf{I}_{r}$ is the $r$ dimensional identity matrix.\ The sparse coefficients matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{r\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}$, respectively.\ According to the Theorem 4 in \cite{spca}, the problem (\ref{equ8}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{(3p^2-r)\times (3p^2-r)}$ are the orthogonal matrices obtained by the following SVD
+where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$ and $\mathbf{I}_{r}$ is the $r$ dimensional identity matrix.\ The sparse coefficients matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{r\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}^{(t)}$, respectively.\ According to the Theorem 4 in \cite{spca}, the problem (\ref{equ8}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{(3p^2-r)\times (3p^2-r)}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-2mm}
 \begin{equation}\label{equ9}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{\text{E}}\mathbf{D}_{\text{E}}^{\top})\mathbf{Y}(\mathbf{A}_{\text{I}}^{(t)})^{\top}
 =
 \mathbf{U}_{\text{I}}\mathbf{S}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}.
 \end{equation}
-The orthogonality of internal dictionary $\mathbf{D}_{\text{I}}^{(t+1)}$ can be checked by 
+The orthogonality of internal sub-dictionary $\mathbf{D}_{\text{I}}^{(t+1)}$ can be checked by 
 $(\mathbf{D}_{\text{I}}^{(t+1)})^{\top}(\mathbf{D}_{\text{I}}^{(t+1)})=\mathbf{V}_{\text{I}}\mathbf{U}_{\text{I}}^{\top}\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}=\mathbf{I}_{(3p^2-r)}$ where $\mathbf{I}_{(3p^2-r)}$ is the $3p^2-r$ dimensional identity matrix.
 
 %In Fig. \ref{fig3} (c) and (d), we illustrate a denoised image by our proposed method and one internal orthogonal dictionary learned from PGs of the given noisy image.
 
 \subsection{The Denoising Algorithm}
 
-The denoising of the given noisy image $\mathbf{y}$ can be simultaneously done with the guided internal dictionary learning process. Once we obtain the solutions of sparse coding vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq.\ (\ref{equ7}) and the orthogonal dictionary $\mathbf{D}^{(T)} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{(T)}]$ in Eq.\ (\ref{equ8}), the latent clean patch $\hat{\mathbf{y}}_{n,m}$ of the $m$-th noisy patch in PG $\mathbf{Y}_{n}$ is reconstructed as
+The denoising of the given noisy image $\mathbf{y}$ can be simultaneously done with the guided internal sub-dictionary learning process. Once we obtain the solutions of sparse coding vectors $\{\hat{\bm{\alpha}}_{n,m}^{(T-1)}\}$ in Eq.\ (\ref{equ7}) and the orthogonal dictionary $\mathbf{D}^{(T)} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{(T)}]$ in Eq.\ (\ref{equ8}), the latent clean patch $\hat{\mathbf{y}}_{n,m}$ of the $m$-th noisy patch in PG $\mathbf{Y}_{n}$ is reconstructed as
 \vspace{-2mm}
 \begin{equation}\label{equ10}\vspace{-2mm}
-\hat{\mathbf{y}}_{n,m}=\mathbf{D}^{(T)}\hat{\bm{\alpha}}_{n,m}+\bm{\mu}_{n},
+\hat{\mathbf{y}}_{n,m}=\mathbf{D}^{(T)}\hat{\bm{\alpha}}_{n,m}^{(T-1)}+\bm{\mu}_{n},
 \end{equation}
 where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean image is then reconstructed by aggregating all the reconstructed patches in all PGs.\ We perform the above denoising procedures for several iterations for better denoising outputs.\ The proposed denoising algorithm is summarized in Alg. 1.
 \begin{table}\label{alg1}
@@ -343,11 +343,11 @@ where $\bm{\mu}_{n}$ is the group mean of $\mathbf{Y}_{n}$. The latent clean ima
 \\
 %\textbf{Guided Internal Orthogonal Dictionary Learning:}
 %\\
-\quad\textbf{for} the PGs in each Subspace \textbf{do}
+\quad\textbf{for} the PGs in each subspace \textbf{do}
 \\
-4.\quad External PG prior Guided Internal Orthogonal
+4.\quad External PG prior guided internal orthogonal
 \\
-\quad \ \ \ Dictionary Learning by solving (\ref{equ4});
+\quad \ \ \ dictionary learning by solving (\ref{equ4});
 \\
 5.\quad Recover each patch in all PGs via Eq. (\ref{equ10});
 \\
@@ -375,7 +375,7 @@ We evaluate the performance of the proposed algorithm on real-world noisy images
 
 Our proposed method has two stages: the external prior learning stage and the external prior guided internal prior learning stage.\ In the first stage, we set $p = 6$ (the patch size), $M = 10$ (the number of similar patches in a PG), $W = 31$ (the window size for PG searching) and $K = 32$ (the number of Gaussian components in GMM).\ We learn the external GMM prior with 3.6 million PGs extracted from the Kodak PhotoCD Dataset (\url{http://r0k.us/graphics/kodak/}), which includes 24 high quality color images. 
 
-In the second stage, we set $r = 54$ (the number of atoms in the external sub-dictionaries); that is, we let the external sub-dictionary have the same number of atoms as the internal sub-dictionary to be learned. Our experiments show that setting $r$ between 27 and 81 will lead to very similar results. For other parameters, we set $\lambda=0.001$ (the sparse regularization parameter), $T = 2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum = 4$ (the number of iterations for Alg.1). All parameters of our method are fixed to all experiments, which are run under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
+In the second stage, we set $r = 54$ (the number of atoms in the external sub-dictionaries); that is, we let the external sub-dictionaries have the same number of atoms as the internal sub-dictionaries to be learned. Our experiments show that setting $r$ between 27 and 81 will lead to very similar results. For other parameters, we set $\lambda=0.001$ (the sparse regularization parameter), $T = 2$ (the number of iterations for solving problem (\ref{equ4})), and $IteNum = 4$ (the number of iterations for Alg.1). All parameters of our method are fixed to all experiments, which are run under the Matlab2014b environment on a machine with Intel(R) Core(TM) i7-5930K CPU of 3.5GHz and 32GB RAM.
 
 
 \subsection{The Testing Datasets}\vspace{-1mm}
@@ -522,9 +522,9 @@ images are better to be zoomed in on screen.}
 
 \subsection{Comparison among external, internal and guided internal priors}
 
-To demonstrate the advantages of external prior guided internal priors, in this section we perform real noisy image denoising by using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively.\ For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq.\ (\ref{equ4})) for denoising.\ For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}.\ A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionary is obtained via Eq.\ (\ref{equ2}) to perform denoising.\ All parameters of the ``External" and ``Internal" methods are tuned to achieve their corresponding best performance. 
+To demonstrate the advantages of external prior guided internal prior learning, in this section we perform real noisy image denoising by methods using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively.\ For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq.\ (\ref{equ4})) for denoising.\ For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}.\ A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionaries are obtained via Eq.\ (\ref{equ2}) to perform denoising.\ All parameters of the ``External" and ``Internal" methods are tuned to achieve their corresponding best performance. 
 
-We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}.\ The average PSNR and run time are listed in Table \ref{tab1}.\ The best results are highlighted in bold.\ It can be seen that ``Guided Internal" prior achieves better PSNR than both ``External" and ``Internal" priors. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method.\ Fig.\ \ref{fig4} and Fig.\ \ref{fig5} show the denoised images of two noisy images by the three methods.\ We can see that the  ``External" method is good at recovering large-scale structures (see Fig.\ \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig.\ \ref{fig5}).\ By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
+We compare the three methods mentioned above on the 60 cropped images from \cite{crosschannel2016}.\ The average PSNR and run time are listed in Table \ref{tab1}.\ The best results are highlighted in bold.\ It can be seen that ``Guided Internal" method achieves better PSNR than both ``External" and ``Internal" methods. In addition, the ``Internal" method is very slow because it involves online GMM learning, while the ``Guided Internal" method is only a little slower than the ``External" method.\ Fig.\ \ref{fig4} and Fig.\ \ref{fig5} show the denoised images of two noisy images by the three methods.\ We can see that the  ``External" method is good at recovering large-scale structures (see Fig.\ \ref{fig4}) while the ``Internal" method is good at recovering fine-scale textures (see Fig.\ \ref{fig5}).\ By utilizing external priors to guide the internal prior learning, our proposed method can effectively recover both the large-scale structures and fine-scale textures. 
 
 \begin{figure*}
 \centering
