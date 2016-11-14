@@ -1,0 +1,203 @@
+\documentclass[10pt,onecolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage{upgreek}
+\usepackage{multirow}
+\usepackage{color}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+% \cvprfinalcopy % *** Uncomment this line for the final submission
+
+\def\cvprPaperID{1047} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+% Pages are numbered in submission mode, and unnumbered in camera-ready
+\ifcvprfinal\pagestyle{empty}\fi
+
+
+\begin{document}
+
+%%%%%%%%% TITLE
+\title{Supplementary Material to ``External Prior Guided Internal Prior Learning for Real Noisy Image Denoising"}
+
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
+}
+
+\maketitle
+
+
+%%%%%%%%% BODY TEXT
+In this supplementary material, we provide:\vspace{-0.1in}
+\begin{enumerate}
+\item The closed-form solution of the proposed weighted sparse coding model in the main paper.\vspace{-0.1in}
+\item Comparison of the \textsl{Patch Prior based Denoising} (PPD) method and the proposed \textsl{Patch Group Prior based Denoising} (PGPD) method.\vspace{-0.1in}
+\item More denoising results on the 20 widely used natural images. \vspace{-0.1in}
+\item The denoising results of the competing methods on the Berkeley Segmentation Data Set \cite{bsds}.
+\end{enumerate}
+\section{Closed-Form Solution of the Weighted Sparse Coding Problem}
+The weighted sparse coding problem in the main paper is:
+\begin{equation}\label{equ1}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\min_{\boldsymbol{\alpha}}\|\mathbf{y}-\mathbf{D}\boldsymbol{\alpha}\|_{2}^{2}+\|\mathbf{w}^{T}\boldsymbol{\alpha}\|_{1}.
+\end{equation}
+Since $\mathbf{D}$ is an orthonormal matrix, problem (\ref{equ1}) is equivalent to 
+\begin{equation}\label{equ2}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\min_{\boldsymbol{\alpha}}\|\mathbf{D}^{T}\mathbf{y}-\boldsymbol{\alpha}\|_{2}^{2}+\|\mathbf{w}^{T}\boldsymbol{\alpha}\|_{1}.
+\end{equation}
+For simplicity, we denote $\mathbf{z} = \mathbf{D^{T}y}$. Since $\mathbf{w}_{i}=c*2\sqrt{2}\sigma^{2}/(\mathbf{\Lambda}_{i}+\varepsilon)$ is positive (please refer to Eq. (18) in the main paper), problem (\ref{equ2}) can be written as
+\begin{equation}\label{equ3}
+\setlength{\abovedisplayskip}{0.01pt}
+\setlength{\belowdisplayskip}{0.01pt}
+\min_{\boldsymbol{\alpha}}\sum_{i=1}^{p^{2}}((\mathbf{z}_{i}-\boldsymbol{\alpha}_{i})^{2}+\mathbf{w}_{i}|\boldsymbol{\alpha}_{i}|).
+\end{equation}
+The problem (\ref{equ3}) is separable w.r.t. $\boldsymbol{\alpha}_{i}$ and can be simplified to $p^{2}$ scalar minimization problems
+\begin{equation}\label{equ4}
+\setlength{\abovedisplayskip}{2pt}
+\setlength{\belowdisplayskip}{1pt}
+\min_{\boldsymbol{\alpha}_{i}}(\mathbf{z}_{i}-\boldsymbol{\alpha}_{i})^{2}+\mathbf{w}_{i}|\boldsymbol{\alpha}_{i}|,
+\end{equation}
+where $i=1,...,p^{2}$. Taking derivative of $\boldsymbol{\alpha}_{i}$ in problem (\ref{equ4}) and setting the derivative to be zero. There are two cases for the solution.
+
+(a) If $\boldsymbol{\alpha}_{i}\ge 0$, we have
+\begin{equation}\label{equ5}
+\setlength{\abovedisplayskip}{0.1pt}
+\setlength{\belowdisplayskip}{0.11pt}
+2(\boldsymbol{\alpha}_{i}-\mathbf{z}_{i})+\mathbf{w}_{i}=0.
+\end{equation}
+\qquad\ \  The solution is
+\begin{equation}\label{equ6}
+\setlength{\abovedisplayskip}{0.1pt}
+\setlength{\belowdisplayskip}{0.1pt}
+\hat{\boldsymbol{\alpha}}_{i}=\mathbf{z}_{i}-\frac{\mathbf{w}_{i}}{2} \ge 0.
+\end{equation}
+\qquad\ \  So $\mathbf{z}_{i}\ge\frac{\mathbf{w}_{i}}{2}> 0$, and the solution $\hat{\boldsymbol{\alpha}}_{i}$ can be written as
+\begin{equation}\label{equ7}
+\setlength{\abovedisplayskip}{0.1pt}
+\setlength{\belowdisplayskip}{0.1pt}
+\hat{\boldsymbol{\alpha}}_{i}=\text{sgn}(\mathbf{z}_{i})*(|\mathbf{z}_{i}|-\frac{\mathbf{w}_{i}}{2}),
+\end{equation}
+\qquad\ \  where $\text{sgn}(\bullet)$ is the sign function. 
+
+(b) If $\boldsymbol{\alpha}_{i}< 0$, we have
+\begin{equation}\label{equ8}
+\setlength{\abovedisplayskip}{0.1pt}
+\setlength{\belowdisplayskip}{0.1pt}
+2(\boldsymbol{\alpha}_{i}-\mathbf{z}_{i})-\mathbf{w}_{i}=0.
+\end{equation}
+\qquad\ \  The solution is
+\begin{equation}\label{equ9}
+\setlength{\abovedisplayskip}{0.1pt}
+\setlength{\belowdisplayskip}{0.1pt}
+\hat{\boldsymbol{\alpha}}_{i}=\mathbf{z}_{i}+\frac{\mathbf{w}_{i}}{2} < 0.
+\end{equation}
+\qquad\ \  So $\mathbf{z}_{i}<-\frac{\mathbf{w}_{i}}{2}< 0$, and the solution $\hat{\boldsymbol{\alpha}}_{i}$ can be written as
+\begin{equation}\label{equ10}
+\setlength{\abovedisplayskip}{1pt}
+\setlength{\belowdisplayskip}{1pt}
+\hat{\boldsymbol{\alpha}}_{i}=\text{sgn}(\mathbf{z}_{i})*(-\mathbf{z}_{i}-\frac{\mathbf{w}_{i}}{2})=\text{sgn}(\mathbf{z}_{i})*(|\mathbf{z}_{i}|-\frac{\mathbf{w}_{i}}{2}).
+\end{equation} 
+
+In summary, we have the final solution of the weighted sparse coding problem (\ref{equ1}) as
+\begin{equation}\label{equ11}
+\setlength{\abovedisplayskip}{3pt}
+\setlength{\belowdisplayskip}{3pt}
+\hat{\boldsymbol{\alpha}}= \text{sgn}(\mathbf{D^{T}y})\odot \text{max}(|\mathbf{D^{T}y}|-\mathbf{w}/2,0),
+\end{equation}
+where $\odot$ means element-wise multiplication and $|\mathbf{D^{T}y}|$ is the absolute value of each entry of the vector $\mathbf{D^{T}y}$.
+
+
+\begin{figure}\label{fig1}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (a) Noisy Image \\ (33.30dB/0.8921) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (b) CBM3D \cite{cbm3d} \\ (33.33dB/0.8935)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (c) WNNM \cite{wnnm}\\ (33.30dB/0.8922)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (d) MLP \cite{mlp}\\ (34.22dB/0.9603) }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (e) CSF \cite{csf}\\ (35.39dB/0.9677) }
+\end{minipage}
+}
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (f) TRD \cite{chen2015learning} \\ (35.97dB/0.9705)   }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (g) Noise Clinic \cite{noiseclinic} \\ (35.33dB/0.9520)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (h) Neat Image \cite{neatimage}\\ (34.39dB/0.9314)  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (i) Ours \\ (\textbf{37.28}dB/\textbf{0.9729})  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
+{\footnotesize (j) Mean Image }
+\end{minipage}
+}
+\caption{Denoised images of the real noisy image "$Nikon D800 ISO 3200 A3$" by different methods. The images are better to be zoomed in on screen.}
+\end{figure} 
+
+
+
+{\small
+\bibliographystyle{unsrt}
+\bibliography{egbib}
+}
+
+\end{document}
