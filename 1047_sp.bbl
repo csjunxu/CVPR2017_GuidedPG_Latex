@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{1}
 
 \bibitem{ncwebsite}
 M.~Lebrun, M.~Colom, and J.~M. Morel.
@@ -38,12 +38,6 @@ H.~C. Burger, C.~J. Schuler, and S.~Harmeling.
 \newblock Image denoising: Can plain neural networks compete with {BM3D}?
 \newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, pages 2392--2399, 2012.
-
-\bibitem{csf}
-U.~Schmidt and S.~Roth.
-\newblock Shrinkage fields for effective image restoration.
-\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
-  (CVPR)}, pages 2774--2781, June 2014.
 
 \bibitem{chen2015learning}
 Y.~Chen, W.~Yu, and T.~Pock.

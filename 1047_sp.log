@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 NOV 2016 13:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 NOV 2016 14:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -194,6 +194,14 @@ File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package color Info: Driver file: pdftex.def on input line 142.
 )
+(c:/Software/texlive/2015/texmf-dist/tex/latex/float/float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count109
+\float@exts=\toks20
+\float@box=\box30
+\@float@everytoks=\toks21
+\@floatcapt=\box31
+)
 (c:/Software/texlive/2015/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
 
@@ -252,13 +260,13 @@ Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen122
-\Hy@linkcounter=\count109
-\Hy@pagecounter=\count110
+\Hy@linkcounter=\count110
+\Hy@pagecounter=\count111
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count111
+\Hy@SavedSpaceFactor=\count112
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -285,7 +293,7 @@ Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
-\c@Hy@tempcnt=\count112
+\c@Hy@tempcnt=\count113
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip11
@@ -293,7 +301,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen123
-\Fld@menulength=\count113
+\Fld@menulength=\count114
 \Field@Width=\dimen124
 \Fld@charsize=\dimen125
 Package hyperref Info: Hyper figures OFF on input line 6295.
@@ -305,53 +313,53 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count114
-\c@Item=\count115
-\c@Hfootnote=\count116
+\Hy@abspage=\count115
+\c@Item=\count116
+\c@Hfootnote=\count117
 )
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/11/06 v6.83m Hyperref driver for pdfTeX
-\Fld@listcount=\count117
-\c@bookmark@seq@number=\count118
+\Fld@listcount=\count118
+\c@bookmark@seq@number=\count119
 \Hy@SectionHShift=\skip54
 )
 (./1047_sp.aux)
 \openout1 = `1047_sp.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 30.
-LaTeX Font Info:    ... okay on input line 30.
-LaTeX Font Info:    Try loading font information for OT1+ptm on input line 30.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 31.
+LaTeX Font Info:    ... okay on input line 31.
+LaTeX Font Info:    Try loading font information for OT1+ptm on input line 31.
  (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1ptm.fd
 File: ot1ptm.fd 2001/06/04 font definitions for OT1/ptm.
 ) ABD: EveryShipout initializing macros
 (c:/Software/texlive/2015/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count119
+\scratchcounter=\count120
 \scratchdimen=\dimen126
-\scratchbox=\box30
-\nofMPsegments=\count120
-\nofMParguments=\count121
-\everyMPshowfont=\toks20
-\MPscratchCnt=\count122
+\scratchbox=\box32
+\nofMPsegments=\count121
+\nofMParguments=\count122
+\everyMPshowfont=\toks22
+\MPscratchCnt=\count123
 \MPscratchDim=\dimen127
-\MPnumerator=\count123
-\makeMPintoPDFobject=\count124
-\everyMPtoPDFconversion=\toks21
+\MPnumerator=\count124
+\makeMPintoPDFobject=\count125
+\everyMPtoPDFconversion=\toks23
 ) (c:/Software/texlive/2015/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
 
@@ -367,9 +375,9 @@ G,.JBIG2,.JB2,.eps]
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-\AtBeginShipoutBox=\box31
+\AtBeginShipoutBox=\box33
 Package atbegshi Info: Package `everyshi' patched.
-Package hyperref Info: Link coloring ON on input line 30.
+Package hyperref Info: Link coloring ON on input line 31.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -377,28 +385,28 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (c:/Software/texlive/2015/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count125
+\c@section@level=\count126
 )
-LaTeX Info: Redefining \ref on input line 30.
-LaTeX Info: Redefining \pageref on input line 30.
-LaTeX Info: Redefining \nameref on input line 30.
+LaTeX Info: Redefining \ref on input line 31.
+LaTeX Info: Redefining \pageref on input line 31.
+LaTeX Info: Redefining \nameref on input line 31.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <14.4> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 52.
-LaTeX Font Info:    Try loading font information for U+msa on input line 52.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 53.
+LaTeX Font Info:    Try loading font information for U+msa on input line 53.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 52.
+LaTeX Font Info:    Try loading font information for U+msb on input line 53.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 66.
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 140.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 140.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 141.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 141.
 
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
@@ -406,223 +414,304 @@ File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
 ) [1{c:/Software/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
 
 ]
-
-LaTeX Warning: Reference `fig4' on page 2 undefined on input line 141.
-
-<imagessupp/resize_frog_noisy.png, id=53, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_noisy.png, id=54, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_noisy.png Graphic file (type png)
 
 <use imagessupp/resize_frog_noisy.png>
 Package pdftex.def Info: imagessupp/resize_frog_noisy.png used on input line 16
-7.
+8.
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_cbm3d.png, id=55, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_cbm3d.png, id=56, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_cbm3d.png Graphic file (type png)
 
 <use imagessupp/resize_frog_cbm3d.png>
 Package pdftex.def Info: imagessupp/resize_frog_cbm3d.png used on input line 16
-7.
+8.
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_wnnm.png, id=58, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_wnnm.png, id=59, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_wnnm.png Graphic file (type png)
 
 <use imagessupp/resize_frog_wnnm.png>
-Package pdftex.def Info: imagessupp/resize_frog_wnnm.png used on input line 167
+Package pdftex.def Info: imagessupp/resize_frog_wnnm.png used on input line 168
 .
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_mlp.png, id=60, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_mlp.png, id=61, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_mlp.png Graphic file (type png)
 
 <use imagessupp/resize_frog_mlp.png>
-Package pdftex.def Info: imagessupp/resize_frog_mlp.png used on input line 167.
+Package pdftex.def Info: imagessupp/resize_frog_mlp.png used on input line 168.
 
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_tnrd.png, id=62, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_tnrd.png, id=63, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_tnrd.png Graphic file (type png)
 
 <use imagessupp/resize_frog_tnrd.png>
-Package pdftex.def Info: imagessupp/resize_frog_tnrd.png used on input line 189
+Package pdftex.def Info: imagessupp/resize_frog_tnrd.png used on input line 190
 .
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_ni.png, id=64, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_ni.png, id=65, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_ni.png Graphic file (type png)
 
 <use imagessupp/resize_frog_ni.png>
-Package pdftex.def Info: imagessupp/resize_frog_ni.png used on input line 189.
+Package pdftex.def Info: imagessupp/resize_frog_ni.png used on input line 190.
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_nc.png, id=66, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_nc.png, id=67, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_nc.png Graphic file (type png)
 
 <use imagessupp/resize_frog_nc.png>
-Package pdftex.def Info: imagessupp/resize_frog_nc.png used on input line 189.
+Package pdftex.def Info: imagessupp/resize_frog_nc.png used on input line 190.
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-<imagessupp/resize_frog_ours.png, id=69, 250.9375pt x 188.705pt>
+<imagessupp/resize_frog_ours.png, id=70, 250.9375pt x 188.705pt>
 File: imagessupp/resize_frog_ours.png Graphic file (type png)
 
 <use imagessupp/resize_frog_ours.png>
-Package pdftex.def Info: imagessupp/resize_frog_ours.png used on input line 189
+Package pdftex.def Info: imagessupp/resize_frog_ours.png used on input line 190
 .
 (pdftex.def)             Requested size: 121.23456pt x 91.17052pt.
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 167--191
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 168--192
  [][] 
  []
 
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 167--191
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 168--192
  [][] 
  []
 
-<imagessupp/resize_br_Noisy_circuit.png, id=72, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_Noisy_circuit.png, id=73, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_Noisy_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_Noisy_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_Noisy_circuit.png used on input l
-ine 219.
+ine 220.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_BM3D_circuit.png, id=74, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_BM3D_circuit.png, id=75, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_BM3D_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_BM3D_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_BM3D_circuit.png used on input li
-ne 219.
+ne 220.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_WNNM_circuit.png, id=77, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_WNNM_circuit.png, id=78, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_WNNM_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_WNNM_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_WNNM_circuit.png used on input li
-ne 219.
+ne 220.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_MLP_circuit.png, id=79, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_MLP_circuit.png, id=80, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_MLP_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_MLP_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_MLP_circuit.png used on input lin
-e 219.
+e 220.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_TRD_circuit.png, id=81, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_TRD_circuit.png, id=82, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_TRD_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_TRD_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_TRD_circuit.png used on input lin
-e 241.
+e 242.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_NI_circuit.png, id=83, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_NI_circuit.png, id=84, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_NI_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_NI_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_NI_circuit.png used on input line
- 241.
+ 242.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_NC_circuit.png, id=85, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_NC_circuit.png, id=86, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_NC_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_NC_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_NC_circuit.png used on input line
- 241.
+ 242.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-<imagessupp/resize_br_Guided_circuit.png, id=88, 242.9075pt x 212.795pt>
+<imagessupp/resize_br_Guided_circuit.png, id=89, 242.9075pt x 212.795pt>
 File: imagessupp/resize_br_Guided_circuit.png Graphic file (type png)
 
 <use imagessupp/resize_br_Guided_circuit.png>
 Package pdftex.def Info: imagessupp/resize_br_Guided_circuit.png used on input 
-line 241.
+line 242.
 (pdftex.def)             Requested size: 121.23456pt x 106.20566pt.
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 219--243
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 220--244
  [][] 
  []
 
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 219--243
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 220--244
  [][] 
  []
 
-<imagessupp/resize_br_Noisy_woman.png, id=91, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_Noisy_woman.png, id=92, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_Noisy_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_Noisy_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_Noisy_woman.png used on input lin
-e 270.
+e 271.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_BM3D_woman.png, id=93, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_BM3D_woman.png, id=94, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_BM3D_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_BM3D_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_BM3D_woman.png used on input line
- 270.
+ 271.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_WNNM_woman.png, id=96, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_WNNM_woman.png, id=97, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_WNNM_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_WNNM_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_WNNM_woman.png used on input line
- 270.
+ 271.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_MLP_woman.png, id=98, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_MLP_woman.png, id=99, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_MLP_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_MLP_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_MLP_woman.png used on input line 
-270.
+271.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_TRD_woman.png, id=100, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_TRD_woman.png, id=101, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_TRD_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_TRD_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_TRD_woman.png used on input line 
-292.
+293.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_NI_woman.png, id=102, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_NI_woman.png, id=103, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_NI_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_NI_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_NI_woman.png used on input line 2
-92.
+93.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_NC_woman.png, id=104, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_NC_woman.png, id=105, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_NC_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_NC_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_NC_woman.png used on input line 2
-92.
+93.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-<imagessupp/resize_br_Guided_woman.png, id=107, 235.88126pt x 200.75pt>
+<imagessupp/resize_br_Guided_woman.png, id=108, 235.88126pt x 200.75pt>
 File: imagessupp/resize_br_Guided_woman.png Graphic file (type png)
 
 <use imagessupp/resize_br_Guided_woman.png>
 Package pdftex.def Info: imagessupp/resize_br_Guided_woman.png used on input li
-ne 292.
+ne 293.
 (pdftex.def)             Requested size: 121.23456pt x 103.18063pt.
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 270--294
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 271--295
  [][] 
  []
 
 
-Overfull \hbox (0.58199pt too wide) in paragraph at lines 270--294
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 271--295
+ [][] 
+ []
+
+[2 <./imagessupp/resize_frog_noisy.png (PNG copy)> <./imagessupp/resize_frog_cb
+m3d.png (PNG copy)> <./imagessupp/resize_frog_wnnm.png (PNG copy)> <./imagessup
+p/resize_frog_mlp.png (PNG copy)> <./imagessupp/resize_frog_tnrd.png (PNG copy)
+> <./imagessupp/resize_frog_ni.png (PNG copy)> <./imagessupp/resize_frog_nc.png
+ (PNG copy)> <./imagessupp/resize_frog_ours.png (PNG copy)> <./imagessupp/resiz
+e_br_Noisy_circuit.png (PNG copy)> <./imagessupp/resize_br_BM3D_circuit.png (PN
+G copy)> <./imagessupp/resize_br_WNNM_circuit.png (PNG copy)> <./imagessupp/res
+ize_br_MLP_circuit.png (PNG copy)> <./imagessupp/resize_br_TRD_circuit.png (PNG
+ copy)> <./imagessupp/resize_br_NI_circuit.png (PNG copy)> <./imagessupp/resize
+_br_NC_circuit.png (PNG copy)> <./imagessupp/resize_br_Guided_circuit.png (PNG 
+copy)>]
+<imagessupp/resize_br_Noisy_vehicle.png, id=131, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_Noisy_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_Noisy_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_Noisy_vehicle.png used on input l
+ine 322.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_BM3D_vehicle.png, id=133, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_BM3D_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_BM3D_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_BM3D_vehicle.png used on input li
+ne 322.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_WNNM_vehicle.png, id=136, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_WNNM_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_WNNM_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_WNNM_vehicle.png used on input li
+ne 322.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_MLP_vehicle.png, id=138, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_MLP_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_MLP_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_MLP_vehicle.png used on input lin
+e 322.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_TRD_vehicle.png, id=140, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_TRD_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_TRD_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_TRD_vehicle.png used on input lin
+e 344.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_NI_vehicle.png, id=142, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_NI_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_NI_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_NI_vehicle.png used on input line
+ 344.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_NC_vehicle.png, id=144, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_NC_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_NC_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_NC_vehicle.png used on input line
+ 344.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+<imagessupp/resize_br_Guided_vehicle.png, id=147, 350.30875pt x 285.065pt>
+File: imagessupp/resize_br_Guided_vehicle.png Graphic file (type png)
+
+<use imagessupp/resize_br_Guided_vehicle.png>
+Package pdftex.def Info: imagessupp/resize_br_Guided_vehicle.png used on input 
+line 344.
+(pdftex.def)             Requested size: 121.23456pt x 98.65201pt.
+
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 322--346
+ [][] 
+ []
+
+
+Overfull \hbox (0.58199pt too wide) in paragraph at lines 322--346
  [][] 
  []
 
@@ -636,46 +725,36 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 8.
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 15.
- [2 <./imagessupp/resize_frog_noisy.png (PNG copy)> <./imagessupp/resize_frog_c
-bm3d.png (PNG copy)> <./imagessupp/resize_frog_wnnm.png (PNG copy)> <./imagessu
-pp/resize_frog_mlp.png (PNG copy)> <./imagessupp/resize_frog_tnrd.png (PNG copy
-)> <./imagessupp/resize_frog_ni.png (PNG copy)> <./imagessupp/resize_frog_nc.pn
-g (PNG copy)> <./imagessupp/resize_frog_ours.png (PNG copy)> <./imagessupp/resi
-ze_br_Noisy_circuit.png (PNG copy)> <./imagessupp/resize_br_BM3D_circuit.png (P
-NG copy)> <./imagessupp/resize_br_WNNM_circuit.png (PNG copy)> <./imagessupp/re
-size_br_MLP_circuit.png (PNG copy)> <./imagessupp/resize_br_TRD_circuit.png (PN
-G copy)> <./imagessupp/resize_br_NI_circuit.png (PNG copy)> <./imagessupp/resiz
-e_br_NC_circuit.png (PNG copy)> <./imagessupp/resize_br_Guided_circuit.png (PNG
- copy)>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 305.
-
-[3 <./imagessupp/resize_br_Noisy_woman.png (PNG copy)> <./imagessupp/resize_br_
-BM3D_woman.png (PNG copy)> <./imagessupp/resize_br_WNNM_woman.png (PNG copy)> <
-./imagessupp/resize_br_MLP_woman.png (PNG copy)> <./imagessupp/resize_br_TRD_wo
-man.png (PNG copy)> <./imagessupp/resize_br_NI_woman.png (PNG copy)> <./imagess
-upp/resize_br_NC_woman.png (PNG copy)> <./imagessupp/resize_br_Guided_woman.png
- (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 305.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
+ [3 <./imagessupp/resize_br_Noisy_woman.png (PNG copy)> <./imagessupp/resize_br
+_BM3D_woman.png (PNG copy)> <./imagessupp/resize_br_WNNM_woman.png (PNG copy)> 
+<./imagessupp/resize_br_MLP_woman.png (PNG copy)> <./imagessupp/resize_br_TRD_w
+oman.png (PNG copy)> <./imagessupp/resize_br_NI_woman.png (PNG copy)> <./images
+supp/resize_br_NC_woman.png (PNG copy)> <./imagessupp/resize_br_Guided_woman.pn
+g (PNG copy)> <./imagessupp/resize_br_Noisy_vehicle.png (PNG copy)> <./imagessu
+pp/resize_br_BM3D_vehicle.png (PNG copy)> <./imagessupp/resize_br_WNNM_vehicle.
+png (PNG copy)> <./imagessupp/resize_br_MLP_vehicle.png (PNG copy)> <./imagessu
+pp/resize_br_TRD_vehicle.png (PNG copy)> <./imagessupp/resize_br_NI_vehicle.png
+ (PNG copy)> <./imagessupp/resize_br_NC_vehicle.png (PNG copy)> <./imagessupp/r
+esize_br_Guided_vehicle.png (PNG copy)>])
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 355.
+ [4]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 355.
  (./1047_sp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 305.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 305.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 355.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 355.
 Package rerunfilecheck Info: File `1047_sp.brf' has not changed.
-(rerunfilecheck)             Checksum: 1DB53A91E00FB53EC44D2C2AEB314981;1365.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 305.
+(rerunfilecheck)             Checksum: 4DDEFD1AFCEF667A29CFE802EC2D0F8C;1750.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 355.
  ) 
 Here is how much of TeX's memory you used:
- 6965 strings out of 493091
- 102667 string characters out of 6134517
- 192429 words of memory out of 5000000
- 10247 multiletter control sequences out of 15000+600000
- 38993 words of font info for 96 fonts, out of 8000000 for 9000
+ 7059 strings out of 493091
+ 104944 string characters out of 6134517
+ 192955 words of memory out of 5000000
+ 10327 multiletter control sequences out of 15000+600000
+ 37886 words of font info for 95 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,10n,33p,431b,476s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 40i,10n,33p,430b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -695,10 +774,10 @@ exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on 1047_sp.pdf (3 pages, 2021356 bytes).
+Output written on 1047_sp.pdf (4 pages, 2825842 bytes).
 PDF statistics:
- 230 PDF objects out of 1000 (max. 8388607)
- 178 compressed objects within 2 object streams
- 41 named destinations out of 1000 (max. 500000)
- 121 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 257 PDF objects out of 1000 (max. 8388607)
+ 195 compressed objects within 2 object streams
+ 44 named destinations out of 1000 (max. 500000)
+ 161 words of extra memory for PDF output out of 10000 (max. 10000000)
 
