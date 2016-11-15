@@ -131,9 +131,8 @@ There have been a few methods \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVP
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png}}
 {\footnotesize (j) Mean Image \cite{crosschannel2016} }
 \end{minipage}
-}\vspace{-1mm}
+}
 \caption{Denoised images of a region cropped from the real noisy image ``Nikon D800 ISO 3200 A3" \cite{crosschannel2016} by different methods.\ The scene was shot 500 times with the same camera and camera setting.\ The mean image of the 500 shots is roughly taken as the ``ground truth", with which the PSNR index can be computed. The images are better viewed by zooming in on screen.} 
-%\vspace{-1mm}
 \label{fig1}
 \end{figure*}
 
@@ -149,6 +148,7 @@ This work aims to develop a robust denoiser for real noisy image denoising witho
 \label{fig2}
 \end{figure*}
 
+\vspace{-1mm}
 \section{Related Work}
 
 \subsection{Internal \textbf{\emph{vs.}} External Prior Learning}
@@ -159,7 +159,8 @@ Image priors are playing a key role in image denoising \cite{ksvd,ncsr,pgpd,foe,
 
 Recently, several denoising methods have been proposed to remove unknown noise from images \cite{Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite}.\ Among them, the ``Noise Clinic" \cite{noiseclinic,ncwebsite} estimates the noise distribution by using a multivariate Gaussian model and removes the noise by using a generalized version of nonlocal Bayesian model \cite{nlbayes}. Zhu \etal proposed a Bayesian method \cite{Zhu_2016_CVPR} to approximate and remove the noise via a low-rank mixture of Gaussians (MoG) model.\ There are also several methods specifically designed for real noisy image denoising \cite{crosschannel2016,neatimage}.\ The method in \cite{crosschannel2016} models the cross-channel noise in real noisy image as a multivariate Gaussian and the noise is removed by the Bayesian nonlocal means filter \cite{kervrann2007bayesian}.\ The commercial software Neat Image \cite{neatimage} estimates the noise parameters from a flat region of the given noisy image and filters the noise correspondingly.\ Almost all the methods \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVPR,noiseclinic,ncwebsite} mentioned above use Gaussian or MoG to model the noise in real noisy images.\ Nonetheless, the noise in real noisy images is very complex and hard to be modeled by explicit distributions.\ In this paper, we propose a simple yet effective method for real noisy image denoising without explicitly assuming certain noise models.
 
-\section{External Prior Guided Internal Prior Learning and Image Denoising}
+\vspace{-2mm}
+\section{\parbox[t]{10cm}{External Prior Guided Internal Prior Learn-\\ing and Image Denoising}}
 
 In this section, we first describe the learning of external prior, and then describe in detail the guided internal prior learning. Finally, the denoising algorithm with the learned priors is presented.
 
@@ -474,11 +475,11 @@ The second dataset is provided in \cite{crosschannel2016}, which includes noisy 
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\vspace{-2mm}
+\vspace{-2.5mm}
 \caption{Denoised images of a region cropped from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
-\vspace{-0.5mm}
+\vspace{-1mm}
 images are better to be zoomed in on screen.}
-\vspace{-2mm}
+
 \label{fig4}
 \end{figure*}
 \begin{figure*}\vspace{-1mm}
@@ -510,16 +511,17 @@ images are better to be zoomed in on screen.}
 {\footnotesize (e) Mean Image \cite{crosschannel2016}}
 \end{minipage}
 }
-\vspace{-2mm}  
+\vspace{-2.5mm}  
 \caption{Denoised images of a region cropped from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The 
-\vspace{-0.5mm}
+\vspace{-1mm}
 images are better to be zoomed in on screen.}
-\vspace{-3mm}
+\vspace{-2mm}
 \label{fig5}
 \end{figure*}
 
 
-\subsection{Comparison among external, internal and guided internal priors}
+\subsection{\parbox[t]{8cm}{Comparison among external, internal and 
+\\guided internal priors}}
 
 To demonstrate the advantages of external prior guided internal prior learning, in this section we perform real noisy image denoising by methods using external priors (denoted by ``External"), internal priors (denoted by ``Internal"), and the proposed guided internal priors (denoted by ``Guided Internal"), respectively.\ For the ``External" method, we utilize the full external dictionaries (i.e., $r=108$ in Eq.\ (\ref{equ4})) for denoising.\ For the ``Internal" method, the overall framework is similar to the method of \cite{ncsr}.\ A GMM model (with $K = 32$ Gaussians) is directly learned from the PGs extracted from the given noisy image without using any external data, and then the internal orthogonal dictionaries are obtained via Eq.\ (\ref{equ2}) to perform denoising.\ All parameters of the ``External" and ``Internal" methods are tuned to achieve their corresponding best performance. 
 
@@ -571,14 +573,14 @@ We compare the three methods mentioned above on the 60 cropped images from \cite
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\vspace{-3mm}
+\vspace{-2mm}
 \caption{Denoised images of the real noisy image ``Dog" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
-%\vspace{-1mm}
 \label{fig6}
 \end{figure*}
 
 
-\subsection{Comparison with State-of-the-Art Denoising Methods}
+\subsection{\parbox[t]{10cm}{Comparison with State-of-the-Art Denoising 
+\\Methods}}
 
 
 We compare the proposed method with state-of-the-art image denoising methods, including CBM3D \cite{bm3d,cbm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TNRD \cite{chen2015learning}, Noise Clinic (NC) \cite{noiseclinic,ncwebsite}, Neat Image (NI) \cite{neatimage}, and Cross-Channel (CC) \cite{crosschannel2016}.\ Among them, CBM3D, WNNM, MLP, CSF and TNRD are designed based on Gaussian noise model, and they need to know the noise level for denoising.\ We use the method in \cite{noiselevel} to estimate the noise level for them.\ All the other parameters in these methods are set as the default ones.\ Since WNNM, MLP, CSF and TNRD are designed for grayscale images, we use them to denoise the R, G, B channels separately for color noisy images. 
@@ -588,7 +590,6 @@ Like our method, the NC is a blind image denoising method which does not need an
 \begin{table}
 \caption{Average PSNR (dB) and Run Time (seconds) of the ``External", ``Internal", and ``Guided Internal" methods on 60 real noisy images (of size $500\times500\times3$) cropped from \cite{crosschannel2016}.}
 \label{tab1}
-%\begin{small}
 \vspace{-3mm}
 \begin{center}
 \renewcommand\arraystretch{1}
@@ -604,16 +605,17 @@ Time & | &  \textbf{39.57}  & 587.36 & 41.89
 \\
 \hline
 \end{tabular}
-\end{center}\vspace{-2mm}
-%\end{small}
+\end{center}\vspace{-4mm}
 \end{table}
 
-\subsubsection{Results on Dataset \cite{ncwebsite}}
+\vspace{-3mm}
+\subsubsection{Results on Dataset \cite{ncwebsite}}\vspace{-1mm}
 
 Since there is no ``ground truth" for the real noisy images in  dataset \cite{ncwebsite}, we only compare the visual quality of the denoised images by different methods. (Note that method CC \cite{crosschannel2016} is not compared since its code is not available.) Fig.\ \ref{fig6} shows the denoised images of ``Dog". It can be seen that CBM3D and WNNM tend to over-smooth much the image while remaining some noise caused color artifacts.\ MLP and TNRD are likely to remain many noise-caused color artifacts across the whole image. These results demonstrate that the methods designed with Gaussian noise model are not effective for real noise removal.\ Though NC and NI methods are specifically developed for real noisy images, their performance on noise removal is not very satisfactory.\ In comparison, our proposed method recovers much better the structures and textures (such as the eye area) than the other competing methods.\ More visual comparisons on this dataset \cite{ncwebsite} can be found in the supplementary file.
 
 \begin{table*}\vspace{2mm}
 \caption{PSNR(dB) results of different methods on 15 cropped real noisy images used in \cite{crosschannel2016}.}
+\vspace{0.5mm}
 \label{tab2}
 \begin{center}
 \renewcommand\arraystretch{1}
@@ -688,36 +690,13 @@ Average & 33.41 & 33.48 & 33.48 & 34.32 & 35.33 & 35.65 & 35.49 & 36.43 & {\colo
 \vspace{1mm}
 \end{table*}
 
+\vspace{-2mm}
 \subsubsection{Results on Dataset \cite{crosschannel2016}}
 
 As described in section 4.2, there is a mean image for each of the 17 scenes used in dataset \cite{crosschannel2016}, and those mean images can be roughly taken as ``ground truth" images for quantitative evaluation of denoising algorithms. We firstly perform quantitative comparison on the 15 cropped images used in \cite{crosschannel2016}. The PSNR results of CBM3D \cite{bm3d}, WNNM \cite{wnnm}, MLP \cite{mlp}, CSF \cite{csf}, TNRD \cite{chen2015learning}, NC \cite{noiseclinic,ncwebsite}, NI \cite{neatimage} and
 CC \cite{crosschannel2016} are listed in Table \ref{tab2} (The results of CC are copied from the original paper \cite{crosschannel2016}).\ The best and second best PSNR results of each image are highlighted in red and blue, respectively.\ One can see that on 9 out of the 15 images, our method achieves the best PSNR values.\ CC achieves the best PSNR on 3 of the 15 images.\ It should be noted that in the CC method, a specific model is trained for each camera and camera setting, while our method uses the same model for all images.\ On average, our proposed method has 0.28dB PSNR improvements over \cite{crosschannel2016} and much higher PSNR gains over other competing methods.\ Fig.\ \ref{fig7} shows the denoised images of a scene captured by Canon 5D Mark 3 at ISO = 3200.\ We can see that CBM3D, WNNM, NC, NI and CC would either remain noise or generate artifacts, while MLP, TNRD over-smooth much the image.\ By using the external prior guided internal priors, our proposed method preserves edges and textures better than other methods, leading to visually pleasant outputs.\ More visual comparisons can be found in the supplementary file.
 
 We then perform denoising experiments on the 60 images we cropped from \cite{crosschannel2016}.\ The average PSNR results are listed in Table \ref{tab3} (CC is not compared since the code of \cite{crosschannel2016} is not available).\ The best result is highlighted in bold.\ Again, our proposed method achieves much better PSNR results than the other methods.\ The improvement of our method over the second best method (TNRD) is about 1dB. Due to the space limitations, the visual comparisons are provided in the supplementary file.
-
-\begin{table}
-\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
-\vspace{-3mm}
-\label{tab3}
-\begin{center}
-\renewcommand\arraystretch{1}
-\begin{tabular}{|c||c|c|c|c|}
-\hline
- Methods& \textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}
-\\
-\hline
-PSNR &   34.58 & 34.52 & 36.19 & 37.40
-\\
-\hline
-Methods& \textbf{TNRD} & \textbf{NI} & \textbf{NC} &\textbf{Ours} 
-\\
-\hline
-PSNR & 37.75  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
-\\
-\hline
-\end{tabular}
-\end{center}\vspace{-4mm}
-\end{table}
 
 \begin{figure*}\vspace{1mm}
 \centering
@@ -774,11 +753,35 @@ PSNR & 37.75  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
 {\footnotesize (j) Mean Image \cite{crosschannel2016}}
 \end{minipage}
-}\vspace{-1mm}
+}\vspace{-0.5mm}
 \caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
 \label{fig7}
-\vspace{1mm}
+\vspace{0.5mm}
 \end{figure*}
+
+\begin{table}\vspace{1.5mm}
+\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
+\vspace{-3mm}
+\label{tab3}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ Methods& \textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}
+\\
+\hline
+PSNR &   34.58 & 34.52 & 36.19 & 37.40
+\\
+\hline
+Methods& \textbf{TNRD} & \textbf{NI} & \textbf{NC} &\textbf{Ours} 
+\\
+\hline
+PSNR & 37.75  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
+\\
+\hline
+\end{tabular}
+\end{center}\vspace{-2.5mm}
+\end{table}
 
 
 \section{Conclusion}
