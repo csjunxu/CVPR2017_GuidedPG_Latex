@@ -193,7 +193,7 @@ After the external PG prior is learned on external natural clean images, we empl
 \vspace{-2mm}
 \subsubsection{Internal Subspace Assignment}
 
-Given a real noisy image $\mathbf{y}$, we extract $N$ (overlapped) local patches from it.\ Similar to the external prior learning stage, for the $n$-th local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$.\ Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}\triangleq\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
+Given a real noisy image $\mathbf{y}$, we extract $N$ (overlapped) local patches from it.\ Similar to the external prior learning stage, for the $n$-th ($n=1,...,N$) local patch we search its $M$ most similar patches around it to form a noisy PG, denoted by $\mathbf{Y}_{n} = \{\mathbf{y}_{n,1},...,\mathbf{y}_{n,M}\}$.\ Then the group mean of $\mathbf{Y}_{n}$, denoted by $\bm{\mu}_{n}$, is subtracted from each patch by $\mathbf{\overline{y}}_{n,m}\triangleq\mathbf{y}_{n,m}-\bm{\mu}_{n}$, leading to the mean subtracted noisy PG $\mathbf{\overline{Y}}_{n}\triangleq \{\mathbf{\overline{y}}_{n,m}\}_{m=1}^{M}$.
 
 The external GMM prior models $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$ basically characterize the subspaces of natural high quality PGs.\ Therefore, we project the noisy PG $\mathbf{\overline{Y}}_{n}$ into the subspaces of $\{\mathcal{N}(\mathbf{0},\mathbf{\Sigma}_{k})\}_{k=1}^{K}$ and assign it to the most suitable subspace based on the posterior probability:
 \vspace{-3mm}
