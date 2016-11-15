@@ -100,3 +100,13 @@
 \backcite {ncwebsite,noiseclinic}{{6}{10(b)}{subfigure.10.2}}
 \backcite {crosschannel2016}{{6}{10(b)}{subfigure.10.2}}
 \backcite {crosschannel2016}{{6}{10}{figure.10}}
+\backcite {crosschannel2016}{{7}{11(a)}{subfigure.11.1}}
+\backcite {bm3d,cbm3d}{{7}{11(a)}{subfigure.11.1}}
+\backcite {wnnm}{{7}{11(a)}{subfigure.11.1}}
+\backcite {mlp}{{7}{11(a)}{subfigure.11.1}}
+\backcite {csf}{{7}{11(a)}{subfigure.11.1}}
+\backcite {chen2015learning}{{7}{11(b)}{subfigure.11.2}}
+\backcite {neatimage}{{7}{11(b)}{subfigure.11.2}}
+\backcite {ncwebsite,noiseclinic}{{7}{11(b)}{subfigure.11.2}}
+\backcite {crosschannel2016}{{7}{11(b)}{subfigure.11.2}}
+\backcite {crosschannel2016}{{7}{11}{figure.11}}
