@@ -268,7 +268,7 @@ Since dictionary $\mathbf{D}^{(t)}$ is orthogonal, the problems (\ref{equ6}) has
 where $\bm{\lambda} = [\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]$ is the vector of regularization parameter, $\text{sgn}(\bullet)$ is the sign function and $\odot$ means element-wise multiplication.\ The detailed derivation of Eq. (\ref{equ7}) can be found in the supplementary file.
 \vspace{2mm}\\
 \textbf{Updating Internal Sub-dictionary}: Given the sparse coding vectors $\{\bm{\alpha}_{n,m}^{(t)}\}$, we update the internal sub-dictionary by solving
-\vspace{-4mm}
+\vspace{-3mm}
 \begin{equation}\label{equ8} \vspace{-2mm}
 \begin{split}
 \textbf{D}_{\text{I}}^{(t+1)}
@@ -288,10 +288,10 @@ s.t.
 \mathbf{D}
 &
 =
-[\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{r},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
+[\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}],\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{I}_{(3p^2-r)},\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}} = \mathbf{0},
 \end{split}
 \end{equation}
-where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$ and $\mathbf{I}_{r}$ is the $r$ dimensional identity matrix.\ The sparse coefficients matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{r\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}^{(t)}$, respectively.\ According to the Theorem 4 in \cite{spca}, the problem (\ref{equ8}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{(3p^2-r)\times (3p^2-r)}$ are the orthogonal matrices obtained by the following SVD
+where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...,\bm{\alpha}_{N,1}^{(t)},...,\bm{\alpha}_{N,M}^{(t)}]$ and $\mathbf{I}_{(3p^2-r)}$ is the $(3p^2-r)$ dimensional identity matrix.\ The sparse coefficients matrix can be written as $\mathbf{A}^{(t)}=[(\mathbf{A}_{\text{E}}^{(t)})^{\top}\ (\mathbf{A}_{\text{I}}^{(t)})^{\top}]^{\top}$ where the external part $\mathbf{A}_{\text{E}}^{(t)}\in\mathbb{R}^{r\times NM}$ and the internal part $\mathbf{A}_{\text{I}}^{(t)}\in\mathbb{R}^{(3p^2-r)\times NM}$ represent the coding coefficients of $\mathbf{Y}$ over external sub-dictionary $\mathbf{D}_{\text{E}}$ and internal sub-dictionary $\mathbf{D}_{\text{I}}^{(t)}$, respectively.\ According to the Theorem 4 in \cite{spca}, the problem (\ref{equ8}) has a closed-form solution $\mathbf{D}_{\text{I}}^{(t+1)}=\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}$, where $\mathbf{U}_{\text{I}}\in\mathbb{R}^{3p^2\times (3p^2-r)}$ and $\mathbf{V}_{\text{I}}\in\mathbb{R}^{(3p^2-r)\times (3p^2-r)}$ are the orthogonal matrices obtained by the following SVD
 \vspace{-2mm}
 \begin{equation}\label{equ9}\vspace{-2mm}
 (\mathbf{I}-\mathbf{D}_{\text{E}}\mathbf{D}_{\text{E}}^{\top})\mathbf{Y}(\mathbf{A}_{\text{I}}^{(t)})^{\top}
@@ -299,8 +299,7 @@ where $\textbf{A}^{(t)}=[\bm{\alpha}_{1,1}^{(t)},...,\bm{\alpha}_{1,M}^{(t)},...
 \mathbf{U}_{\text{I}}\mathbf{S}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}.
 \end{equation}
 The orthogonality of internal sub-dictionary $\mathbf{D}_{\text{I}}^{(t+1)}$ can be checked by 
-$(\mathbf{D}_{\text{I}}^{(t+1)})^{\top}(\mathbf{D}_{\text{I}}^{(t+1)})=\mathbf{V}_{\text{I}}\mathbf{U}_{\text{I}}^{\top}\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}=\mathbf{I}_{(3p^2-r)}$ where $\mathbf{I}_{(3p^2-r)}$ is the $3p^2-r$ dimensional identity matrix.
-
+$(\mathbf{D}_{\text{I}}^{(t+1)})^{\top}(\mathbf{D}_{\text{I}}^{(t+1)})=\mathbf{V}_{\text{I}}\mathbf{U}_{\text{I}}^{\top}\mathbf{U}_{\text{I}}\mathbf{V}_{\text{I}}^{\top}=\mathbf{I}_{(3p^2-r)}$.
 %In Fig. \ref{fig3} (c) and (d), we illustrate a denoised image by our proposed method and one internal orthogonal dictionary learned from PGs of the given noisy image.
 
 \subsection{The Denoising Algorithm}
