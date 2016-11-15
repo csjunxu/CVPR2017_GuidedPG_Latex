@@ -11,7 +11,7 @@
 \usepackage{multirow}
 \usepackage{color}
 \usepackage{float}
-
+\usepackage{bm}
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
@@ -55,7 +55,7 @@ First line of institution2 address\\
 %%%%%%%%% BODY TEXT
 In this supplementary material, we provide:\vspace{-0.1in}
 \begin{enumerate}
-\item The closed-form solution of the proposed weighted sparse coding model in the main paper.
+\item The closed-form solution of the sparse coding problem (6) in the main paper.
 \vspace{-0.1in}
 \item More denoising results on the real noisy images (with no ``ground truth") provided in the dataset \cite{ncwebsite}.
 \vspace{-0.1in}
@@ -63,77 +63,66 @@ In this supplementary material, we provide:\vspace{-0.1in}
 \vspace{-0.1in}
 \item More denoising results on the 60 cropped real noisy images (with ``ground truth") from \cite{crosschannel2016}.
 \end{enumerate}
-\section{Closed-Form Solution of the Weighted Sparse Coding Problem (4)}
-The weighted sparse coding problem in the main paper is:
-\begin{equation}\label{equ1}
-\setlength{\abovedisplayskip}{1pt}
-\setlength{\belowdisplayskip}{1pt}
-\min_{\boldsymbol{\alpha}}\|\mathbf{y}-\mathbf{D}\boldsymbol{\alpha}\|_{2}^{2}+\|\mathbf{w}^{T}\boldsymbol{\alpha}\|_{1}.
+\section{Closed-Form Solution of the Weighted Sparse Coding Problem (6)}
+For notation simplicity, we ignore the index $n,m,t$ in the sparse coding problem (6) in the main paper. And it turns into the following weighted sparse coding problem:
+\vspace{-4mm}
+\begin{equation}\label{equ1}\vspace{-2mm}
+\min_{\bm{\alpha}}\|\mathbf{y}-\mathbf{D}\bm{\alpha}\|_{2}^{2}+\sum_{j=1}^{3p^2}\lambda_{j}|\bm{\alpha}_{j}|.
 \end{equation}
-Since $\mathbf{D}$ is an orthonormal matrix, problem (\ref{equ1}) is equivalent to 
-\begin{equation}\label{equ2}
-\setlength{\abovedisplayskip}{1pt}
-\setlength{\belowdisplayskip}{1pt}
-\min_{\boldsymbol{\alpha}}\|\mathbf{D}^{T}\mathbf{y}-\boldsymbol{\alpha}\|_{2}^{2}+\|\mathbf{w}^{T}\boldsymbol{\alpha}\|_{1}.
+Since $\mathbf{D}$ is an orthogonal matrix, problem (\ref{equ1}) is equivalent to 
+\vspace{-2mm}
+\begin{equation}\label{equ2}\vspace{-2mm}
+\min_{\bm{\alpha}}\|\mathbf{D}^{T}\mathbf{y}-\bm{\alpha}\|_{2}^{2}+\sum_{j=1}^{3p^2}\lambda_{j}|\bm{\alpha}_{j}|.
 \end{equation}
-For simplicity, we denote $\mathbf{z} = \mathbf{D^{T}y}$. Since $\mathbf{w}_{i}=c*2\sqrt{2}\sigma^{2}/(\mathbf{\Lambda}_{i}+\varepsilon)$ is positive (please refer to Eq. (18) in the main paper), problem (\ref{equ2}) can be written as
-\begin{equation}\label{equ3}
-\setlength{\abovedisplayskip}{0.01pt}
-\setlength{\belowdisplayskip}{0.01pt}
-\min_{\boldsymbol{\alpha}}\sum_{i=1}^{p^{2}}((\mathbf{z}_{i}-\boldsymbol{\alpha}_{i})^{2}+\mathbf{w}_{i}|\boldsymbol{\alpha}_{i}|).
+For simplicity, we denote $\mathbf{z} = \mathbf{D^{T}y}$. Here we have $\lambda_{j}\ge0$, $j=1,...,3p^2$, then problem (\ref{equ2}) can be written as
+\vspace{-2mm}
+\begin{equation}\label{equ3}\vspace{-2mm}
+\min_{\boldsymbol{\alpha}}\sum_{j=1}^{3p^2}((\mathbf{z}_{j}-\bm{\alpha}_{j})^{2}+\lambda_{j}|\bm{\alpha}_{i}|).
 \end{equation}
-The problem (\ref{equ3}) is separable w.r.t. $\boldsymbol{\alpha}_{i}$ and can be simplified to $p^{2}$ scalar minimization problems
-\begin{equation}\label{equ4}
-\setlength{\abovedisplayskip}{2pt}
-\setlength{\belowdisplayskip}{1pt}
-\min_{\boldsymbol{\alpha}_{i}}(\mathbf{z}_{i}-\boldsymbol{\alpha}_{i})^{2}+\mathbf{w}_{i}|\boldsymbol{\alpha}_{i}|,
+The problem (\ref{equ3}) is separable w.r.t. each $\bm{\alpha}_{j}$ and hence can be simplified to $3p^2$ independent  scalar minimization problems
+\vspace{-2mm}
+\begin{equation}\label{equ4}\vspace{-2mm}
+\min_{\bm{\alpha}_{j}}(\mathbf{z}_{j}-\bm{\alpha}_{j})^{2}+\lambda_{j}|\bm{\alpha}_{j}|,
 \end{equation}
-where $i=1,...,p^{2}$. Taking derivative of $\boldsymbol{\alpha}_{i}$ in problem (\ref{equ4}) and setting the derivative to be zero. There are two cases for the solution.
+where $j=1,...,3p^2$. Taking derivative of $\boldsymbol{\alpha}_{j}$ in problem (\ref{equ4}) and setting the derivative to be zero. There are two cases for the solution.
 
-(a) If $\boldsymbol{\alpha}_{i}\ge 0$, we have
-\begin{equation}\label{equ5}
-\setlength{\abovedisplayskip}{0.1pt}
-\setlength{\belowdisplayskip}{0.11pt}
-2(\boldsymbol{\alpha}_{i}-\mathbf{z}_{i})+\mathbf{w}_{i}=0.
+(a) If $\bm{\alpha}_{j}\ge 0$, we have
+\vspace{-1mm}
+\begin{equation}\label{equ5}\vspace{-1mm}
+2(\bm{\alpha}_{j}-\mathbf{z}_{j})+\lambda_{j}=0.
 \end{equation}
 \qquad\ \  The solution is
-\begin{equation}\label{equ6}
-\setlength{\abovedisplayskip}{0.1pt}
-\setlength{\belowdisplayskip}{0.1pt}
-\hat{\boldsymbol{\alpha}}_{i}=\mathbf{z}_{i}-\frac{\mathbf{w}_{i}}{2} \ge 0.
+\vspace{-1mm}
+\begin{equation}\label{equ6}\vspace{-1mm}
+\hat{\bm{\alpha}}_{j}=\mathbf{z}_{j}-\frac{\lambda_{j}}{2} \ge 0.
 \end{equation}
-\qquad\ \  So $\mathbf{z}_{i}\ge\frac{\mathbf{w}_{i}}{2}> 0$, and the solution $\hat{\boldsymbol{\alpha}}_{i}$ can be written as
-\begin{equation}\label{equ7}
-\setlength{\abovedisplayskip}{0.1pt}
-\setlength{\belowdisplayskip}{0.1pt}
-\hat{\boldsymbol{\alpha}}_{i}=\text{sgn}(\mathbf{z}_{i})*(|\mathbf{z}_{i}|-\frac{\mathbf{w}_{i}}{2}),
+\qquad\ \  So $\mathbf{z}_{j}\ge\frac{\lambda_{j}}{2}> 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as
+\vspace{-2mm}
+\begin{equation}\label{equ7}\vspace{-2mm}
+\hat{\bm{\alpha}}_{j}=\text{sgn}(\mathbf{z}_{j})*(|\mathbf{z}_{j}|-\frac{\lambda_{j}}{2}),
 \end{equation}
 \qquad\ \  where $\text{sgn}(\bullet)$ is the sign function. 
 
-(b) If $\boldsymbol{\alpha}_{i}< 0$, we have
-\begin{equation}\label{equ8}
-\setlength{\abovedisplayskip}{0.1pt}
-\setlength{\belowdisplayskip}{0.1pt}
-2(\boldsymbol{\alpha}_{i}-\mathbf{z}_{i})-\mathbf{w}_{i}=0.
+(b) If $\bm{\alpha}_{i}< 0$, we have
+\vspace{-1mm}
+\begin{equation}\label{equ8}\vspace{-1mm}
+2(\bm{\alpha}_{j}-\mathbf{z}_{j})-\lambda_{j}=0.
 \end{equation}
 \qquad\ \  The solution is
-\begin{equation}\label{equ9}
-\setlength{\abovedisplayskip}{0.1pt}
-\setlength{\belowdisplayskip}{0.1pt}
-\hat{\boldsymbol{\alpha}}_{i}=\mathbf{z}_{i}+\frac{\mathbf{w}_{i}}{2} < 0.
+\vspace{-2mm}
+\begin{equation}\label{equ9}\vspace{-2mm}
+\hat{\bm{\alpha}}_{j}=\mathbf{z}_{j}+\frac{\lambda_{j}}{2} < 0.
 \end{equation}
-\qquad\ \  So $\mathbf{z}_{i}<-\frac{\mathbf{w}_{i}}{2}< 0$, and the solution $\hat{\boldsymbol{\alpha}}_{i}$ can be written as
-\begin{equation}\label{equ10}
-\setlength{\abovedisplayskip}{1pt}
-\setlength{\belowdisplayskip}{1pt}
-\hat{\boldsymbol{\alpha}}_{i}=\text{sgn}(\mathbf{z}_{i})*(-\mathbf{z}_{i}-\frac{\mathbf{w}_{i}}{2})=\text{sgn}(\mathbf{z}_{i})*(|\mathbf{z}_{i}|-\frac{\mathbf{w}_{i}}{2}).
+\qquad\ \  So $\mathbf{z}_{j}<-\frac{\lambda_{j}}{2}< 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as
+\vspace{-2mm}
+\begin{equation}\label{equ10}\vspace{-2mm}
+\hat{\bm{\alpha}}_{j}=\text{sgn}(\mathbf{z}_{j})*(-\mathbf{z}_{j}-\frac{\lambda_{j}}{2})=\text{sgn}(\mathbf{z}_{j})*(|\mathbf{z}_{j}|-\frac{\lambda_{j}}{2}).
 \end{equation} 
 
 In summary, we have the final solution of the weighted sparse coding problem (\ref{equ1}) as
-\begin{equation}\label{equ11}
-\setlength{\abovedisplayskip}{3pt}
-\setlength{\belowdisplayskip}{3pt}
-\hat{\boldsymbol{\alpha}}= \text{sgn}(\mathbf{D^{T}y})\odot \text{max}(|\mathbf{D^{T}y}|-\mathbf{w}/2,0),
+\vspace{-2mm}
+\begin{equation}\label{equ11}\vspace{-2mm}
+\hat{\bm{\alpha}}= \text{sgn}(\mathbf{D^{T}y})\odot \text{max}(|\mathbf{D^{T}y}|-\bm{\lambda}/2,0),
 \end{equation}
 where $\odot$ means element-wise multiplication and $|\mathbf{D^{T}y}|$ is the absolute value of each entry of the vector $\mathbf{D^{T}y}$.
 
@@ -693,7 +682,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C1_47.png}}
 {\footnotesize (e) CSF \cite{csf}: 35.47dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -754,7 +743,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png}}
 {\footnotesize (e) CSF \cite{csf}: 37.73dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -816,7 +805,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png}}
 {\footnotesize (e) CSF \cite{csf}: 33.71dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
@@ -877,7 +866,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
 {\footnotesize (e) CSF \cite{csf}: 36.85dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -938,7 +927,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C2_67.png}}
 {\footnotesize (e) CSF \cite{csf}: 38.16dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -999,7 +988,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_1600_B2_109.png}}
 {\footnotesize (e) CSF \cite{csf}: 38.10dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -1060,7 +1049,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A1_111.png}}
 {\footnotesize (e) CSF \cite{csf}: 32.94dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -1121,7 +1110,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A2_80.png}}
 {\footnotesize (e) CSF \cite{csf}: 37.94dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -1182,7 +1171,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_96.png}}
 {\footnotesize (e) CSF \cite{csf}: 36.18dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -1243,7 +1232,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A4_114.png}}
 {\footnotesize (e) CSF \cite{csf}: 38.43dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
@@ -1304,7 +1293,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A5_19.png}}
 {\footnotesize (e) CSF \cite{csf}: 36.03dB }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.196\textwidth}
 \centering
