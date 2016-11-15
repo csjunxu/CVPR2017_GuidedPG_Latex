@@ -3,6 +3,7 @@
 \backcite {crosschannel2016}{{1}{4}{Item.4}}
 \backcite {ncwebsite}{{2}{2}{section.2}}
 \backcite {ncwebsite}{{2}{2}{section.2}}
+\backcite {ncwebsite}{{2}{2}{section.2}}
 \backcite {ncwebsite}{{2}{1(a)}{subfigure.1.1}}
 \backcite {bm3d,cbm3d}{{2}{1(a)}{subfigure.1.1}}
 \backcite {wnnm}{{2}{1(a)}{subfigure.1.1}}
@@ -35,8 +36,8 @@
 \backcite {neatimage}{{3}{4(b)}{subfigure.4.2}}
 \backcite {ncwebsite,noiseclinic}{{3}{4(b)}{subfigure.4.2}}
 \backcite {ncwebsite}{{3}{4}{figure.4}}
-\backcite {crosschannel2016}{{4}{3}{section.3}}
-\backcite {ncwebsite}{{4}{3}{section.3}}
+\backcite {crosschannel2016}{{3}{3}{section.3}}
+\backcite {crosschannel2016}{{3}{3}{section.3}}
 \backcite {crosschannel2016}{{4}{5(a)}{subfigure.5.1}}
 \backcite {bm3d,cbm3d}{{4}{5(a)}{subfigure.5.1}}
 \backcite {wnnm}{{4}{5(a)}{subfigure.5.1}}
