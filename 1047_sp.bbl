@@ -1,4 +1,4 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
 
 \bibitem{ncwebsite}
 M.~Lebrun, M.~Colom, and J.~M. Morel.
@@ -12,6 +12,12 @@ S.~Nam, Y.~Hwang, Y.~Matsushita, and S.~J. Kim.
   application to image denoising.
 \newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, pages 1683--1691, 2016.
+
+\bibitem{bm3d}
+K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
+\newblock Image denoising by sparse 3-{D} transform-domain collaborative
+  filtering.
+\newblock {\em IEEE Transactions on Image Processing}, 16(8):2080--2095, 2007.
 
 \bibitem{cbm3d}
 K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
@@ -46,14 +52,14 @@ Y.~Chen, W.~Yu, and T.~Pock.
 \newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
   (CVPR)}, pages 5261--5269, 2015.
 
-\bibitem{noiseclinic}
-M.~Lebrun, M.~Colom, and J.-M. Morel.
-\newblock Multiscale image blind denoising.
-\newblock {\em IEEE Transactions on Image Processing}, 24(10):3149--3161, 2015.
-
 \bibitem{neatimage}
 Neatlab ABSoft.
 \newblock Neat {I}mage.
 \newblock \url{https://ni.neatvideo.com/home}.
+
+\bibitem{noiseclinic}
+M.~Lebrun, M.~Colom, and J.-M. Morel.
+\newblock Multiscale image blind denoising.
+\newblock {\em IEEE Transactions on Image Processing}, 24(10):3149--3161, 2015.
 
 \end{thebibliography}
