@@ -192,7 +192,6 @@ In this section, we give more visual comparisons of the competing methods on the
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\vspace{-2mm}
 \caption{Denoised images of the real noisy image ``Frog" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
 \label{fig1}
 \end{figure}
@@ -244,7 +243,6 @@ In this section, we give more visual comparisons of the competing methods on the
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\vspace{-2mm}
 \caption{Denoised images of the real noisy image ``Circuit" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
 \label{fig2}
 \end{figure}
@@ -296,7 +294,6 @@ In this section, we give more visual comparisons of the competing methods on the
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\vspace{-2mm}
 \caption{Denoised images of the real noisy image ``Woman" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
 \label{fig3}
 \end{figure}
@@ -348,7 +345,6 @@ In this section, we give more visual comparisons of the competing methods on the
 {\footnotesize (h) Ours  }
 \end{minipage}
 }
-\vspace{-2mm}
 \caption{Denoised images of the real noisy image ``Vehicle" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
 \label{fig4}
 \end{figure}
@@ -358,6 +354,66 @@ In this section, we give more visual comparisons of the competing methods on the
 \section{More Results on the 15 Cropped Images in \cite{crosschannel2016}}
 In this section, we provide more visual comparisons of the proposed method with the state-of-the-art denoising methods on the 15 cropped real noisy images used in \cite{crosschannel2016}. As can be seen from Fiures \ref{fig5}-\ref{fig8}, our proposed method achieves better performance than the the competing methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
 
+%------------------------------------------------------------------------------------
+\begin{figure}[H]\vspace{1mm}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Noisy_5dmark3_iso3200_2_real.png}}
+{\footnotesize (a) Noisy  \cite{crosschannel2016}: 33.88dB }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CBM3D_5dmark3_iso3200_2_real.png}}
+{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 33.91dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_WNNM_5dmark3_iso3200_2_real.png}}
+{\footnotesize (c) WNNM \cite{wnnm}: 33.88dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_MLP_5dmark3_iso3200_2_real.png}}
+{\footnotesize (d) MLP \cite{mlp}: 33.23dB }
+\end{minipage}
+\centering
+\begin{minipage}[t]{0.195\textwidth}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_TRD_5dmark3_iso3200_2_real.png}}
+{\footnotesize (e) TNRD \cite{chen2015learning}: 34.33dB  } 
+\end{minipage}
+}\vspace{-2mm}
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NI_5dmark3_iso3200_2_real.png}}
+{\footnotesize (f) NI \cite{neatimage}: 34.87dB  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NC_5dmark3_iso3200_2_real.png}}
+{\footnotesize (g) NC \cite{noiseclinic,ncwebsite}: 35.69dB  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CCNoise_5dmark3_iso3200_2.png}}
+{\footnotesize (h) CC \cite{crosschannel2016}: 35.37dB }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Guided_5dmark3_iso3200_2_real.png}}
+{\footnotesize (i) Ours: \textbf{37.05}dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Mean_5dmark3_iso3200_2_real.png}}
+{\footnotesize (j) Mean Image \cite{crosschannel2016}}
+\end{minipage}
+}
+\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 2" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
+\label{fig5}
+\end{figure}
 
 %------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{1mm}
@@ -365,61 +421,62 @@ In this section, we provide more visual comparisons of the proposed method with 
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
-{\footnotesize (a) Noisy  \cite{crosschannel2016}: 37.00dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Noisy_5dmark3_iso3200_2_real.png}}
+{\footnotesize (a) Noisy  \cite{crosschannel2016}: 33.88dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
-{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 37.02dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CBM3D_5dmark3_iso3200_2_real.png}}
+{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 33.91dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
-{\footnotesize (c) WNNM \cite{wnnm}: 37.01dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_WNNM_5dmark3_iso3200_2_real.png}}
+{\footnotesize (c) WNNM \cite{wnnm}: 33.88dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
-{\footnotesize (d) MLP \cite{mlp}: 33.90dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_MLP_5dmark3_iso3200_2_real.png}}
+{\footnotesize (d) MLP \cite{mlp}: 33.23dB }
 \end{minipage}
 \centering
 \begin{minipage}[t]{0.195\textwidth}
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
-{\footnotesize (e) TNRD \cite{chen2015learning}: 36.18dB  } 
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_TRD_5dmark3_iso3200_2_real.png}}
+{\footnotesize (e) TNRD \cite{chen2015learning}: 34.33dB  } 
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \subfigure{
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
-{\footnotesize (f) NI \cite{neatimage}: 37.68dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NI_5dmark3_iso3200_2_real.png}}
+{\footnotesize (f) NI \cite{neatimage}: 34.87dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
-{\footnotesize (g) NC \cite{noiseclinic,ncwebsite}: 38.76dB  }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NC_5dmark3_iso3200_2_real.png}}
+{\footnotesize (g) NC \cite{noiseclinic,ncwebsite}: 35.69dB  }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
-{\footnotesize (h) CC \cite{crosschannel2016}: 38.37dB }
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CCNoise_5dmark3_iso3200_2.png}}
+{\footnotesize (h) CC \cite{crosschannel2016}: 35.37dB }
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
-{\footnotesize (i) Ours: \textbf{40.50}dB}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Guided_5dmark3_iso3200_2_real.png}}
+{\footnotesize (i) Ours: \textbf{37.05}dB}
 \end{minipage}
 \begin{minipage}[t]{0.195\textwidth}
 \centering
-\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Mean_5dmark3_iso3200_2_real.png}}
 {\footnotesize (j) Mean Image \cite{crosschannel2016}}
 \end{minipage}
-}\vspace{-1mm}
-\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
-\label{fig7}
-\vspace{1mm}
+}
+\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 2" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
+\label{fig6}
 \end{figure}
+
+
 
 
 {\small
