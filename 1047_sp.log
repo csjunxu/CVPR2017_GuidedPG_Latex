@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  14 NOV 2016 13:13
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 NOV 2016 10:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -394,189 +394,162 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 52.
 (c:/Software/texlive/2015/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 60.
-
-
-LaTeX Warning: Citation `bsds' on page 1 undefined on input line 60.
-
 LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <12> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 62.
-LaTeX Font Info:    Try loading font information for OT1+phv on input line 133.
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 65.
 
-(c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
-File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
-) [1{c:/Software/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
-
-]
-<images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=46, 250.9375
+<images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=12, 250.9375
 pt x 250.9375pt>
 File: images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic fil
 e (type png)
 
 <use images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3
-_66.png used on input line 165.
+_66.png used on input line 168.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-<images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=47, 250.9375
+<images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=13, 250.9375
 pt x 250.9375pt>
 File: images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic fil
 e (type png)
 
 <use images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3
-_66.png used on input line 165.
+_66.png used on input line 168.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 165.
 
-
-LaTeX Warning: Citation `cbm3d' on page 2 undefined on input line 165.
-
-
-<images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=48, 250.9375p
+<images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=15, 250.9375p
 t x 250.9375pt>
 File: images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file
  (type png)
 
 <use images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_
-66.png used on input line 165.
+66.png used on input line 168.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `wnnm' on page 2 undefined on input line 165.
-
-
-<images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=49, 250.9375pt
+<images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=17, 250.9375pt
  x 250.9375pt>
 File: images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file 
 (type png)
 
 <use images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_6
-6.png used on input line 165.
+6.png used on input line 168.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `mlp' on page 2 undefined on input line 165.
-
-
-<images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=50, 250.9375pt
+<images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=19, 250.9375pt
  x 250.9375pt>
 File: images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file 
 (type png)
 
 <use images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_6
-6.png used on input line 165.
+6.png used on input line 168.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `csf' on page 2 undefined on input line 165.
-
-
-<images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=51, 250.9375pt
+<images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=21, 250.9375pt
  x 250.9375pt>
 File: images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file 
 (type png)
 
 <use images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_6
-6.png used on input line 192.
+6.png used on input line 195.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `chen2015learning' on page 2 undefined on input line 19
-2.
-
-
-<images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=52, 250.9375pt 
+<images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=23, 250.9375pt 
 x 250.9375pt>
 File: images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file (
 type png)
  <use images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66
-.png used on input line 192.
+.png used on input line 195.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `noiseclinic' on page 2 undefined on input line 192.
-
-
-<images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=53, 250.9375pt 
+<images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=25, 250.9375pt 
 x 250.9375pt>
 File: images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file (
 type png)
  <use images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66
-.png used on input line 192.
+.png used on input line 195.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-
-LaTeX Warning: Citation `neatimage' on page 2 undefined on input line 192.
-
-
-<images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=54, 250.937
+<images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=27, 250.937
 5pt x 250.9375pt>
 File: images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic fi
 le (type png)
 
 <use images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_Guided_CC_Noisy_Nikon_D800_ISO_3200_A
-3_66.png used on input line 192.
+3_66.png used on input line 195.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <8> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 195.
 
-<images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=55, 250.9375p
+<images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png, id=28, 250.9375p
 t x 250.9375pt>
 File: images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png Graphic file
  (type png)
 
 <use images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png>
 Package pdftex.def Info: images/resize_br_Mean_CC_Noisy_Nikon_D800_ISO_3200_A3_
-66.png used on input line 192.
+66.png used on input line 195.
 (pdftex.def)             Requested size: 96.8906pt x 96.89265pt.
 
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 165--193
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 168--196
  [][] 
  []
 
 
-Overfull \hbox (2.59673pt too wide) in paragraph at lines 165--193
+Overfull \hbox (2.59673pt too wide) in paragraph at lines 168--196
  [][] 
  []
 
-No file 1047_sp.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 203.
-[2 <./images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>
- <./images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <
-./images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./i
-mages/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./image
-s/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/re
-size_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize
-_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_N
-I_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Guided
-_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Mean_CC
-_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 203.
+LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <10> not available
+(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 197.
+LaTeX Font Info:    Try loading font information for OT1+phv on input line 197.
+
+(c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1phv.fd
+File: ot1phv.fd 2001/06/04 scalable font definitions for OT1/phv.
+) [1{c:/Software/texlive/2015/texmf-var/fonts/map/pdftex/updmap/pdftex.map}
+
+] (./1047_sp.bbl
+(./1047_sp.brf)
+\tf@brf=\write3
+\openout3 = `1047_sp.brf'.
+
+LaTeX Font Info:    Try loading font information for OT1+pcr on input line 8.
+ (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+))
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 206.
+ [2 <./images/resize_br_Noisy_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)
+> <./images/resize_br_CBM3D_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> 
+<./images/resize_br_WNNM_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./
+images/resize_br_MLP_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./imag
+es/resize_br_CSF_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/r
+esize_br_TRD_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resiz
+e_br_NC_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_
+NI_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Guide
+d_CC_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)> <./images/resize_br_Mean_C
+C_Noisy_Nikon_D800_ISO_3200_A3_66.png (PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 206.
  (./1047_sp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 203.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 203.
-
-
-LaTeX Warning: There were undefined references.
-
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 203.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 206.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 206.
+Package rerunfilecheck Info: File `1047_sp.brf' has not changed.
+(rerunfilecheck)             Checksum: F86FCCB10F3894EE8E9DAE21EBCB2A81;452.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 206.
  ) 
 Here is how much of TeX's memory you used:
- 6801 strings out of 493091
- 100308 string characters out of 6134517
- 190760 words of memory out of 5000000
- 10125 multiletter control sequences out of 15000+600000
- 39543 words of font info for 95 fonts, out of 8000000 for 9000
+ 6879 strings out of 493091
+ 101361 string characters out of 6134517
+ 194034 words of memory out of 5000000
+ 10184 multiletter control sequences out of 15000+600000
+ 38993 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 34i,10n,27p,269b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 34i,10n,26p,269b,356s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -592,15 +565,16 @@ e/texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb><c:/Software/
 texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb><c:/Software/te
 xlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb><c:/Software/texl
 ive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb><c:/Software/texl
-ive/2015/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Software/texlive/20
-15/texmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015/tex
-mf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/f
-onts/type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type
-1/urw/times/utmr8a.pfb>
-Output written on 1047_sp.pdf (2 pages, 1029676 bytes).
+ive/2015/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb><c:/Software/texlive/201
+5/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb><c:/Software/texlive/2015/texm
+f-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015/texmf-dist
+/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/ty
+pe1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/t
+imes/utmri8a.pfb>
+Output written on 1047_sp.pdf (2 pages, 1043946 bytes).
 PDF statistics:
- 132 PDF objects out of 1000 (max. 8388607)
- 98 compressed objects within 1 object stream
- 22 named destinations out of 1000 (max. 500000)
+ 171 PDF objects out of 1000 (max. 8388607)
+ 135 compressed objects within 2 object streams
+ 32 named destinations out of 1000 (max. 500000)
  51 words of extra memory for PDF output out of 10000 (max. 10000000)
 
