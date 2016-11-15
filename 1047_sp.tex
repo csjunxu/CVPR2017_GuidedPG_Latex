@@ -138,11 +138,15 @@ In summary, we have the final solution of the weighted sparse coding problem (\r
 where $\odot$ means element-wise multiplication and $|\mathbf{D^{T}y}|$ is the absolute value of each entry of the vector $\mathbf{D^{T}y}$.
 
 
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+
 \section{More Results on Dataset \cite{ncwebsite}}
 In this section, we give more visual comparisons of the competing methods on the real noisy images provided in \cite{ncwebsite}. As can be seen from Fig.\ \ref{fig1}-\ref{fig4}, our proposed method perfomrs better than the state-of-the-art denoising methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
 
-
-\begin{figure}[H]
+%------------------------------------------------------------------------------------
+\begin{figure}[H]\vspace{3mm}
 \centering
 \subfigure{
 \begin{minipage}[t]{0.244\textwidth}
@@ -193,7 +197,7 @@ In this section, we give more visual comparisons of the competing methods on the
 \label{fig1}
 \end{figure}
 
-
+%------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{3mm}
 \centering
 \subfigure{
@@ -245,6 +249,7 @@ In this section, we give more visual comparisons of the competing methods on the
 \label{fig2}
 \end{figure}
 
+%------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{3mm}
 \centering
 \subfigure{
@@ -296,6 +301,7 @@ In this section, we give more visual comparisons of the competing methods on the
 \label{fig3}
 \end{figure}
 
+%------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{3mm}
 \centering
 \subfigure{
@@ -346,6 +352,76 @@ In this section, we give more visual comparisons of the competing methods on the
 \caption{Denoised images of the real noisy image ``Vehicle" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.}
 \label{fig4}
 \end{figure}
+
+%------------------------------------------------------------------------------------
+%------------------------------------------------------------------------------------
+\clearpage
+\section{More Results on The 15 Cropped Images in \cite{crosschannel2016}}
+In this section, we give more visual comparisons of the competing methods on the real noisy images provided in \cite{ncwebsite}. As can be seen from Fig.\ \ref{fig1}-\ref{fig4}, our proposed method perfomrs better than the state-of-the-art denoising methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
+
+
+%------------------------------------------------------------------------------------
+\begin{figure}[H]\vspace{1mm}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Noisy_5dmark3_iso3200_1_real.png}}
+{\footnotesize (a) Noisy  \cite{crosschannel2016}: 37.00dB }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CBM3D_5dmark3_iso3200_1_real.png}}
+{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 37.02dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_WNNM_5dmark3_iso3200_1_real.png}}
+{\footnotesize (c) WNNM \cite{wnnm}: 37.01dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_MLP_5dmark3_iso3200_1_real.png}}
+{\footnotesize (d) MLP \cite{mlp}: 33.90dB }
+\end{minipage}
+\centering
+\begin{minipage}[t]{0.195\textwidth}
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_TRD_5dmark3_iso3200_1_real.png}}
+{\footnotesize (e) TNRD \cite{chen2015learning}: 36.18dB  } 
+\end{minipage}
+}\vspace{-3mm}
+\subfigure{
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NI_5dmark3_iso3200_1_real.png}}
+{\footnotesize (f) NI \cite{neatimage}: 37.68dB  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_NC_5dmark3_iso3200_1_real.png}}
+{\footnotesize (g) NC \cite{noiseclinic,ncwebsite}: 38.76dB  }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_CCNoise_5dmark3_iso3200_1.png}}
+{\footnotesize (h) CC \cite{crosschannel2016}: 38.37dB }
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Guided_5dmark3_iso3200_1_real.png}}
+{\footnotesize (i) Ours: \textbf{40.50}dB}
+\end{minipage}
+\begin{minipage}[t]{0.195\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{images/resize_br_Mean_5dmark3_iso3200_1_real.png}}
+{\footnotesize (j) Mean Image \cite{crosschannel2016}}
+\end{minipage}
+}\vspace{-1mm}
+\caption{Denoised images of a region cropped from the real noisy image ``Canon 5D Mark 3 ISO 3200 1" \cite{crosschannel2016} by different methods. The images are better to be zoomed in on screen.}
+\label{fig7}
+\vspace{1mm}
+\end{figure}
+
 
 {\small
 \bibliographystyle{unsrt}

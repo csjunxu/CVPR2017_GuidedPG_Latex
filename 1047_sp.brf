@@ -35,3 +35,15 @@
 \backcite {neatimage}{{3}{4(b)}{subfigure.4.2}}
 \backcite {ncwebsite,noiseclinic}{{3}{4(b)}{subfigure.4.2}}
 \backcite {ncwebsite}{{3}{4}{figure.4}}
+\backcite {crosschannel2016}{{4}{3}{section.3}}
+\backcite {ncwebsite}{{4}{3}{section.3}}
+\backcite {crosschannel2016}{{4}{5(a)}{subfigure.5.1}}
+\backcite {bm3d,cbm3d}{{4}{5(a)}{subfigure.5.1}}
+\backcite {wnnm}{{4}{5(a)}{subfigure.5.1}}
+\backcite {mlp}{{4}{5(a)}{subfigure.5.1}}
+\backcite {chen2015learning}{{4}{5(a)}{subfigure.5.1}}
+\backcite {neatimage}{{4}{5(b)}{subfigure.5.2}}
+\backcite {noiseclinic,ncwebsite}{{4}{5(b)}{subfigure.5.2}}
+\backcite {crosschannel2016}{{4}{5(b)}{subfigure.5.2}}
+\backcite {crosschannel2016}{{4}{5(b)}{subfigure.5.2}}
+\backcite {crosschannel2016}{{4}{5}{figure.5}}
