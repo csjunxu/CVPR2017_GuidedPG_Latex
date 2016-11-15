@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 NOV 2016 18:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  15 NOV 2016 20:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1604,7 +1604,143 @@ Overfull \hbox (2.59673pt too wide) in paragraph at lines 819--847
  [][] 
  []
 
-(./1047_sp.bbl (./1047_sp.brf)
+
+<imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=382, 250
+.9375pt x 250.9375pt>
+File: imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic
+ file (type png)
+
+<use imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_320
+0_C1_96.png used on input line 880.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=384, 250
+.9375pt x 250.9375pt>
+File: imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic
+ file (type png)
+
+<use imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_320
+0_C1_96.png used on input line 880.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=387, 250.
+9375pt x 250.9375pt>
+File: imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic 
+file (type png)
+
+<use imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200
+_C1_96.png used on input line 880.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=389, 250.9
+375pt x 250.9375pt>
+File: imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic f
+ile (type png)
+
+<use imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_
+C1_96.png used on input line 880.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=391, 250.9
+375pt x 250.9375pt>
+File: imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic f
+ile (type png)
+
+<use imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_
+C1_96.png used on input line 880.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+
+LaTeX Warning: Citation `csf' on page 7 undefined on input line 880.
+
+
+<imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=392, 250.9
+375pt x 250.9375pt>
+File: imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic f
+ile (type png)
+
+<use imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_
+C1_96.png used on input line 907.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=394, 250.93
+75pt x 250.9375pt>
+File: imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic fi
+le (type png)
+
+<use imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C
+1_96.png used on input line 907.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=396, 250.93
+75pt x 250.9375pt>
+File: imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic fi
+le (type png)
+
+<use imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C
+1_96.png used on input line 907.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=399, 25
+0.9375pt x 250.9375pt>
+File: imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphi
+c file (type png)
+
+<use imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_32
+00_C1_96.png used on input line 907.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+<imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png, id=400, 250.
+9375pt x 250.9375pt>
+File: imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png Graphic 
+file (type png)
+
+<use imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png>
+Package pdftex.def Info: imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200
+_C1_96.png used on input line 907.
+(pdftex.def)             Requested size: 97.38339pt x 97.38277pt.
+
+Overfull \hbox (5.06071pt too wide) in paragraph at lines 880--908
+ [][] 
+ []
+
+
+Overfull \hbox (5.06071pt too wide) in paragraph at lines 880--908
+ [][] 
+ []
+
+[7 <./imagessupp/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png
+ (PNG copy)> <./imagessupp/resize_br_CBM3D_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200
+_C2_44.png (PNG copy)> <./imagessupp/resize_br_WNNM_CC_Noisy_Canon_EOS_5D_Mark3
+_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_MLP_CC_Noisy_Canon_EOS_
+5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_CSF_CC_Noisy_Ca
+non_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_TRD_CC_
+Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br
+_NI_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/re
+size_br_NC_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./images
+supp/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)
+> <./imagessupp/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (
+PNG copy)> <./imagessupp/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C
+3_26.png (PNG copy)> <./imagessupp/resize_br_CBM3D_CC_Noisy_Canon_EOS_5D_Mark3_
+ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_WNNM_CC_Noisy_Canon_EOS_
+5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_MLP_CC_Noisy_Ca
+non_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_CSF_CC_
+Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br
+_TRD_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/r
+esize_br_NI_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./image
+ssupp/resize_br_NC_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <
+./imagessupp/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (P
+NG copy)> <./imagessupp/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_
+26.png (PNG copy)>] (./1047_sp.bbl (./1047_sp.brf)
 \tf@brf=\write3
 \openout3 = `1047_sp.brf'.
 
@@ -1612,62 +1748,43 @@ LaTeX Font Info:    Try loading font information for OT1+pcr on input line 8.
 
 (c:/Software/texlive/2015/texmf-dist/tex/latex/psnfss/ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
-)
-LaTeX Font Info:    Font shape `OT1/ptm/bx/n' in size <9> not available
-(Font)              Font shape `OT1/ptm/b/n' tried instead on input line 35.
- [7 <./imagessupp/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.pn
-g (PNG copy)> <./imagessupp/resize_br_CBM3D_CC_Noisy_Canon_EOS_5D_Mark3_ISO_320
-0_C2_44.png (PNG copy)> <./imagessupp/resize_br_WNNM_CC_Noisy_Canon_EOS_5D_Mark
-3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_MLP_CC_Noisy_Canon_EOS
-_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_CSF_CC_Noisy_C
-anon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_br_TRD_CC
-_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/resize_b
-r_NI_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./imagessupp/r
-esize_br_NC_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy)> <./image
-ssupp/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png (PNG copy
-)> <./imagessupp/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C2_44.png 
-(PNG copy)> <./imagessupp/resize_br_Noisy_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_
-C3_26.png (PNG copy)> <./imagessupp/resize_br_CBM3D_CC_Noisy_Canon_EOS_5D_Mark3
-_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_WNNM_CC_Noisy_Canon_EOS
-_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_MLP_CC_Noisy_C
-anon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_br_CSF_CC
-_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/resize_b
-r_TRD_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imagessupp/
-resize_br_NI_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> <./imag
-essupp/resize_br_NC_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (PNG copy)> 
-<./imagessupp/resize_br_Guided_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3_26.png (
-PNG copy)> <./imagessupp/resize_br_Mean_CC_Noisy_Canon_EOS_5D_Mark3_ISO_3200_C3
-_26.png (PNG copy)>])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 858.
- [8]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 858.
- (./1047_sp.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 858.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 858.
+))
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 919.
+ [8 <./imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PNG c
+opy)> <./imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PNG
+ copy)> <./imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PN
+G copy)> <./imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PN
+G copy)> <./imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PN
+G copy)> <./imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PN
+G copy)> <./imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PNG
+ copy)> <./imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (PNG 
+copy)> <./imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (P
+NG copy)> <./imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png (
+PNG copy)>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 919.
 
+(./1047_sp.aux)
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 919.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 919.
+Package rerunfilecheck Info: File `1047_sp.brf' has not changed.
+(rerunfilecheck)             Checksum: 3F0C555364B5A26F5C36B4E299A194F2;6592.
 
-Package rerunfilecheck Warning: File `1047_sp.brf' has changed.
-(rerunfilecheck)                Rerun to get bibliographical references right.
-
-Package rerunfilecheck Info: Checksums for `1047_sp.brf':
-(rerunfilecheck)             Before: 07790D382F18ADF37FADF7EB3B21E67D;5560
-(rerunfilecheck)             After:  F9C9D0DCAC51F681A882C2270C24A874;6076.
 
 LaTeX Warning: There were undefined references.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 858.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 919.
  ) 
 Here is how much of TeX's memory you used:
- 7502 strings out of 493091
- 129056 string characters out of 6134517
- 196001 words of memory out of 5000000
- 10658 multiletter control sequences out of 15000+600000
- 40619 words of font info for 98 fonts, out of 8000000 for 9000
+ 7555 strings out of 493091
+ 132345 string characters out of 6134517
+ 196979 words of memory out of 5000000
+ 10698 multiletter control sequences out of 15000+600000
+ 40100 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 40i,10n,33p,608b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,33p,608b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -1687,10 +1804,10 @@ exmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015/texmf-d
 ist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts
 /type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmri8a.pfb>
-Output written on 1047_sp.pdf (8 pages, 9959873 bytes).
+Output written on 1047_sp.pdf (8 pages, 10807242 bytes).
 PDF statistics:
- 535 PDF objects out of 1000 (max. 8388607)
- 379 compressed objects within 4 object streams
- 74 named destinations out of 1000 (max. 500000)
- 561 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 570 PDF objects out of 1000 (max. 8388607)
+ 402 compressed objects within 5 object streams
+ 77 named destinations out of 1000 (max. 500000)
+ 611 words of extra memory for PDF output out of 10000 (max. 10000000)
 

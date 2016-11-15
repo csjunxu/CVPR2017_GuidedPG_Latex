@@ -845,7 +845,68 @@ In this section, we provide more visual comparisons of the proposed method with 
 \end{minipage}
 }
 \caption{Denoised imagessupp of a region cropped from the real noisy image ``Canon EOS 5D Mark3 ISO 3200 C3" \cite{crosschannel2016} by different methods. The images are better viewed by zooming in on screen.} 
-\label{fig10}
+\label{fig11}
+\end{figure}
+
+%------------------------------------------------------------------------------------
+\begin{figure}[H]\vspace{1mm}
+\centering
+\subfigure{
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Noisy_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (a) Noisy \cite{crosschannel2016}: 35.89dB }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CBM3D_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (b) CBM3D \cite{bm3d,cbm3d}: 35.92dB  }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_WNNM_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (c) WNNM \cite{wnnm}: 35.89dB  }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_MLP_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (d) MLP \cite{mlp}: 34.82dB }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_CSF_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (e) CSF \cite{csf}: 36.85dB }
+\end{minipage}
+}\vspace{-3mm}
+\subfigure{
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_TRD_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (f) TNRD \cite{chen2015learning}: 37.35dB   }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NI_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (g) NI \cite{neatimage}: 37.37dB  }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_NC_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (h) NC \cite{ncwebsite,noiseclinic}: 38.48dB   }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Guided_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (i) Ours: \textbf{39.66}dB  }
+\end{minipage}
+\begin{minipage}[t]{0.196\textwidth}
+\centering
+\raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_br_Mean_CC_Noisy_Nikon_D600_ISO_3200_C1_96.png}}
+{\footnotesize (j) Mean Image \cite{crosschannel2016} }
+\end{minipage}
+}
+\caption{Denoised imagessupp of a region cropped from the real noisy image ``Nikon D600 ISO 3200 C1" \cite{crosschannel2016} by different methods. The images are better viewed by zooming in on screen.} 
+\label{fig12}
 \end{figure}
 
 
