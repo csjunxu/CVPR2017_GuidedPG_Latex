@@ -56,11 +56,11 @@ In this supplementary material, we provide:\vspace{-0.1in}
 \begin{enumerate}
 \item The closed-form solution of the proposed weighted sparse coding model in the main paper.
 \vspace{-0.1in}
-\item More denoising results on the 20 real noisy imagessupp (with no ``ground truth") provided in the dataset \cite{ncwebsite}.
+\item More denoising results on the real noisy images (with no ``ground truth") provided in the dataset \cite{ncwebsite}.
 \vspace{-0.1in}
-\item More denoising results on the 15 smaller real noisy imagessupp (with ``ground truth") used in the dataset \cite{crosschannel2016}.
+\item More denoising results on the 15 smaller real noisy images (with ``ground truth") used in the dataset \cite{crosschannel2016}.
 \vspace{-0.1in}
-\item More denoising results on the 60 real noisy imagessupp (with ``ground truth") cropped from \cite{crosschannel2016}.
+\item More denoising results on the 60 real noisy images (with ``ground truth") cropped from \cite{crosschannel2016}.
 \end{enumerate}
 \section{Closed-Form Solution of the Weighted Sparse Coding Problem}
 The weighted sparse coding problem in the main paper is:
@@ -137,6 +137,9 @@ In summary, we have the final solution of the weighted sparse coding problem (\r
 where $\odot$ means element-wise multiplication and $|\mathbf{D^{T}y}|$ is the absolute value of each entry of the vector $\mathbf{D^{T}y}$.
 
 
+\section{More Results on Dataset \cite{ncwebsite}}
+In this section, we give more visual comparisons of the competing methods on the real noisy images provided in \cite{ncwebsite}. As can be seen from Figures \ref{fig1}-\ref{fig4}, our proposed method is much better than the state-of-the-art denoising methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
+
 \begin{figure}
 \centering
 \subfigure{
@@ -189,18 +192,11 @@ where $\odot$ means element-wise multiplication and $|\mathbf{D^{T}y}|$ is the a
 \raisebox{-0.15cm}{\includegraphics[width=1\textwidth]{imagessupp/resize_frog_ours.png}}
 {\footnotesize (i) Ours  }
 \end{minipage}
-}\vspace{-3mm}
+}\vspace{-2mm}
 \caption{
-\vspace{-0.3mm}
-(a) A real noisy image captured by a digital camera \cite{ncwebsite}. (b)$\sim$(i) Denoised imagessupp by different methods.
-\vspace{-0.3mm}
-Among them, CBM3D \cite{bm3d,cbm3d} and WNNM \cite{wnnm} are prior model based methods; MLP \cite{mlp}, CSF \cite{csf} and TNRD 
-\vspace{-0.3mm}
-\cite{chen2015learning} are discriminative learning based methods; and Neat Image \cite{neatimage} and Noise Clinic \cite{noiseclinic,ncwebsite} are methods designed 
-\vspace{-0.3mm}
-for real noisy imagessupp. Clearly, our method produces a cleaner image.
+Denoised images of the real noisy image ``Frog" \cite{ncwebsite} by different methods. The images are better to be zoomed in on screen.
 }
-\vspace{-8mm}
+\vspace{-3mm}
 \label{fig1}
 \end{figure}
 
