@@ -12,6 +12,7 @@
 \usepackage{color}
 \usepackage{float}
 \usepackage{bm}
+\usepackage[document]{ragged2e}
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
@@ -51,20 +52,20 @@ First line of institution2 address\\
 
 \maketitle
 
-
-%%%%%%%%% BODY TEXT
+\vspace{-3mm}
 In this supplementary material, we provide:\vspace{-0.1in}
 \begin{enumerate}
 \item The closed-form solution of the sparse coding problem (6) in the main paper.
-\vspace{-0.1in}
+\vspace{-3mm}
 \item More denoising results on the real noisy images in dataset \cite{ncwebsite}.
-\vspace{-0.1in}
-\item More denoising results on the 15 cropped real noisy images (with ``ground truth") used in the dataset \cite{crosschannel2016}.
-\vspace{-0.1in}
-\item More denoising results on the 60 cropped real noisy images (with ``ground truth") from \cite{crosschannel2016}.
+\vspace{-3mm}
+\item More denoising results on the 15 cropped real noisy images (with mean image of 500 shots as ``ground truth") in dataset \cite{crosschannel2016}.
+\vspace{-3mm}
+\item More denoising results on the 60 cropped real noisy images (with mean image of 500 shots as ``ground truth") from dataset \cite{crosschannel2016}.
 \end{enumerate}
+
 \section{Closed-Form Solution of the Weighted Sparse Coding Problem (6)}
-For notation simplicity, we ignore the indices $n,m,t$ in the problem (6) in the main paper. And it turns into the following weighted sparse coding problem:
+For notation simplicity, we ignore the indices $n,m,t$ in problem (6) of the main paper. And it turns into the following weighted sparse coding problem:
 \vspace{-4mm}
 \begin{equation}\label{equ1}\vspace{-2mm}
 \min_{\bm{\alpha}}\|\mathbf{y}-\mathbf{D}\bm{\alpha}\|_{2}^{2}+\sum_{j=1}^{3p^2}\lambda_{j}|\bm{\alpha}_{j}|.
