@@ -65,22 +65,22 @@ In this supplementary material, we provide:\vspace{-0.1in}
 \end{enumerate}
 
 \section{Closed-Form Solution of the Weighted Sparse Coding Problem (6)}
-For notation simplicity, we ignore the indices $n,m,t$ in problem (6) of the main paper. It turns into the following weighted sparse coding problem:
+For notation simplicity, we ignore the indices $n,m,t$ in problem (6) of the main paper.\ It turns into the following weighted sparse coding problem:
 \vspace{-4mm}
 \begin{equation}\label{equ1}\vspace{-2mm}
 \min_{\bm{\alpha}}\|\mathbf{y}-\mathbf{D}\bm{\alpha}\|_{2}^{2}+\sum_{j=1}^{3p^2}\lambda_{j}|\bm{\alpha}_{j}|.
 \end{equation}
-Since $\mathbf{D}$ is an orthogonal matrix, problem (\ref{equ1}) is equivalent to 
+Since $\mathbf{D}$ is an orthogonal matrix, problem (\ref{equ1}) is equivalent to:
 \vspace{-2mm}
 \begin{equation}\label{equ2}\vspace{-2mm}
 \min_{\bm{\alpha}}\|\mathbf{D}^{T}\mathbf{y}-\bm{\alpha}\|_{2}^{2}+\sum_{j=1}^{3p^2}\lambda_{j}|\bm{\alpha}_{j}|.
 \end{equation}
-For simplicity, we denote $\mathbf{z} = \mathbf{D^{T}y}$. Here we have $\lambda_{j}>0$, $j=1,...,3p^2$, then problem (\ref{equ2}) can be written as:
+For simplicity, we denote $\mathbf{z} = \mathbf{D^{T}y}$.\ Here we have $\lambda_{j}>0$, $j=1,...,3p^2$, then problem (\ref{equ2}) can be written as:
 \vspace{-2mm}
 \begin{equation}\label{equ3}\vspace{-2mm}
 \min_{\boldsymbol{\alpha}}\sum_{j=1}^{3p^2}((\mathbf{z}_{j}-\bm{\alpha}_{j})^{2}+\lambda_{j}|\bm{\alpha}_{j}|).
 \end{equation}
-The problem (\ref{equ3}) is separable w.r.t. each $\bm{\alpha}_{j}$ and hence can be simplified to $3p^2$ independent  scalar minimization problems
+The problem (\ref{equ3}) is separable w.r.t. each $\bm{\alpha}_{j}$ and hence can be simplified to $3p^2$ independent scalar minimization problems:
 \vspace{-2mm}
 \begin{equation}\label{equ4}\vspace{-2mm}
 \min_{\bm{\alpha}_{j}}(\mathbf{z}_{j}-\bm{\alpha}_{j})^{2}+\lambda_{j}|\bm{\alpha}_{j}|,
@@ -97,7 +97,7 @@ where $j=1,...,3p^2$. Taking derivative of $\boldsymbol{\alpha}_{j}$ in problem 
 \begin{equation}\label{equ6}\vspace{-1mm}
 \hat{\bm{\alpha}}_{j}=\mathbf{z}_{j}-\frac{\lambda_{j}}{2} \ge 0.
 \end{equation}
-\qquad\ \  So $\mathbf{z}_{j}\ge\frac{\lambda_{j}}{2}> 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as
+\qquad\ \  So $\mathbf{z}_{j}\ge\frac{\lambda_{j}}{2}> 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as:
 \vspace{-2mm}
 \begin{equation}\label{equ7}\vspace{-2mm}
 \hat{\bm{\alpha}}_{j}=\text{sgn}(\mathbf{z}_{j})*(|\mathbf{z}_{j}|-\frac{\lambda_{j}}{2}),
@@ -114,13 +114,13 @@ where $j=1,...,3p^2$. Taking derivative of $\boldsymbol{\alpha}_{j}$ in problem 
 \begin{equation}\label{equ9}\vspace{-2mm}
 \hat{\bm{\alpha}}_{j}=\mathbf{z}_{j}+\frac{\lambda_{j}}{2} < 0.
 \end{equation}
-\qquad\ \  So $\mathbf{z}_{j}<-\frac{\lambda_{j}}{2}< 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as
+\qquad\ \  So $\mathbf{z}_{j}<-\frac{\lambda_{j}}{2}< 0$, and the solution $\hat{\bm{\alpha}}_{j}$ can be written as:
 \vspace{-1mm}
 \begin{equation}\label{equ10}\vspace{-1mm}
 \hat{\bm{\alpha}}_{j}=\text{sgn}(\mathbf{z}_{j})*(-\mathbf{z}_{j}-\frac{\lambda_{j}}{2})=\text{sgn}(\mathbf{z}_{j})*(|\mathbf{z}_{j}|-\frac{\lambda_{j}}{2}).
 \end{equation} 
 
-In summary, we have the final solution of the weighted sparse coding problem (\ref{equ1}) as
+In summary, we have the final solution of the weighted sparse coding problem (\ref{equ1}) as:
 \vspace{-1mm}
 \begin{equation}\label{equ11}\vspace{-1mm}
 \hat{\bm{\alpha}}= \text{sgn}(\mathbf{D^{T}y})\odot \text{max}(|\mathbf{D^{T}y}|-\bm{\lambda},0),
@@ -133,7 +133,7 @@ where $\bm{\lambda} = \frac{1}{2}[\lambda_{1},\lambda_{2},...,\lambda_{3p^2}]^{\
 %------------------------------------------------------------------------------------
 
 \section{More Denoising Results on the Real Noisy Images in Dataset \cite{ncwebsite}}
-In this section, we give more comparisons of the competing methods on the dataset \cite{ncwebsite}.\ The real noisy images in dataset \cite{ncwebsite} have no ``ground truth" images and hence we only compare the visual quality of the denoised images by different methods. As can be seen from Figures \ref{fig1}-\ref{fig4}, our proposed method performs better than the state-of-the-art denoising methods.
+In this section, we give more comparisons of the competing methods on the dataset \cite{ncwebsite}.\ The real noisy images in dataset \cite{ncwebsite} have no ``ground truth" images and hence we only compare the visual quality of the denoised images by different methods.\ As can be seen from Figures \ref{fig1}-\ref{fig4}, our proposed method performs better than the state-of-the-art denoising methods.
 
 %------------------------------------------------------------------------------------
 \begin{figure}[H]
@@ -342,7 +342,7 @@ In this section, we give more comparisons of the competing methods on the datase
 %------------------------------------------------------------------------------------
 %------------------------------------------------------------------------------------
 \section{More Denoising Results on the 15 Cropped Images Used in \cite{crosschannel2016}}
-In this section, we provide more visual comparisons of the proposed method with the state-of-the-art denoising methods on the 15 cropped real noisy images used in \cite{crosschannel2016}. In this dataset, each scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the ``ground truth", with which the PSNR can be computed. As can be seen from Figures \ref{fig5}-\ref{fig9}, in most cases, our proposed method achieves better performance than the the competing methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
+In this section, we provide more visual comparisons of the proposed method with the state-of-the-art denoising methods on the 15 cropped real noisy images used in \cite{crosschannel2016}.\ In this dataset, each scene was shot 500 times under the same camera and camera setting.\ The mean image of the 500 shots is roughly taken as the ``ground truth", with which the PSNR can be computed.\ As can be seen from Figures \ref{fig5}-\ref{fig9}, in most cases, our proposed method achieves better performance than the the competing methods.\ This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
 
 %------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{3mm}
@@ -652,7 +652,7 @@ In this section, we provide more visual comparisons of the proposed method with 
 \end{figure}
 
 \section{More Denoising Results on the 60 Cropped Real Noisy Images from \cite{crosschannel2016}}
-In this section, we provide more visual comparisons of the proposed method with the state-of-the-art denoising methods on the 60 cropped real noisy images we cropped fromfrom \cite{crosschannel2016}. In this dataset, each scene was shot 500 times under the same camera and camera setting. The mean image of the 500 shots is roughly taken as the ``ground truth", with which the PSNR can be computed. As can be seen from Figures \ref{fig10}-\ref{fig20}, in most cases, our proposed method achieves better performance than the competing methods. This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
+In this section, we provide more visual comparisons of the proposed method with the state-of-the-art denoising methods on the 60 cropped real noisy images we cropped fromfrom \cite{crosschannel2016}.\ In this dataset, each scene was shot 500 times under the same camera and camera setting.\ The mean image of the 500 shots is roughly taken as the ``ground truth", with which the PSNR can be computed.\ As can be seen from Figures \ref{fig10}-\ref{fig20}, in most cases, our proposed method achieves better performance than the competing methods.\ This validates the effectiveness of our proposed external prior guided internal prior learning framework for real noisy image denoising.
 
 %------------------------------------------------------------------------------------
 \begin{figure}[H]\vspace{1mm}

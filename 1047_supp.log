@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  16 NOV 2016 14:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  16 NOV 2016 14:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -2676,20 +2676,16 @@ Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1335.
 
 Package rerunfilecheck Info: File `1047_supp.brf' has not changed.
 (rerunfilecheck)             Checksum: CBDB92ACD28BB58CEB473CC785F3A12B;10244.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1335.
  ) 
 Here is how much of TeX's memory you used:
  8027 strings out of 493091
  162292 string characters out of 6134517
- 206111 words of memory out of 5000000
+ 206106 words of memory out of 5000000
  11064 multiletter control sequences out of 15000+600000
  43694 words of font info for 111 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 36i,10n,33p,716b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 36i,10n,33p,720b,472s stack positions out of 5000i,500n,10000p,200000b,80000s
 {c:/Software/texlive/2015/texmf-dist/fonts/enc/dvips/base/8r.enc}<c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb><c:/Software
 /texlive/2015/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx7.pfb><c:/Software/
@@ -2710,7 +2706,7 @@ xmf-dist/fonts/type1/urw/helvetic/uhvr8a.pfb><c:/Software/texlive/2015/texmf-di
 st/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw
 /times/utmri8a.pfb>
-Output written on 1047_supp.pdf (12 pages, 10265109 bytes).
+Output written on 1047_supp.pdf (12 pages, 10265106 bytes).
 PDF statistics:
  817 PDF objects out of 1000 (max. 8388607)
  566 compressed objects within 6 object streams
