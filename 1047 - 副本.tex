@@ -14,41 +14,50 @@
 \DeclareMathOperator*{\argmin}{arg\,min}
 \usepackage{arydshln}
 \usepackage{cite}
-\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
-\usepackage{authblk}
-\usepackage{xpatch}
-\usepackage{setspace}
+
+
+%\usepackage{sectsty}
+%\sectionfont{\fontsize{12}{11}\selectfont\leftskip=0pt\vspace{-2mm}}
+%\subsectionfont{\fontsize{11}{10}\selectfont\leftskip=0pt\vspace{-1mm}}
+%\subsubsectionfont{\fontsize{10}{10}\selectfont\leftskip=0pt\vspace{-1mm}}
+
 
 % Include other packages here, before hyperref.
 
 % If you comment hyperref and then uncomment it, you should delete
 % egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
 % run, let it finish, and you should be clear).
-\usepackage[breaklinks=true,bookmarks=false]{hyperref}
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
 
-\cvprfinalcopy % *** Uncomment this line for the final submission
+% \cvprfinalcopy % *** Uncomment this line for the final submission
 
-\def\cvprPaperID{****} % *** Enter the CVPR Paper ID here
+\def\cvprPaperID{1047} % *** Enter the CVPR Paper ID here
 \def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
 
 % Pages are numbered in submission mode, and unnumbered in camera-ready
-%\ifcvprfinal\pagestyle{empty}\fi
-\setcounter{page}{4321}
+\ifcvprfinal\pagestyle{empty}\fi
+
+
 \begin{document}
 
 %%%%%%%%% TITLE
 \title{External Prior Guided Internal Prior Learning for Real Noisy Image Denoising}
 
-\xpatchcmd{\author}{\relax#1\relax}{\relax\detokenize{#1}\relax}{}{}
-\author[1]{Jun Xu}
-\author[1]{Lei Zhang}
-%\textsuperscript{1,}\thanks{This work is supported by the HK RGC GRF grant (PolyU 5313/13E).}}
-\author[1]{David Zhang}
-\affil[1]{Dept. of Computing, The Hong Kong Polytechnic University, Hong Kong, China}
-\authorcr{\tt \small{\{csjunxu,cslzhang,csdzhang\}@comp.polyu.edu.hk}}
+\author{First Author\\
+Institution1\\
+Institution1 address\\
+{\tt\small firstauthor@i1.org}
+% For a paper whose authors are all at the same institution,
+% omit the following lines up until the closing ``}''.
+% Additional authors and addresses can be added with ``\and'',
+% just like the second author.
+% To save space, use either the email address or home page, not both
+\and
+Second Author\\
+Institution2\\
+First line of institution2 address\\
+{\tt\small secondauthor@i2.org}
 }
-
-
 
 \maketitle 
 
@@ -786,8 +795,5 @@ The noise in real-world noisy images is much more complex than additive white Ga
 \bibliographystyle{unsrt}
 \bibliography{egbib}
 }
-
-\end{document}
-
 
 \end{document}
