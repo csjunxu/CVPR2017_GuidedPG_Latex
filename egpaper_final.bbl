@@ -1,0 +1,186 @@
+\begin{thebibliography}{10}
+
+\bibitem{Tomasi1998}
+C.~Tomasi and R.~Manduchi.
+\newblock Bilateral filtering for gray and color images.
+\newblock {\em ICCV}, pages 839--846, 1998.
+
+\bibitem{PeronaMalik1990}
+P.~Perona and J.~Malik.
+\newblock Scale-space and edge detection using anisotropic diffusion.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 12(7):629--639, 1990.
+
+\bibitem{rudin1992nonlinear}
+L.~I. Rudin, S.~Osher, and E.~Fatemi.
+\newblock Nonlinear total variation based noise removal algorithms.
+\newblock {\em Physica D: Nonlinear Phenomena}, 60(1):259--268, 1992.
+
+\bibitem{osher2005iterative}
+S.~Osher, M.~Burger, D.~Goldfarb, J.~Xu, and W.~Yin.
+\newblock An iterative regularization method for total variation-based image
+  restoration.
+\newblock {\em Multiscale Modeling \& Simulation}, 4(2):460--489, 2005.
+
+\bibitem{softthresholding}
+D.~L. Donoho.
+\newblock De-noising by soft-thresholding.
+\newblock {\em IEEE Trans. Inf. Theor.}, 41(3):613--627, 1995.
+
+\bibitem{bayesshrink}
+S.~G. Chang, B.~Yu, and M.~Vetterli.
+\newblock Adaptive wavelet thresholding for image denoising and compression.
+\newblock {\em Image Processing, IEEE Transactions on}, 9(9):1532--1546, 2000.
+
+\bibitem{curvelet}
+J.~L. Starck, E.~J. Cand{\`e}s, and D.~L. Donoho.
+\newblock The curvelet transform for image denoising.
+\newblock {\em Image Processing, IEEE Transactions on}, 11(6):670--684, 2002.
+
+\bibitem{ksvd}
+M.~Elad and M.~Aharon.
+\newblock Image denoising via sparse and redundant representations over learned
+  dictionaries.
+\newblock {\em Image Processing, IEEE Transactions on}, 15(12):3736--3745,
+  2006.
+
+\bibitem{lssc}
+J.~Mairal, F.~Bach, J.~Ponce, G.~Sapiro, and A.~Zisserman.
+\newblock Non-local sparse models for image restoration.
+\newblock {\em ICCV}, pages 2272--2279, 2009.
+
+\bibitem{ncsr}
+W.~Dong, L.~Zhang, G.~Shi, and X.~Li.
+\newblock Nonlocally centralized sparse representation for image restoration.
+\newblock {\em Image Processing, IEEE Transactions on}, 22(4):1620--1630, 2013.
+
+\bibitem{nlm}
+A.~Buades, B.~Coll, and J.~M. Morel.
+\newblock A non-local algorithm for image denoising.
+\newblock {\em CVPR}, pages 60--65, 2005.
+
+\bibitem{bm3d}
+K.~Dabov, A.~Foi, V.~Katkovnik, and K.~Egiazarian.
+\newblock Image denoising by sparse 3-{D} transform-domain collaborative
+  filtering.
+\newblock {\em Image Processing, IEEE Transactions on}, 16(8):2080--2095, 2007.
+
+\bibitem{nnm}
+H.~Ji, C.~Liu, Z.~Shen, and Y.~Xu.
+\newblock Robust video denoising using low rank matrix completion.
+\newblock {\em CVPR}, pages 1791--1798, 2010.
+
+\bibitem{wnnm}
+S.~Gu, L.~Zhang, W.~Zuo, and X.~Feng.
+\newblock Weighted nuclear norm minimization with application to image
+  denoising.
+\newblock {\em CVPR}, pages 2862--2869, 2014.
+
+\bibitem{blsgsm}
+J.~Portilla, V.~Strela, M.J. Wainwright, and E.P. Simoncelli.
+\newblock Image denoising using scale mixtures of {Gaussians} in the wavelet
+  domain.
+\newblock {\em Image Processing, IEEE Transactions on}, 12(11):1338--1351,
+  2003.
+
+\bibitem{weiss}
+Y.~Weiss and W.~T. Freeman.
+\newblock What makes a good model of natural images?
+\newblock {\em CVPR}, pages 1--8, 2007.
+
+\bibitem{foe}
+S.~Roth and M.~J. Black.
+\newblock Fields of {Experts}.
+\newblock {\em International Journal of Computer Vision}, 82(2):205--229, 2009.
+
+\bibitem{Bishop}
+C.~M. Bishop.
+\newblock {\em Pattern recognition and machine learning}.
+\newblock New York: Springer, 2006.
+
+\bibitem{csf}
+U.~Schmidt and S.~Roth.
+\newblock Shrinkage fields for effective image restoration.
+\newblock {\em Computer Vision and Pattern Recognition (CVPR), 2014 IEEE
+  Conference on}, pages 2774--2781, June 2014.
+
+\bibitem{olshausen1996emergence}
+B.~A. Olshausen and D.~J. Field.
+\newblock Emergence of simple-cell receptive field properties by learning a
+  sparse code for natural images.
+\newblock {\em Nature}, 381(6583):607--609, 1996.
+
+\bibitem{olshausen1997sparse}
+B.~A. Olshausen and D.~J. Field.
+\newblock Sparse coding with an overcomplete basis set: {A} strategy employed
+  by {V1}?
+\newblock {\em Vision research}, 37(23):3311--3325, 1997.
+
+\bibitem{ksvdtsp}
+M.~Aharon, M.~Elad, and A.~Bruckstein.
+\newblock The {K-SVD}: An algorithm for designing overcomplete dictionaries for
+  sparse representation.
+\newblock {\em Signal Processing, IEEE Transactions on}, 54(11):4311--4322,
+  2006.
+
+\bibitem{srcolor}
+J.~Mairal, M.~Elad, and G.~Sapiro.
+\newblock Sparse representation for color image restoration.
+\newblock {\em Image Processing, IEEE Transactions on}, 17(1):53--69, 2008.
+
+\bibitem{srcvpr}
+J.~Wright, Y.~Ma, J.~Mairal, G.~Sapiro, T.~S. Huang, and S.~Yan.
+\newblock Sparse representation for computer vision and pattern recognition.
+\newblock {\em Proceedings of the IEEE}, 98(6):1031--1044, 2010.
+
+\bibitem{lcksvd}
+Z.~Jiang, Z.~Lin, and L.~S. Davis.
+\newblock Label consistent k-svd: Learning a discriminative dictionary for
+  recognition.
+\newblock {\em Pattern Analysis and Machine Intelligence, IEEE Transactions
+  on}, 35(11):2651--2664, 2013.
+
+\bibitem{epll}
+D.~Zoran and Y.~Weiss.
+\newblock From learning models of natural image patches to whole image
+  restoration.
+\newblock {\em ICCV}, pages 479--486, 2011.
+
+\bibitem{gmmnips}
+D.~Zoran and Y.~Weiss.
+\newblock Natural images, {Gaussian} mixtures and dead leaves.
+\newblock {\em NIPS}, pages 1736--1744, 2012.
+
+\bibitem{ple}
+G.~Yu, G.~Sapiro, and S.~Mallat.
+\newblock Solving inverse problems with piecewise linear estimators: {From}
+  {Gaussian} mixture models to structured sparsity.
+\newblock {\em Image Processing, IEEE Transactions on}, 21(5):2481--2499, 2012.
+
+\bibitem{nlr}
+G.~Peyr{\'e}, S.~Bougleux, and L.~D. Cohen.
+\newblock Non-local regularization of inverse problems.
+\newblock {\em Inverse Problems and Imaging}, 5(2):511--530, 2011.
+
+\bibitem{nsp}
+S.~Wang, L.~Zhang, and Y.~Liang.
+\newblock Nonlocal spectral prior model for low-level vision.
+\newblock {\em ACCV}, pages 231--244, 2013.
+
+\bibitem{em}
+A.~P. Dempster, N.~M. Laird, and D.~B. Rubin.
+\newblock Maximum likelihood from incomplete data via the {EM} algorithm.
+\newblock {\em Journal of the Royal Statistical Society. Series B
+  (methodological)}, pages 1--38, 1977.
+
+\bibitem{emconvergence}
+C.~F. Wu.
+\newblock On the convergence properties of the {EM} algorithm.
+\newblock {\em The Annals of Statistics}, pages 95--103, 1983.
+
+\bibitem{bsds}
+P.~Arbelaez, M.~Maire, C.~Fowlkes, and J.~Malik.
+\newblock Contour detection and hierarchical image segmentation.
+\newblock {\em IEEE Trans. Pattern Anal. Mach. Intell.}, 33(5):898--916, 2011.
+
+\end{thebibliography}

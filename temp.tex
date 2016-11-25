@@ -1,7 +1,4 @@
 \documentclass[10pt,twocolumn,letterpaper]{article}
-
-
-
 \usepackage{iccv}
 \usepackage{times}
 \usepackage{epsfig}
@@ -18,12 +15,10 @@
 \usepackage{color}
 \usepackage{authblk}
 \usepackage{xpatch}
-
-\usepackage{multirow}
 \usepackage{bm}
+\usepackage{multirow}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \usepackage{arydshln}
-\usepackage{cite}
 
 
 \setlength{\bibsep}{0.4ex}  % vertical spacing between references
@@ -51,56 +46,23 @@
 \begin{document}
 
 %%%%%%%%% TITLE
-\title{Patch Group Based Nonlocal Self-Similarity Prior Learning for Image Denoising}
+\title{External Prior Guided Internal Prior Learning for Real Noisy Image Denoising}
 
-%\author{Jun Xu \qquad Lei Zhang\\
-%The Hong Kong Polytechnic University\\
-%Institution1 address\\
-%{\tt\small firstauthor@i1.org}
-% For a paper whose authors are all at the same institution,
-% omit the following lines up until the closing ``}''.
-% Additional authors and addresses can be added with ``\and'',
-% just like the second author.
-% To save space, use either the email address or home page, not both
-%\and
-%Wangmeng  Zuo\\
-%Harbin Institute of Technology\\
-%First line of institution2 address\\
-%{\tt\small secondauthor@i2.org}
-%\and
-%David  Zhang\\
-%The Hong Kong Polytechnic University\\
-%First line of institution2 address\\
-%{\tt\small secondauthor@i2.org}
-%\and
-%Xiangchu  Feng\\
-%Xidian University\\
-%First line of institution2 address\\
-%{\tt\small secondauthor@i2.org}
-%}
 \xpatchcmd{\author}{\relax#1\relax}{\relax\detokenize{#1}\relax}{}{}
-\author[1]{Jun Xu}
-\author[\empty]{Lei Zhang\textsuperscript{1,}\thanks{This work is supported by the HK RGC GRF grant (PolyU 5313/13E).}}
-\author[2]{Wangmeng Zuo}
-\author[1]{David Zhang}
-\author[3]{Xiangchu Feng}
-\affil[1]{Dept. of Computing, The Hong Kong Polytechnic University, Hong Kong, China}
-\affil[2]{School of Computer Science and Technology, Harbin Institute of Technology, Harbin, China}
-\affil[3]{School of Mathematics and Statistics, Xidian University, Xi'an, China 
-\authorcr{\tt \small{\{csjunxu,cslzhang,csdzhang\}@comp.polyu.edu.hk,wmzuo@hit.edu.cn,xcfeng@mail.xidian.edu.cn}}
-}
+\author[\empty]{Jun Xu}
+\author[\empty]{Lei Zhang}
+\author[\empty]{David Zhang}
+\affil[\empty]{Department of Computing, The Hong Kong Polytechnic University, Hong Kong, China}
 %\renewcommand\Authands{ and }
 
 \maketitle
-
-
 %%%%%%%%% ABSTRACT
 \begin{abstract}
 Most of existing image denoising methods use some statistical models such as additive white Gaussian noise (AWGN) to model the noise, and learn image priors from either external data or the noisy image itself to remove noise.\ However, the noise in real-world noisy images is much more complex than AWGN, and it is hard to be modeled by simple analytical distributions.\ Therefore, many state-of-the-art denoising methods in literature become much less effective when applied to real noisy images.\ In this paper, we develop a robust denoiser for real noisy image denoising without explicit assumption on noise models.\ Specifically, we first learn external priors from a set of clean natural images, and then use the learned external priors to guide the learning of internal priors from the given noisy image for latent clean image recovery.\ The proposed method is simple yet highly effective.\ Experiments on real noisy images demonstrate that it achieves much better denoising performance than state-of-the-art denoising methods, including those designed for real noisy images.
 \end{abstract}
 
 %%%%%%%%% BODY TEXT
-\section{Introduction} 
+\section{Introduction}
 
 Image denoising is a crucial and indispensable step to improve image quality in digital imaging systems.\ In particular, with the decrease of size of CMOS/CCD sensors, image is more easily to be corrupted by noise and hence denoising is becoming increasingly important for high resolution imaging.\ In literature of image denoising, the observed noisy image is usually modeled as $\mathbf{y}=\mathbf{x}+\mathbf{n}$, where $\mathbf{x}$ is the latent clean image and $\mathbf{n}$ is the corrupted noise.\ Numerous image denoising methods \cite{ksvd,lssc,ncsr,nlm,bm3d,cbm3d,pgpd,wnnm,mlp,csf,chen2015learning,foe,epll} have been proposed in the past decades, including sparse representation and dictionary learning based methods \cite{ksvd,lssc,ncsr}, nonlocal self-similarity based methods \cite{ncsr,nlm,bm3d,cbm3d,pgpd}, low-rank based methods \cite{wnnm}, neural network based methods \cite{mlp}, and discriminative learning based methods \cite{csf,chen2015learning}. 
 
@@ -262,26 +224,6 @@ where $\mathbf{I}$ is the $3p^{2}$ dimensional identity matrix, $\bm{\alpha}_{n,
 \lambda_{j} = \lambda/(\sqrt{\mathbf{S}_{k}(j)}+\varepsilon),
 \end{equation}
 where $\mathbf{S}_{k}(j)$ is the $j$-th singular value of diagonal singular value matrix $\mathbf{S}_{k}$ (please refer to Eq.\ (\ref{equ2})) and $\varepsilon$ is a small positive number to avoid zero denominator.\ Note that $\mathbf{D}_{\text{E}}=\mathbf{U}_{k}$ if $r=3p^{2}$ and $\mathbf{D}_{\text{E}}=\emptyset$ if $r=0$.
-
-%The dictionary $\mathbf{D} = [\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]$ is orthogonal by checking that:
-%\vspace{-2mm}
-%\begin{equation}\label{equ6}\vspace{-2mm}
-%\mathbf{D}^{\top}\mathbf{D} = 
-%\left[\begin{array}{c}
-%\mathbf{D}_{\text{E}}^{\top}
-%\\
-%\mathbf{D}_{\text{I}}^{\top}
-%\end{array}\right]
-%[\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}]
-%=
-%\left[\begin{array}{cc}
-%\mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{E}}^{\top}\mathbf{D}_{\text{I}}
-%\\
-%\mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{E}}\ \mathbf{D}_{\text{I}}^{\top}\mathbf{D}_{\text{I}}
-%\end{array}\right]
-%=
-%\mathbf{I}
-%\end{equation}
 
 We employ an alternating iterative approach to solve the optimization problem (\ref{equ4}). Specifically, we initialize the orthogonal dictionary as $\mathbf{D}^{(0)}=\mathbf{U}_{k}$ and for $t=0,1, ...,T-1$, we alternatively update $\bm{\alpha}_{n,m}$ and $\mathbf{D}_{\text{I}}$ as follows.
 \vspace{2mm}\\
@@ -816,15 +758,25 @@ PSNR & 37.75  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
 \end{table}
 
 
+
+
+
+
+
+
+
+
+
+%-------------------------------------------------------------------------
+
 \section{Conclusion}
 
 The noise in real-world noisy images is much more complex than additive white Gaussian noise and hard to be modeled by simple analytical distributions such as Gaussian or mixture of Gaussians, making the real noisy image denoising problem very challenging.\ In this paper, we proposed a simple yet effective solution for real noisy image denoising without explicitly assuming certain noise models.\ Specifically, we firstly learned image priors from external clean images, and then employed the learned external priors to guide the learning of internal priors from the given noisy image.\ The learned hybrid priors are utilized for real noisy image denoising.\ Experiments on two real noisy image datasets, where the images were captured under indoor or outdoor lighting conditions by different types of cameras and camera settings, demonstrated that our proposed method achieved much better performance than state-of-the-art image denoising methods.
 
 
-
 {
-\small
-\bibliographystyle{unsrt}
+\huge
+\bibliographystyle{unsrt}%{ieee}%{unsrt}
 \bibliography{egbib}
 }
 
