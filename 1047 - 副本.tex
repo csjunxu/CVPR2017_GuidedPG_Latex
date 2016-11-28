@@ -137,6 +137,13 @@ There have been a few methods \cite{crosschannel2016,Liu2008,almapg,Zhu_2016_CVP
 
 This work aims to develop a robust denoiser for real noisy image denoising without explicitly assuming certain noise models.\ To achieve this goal, we propose to first learn image priors from external clean images, and then employ the learned external priors to guide the learning of internal priors from the given noisy image.\ The flowchart of the proposed method is illustrated in\ Fig.\ \ref{fig2}.\ We first extract millions of patch groups from a set of high quality natural images, with which a Gaussian Mixture Model (GMM) is learned as the external prior.\ The learned GMM prior model is used to cluster the patch groups extracted from the given noisy image, and then an external-internal hybrid orthogonal dictionary is learned as the final prior for image denoising. Our proposed denoising method is simple and efficient, yet our extensive experiments on real noisy images clearly demonstrate its better denoising performance than the current state-of-the-arts.
 
+\vspace{-1mm}
+\section{Related Work}
+
+\subsection{Internal \textbf{\emph{vs.}} External Prior Learning}
+
+Image priors are playing a key role in image denoising \cite{ksvd,ncsr,pgpd,foe,epll,ple,iraniinternal}.\ There are mainly two categories of prior learning methods.\ 1) External prior learning methods \cite{pgpd,foe,epll} learn priors (e.g., dictionaries) from a set of external clean images, and the learned priors are used to recover the latent clean image from the given noisy image.\ 2) Internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} directly learn priors from the given noisy image, and image denoising is often done simultaneously with the prior learning process.\ It has been demonstrated \cite{pgpd,foe,epll} that the external priors learned from natural clean images are effective and efficient for image denoising problem, but they are not adaptive to the given noisy image so that some fine-scale image structures may not be well recovered.\ By contrast, the internal priors are adaptive to content of the given image, but the learning processing are usually slow.\ In addition, most of the internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} assume AWGN noise, making the learned priors less robust for real noisy images. In this paper, we use external priors to guide the internal prior learning.\ Our method is not only much faster than the traditional internal learning methods, but also very effective to denoise real noisy images.
+
 \begin{figure*}\vspace{-2mm}
 \centering
 \includegraphics[width=0.95\linewidth]{Flowchart.pdf}
@@ -146,13 +153,6 @@ This work aims to develop a robust denoiser for real noisy image denoising witho
 \vspace{-1mm}
 \label{fig2}
 \end{figure*}
-
-\vspace{-1mm}
-\section{Related Work}
-
-\subsection{Internal \textbf{\emph{vs.}} External Prior Learning}
-
-Image priors are playing a key role in image denoising \cite{ksvd,ncsr,pgpd,foe,epll,ple,iraniinternal}.\ There are mainly two categories of prior learning methods.\ 1) External prior learning methods \cite{pgpd,foe,epll} learn priors (e.g., dictionaries) from a set of external clean images, and the learned priors are used to recover the latent clean image from the given noisy image.\ 2) Internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} directly learn priors from the given noisy image, and image denoising is often done simultaneously with the prior learning process.\ It has been demonstrated \cite{pgpd,foe,epll} that the external priors learned from natural clean images are effective and efficient for image denoising problem, but they are not adaptive to the given noisy image so that some fine-scale image structures may not be well recovered.\ By contrast, the internal priors are adaptive to content of the given image, but the learning processing are usually slow.\ In addition, most of the internal prior learning methods \cite{ksvd,ncsr,ple,iraniinternal} assume AWGN noise, making the learned priors less robust for real noisy images. In this paper, we use external priors to guide the internal prior learning.\ Our method is not only much faster than the traditional internal learning methods, but also very effective to denoise real noisy images.
 
 \subsection{Real Noisy Image Denoising}
 
