@@ -1,9 +1,22 @@
 \begin{thebibliography}{1}\itemsep=-1pt
 
-\bibitem{Authors14}
-Authors.
-\newblock The frobnicatable foo filter, 2014.
-\newblock Face and Gesture submission ID 324. Supplied as additional material
-  {\tt fg324.pdf}.
+\bibitem{makitalo2013optimal}
+M.~Makitalo and A.~Foi.
+\newblock Optimal inversion of the generalized anscombe transformation for
+  poisson-gaussian noise.
+\newblock {\em IEEE Transactions on Image Processing}, 22(1):91--103, 2013.
+
+\bibitem{crosschannel2016}
+S.~Nam, Y.~Hwang, Y.~Matsushita, and S.~J. Kim.
+\newblock A holistic approach to cross-channel image noise modeling and its
+  application to image denoising.
+\newblock {\em IEEE Conference on Computer Vision and Pattern Recognition
+  (CVPR)}, pages 1683--1691, 2016.
+
+\bibitem{nlpca}
+J.~Salmon, Z.~Harmany, C.-A. Deledalle, and R.~Willett.
+\newblock Poisson noise reduction with non-local pca.
+\newblock {\em Journal of Mathematical Imaging and Vision}, 48(2):279--294,
+  2014.
 
 \end{thebibliography}
