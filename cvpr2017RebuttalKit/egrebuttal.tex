@@ -35,41 +35,41 @@ We appreciate all the reviewers for their constructive comments, especially R2 f
 \\
 \textbf{Q1}: Overstatement of claims
 \\
-The noise in real world images are very complex and cannot be modeled by Poisson or other more complex distribution. Since it is too hard to explicitly model the real noise, we gave up designing good models for real noise. Instead, we turn to model the signals by statistical models such as mixture of Gaussian (MoG). We believe that as long as we model the signals accurately enough, we do not need strong priors for the noise, and hence we employ the $\ell_{2}$ norm for the residual errors. We admit that if we describe the noise with a more suitable model, the performance of our algorithm will be better. But this is not the major point of this paper, as pointed out by the title of this paper.
+\textbf{A1}: The noise in real world images are very complex and cannot be modeled by Poisson or other more complex distribution. Since it is too hard to explicitly model the real noise, we gave up designing good models for real noise. Instead, we turn to model the signals by statistical models such as mixture of Gaussian (MoG). We believe that as long as we model the signals accurately enough, we do not need strong priors for the noise, and hence we employ the $\ell_{2}$ norm for the residual errors. We admit that if we describe the noise with a more suitable model, the performance of our algorithm will be better. But this is not the major point of this paper, as pointed out by the title of this paper.
 \\
 \textbf{Q2}: There is nothing new in terms of the prior model ...
 \\
-When taking the MoG model for learning priors from external data, we basically follow the framework of EPLL. However, this is not the exact work we have done in this paper. What we did is to employ the external priors learned from external data to guide the learning of internal priors which are more adaptive to the image being denoised. And we want to argue that this combination makes our model have stronger ability to characterize the signals in real noisy images. We evaluate two algorithms designed for Poisson noise reduction, NLSPCA \cite{nlpca} and \cite{makitalo2013optimal}. The results are listed in Table 1. Note that we had tune the parameters of these algorithms carefully to achieve their best performance.
+\textbf{A2}: When taking the MoG model for learning priors from external data, we basically follow the framework of EPLL. However, this is not the exact work we have done in this paper. What we did is to employ the external priors learned from external data to guide the learning of internal priors which are more adaptive to the image being denoised. And we want to argue that this combination makes our model have stronger ability to characterize the signals in real noisy images. We evaluate two algorithms designed for Poisson noise reduction, NLSPCA \cite{nlpca} and \cite{makitalo2013optimal}. The results are listed in Table 1. Note that we had tune the parameters of these algorithms carefully to achieve their best performance.
 \\
 \\
 \textbf{R2's Questions}
 \\
 \textbf{Q1}: The number and effect of parameters
 \\
-The key parameters of our model are the regularization parameter $\lambda$ and the number of atoms in external sub-dictionary,$r$. $r$ is very robust as long as it is in a reasonable range as demonstrated in experiments. $\lambda=0.001$ works well in the experiments. Other parameters are preset by hand and can work well as long as they are set in a reasonable range.
+\textbf{A1}: The key parameters of our model are the regularization parameter $\lambda$ and the number of atoms in external sub-dictionary,$r$. $r$ is very robust as long as it is in a reasonable range as demonstrated in experiments. $\lambda=0.001$ works well in the experiments. Other parameters are preset by hand and can work well as long as they are set in a reasonable range.
 \\
 \\
 \textbf{R3's Questions}
 \\
 \textbf{Q1}: hard to believe that it will work for all the cases
 \\
-We had tested our method on the two datasets which contains a lot of real noisy images for many cases, we will test our method and publish our code in the future for testing on more cases.
+\textbf{A1}: We had tested our method on the two datasets which contains a lot of real noisy images for many cases, we will test our method and publish our code in the future for testing on more cases.
 \\
 \textbf{Q2}: not clear how to choose nonlocal similar patches
 \\
-Yes, we chose similar patches based on Euclidean distance and we added this detail to our revised paper. Thanks for pointing it out.
+\textbf{A2}: Yes, we chose similar patches based on Euclidean distance and we added this detail to our revised paper. Thanks for pointing it out.
 \\
 \textbf{Q3}: other noise types
 \\
-In this paper, we only deal with real noise in real noisy images. Other noise types will be considered in future work.
+\textbf{A3}: In this paper, we only deal with real noise in real noisy images. Other noise types will be considered in future work.
 \\
 \textbf{Q4}: the likelihood term is Gaussian denoising
 \\
-Please kindly refer to the answers to \textbf{Q1} of \textbf{R1} and \textbf{Q3} above for this problem since the space is limited. 
+\textbf{A4}: Please kindly refer to the answers \textbf{A1} to \textbf{Q1} of \textbf{R1} and \textbf{A3} to \textbf{Q3} above for this problem since the space is limited. 
 \\
 \textbf{Q5}: The competing algorithms would also work quite well
 \\
-We retained the TNRD, CSF or MLP model with the carefully parameter tuning to achieve their corresponding best performance. For example, we retained these models with Gaussian noise levels in $\sigma = 5, 10, 15, 25, 35, 50$. We found that MLP achieves the best PSNR results on the 60 images used in our paper at $\sigma = 10$, which are 38.36dB. But this result is still 0.43dB lower than those of our method. The image qualities of MLP at $\sigma = 10$ are still clearly inferior to those of our method. The new results are listed in Table 1 in which we also evaluated the performance of two algorithms for Poisson noise removal, NLSPCA \cite{nlpca} and \cite{makitalo2013optimal}. 
+\textbf{A5}: We retained the TNRD, CSF or MLP model with the carefully parameter tuning to achieve their corresponding best performance. For example, we retained these models with Gaussian noise levels in $\sigma = 5, 10, 15, 25, 35, 50$. We found that MLP achieves the best PSNR results on the 60 images used in our paper at $\sigma = 10$, which are 38.36dB. But this result is still 0.43dB lower than those of our method. The image qualities of MLP at $\sigma = 10$ are still clearly inferior to those of our method. The new results are listed in Table 1 in which we also evaluated the performance of two algorithms for Poisson noise removal, NLSPCA \cite{nlpca} and \cite{makitalo2013optimal}. 
 \begin{table}\vspace{1.5mm}
 \caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
 \vspace{-3mm}
@@ -96,11 +96,11 @@ PSNR & 38.32  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
 \\
 \textbf{Q6}: a single parameter setting for all the cases 
 \\
-The experiments demonstrate that a single parameter can deal with all the cases in the tested datasets. With more flexible parameters setting, the performance would be better and this is the line of our future work.
+\textbf{A6}: The experiments demonstrate that a single parameter can deal with all the cases in the tested datasets. With more flexible parameters setting, the performance would be better and this is the line of our future work.
 \\
 \textbf{Q7}: why is the image resolution significantly smaller
 \\
-This is for smaller pdf size of the paper, and down scale the images would not affect much the image quality.
+\textbf{A7}: This is for smaller pdf size of the paper, and down scale the images would not affect much the image quality.
 
 
 
