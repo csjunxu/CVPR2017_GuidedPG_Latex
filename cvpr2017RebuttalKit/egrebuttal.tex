@@ -39,7 +39,30 @@ The noise in real world images are very complex and cannot be modeled by Poisson
 \\
 \textbf{Q2}: There is nothing new in terms of the prior model ...
 \\
-When taking the MoG model for learning priors from external data, we basically follow the framework of EPLL. However, this is not the exact work we have done in this paper. What we did is to employ the external priors learned from external data to guide the learning of internal priors which are more adaptive to the image being denoised. And we want to argue that this combination makes our model have stronger ability to characterize the signals in real noisy images. The results of two Poisson algorithm are listed in Table 1.
+When taking the MoG model for learning priors from external data, we basically follow the framework of EPLL. However, this is not the exact work we have done in this paper. What we did is to employ the external priors learned from external data to guide the learning of internal priors which are more adaptive to the image being denoised. And we want to argue that this combination makes our model have stronger ability to characterize the signals in real noisy images. The results of two Poisson algorithm are listed in Table 1. 
+\begin{table}\vspace{1.5mm}
+\caption{Average PSNR(dB) results of different methods on 60 real noisy images cropped from \cite{crosschannel2016}.}
+\vspace{-3mm}
+\label{tab3}
+\begin{center}
+\renewcommand\arraystretch{1}
+\begin{tabular}{|c||c|c|c|c|}
+\hline
+ Methods& \textbf{CBM3D}&\textbf{WNNM}&\textbf{MLP}&\textbf{CSF}
+\\
+\hline
+PSNR &   34.58 & 34.52 & 36.19 & 37.40
+\\
+\hline
+Methods& \textbf{TNRD} & \textbf{NI} & \textbf{NC} &\textbf{Ours} 
+\\
+\hline
+PSNR & 37.75  & 36.53 & 37.57 & {\textbf{{ 38.75}}}
+\\
+\hline
+\end{tabular}
+\end{center}\vspace{-2.5mm}
+\end{table}
 \\
 \textbf{R2's Questions}
 \\
