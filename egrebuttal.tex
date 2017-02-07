@@ -1,0 +1,82 @@
+\documentclass[10pt,twocolumn,letterpaper]{article}
+
+\usepackage{cvpr}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+% Include other packages here, before hyperref.
+
+% If you comment hyperref and then uncomment it, you should delete
+% egpaper.aux before re-running latex.  (Or just hit 'q' on the first latex
+% run, let it finish, and you should be clear).
+\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,bookmarks=false]{hyperref}
+
+%%%%%%%%% PAPER ID  - PLEASE UPDATE
+\def\cvprPaperID{1047} % *** Enter the CVPR Paper ID here
+\def\httilde{\mbox{\tt\raisebox{-.5ex}{\symbol{126}}}}
+
+\begin{document}
+
+%%%%%%%%% TITLE - PLEASE UPDATE
+\title{Authors' Response to the Review of Paper 1047\\External Prior Guided Internal Prior Learning for Real Noisy Image Denoising}  % **** Enter the paper title here
+
+\maketitle
+\thispagestyle{empty}
+
+
+%%%%%%%%% BODY TEXT - ENTER YOUR RESPONSE BELOW
+We appreciate all the reviewers for their constructive comments. We regret that R1 and R3 had obvious misunderstanding on our work. We sincerely ask them to read our paper again. What below are our responses to all the reviewers' comments.
+
+
+\vspace{-1mm}
+\section{Non-Gaussian noise (R1\&R3)}
+In this work we presented an effective algorithm for real noisy image denoising, but we didn't claim that we developed a new model for non-Gaussian noise. The noise in real world images is too complex to be modeled by Poisson or other simple distributions. Therefore, we focused on the modeling of image priors, while using the simple $l_{2}$-norm to measure the residual. We agree that if a more complex noise model is used, the performance of our algorithm can be better. However, this is not the focus of this paper. Using the simple $l_{2}$-norm on residual, our method has already achieved very competitive results, which clearly demonstrated the effectiveness of our image prior model.
+
+Both R1 and R3 asked us to compare with Poisson noise removal methods. In Table 1 we compared with 2 state-of-the-art Poisson noise reduction methods \cite{Makitalo2013Optimal} and \cite{Salmon}. Note that we have tuned their parameters carefully to achieve their best performance. Neither \cite{Makitalo2013Optimal} nor \cite{Salmon} works well. This is because real world noise is much more complex than Poisson.
+
+\begin{table}[h!]
+\begin{center}
+\caption{Average PSNR (dB) results of different methods on 60 real noisy images from \cite{Nam2016A}}
+\begin{tabular}{|l|c|c|c|c|}
+  \hline
+  \textbf{Methods}                             &\cite{Makitalo2013Optimal}          &\cite{Salmon}       &MLP &CSF        \\
+  \hline
+  PSNR                    &  24.39                     &   25.67 &38.36 &38.21                           \\
+  \hline
+  \textbf{Methods}                             &TNRD          &NI       &NC &Ours        \\
+  \hline
+  PSNR                    &  38.32                     &   36.53 &37.57 &\textbf{38.75}                           \\
+  \hline
+\end{tabular}
+\end{center}
+\label{tab:1}
+\end{table}
+
+\vspace{-9mm}
+\section{Novelty of our prior model (R1\&R3)}
+Most of the previous denoising methods either learn external priors or learn internal priors. Our method is among the first methods to learn hybrid prior models. We first learn external GMM priors from clean images (this part is basically the same as Zoran and Weiss' 2011 work and we have made this very clear in our paper), and then use the GMM prior to guide the learning of image internal priors (this part is totally new). We want to argue that this is a novel contribution and our method shows state-of-the-art performance on real noisy image denoising.
+
+\section{The effect of parameters (R2)}
+There are 6 model parameters in our method and all of them are fixed in our experiments (please refer to the section of implementation details). Based on our experience, our method will not be affected much when these parameters vary around our default setting. The most sensitive parameter is the regularization parameter $\lambda$ in Eq. (5), and we set $\lambda$=0.001 by experience.
+
+\section{The setting of competing algorithms (R3)}
+We re-trained carefully the TNRD, CSF and MLP models with Gaussian noise levels $\sigma$ = 5, 10, 15, 25, 35, 50, and re-run the experiments. The new results are listed in Table 1. One can see that our method is still the best one. The $2^{nd}$ best method is MLP with $\sigma$ =10, which is 0.39dB lower than our method.
+
+\section{Single parameter setting for all cases (R3)}
+Yes we do use a single parameter setting and it works well on the two very different datasets. Actually this is not a magic because the key parameter $\lambda_{j}$ (Eq. (5) in the main paper) in our algorithm is adaptively determined based on the statistics of the external and internal data. This is one advantage of our algorithm.
+
+\section{Nonlocal similar patches (R3)}
+Yes we chose similar patches based on the Euclidean distance. We will make this clear in the revised paper. A stronger patch matching algorithm can make our algorithm perform better but will increase the complexity.
+
+\section{Image resolution (R3)}
+The reason we down-sampled the images is to make the size of PDF file smaller. Actually, if we view the images with original size, the better visual quality of our method over other denoising methods will be more obvious.
+
+{\small
+\bibliographystyle{ieee}
+\bibliography{egbib}
+}
+
+\end{document}
