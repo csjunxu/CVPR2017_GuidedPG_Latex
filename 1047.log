@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  24 NOV 2016 19:47
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/W32TeX) (preloaded format=pdflatex 2015.9.12)  7 MAR 2017 16:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -25,7 +25,7 @@ File: size10.clo 2014/09/29 v1.4h Standard LaTeX file (size option)
 ) (./cvpr.sty
 (./eso-pic.sty
 Package: eso-pic 2002/11/16 v1.1b eso-pic (RN)
- (./cvpr_eso.sty
+ (./iccv_eso.sty
 
 LaTeX Warning: You have requested package `eso-pic',
                but the package provides `everyshi'.
@@ -1121,8 +1121,17 @@ Package atveryend Info: Empty hook `AfterLastShipout' on input line 799.
  (./1047.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 799.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 799.
-Package rerunfilecheck Info: File `1047.brf' has not changed.
-(rerunfilecheck)             Checksum: E61B30FF3F9B19F1867EB4A5E2946316;6180.
+
+
+Package rerunfilecheck Warning: File `1047.brf' has changed.
+(rerunfilecheck)                Rerun to get bibliographical references right.
+
+Package rerunfilecheck Info: Checksums for `1047.brf':
+(rerunfilecheck)             Before: 069294E7E11364CB5232840F6000AFFE;6180
+(rerunfilecheck)             After:  E61B30FF3F9B19F1867EB4A5E2946316;6180.
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 799.
  ) 
 Here is how much of TeX's memory you used:
@@ -1158,10 +1167,10 @@ exmf-dist/fonts/type1/urw/times/utmb8a.pfb><c:/Software/texlive/2015/texmf-dist
 /fonts/type1/urw/times/utmbi8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/t
 ype1/urw/times/utmr8a.pfb><c:/Software/texlive/2015/texmf-dist/fonts/type1/urw/
 times/utmri8a.pfb>
-Output written on 1047.pdf (9 pages, 4183445 bytes).
+Output written on 1047.pdf (9 pages, 4183474 bytes).
 PDF statistics:
- 629 PDF objects out of 1000 (max. 8388607)
- 496 compressed objects within 5 object streams
+ 630 PDF objects out of 1000 (max. 8388607)
+ 497 compressed objects within 5 object streams
  87 named destinations out of 1000 (max. 500000)
  276 words of extra memory for PDF output out of 10000 (max. 10000000)
 
